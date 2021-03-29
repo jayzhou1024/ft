@@ -16,7 +16,9 @@ void DSPF_sp_fir_gen_cn(const float *x,
     }
 }
 
-//Ti  优化
+/*Ti  优化  这里三个并行的效果会更好，但是数据范围限制了
+    SMAC(M1\M2),SIEU支持浮点加法
+*/
 void DSP_fir_gen_cn_v1(const float *x,
     const float *h,
     float *y,
