@@ -59,7 +59,7 @@ void DSP_fir_gen_cn(const float *x,
         y[j+3] = sum4;
     }
 }
-
+//
 void DSP_fir_gen_cn_v2 (
     vector float *x,
            float *h,
