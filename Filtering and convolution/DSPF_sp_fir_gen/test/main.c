@@ -13,6 +13,7 @@ float h[NH];
 float r[NR];
 float r1[NR];
 float r_cn[NR];
+//
 void DSP_fir_gen_cn_v1 (
     vector float *x,   
     float *h,    
