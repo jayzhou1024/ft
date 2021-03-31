@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h> 
 
-//并行化  这里存在不必要计算
+//并行化  这里存在不必要计算，可能存在非必要计算空间数据被修改
 void DSPF_sp_fir_gen_vc2 (
     vector float *x,
            float *h,

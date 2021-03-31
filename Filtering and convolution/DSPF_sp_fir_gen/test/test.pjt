@@ -12,6 +12,7 @@ Source="datatransfer.c"
 Source="DSPF_sp_fir_gen.c"
 Source="main.c"
 Source="readme.txt"
+Source="tags"
 Source="test.lds"
 Source="test.pjt"
 Source="test.pst"
@@ -31,7 +32,7 @@ Source="Debug/test.out"
 Source="Debug/Timer.o"
 Source="Debug/Timer.s"
 ["Compiler" Settings: "Debug"]
-Options=-O0 -g -ffunction-sections 
+Options=-O2 -ffunction-sections -g 
 ["Compiler" Settings: "Release"]
 Options=-O2 -ffunction-sections 
 ["Assembler" Settings: "Debug"]
@@ -43,4 +44,8 @@ Options=-o"Debug/test.out" --gc-sections -T"test.lds"
 ["Linker" Settings: "Release"]
 Options=-o"Release/test.out" --gc-sections -T"test.lds" 
 [Opened files]
-OpenedSource="Debug/DSPF_sp_fir_gen.s",line=22
+OpenedSource="Debug/DSPF_sp_fir_gen.s",line=1
+OpenedSource="main.c",line=124
+OpenedSource="DSPF_sp_fir_gen.c",line=26
+OpenedSource="Debug/main.s",line=1022
+OpenedSource="datatransfer.c",line=117
