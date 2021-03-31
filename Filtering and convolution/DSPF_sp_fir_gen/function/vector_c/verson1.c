@@ -23,7 +23,7 @@ void DSPF_sp_fir_gen_vc1 (
 		for(j = 0,k = 0; j < nr; j+=4,k++) { 
           temp2=*((vector float *)((float *)x+i+j));    //x四个一组计算  取0 4 8 12 ...
           temp3=(vector float *)(tempr+k);              //r每次移动4位
-          temp3[0]=vec_mula(temp2,temp1,temp3[0]);      
+          temp3[0]=vec_mula(temp2,temp1,temp3[0]);  
 		}
 	}
 	 mov_to_vlr(0xFFFF);

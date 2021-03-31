@@ -45,7 +45,7 @@ Options=-o"Debug/test.out" --gc-sections -T"test.lds"
 Options=-o"Release/test.out" --gc-sections -T"test.lds" 
 [Opened files]
 OpenedSource="Debug/DSPF_sp_fir_gen.s",line=1
-OpenedSource="main.c",line=124
-OpenedSource="DSPF_sp_fir_gen.c",line=26
-OpenedSource="Debug/main.s",line=1022
+OpenedSource="main.c",line=14
+OpenedSource="DSPF_sp_fir_gen.c",line=48
+OpenedSource="Debug/main.s",line=1038
 OpenedSource="datatransfer.c",line=117
