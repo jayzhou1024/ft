@@ -81,7 +81,7 @@ void random_h(float *h, int n);
 unsigned long  getTime(vector float * x1,float *h1,vector float* r1,int nh,int nr){
 	unsigned long time1,time2;
     time1 = GetTimerCount(0);
-	DSP_fir_gen_cn_v1(x1,h1,r1,nh,nr);
+	DSPF_sp_fir_gen_vc1(x1,h1,r1,nh,nr);
     time2 = GetTimerCount(0);
     return time2-time1;
 }

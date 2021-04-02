@@ -32,7 +32,7 @@ Source="Debug/test.out"
 Source="Debug/Timer.o"
 Source="Debug/Timer.s"
 ["Compiler" Settings: "Debug"]
-Options=-O2 -ffunction-sections -g 
+Options=-O3 -ffunction-sections -g 
 ["Compiler" Settings: "Release"]
 Options=-O2 -ffunction-sections 
 ["Assembler" Settings: "Debug"]
@@ -45,7 +45,6 @@ Options=-o"Debug/test.out" --gc-sections -T"test.lds"
 Options=-o"Release/test.out" --gc-sections -T"test.lds" 
 [Opened files]
 OpenedSource="Debug/DSPF_sp_fir_gen.s",line=1
-OpenedSource="main.c",line=14
-OpenedSource="DSPF_sp_fir_gen.c",line=48
-OpenedSource="Debug/main.s",line=1038
-OpenedSource="datatransfer.c",line=117
+OpenedSource="main.c",line=139
+OpenedSource="DSPF_sp_fir_gen.c",line=145
+OpenedSource="datatransfer.c",line=39
