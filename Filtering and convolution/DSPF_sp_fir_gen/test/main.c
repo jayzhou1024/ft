@@ -31,7 +31,6 @@ void DSP_fir_gen_cn_v1 (
 		}
 	}
 }
-
 void DSP_fir_gen_cn(const float *x,
     const float *h,
     float *y,
@@ -116,7 +115,7 @@ void main(){
 	M7002_datatrans(x, xAddr, (NR+NH-1)*4);
 	M7002_datatrans(h, hAddr, (NH)*4);
 	printf ("DMA end\n");
-
+	
 	SetTimerPeriod(0, 0xffffffff);
 	TimerStart(0);
 	
@@ -139,7 +138,7 @@ void main(){
 		   
 		   time_cn=getTime_cn(x,h,r_cn,nh,nr);
 		   unsigned long time1=getTime(x,h,r1,nh,nr);
-		   printf("\tNR = %d\t  NH = %d\t cn_time:%d\t  v1_cycle:%d\t  v2_cycle: %d\n", nr, nh,time_cn-c_time,time1-c_time,time-c_time);
+		   printf("\tNX = %-3d\t  NH = %-2d\t cn_cycle:%-4d\t  v1_cycle:%-4d\t  v2_cycle: %-4d\n", nr, nh,time_cn-c_time,time1-c_time,time-c_time);
 		}
 	}
 	printf("helloworld");
@@ -162,7 +161,6 @@ void random_h(float *h, int n){
 	}
 }	
 void setSram(){
-	
 	int  *cache=0x040140004;
     int  *cache1=0x040140000;
 	volatile int cache_ok;

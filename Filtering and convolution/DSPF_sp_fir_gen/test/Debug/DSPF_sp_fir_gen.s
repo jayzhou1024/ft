@@ -733,7 +733,7 @@ DSPF_sp_fir_gen_vc1:
 		SLTU		R22, R46, R24
 	|	SMOV.M2		R22, R46
 		SADD.M2		R47,R24,R47
-	|	SMOVIL		0, R29
+	|	SMOVIL		0, R43
 		SMVAGA36.M2		R47:R46, AR10
 		SNOP		1
 	.loc 1 163 0
@@ -748,7 +748,7 @@ DSPF_sp_fir_gen_vc1:
 .L51:
 	.loc 1 150 0
 		SMOV.M2		R28, R44
-	|	SMOV.M1		R29, R45
+	|	SMOV.M1		R43, R45
 	;no-op trunc di R45:R44 to pdi R45:R44
 		SADDA.M1		R45:R44,AR6,AR0
 	|	SADDA.M2		R45:R44,AR4,AR2
@@ -759,10 +759,10 @@ DSPF_sp_fir_gen_vc1:
 	|	SADD.M2		16,R28,R26
 		SLTU		R26, R28, R50
 	|	SMOV.M2		R26, R28
-		SADD.M2		R29,R50,R29
+		SADD.M2		R43,R50,R43
 	|	SEQ		R26, R21, R0
 	.loc 1 164 0
-	[R0]	SEQ		R29, R20, R0
+	[R0]	SEQ		R43, R20, R0
 		SNOP		4
 	.loc 1 167 0
 		VFMULAS32.M3	VR4,VR5,VR3,VR3
@@ -774,11 +774,11 @@ DSPF_sp_fir_gen_vc1:
 	;; condjump to .L51 occurs
 .LVL52:
 .L54:
-		SLTU		R53, R10, R56
+		SLTU		R53, R10, R29
 	|	SMOV.M2		R53, R10
 	.loc 1 162 0
 		SEQ		R53, R54, R2
-	|	SADD.M2		R11,R56,R11
+	|	SADD.M2		R11,R29,R11
 	|	SADD.M1		4,R53,R53
 	[R2]	SEQ		R11, R19, R2
 	[R2]	SBR		.L53
@@ -1024,7 +1024,7 @@ DSPF_sp_fir_gen_vc3:
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.4byte	0x7f8
+	.4byte	0x800
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x8
@@ -1105,24 +1105,24 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x7f
 	.byte	0
 	.byte	0x1
-	.4byte	0x2bb
+	.4byte	0x2bf
 	.byte	0x4
 	.string	"x"
 	.byte	0x1
 	.byte	0x6
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.4byte	.LLST0
 	.byte	0x4
 	.string	"h"
 	.byte	0x1
 	.byte	0x7
-	.4byte	0x2ce
+	.4byte	0x2d2
 	.4byte	.LLST1
 	.byte	0x4
 	.string	"r"
 	.byte	0x1
 	.byte	0x8
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.4byte	.LLST2
 	.byte	0x4
 	.string	"nh"
@@ -1155,96 +1155,97 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x1
 	.byte	0xd
 	.4byte	0x12f
-	.byte	0x7
+	.byte	0x6
 	.string	"t"
 	.byte	0x1
 	.byte	0xd
 	.4byte	0x12f
+	.4byte	.LLST6
 	.byte	0x8
 	.4byte	.LASF0
 	.byte	0x1
 	.byte	0xe
-	.4byte	0x2bb
-	.4byte	.LLST6
+	.4byte	0x2bf
+	.4byte	.LLST7
 	.byte	0x9
 	.4byte	.LASF1
 	.byte	0x1
 	.byte	0xe
-	.4byte	0x2bb
+	.4byte	0x2bf
 	.byte	0x9
 	.4byte	.LASF2
 	.byte	0x1
 	.byte	0xe
-	.4byte	0x2bb
+	.4byte	0x2bf
 	.byte	0x6
 	.string	"temp4"
 	.byte	0x1
 	.byte	0xe
-	.4byte	0x2bb
-	.4byte	.LLST7
+	.4byte	0x2bf
+	.4byte	.LLST8
 	.byte	0x6
 	.string	"temp5"
 	.byte	0x1
 	.byte	0xe
-	.4byte	0x2bb
-	.4byte	.LLST8
+	.4byte	0x2bf
+	.4byte	.LLST9
 	.byte	0x6
 	.string	"temp6"
 	.byte	0x1
 	.byte	0xe
-	.4byte	0x2bb
-	.4byte	.LLST9
+	.4byte	0x2bf
+	.4byte	.LLST10
 	.byte	0x7
 	.string	"temp7"
 	.byte	0x1
 	.byte	0xf
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x7
 	.string	"temp8"
 	.byte	0x1
 	.byte	0xf
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x7
 	.string	"temp9"
 	.byte	0x1
 	.byte	0xf
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x8
 	.4byte	.LASF3
 	.byte	0x1
 	.byte	0x10
-	.4byte	0x2e4
-	.4byte	.LLST10
+	.4byte	0x2e8
+	.4byte	.LLST11
 	.byte	0x6
 	.string	"x_temp"
 	.byte	0x1
 	.byte	0x11
-	.4byte	0x2ce
-	.4byte	.LLST11
+	.4byte	0x2d2
+	.4byte	.LLST12
 	.byte	0
 	.byte	0xa
 	.byte	0x1
 	.4byte	0x167
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0xb
 	.byte	0xf
 	.byte	0
 	.byte	0xc
 	.byte	0x8
-	.4byte	0x2bb
+	.4byte	0x2bf
 	.byte	0xc
 	.byte	0x8
 	.4byte	0x167
 	.byte	0xd
 	.4byte	0x167
-	.4byte	0x2e4
+	.4byte	0x2e8
 	.byte	0xe
 	.4byte	0x153
 	.byte	0x3
 	.byte	0
 	.byte	0xc
 	.byte	0x8
-	.4byte	0x2d4
+	.4byte	0x2d8
 	.byte	0x3
 	.byte	0x1
 	.string	"DSPF_sp_fir_gen_vc4"
@@ -1257,31 +1258,31 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x7f
 	.byte	0
 	.byte	0x1
-	.4byte	0x50b
+	.4byte	0x50f
 	.byte	0x4
 	.string	"x"
 	.byte	0x1
 	.byte	0x28
-	.4byte	0x2c8
-	.4byte	.LLST12
+	.4byte	0x2cc
+	.4byte	.LLST13
 	.byte	0x4
 	.string	"h"
 	.byte	0x1
 	.byte	0x29
-	.4byte	0x2ce
-	.4byte	.LLST13
+	.4byte	0x2d2
+	.4byte	.LLST14
 	.byte	0x4
 	.string	"r"
 	.byte	0x1
 	.byte	0x2a
-	.4byte	0x2c8
-	.4byte	.LLST14
+	.4byte	0x2cc
+	.4byte	.LLST15
 	.byte	0x4
 	.string	"nh"
 	.byte	0x1
 	.byte	0x2b
 	.4byte	0x12f
-	.4byte	.LLST15
+	.4byte	.LLST16
 	.byte	0x5
 	.string	"nr"
 	.byte	0x1
@@ -1295,13 +1296,13 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x1
 	.byte	0x2f
 	.4byte	0x12f
-	.4byte	.LLST16
+	.4byte	.LLST17
 	.byte	0x6
 	.string	"j"
 	.byte	0x1
 	.byte	0x2f
 	.4byte	0x12f
-	.4byte	.LLST17
+	.4byte	.LLST18
 	.byte	0x7
 	.string	"k"
 	.byte	0x1
@@ -1312,135 +1313,135 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x1
 	.byte	0x2f
 	.4byte	0x12f
-	.4byte	.LLST18
+	.4byte	.LLST19
 	.byte	0x6
 	.string	"htemp1"
 	.byte	0x1
 	.byte	0x30
-	.4byte	0x2bb
-	.4byte	.LLST19
+	.4byte	0x2bf
+	.4byte	.LLST20
 	.byte	0x6
 	.string	"htemp2"
 	.byte	0x1
 	.byte	0x30
-	.4byte	0x2bb
-	.4byte	.LLST20
+	.4byte	0x2bf
+	.4byte	.LLST21
 	.byte	0x6
 	.string	"htemp3"
 	.byte	0x1
 	.byte	0x30
-	.4byte	0x2bb
-	.4byte	.LLST21
+	.4byte	0x2bf
+	.4byte	.LLST22
 	.byte	0x6
 	.string	"htemp4"
 	.byte	0x1
 	.byte	0x30
-	.4byte	0x2bb
-	.4byte	.LLST22
+	.4byte	0x2bf
+	.4byte	.LLST23
 	.byte	0x6
 	.string	"xtemp1"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST23
+	.4byte	0x2bf
+	.4byte	.LLST24
 	.byte	0x6
 	.string	"xtemp2"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST24
+	.4byte	0x2bf
+	.4byte	.LLST25
 	.byte	0x6
 	.string	"xtemp3"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST25
+	.4byte	0x2bf
+	.4byte	.LLST26
 	.byte	0x6
 	.string	"xtemp4"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST26
+	.4byte	0x2bf
+	.4byte	.LLST27
 	.byte	0x6
 	.string	"xtemp5"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST27
+	.4byte	0x2bf
+	.4byte	.LLST28
 	.byte	0x6
 	.string	"xtemp6"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST28
+	.4byte	0x2bf
+	.4byte	.LLST29
 	.byte	0x6
 	.string	"xtemp7"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST29
+	.4byte	0x2bf
+	.4byte	.LLST30
 	.byte	0x6
 	.string	"xtemp8"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST30
+	.4byte	0x2bf
+	.4byte	.LLST31
 	.byte	0x6
 	.string	"xtemp9"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST31
+	.4byte	0x2bf
+	.4byte	.LLST32
 	.byte	0x6
 	.string	"xtemp10"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST32
+	.4byte	0x2bf
+	.4byte	.LLST33
 	.byte	0x6
 	.string	"xtemp11"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST33
+	.4byte	0x2bf
+	.4byte	.LLST34
 	.byte	0x6
 	.string	"xtemp12"
 	.byte	0x1
 	.byte	0x31
-	.4byte	0x2bb
-	.4byte	.LLST34
+	.4byte	0x2bf
+	.4byte	.LLST35
 	.byte	0x7
 	.string	"rtemp1"
 	.byte	0x1
 	.byte	0x32
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x7
 	.string	"rtemp2"
 	.byte	0x1
 	.byte	0x32
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x7
 	.string	"rtemp3"
 	.byte	0x1
 	.byte	0x32
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x8
 	.4byte	.LASF3
 	.byte	0x1
 	.byte	0x33
-	.4byte	0x2e4
-	.4byte	.LLST35
+	.4byte	0x2e8
+	.4byte	.LLST36
 	.byte	0x6
 	.string	"x_temp"
 	.byte	0x1
 	.byte	0x34
-	.4byte	0x2ce
-	.4byte	.LLST36
+	.4byte	0x2d2
+	.4byte	.LLST37
 	.byte	0x7
 	.string	"tmp_x_j"
 	.byte	0x1
 	.byte	0x35
-	.4byte	0x2ce
+	.4byte	0x2d2
 	.byte	0
 	.byte	0x3
 	.byte	0x1
@@ -1454,31 +1455,31 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x7f
 	.byte	0
 	.byte	0x1
-	.4byte	0x601
+	.4byte	0x605
 	.byte	0x4
 	.string	"x"
 	.byte	0x1
 	.byte	0x80
-	.4byte	0x2c8
-	.4byte	.LLST37
+	.4byte	0x2cc
+	.4byte	.LLST38
 	.byte	0x4
 	.string	"h"
 	.byte	0x1
 	.byte	0x81
-	.4byte	0x2ce
-	.4byte	.LLST38
+	.4byte	0x2d2
+	.4byte	.LLST39
 	.byte	0x4
 	.string	"r"
 	.byte	0x1
 	.byte	0x82
-	.4byte	0x2c8
-	.4byte	.LLST39
+	.4byte	0x2cc
+	.4byte	.LLST40
 	.byte	0x4
 	.string	"nh"
 	.byte	0x1
 	.byte	0x83
 	.4byte	0x12f
-	.4byte	.LLST40
+	.4byte	.LLST41
 	.byte	0x5
 	.string	"nr"
 	.byte	0x1
@@ -1492,13 +1493,13 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x1
 	.byte	0x86
 	.4byte	0x12f
-	.4byte	.LLST41
+	.4byte	.LLST42
 	.byte	0x6
 	.string	"j"
 	.byte	0x1
 	.byte	0x86
 	.4byte	0x12f
-	.4byte	.LLST42
+	.4byte	.LLST43
 	.byte	0x7
 	.string	"k"
 	.byte	0x1
@@ -1513,36 +1514,36 @@ DSPF_sp_fir_gen_vc3:
 	.4byte	.LASF0
 	.byte	0x1
 	.byte	0x88
-	.4byte	0x2bb
-	.4byte	.LLST43
+	.4byte	0x2bf
+	.4byte	.LLST44
 	.byte	0x9
 	.4byte	.LASF1
 	.byte	0x1
 	.byte	0x88
-	.4byte	0x2bb
+	.4byte	0x2bf
 	.byte	0x9
 	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x88
-	.4byte	0x2bb
+	.4byte	0x2bf
 	.byte	0x6
 	.string	"temp4"
 	.byte	0x1
 	.byte	0x88
-	.4byte	0x2bb
-	.4byte	.LLST44
+	.4byte	0x2bf
+	.4byte	.LLST45
 	.byte	0x6
 	.string	"temp5"
 	.byte	0x1
 	.byte	0x88
-	.4byte	0x2bb
-	.4byte	.LLST45
+	.4byte	0x2bf
+	.4byte	.LLST46
 	.byte	0x6
 	.string	"temp6"
 	.byte	0x1
 	.byte	0x88
-	.4byte	0x2bb
-	.4byte	.LLST46
+	.4byte	0x2bf
+	.4byte	.LLST47
 	.byte	0
 	.byte	0x3
 	.byte	0x1
@@ -1556,43 +1557,43 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x7f
 	.byte	0
 	.byte	0x1
-	.4byte	0x6c9
+	.4byte	0x6cd
 	.byte	0x4
 	.string	"x"
 	.byte	0x1
 	.byte	0x97
-	.4byte	0x2c8
-	.4byte	.LLST47
+	.4byte	0x2cc
+	.4byte	.LLST48
 	.byte	0x4
 	.string	"h"
 	.byte	0x1
 	.byte	0x98
-	.4byte	0x2ce
-	.4byte	.LLST48
+	.4byte	0x2d2
+	.4byte	.LLST49
 	.byte	0x4
 	.string	"r"
 	.byte	0x1
 	.byte	0x99
-	.4byte	0x2c8
-	.4byte	.LLST49
+	.4byte	0x2cc
+	.4byte	.LLST50
 	.byte	0x4
 	.string	"nh"
 	.byte	0x1
 	.byte	0x9a
 	.4byte	0x12f
-	.4byte	.LLST50
+	.4byte	.LLST51
 	.byte	0x4
 	.string	"nr"
 	.byte	0x1
 	.byte	0x9b
 	.4byte	0x12f
-	.4byte	.LLST51
+	.4byte	.LLST52
 	.byte	0x6
 	.string	"i"
 	.byte	0x1
 	.byte	0x9d
 	.4byte	0x12f
-	.4byte	.LLST52
+	.4byte	.LLST53
 	.byte	0x7
 	.string	"j"
 	.byte	0x1
@@ -1607,24 +1608,24 @@ DSPF_sp_fir_gen_vc3:
 	.4byte	.LASF3
 	.byte	0x1
 	.byte	0x9f
-	.4byte	0x2e4
-	.4byte	.LLST53
+	.4byte	0x2e8
+	.4byte	.LLST54
 	.byte	0x8
 	.4byte	.LASF0
 	.byte	0x1
 	.byte	0xa0
-	.4byte	0x2bb
-	.4byte	.LLST54
+	.4byte	0x2bf
+	.4byte	.LLST55
 	.byte	0x9
 	.4byte	.LASF1
 	.byte	0x1
 	.byte	0xa0
-	.4byte	0x2bb
+	.4byte	0x2bf
 	.byte	0x9
 	.4byte	.LASF2
 	.byte	0x1
 	.byte	0xa1
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0
 	.byte	0xf
 	.byte	0x1
@@ -1642,26 +1643,26 @@ DSPF_sp_fir_gen_vc3:
 	.string	"x"
 	.byte	0x1
 	.byte	0xae
-	.4byte	0x2c8
-	.4byte	.LLST55
+	.4byte	0x2cc
+	.4byte	.LLST56
 	.byte	0x4
 	.string	"h"
 	.byte	0x1
 	.byte	0xaf
-	.4byte	0x2ce
-	.4byte	.LLST56
+	.4byte	0x2d2
+	.4byte	.LLST57
 	.byte	0x4
 	.string	"r"
 	.byte	0x1
 	.byte	0xb0
-	.4byte	0x2c8
-	.4byte	.LLST57
+	.4byte	0x2cc
+	.4byte	.LLST58
 	.byte	0x4
 	.string	"nh"
 	.byte	0x1
 	.byte	0xb1
 	.4byte	0x12f
-	.4byte	.LLST58
+	.4byte	.LLST59
 	.byte	0x5
 	.string	"nr"
 	.byte	0x1
@@ -1675,80 +1676,81 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x1
 	.byte	0xb5
 	.4byte	0x12f
-	.4byte	.LLST59
+	.4byte	.LLST60
 	.byte	0x6
 	.string	"j"
 	.byte	0x1
 	.byte	0xb5
 	.4byte	0x12f
-	.4byte	.LLST60
+	.4byte	.LLST61
 	.byte	0x7
 	.string	"k"
 	.byte	0x1
 	.byte	0xb5
 	.4byte	0x12f
-	.byte	0x7
+	.byte	0x6
 	.string	"t"
 	.byte	0x1
 	.byte	0xb5
 	.4byte	0x12f
+	.4byte	.LLST62
 	.byte	0x8
 	.4byte	.LASF0
 	.byte	0x1
 	.byte	0xb6
-	.4byte	0x2bb
-	.4byte	.LLST61
+	.4byte	0x2bf
+	.4byte	.LLST63
 	.byte	0x8
 	.4byte	.LASF1
 	.byte	0x1
 	.byte	0xb6
-	.4byte	0x2bb
-	.4byte	.LLST61
+	.4byte	0x2bf
+	.4byte	.LLST63
 	.byte	0x8
 	.4byte	.LASF2
 	.byte	0x1
 	.byte	0xb6
-	.4byte	0x2bb
-	.4byte	.LLST61
+	.4byte	0x2bf
+	.4byte	.LLST63
 	.byte	0x6
 	.string	"temp4"
 	.byte	0x1
 	.byte	0xb6
-	.4byte	0x2bb
-	.4byte	.LLST64
+	.4byte	0x2bf
+	.4byte	.LLST66
 	.byte	0x6
 	.string	"temp5"
 	.byte	0x1
 	.byte	0xb6
-	.4byte	0x2bb
-	.4byte	.LLST65
+	.4byte	0x2bf
+	.4byte	.LLST67
 	.byte	0x6
 	.string	"temp6"
 	.byte	0x1
 	.byte	0xb6
-	.4byte	0x2bb
-	.4byte	.LLST66
+	.4byte	0x2bf
+	.4byte	.LLST68
 	.byte	0x7
 	.string	"temp7"
 	.byte	0x1
 	.byte	0xb7
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x7
 	.string	"temp8"
 	.byte	0x1
 	.byte	0xb7
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x7
 	.string	"temp9"
 	.byte	0x1
 	.byte	0xb7
-	.4byte	0x2c8
+	.4byte	0x2cc
 	.byte	0x8
 	.4byte	.LASF3
 	.byte	0x1
 	.byte	0xb8
-	.4byte	0x2e4
-	.4byte	.LLST67
+	.4byte	0x2e8
+	.4byte	.LLST69
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
@@ -2057,6 +2059,46 @@ DSPF_sp_fir_gen_vc3:
 	.llong	0
 .LLST6:
 	.llong	.LVL6
+	.llong	.LVL7
+	.2byte	0x8
+	.byte	0x92
+	.byte	0x22
+	.byte	0
+	.byte	0x92
+	.byte	0x41
+	.byte	0
+	.byte	0x1c
+	.byte	0x9f
+	.llong	.LVL7
+	.llong	.LVL8
+	.2byte	0xa
+	.byte	0x92
+	.byte	0x22
+	.byte	0
+	.byte	0x92
+	.byte	0x41
+	.byte	0
+	.byte	0x1c
+	.byte	0x23
+	.byte	0xc
+	.byte	0x9f
+	.llong	.LVL9
+	.llong	.LVL10
+	.2byte	0xa
+	.byte	0x92
+	.byte	0x22
+	.byte	0
+	.byte	0x92
+	.byte	0x41
+	.byte	0
+	.byte	0x1c
+	.byte	0x23
+	.byte	0xc
+	.byte	0x9f
+	.llong	0
+	.llong	0
+.LLST7:
+	.llong	.LVL6
 	.llong	.LVL8
 	.2byte	0x2
 	.byte	0x90
@@ -2068,7 +2110,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x64
 	.llong	0
 	.llong	0
-.LLST7:
+.LLST8:
 	.llong	.LVL7
 	.llong	.LVL8
 	.2byte	0x2
@@ -2081,7 +2123,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x65
 	.llong	0
 	.llong	0
-.LLST8:
+.LLST9:
 	.llong	.LVL9
 	.llong	.LVL10
 	.2byte	0x2
@@ -2089,7 +2131,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x10
 	.llong	0
 	.llong	0
-.LLST9:
+.LLST10:
 	.llong	.LVL9
 	.llong	.LVL10
 	.2byte	0x2
@@ -2097,7 +2139,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x20
 	.llong	0
 	.llong	0
-.LLST10:
+.LLST11:
 	.llong	.LVL1
 	.llong	.LVL3
 	.2byte	0x6
@@ -2113,7 +2155,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x56
 	.llong	0
 	.llong	0
-.LLST11:
+.LLST12:
 	.llong	.LVL1
 	.llong	.LVL5
 	.2byte	0x6
@@ -2133,7 +2175,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST12:
+.LLST13:
 	.llong	.LVL11
 	.llong	.LVL16
 	.2byte	0x6
@@ -2153,7 +2195,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST13:
+.LLST14:
 	.llong	.LVL11
 	.llong	.LVL14
 	.2byte	0x6
@@ -2177,7 +2219,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST14:
+.LLST15:
 	.llong	.LVL11
 	.llong	.LVL15
 	.2byte	0x6
@@ -2193,7 +2235,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x56
 	.llong	0
 	.llong	0
-.LLST15:
+.LLST16:
 	.llong	.LVL11
 	.llong	.LVL13
 	.2byte	0x2
@@ -2208,7 +2250,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST16:
+.LLST17:
 	.llong	.LVL12
 	.llong	.LVL16
 	.2byte	0x2
@@ -2216,7 +2258,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST17:
+.LLST18:
 	.llong	.LVL26
 	.llong	.LVL27
 	.2byte	0x2
@@ -2234,7 +2276,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x45
 	.llong	0
 	.llong	0
-.LLST18:
+.LLST19:
 	.llong	.LVL20
 	.llong	.LVL26
 	.2byte	0x8
@@ -2309,7 +2351,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST19:
+.LLST20:
 	.llong	.LVL17
 	.llong	.LVL27
 	.2byte	0x2
@@ -2322,7 +2364,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x64
 	.llong	0
 	.llong	0
-.LLST20:
+.LLST21:
 	.llong	.LVL18
 	.llong	.LVL27
 	.2byte	0x2
@@ -2335,7 +2377,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x65
 	.llong	0
 	.llong	0
-.LLST21:
+.LLST22:
 	.llong	.LVL19
 	.llong	.LVL27
 	.2byte	0x2
@@ -2348,7 +2390,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x66
 	.llong	0
 	.llong	0
-.LLST22:
+.LLST23:
 	.llong	.LVL20
 	.llong	.LVL27
 	.2byte	0x2
@@ -2361,7 +2403,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x67
 	.llong	0
 	.llong	0
-.LLST23:
+.LLST24:
 	.llong	.LVL21
 	.llong	.LVL27
 	.2byte	0x2
@@ -2374,30 +2416,17 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x6b
 	.llong	0
 	.llong	0
-.LLST24:
-	.llong	.LVL22
-	.llong	.LVL27
-	.2byte	0x2
-	.byte	0x90
-	.byte	0x6e
-	.llong	.LVL28
-	.llong	.LFE1
-	.2byte	0x2
-	.byte	0x90
-	.byte	0x6e
-	.llong	0
-	.llong	0
 .LLST25:
 	.llong	.LVL22
 	.llong	.LVL27
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x72
+	.byte	0x6e
 	.llong	.LVL28
 	.llong	.LFE1
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x72
+	.byte	0x6e
 	.llong	0
 	.llong	0
 .LLST26:
@@ -2405,25 +2434,25 @@ DSPF_sp_fir_gen_vc3:
 	.llong	.LVL27
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x6a
+	.byte	0x72
 	.llong	.LVL28
 	.llong	.LFE1
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x6a
+	.byte	0x72
 	.llong	0
 	.llong	0
 .LLST27:
-	.llong	.LVL23
+	.llong	.LVL22
 	.llong	.LVL27
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x6d
+	.byte	0x6a
 	.llong	.LVL28
 	.llong	.LFE1
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x6d
+	.byte	0x6a
 	.llong	0
 	.llong	0
 .LLST28:
@@ -2431,6 +2460,19 @@ DSPF_sp_fir_gen_vc3:
 	.llong	.LVL27
 	.2byte	0x2
 	.byte	0x90
+	.byte	0x6d
+	.llong	.LVL28
+	.llong	.LFE1
+	.2byte	0x2
+	.byte	0x90
+	.byte	0x6d
+	.llong	0
+	.llong	0
+.LLST29:
+	.llong	.LVL23
+	.llong	.LVL27
+	.2byte	0x2
+	.byte	0x90
 	.byte	0x71
 	.llong	.LVL28
 	.llong	.LFE1
@@ -2439,7 +2481,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x71
 	.llong	0
 	.llong	0
-.LLST29:
+.LLST30:
 	.llong	.LVL23
 	.llong	.LVL27
 	.2byte	0x2
@@ -2452,30 +2494,17 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x69
 	.llong	0
 	.llong	0
-.LLST30:
-	.llong	.LVL24
-	.llong	.LVL27
-	.2byte	0x2
-	.byte	0x90
-	.byte	0x6c
-	.llong	.LVL28
-	.llong	.LFE1
-	.2byte	0x2
-	.byte	0x90
-	.byte	0x6c
-	.llong	0
-	.llong	0
 .LLST31:
 	.llong	.LVL24
 	.llong	.LVL27
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x70
+	.byte	0x6c
 	.llong	.LVL28
 	.llong	.LFE1
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x70
+	.byte	0x6c
 	.llong	0
 	.llong	0
 .LLST32:
@@ -2483,25 +2512,25 @@ DSPF_sp_fir_gen_vc3:
 	.llong	.LVL27
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x68
+	.byte	0x70
 	.llong	.LVL28
 	.llong	.LFE1
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x68
+	.byte	0x70
 	.llong	0
 	.llong	0
 .LLST33:
-	.llong	.LVL25
+	.llong	.LVL24
 	.llong	.LVL27
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x63
+	.byte	0x68
 	.llong	.LVL28
 	.llong	.LFE1
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x63
+	.byte	0x68
 	.llong	0
 	.llong	0
 .LLST34:
@@ -2509,6 +2538,19 @@ DSPF_sp_fir_gen_vc3:
 	.llong	.LVL27
 	.2byte	0x2
 	.byte	0x90
+	.byte	0x63
+	.llong	.LVL28
+	.llong	.LFE1
+	.2byte	0x2
+	.byte	0x90
+	.byte	0x63
+	.llong	0
+	.llong	0
+.LLST35:
+	.llong	.LVL25
+	.llong	.LVL27
+	.2byte	0x2
+	.byte	0x90
 	.byte	0x6f
 	.llong	.LVL28
 	.llong	.LFE1
@@ -2517,7 +2559,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x6f
 	.llong	0
 	.llong	0
-.LLST35:
+.LLST36:
 	.llong	.LVL12
 	.llong	.LVL15
 	.2byte	0x6
@@ -2533,7 +2575,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x56
 	.llong	0
 	.llong	0
-.LLST36:
+.LLST37:
 	.llong	.LVL12
 	.llong	.LVL16
 	.2byte	0x6
@@ -2553,7 +2595,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST37:
+.LLST38:
 	.llong	.LVL32
 	.llong	.LVL36
 	.2byte	0x6
@@ -2573,7 +2615,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST38:
+.LLST39:
 	.llong	.LVL32
 	.llong	.LVL33
 	.2byte	0x6
@@ -2590,7 +2632,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x50
 	.llong	0
 	.llong	0
-.LLST39:
+.LLST40:
 	.llong	.LVL32
 	.llong	.LVL34
 	.2byte	0x6
@@ -2606,7 +2648,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x55
 	.llong	0
 	.llong	0
-.LLST40:
+.LLST41:
 	.llong	.LVL32
 	.llong	.LVL35
 	.2byte	0x2
@@ -2628,7 +2670,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST41:
+.LLST42:
 	.llong	.LVL32
 	.llong	.LVL36
 	.2byte	0x2
@@ -2636,7 +2678,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST42:
+.LLST43:
 	.llong	.LVL42
 	.llong	.LVL43
 	.2byte	0x2
@@ -2644,7 +2686,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x44
 	.llong	0
 	.llong	0
-.LLST43:
+.LLST44:
 	.llong	.LVL37
 	.llong	.LVL43
 	.2byte	0x2
@@ -2652,7 +2694,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x64
 	.llong	0
 	.llong	0
-.LLST44:
+.LLST45:
 	.llong	.LVL38
 	.llong	.LVL39
 	.2byte	0x2
@@ -2665,7 +2707,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x67
 	.llong	0
 	.llong	0
-.LLST45:
+.LLST46:
 	.llong	.LVL40
 	.llong	.LVL43
 	.2byte	0x2
@@ -2673,7 +2715,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x66
 	.llong	0
 	.llong	0
-.LLST46:
+.LLST47:
 	.llong	.LVL41
 	.llong	.LVL43
 	.2byte	0x2
@@ -2681,7 +2723,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x65
 	.llong	0
 	.llong	0
-.LLST47:
+.LLST48:
 	.llong	.LVL44
 	.llong	.LVL50
 	.2byte	0x6
@@ -2701,7 +2743,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST48:
+.LLST49:
 	.llong	.LVL44
 	.llong	.LVL46
 	.2byte	0x6
@@ -2718,7 +2760,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x50
 	.llong	0
 	.llong	0
-.LLST49:
+.LLST50:
 	.llong	.LVL44
 	.llong	.LVL47
 	.2byte	0x6
@@ -2734,7 +2776,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x56
 	.llong	0
 	.llong	0
-.LLST50:
+.LLST51:
 	.llong	.LVL44
 	.llong	.LVL48
 	.2byte	0x2
@@ -2756,22 +2798,30 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST51:
+.LLST52:
 	.llong	.LVL44
 	.llong	.LVL49
 	.2byte	0x2
 	.byte	0x90
 	.byte	0x22
 	.llong	.LVL49
-	.llong	.LFE3
+	.llong	.LVL50
 	.2byte	0x4
 	.byte	0x92
 	.byte	0x3b
 	.byte	0x1
 	.byte	0x9f
+	.llong	.LVL50
+	.llong	.LFE3
+	.2byte	0x5
+	.byte	0xf3
+	.byte	0x2
+	.byte	0x90
+	.byte	0x22
+	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST52:
+.LLST53:
 	.llong	.LVL45
 	.llong	.LVL50
 	.2byte	0x2
@@ -2779,7 +2829,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST53:
+.LLST54:
 	.llong	.LVL45
 	.llong	.LVL47
 	.2byte	0x6
@@ -2795,7 +2845,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x56
 	.llong	0
 	.llong	0
-.LLST54:
+.LLST55:
 	.llong	.LVL51
 	.llong	.LVL52
 	.2byte	0x2
@@ -2803,7 +2853,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x65
 	.llong	0
 	.llong	0
-.LLST55:
+.LLST56:
 	.llong	.LVL53
 	.llong	.LVL58
 	.2byte	0x6
@@ -2823,7 +2873,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST56:
+.LLST57:
 	.llong	.LVL53
 	.llong	.LVL55
 	.2byte	0x6
@@ -2840,7 +2890,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x50
 	.llong	0
 	.llong	0
-.LLST57:
+.LLST58:
 	.llong	.LVL53
 	.llong	.LVL56
 	.2byte	0x6
@@ -2856,7 +2906,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x56
 	.llong	0
 	.llong	0
-.LLST58:
+.LLST59:
 	.llong	.LVL53
 	.llong	.LVL57
 	.2byte	0x2
@@ -2870,7 +2920,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST59:
+.LLST60:
 	.llong	.LVL54
 	.llong	.LVL58
 	.2byte	0x2
@@ -2878,7 +2928,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x9f
 	.llong	0
 	.llong	0
-.LLST60:
+.LLST61:
 	.llong	.LVL60
 	.llong	.LVL62
 	.2byte	0x2
@@ -2891,7 +2941,32 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x41
 	.llong	0
 	.llong	0
-.LLST61:
+.LLST62:
+	.llong	.LVL61
+	.llong	.LVL62
+	.2byte	0x8
+	.byte	0x92
+	.byte	0x22
+	.byte	0
+	.byte	0x92
+	.byte	0x41
+	.byte	0
+	.byte	0x1c
+	.byte	0x9f
+	.llong	.LVL63
+	.llong	.LVL64
+	.2byte	0x8
+	.byte	0x92
+	.byte	0x22
+	.byte	0
+	.byte	0x92
+	.byte	0x41
+	.byte	0
+	.byte	0x1c
+	.byte	0x9f
+	.llong	0
+	.llong	0
+.LLST63:
 	.llong	.LVL59
 	.llong	.LVL62
 	.2byte	0x2
@@ -2904,7 +2979,7 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x65
 	.llong	0
 	.llong	0
-.LLST64:
+.LLST66:
 	.llong	.LVL60
 	.llong	.LVL62
 	.2byte	0x2
@@ -2917,33 +2992,33 @@ DSPF_sp_fir_gen_vc3:
 	.byte	0x64
 	.llong	0
 	.llong	0
-.LLST65:
-	.llong	.LVL61
-	.llong	.LVL62
-	.2byte	0x2
-	.byte	0x90
-	.byte	0x67
-	.llong	.LVL63
-	.llong	.LVL64
-	.2byte	0x2
-	.byte	0x90
-	.byte	0x67
-	.llong	0
-	.llong	0
-.LLST66:
-	.llong	.LVL61
-	.llong	.LVL62
-	.2byte	0x2
-	.byte	0x90
-	.byte	0x66
-	.llong	.LVL63
-	.llong	.LVL64
-	.2byte	0x2
-	.byte	0x90
-	.byte	0x66
-	.llong	0
-	.llong	0
 .LLST67:
+	.llong	.LVL61
+	.llong	.LVL62
+	.2byte	0x2
+	.byte	0x90
+	.byte	0x67
+	.llong	.LVL63
+	.llong	.LVL64
+	.2byte	0x2
+	.byte	0x90
+	.byte	0x67
+	.llong	0
+	.llong	0
+.LLST68:
+	.llong	.LVL61
+	.llong	.LVL62
+	.2byte	0x2
+	.byte	0x90
+	.byte	0x66
+	.llong	.LVL63
+	.llong	.LVL64
+	.2byte	0x2
+	.byte	0x90
+	.byte	0x66
+	.llong	0
+	.llong	0
+.LLST69:
 	.llong	.LVL54
 	.llong	.LVL56
 	.2byte	0x6

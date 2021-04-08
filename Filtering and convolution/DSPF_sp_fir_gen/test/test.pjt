@@ -1,9 +1,9 @@
 ; FT M7000 IDE(JAVA), Version 1.0
 
 [Project Settings]
-ProjectDir="E:/project/ÏîÄ¿/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fir_gen/test"
+ProjectName=test
+ProjectDir="E:/project/é¡¹ç›®/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fir_gen/test"
 ProjectType=Executable
-CPUFamily=M7002
 Config=Debug
 [Source Files]
 Source="ConfRegOp.c"
@@ -32,19 +32,24 @@ Source="Debug/test.out"
 Source="Debug/Timer.o"
 Source="Debug/Timer.s"
 ["Compiler" Settings: "Debug"]
-Options=-O3 -ffunction-sections -g 
-["Compiler" Settings: "Release"]
-Options=-O2 -ffunction-sections 
+Options=-O2 -ffunction-sections -g 
 ["Assembler" Settings: "Debug"]
-
-["Assembler" Settings: "Release"]
 
 ["Linker" Settings: "Debug"]
 Options=-o"Debug/test.out" --gc-sections -T"test.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
 ["Linker" Settings: "Release"]
 Options=-o"Release/test.out" --gc-sections -T"test.lds" 
 [Opened files]
-OpenedSource="Debug/DSPF_sp_fir_gen.s",line=1
-OpenedSource="main.c",line=139
-OpenedSource="DSPF_sp_fir_gen.c",line=145
-OpenedSource="datatransfer.c",line=39
+OpenedSource="Debug/DSPF_sp_fir_gen.s",line=755
+OpenedSource="main.c",line=53
+OpenedSource="DSPF_sp_fir_gen.c",line=4
+OpenedSource="datatransfer.c",line=1
+OpenedSource="Debug/test.map",line=1
+OpenedSource="tags",line=4
+[Builders]
+m7002.builder
+[Debug Configurations]
