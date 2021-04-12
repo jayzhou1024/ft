@@ -41,8 +41,8 @@ void main()
 	TimerStart(0);
 	
     int i,j, row,col;
-    int Nrows = 48;
-    int Ncols = 48;
+    int Nrows = 16;
+    int Ncols = 16;
     float* ddr_A = (float*)malloc(sizeof(float)*Nrows*Ncols);
     float* ddr_Q = (float*)malloc(sizeof(float)*Nrows*Nrows);
     float* ddr_R = (float*)malloc(sizeof(float)*Nrows*Ncols);
@@ -264,35 +264,35 @@ void testQr(QR_FUNC qr_func, SLOVER_FUNC slover_func, INVERSE_FUNC inverse_func,
         /*   note that R matrice is modified during processing                 */
         /* ------------------------------------------------------------------- */
         // change
-        t_start = GetTimerCount(0);
-        status = inverse_func(Nrows, Ncols, Q, R, inv_A);
-        t_stop = GetTimerCount(0);
-        QRD_t_inverse = t_stop - t_start;
+        // t_start = GetTimerCount(0);
+        // status = inverse_func(Nrows, Ncols, Q, R, inv_A);
+        // t_stop = GetTimerCount(0);
+        // QRD_t_inverse = t_stop - t_start;
 
-        /* ------------------------------------------------------------------- */
-        /* check that inv(A_cn)*A = identity matrix                            */
-        /* ------------------------------------------------------------------- */
-        for (row = 0; row < Nrows; row++)
-        {
-            for (col = 0; col < Ncols; col++)
-            {
-                sum = 0;
-                for (k = 0; k < Ncols; k++)
-                {
-                    sum += inv_A[k + row * Ncols] * A[col + k * Ncols];
-                }
-                if (row == col)
-                    error = fabs(sum - 1.0);
-                else
-                    error = fabs(sum);
-                if (error > tolerance_inverse)
-                {
-                    pass = 0;
-                    printf("natural inv(A)*A is not equal to identity!  error=%e\n", error);
-                    break;
-                }
-            }
-        }
+        // /* ------------------------------------------------------------------- */
+        // /* check that inv(A_cn)*A = identity matrix                            */
+        // /* ------------------------------------------------------------------- */
+        // for (row = 0; row < Nrows; row++)
+        // {
+        //     for (col = 0; col < Ncols; col++)
+        //     {
+        //         sum = 0;
+        //         for (k = 0; k < Ncols; k++)
+        //         {
+        //             sum += inv_A[k + row * Ncols] * A[col + k * Ncols];
+        //         }
+        //         if (row == col)
+        //             error = fabs(sum - 1.0);
+        //         else
+        //             error = fabs(sum);
+        //         if (error > tolerance_inverse)
+        //         {
+        //             pass = 0;
+        //             printf("natural inv(A)*A is not equal to identity!  error=%e\n", error);
+        //             break;
+        //         }
+        //     }
+        // }
     } /* if (invertible) */
 
     if (pass)
