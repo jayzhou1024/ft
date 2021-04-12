@@ -4,37 +4,158 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-_WCTYPE_H	E:/project/ide/compiler/m7002/include/wctype.h	34;"	d
-__need_wint_t	E:/project/ide/compiler/m7002/include/wctype.h	38;"	d
-_WINT_T	E:/project/ide/compiler/m7002/include/wctype.h	45;"	d
-wint_t	E:/project/ide/compiler/m7002/include/wctype.h	/^typedef unsigned int wint_t;$/;"	t
-WEOF	E:/project/ide/compiler/m7002/include/wctype.h	56;"	d
-__need_iswxxx	E:/project/ide/compiler/m7002/include/wctype.h	59;"	d
-__iswxxx_defined	E:/project/ide/compiler/m7002/include/wctype.h	65;"	d
-wctype_t	E:/project/ide/compiler/m7002/include/wctype.h	/^typedef unsigned int wctype_t;$/;"	t
-_ISwbit	E:/project/ide/compiler/m7002/include/wctype.h	75;"	d
-__ISwupper	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwupper = 0,			\/* UPPERCASE.  *\/$/;"	e	enum:__anon1
-__ISwlower	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwlower = 1,			\/* lowercase.  *\/$/;"	e	enum:__anon1
-__ISwalpha	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwalpha = 2,			\/* Alphabetic.  *\/$/;"	e	enum:__anon1
-__ISwdigit	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwdigit = 3,			\/* Numeric.  *\/$/;"	e	enum:__anon1
-__ISwxdigit	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwxdigit = 4,			\/* Hexadecimal numeric.  *\/$/;"	e	enum:__anon1
-__ISwspace	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwspace = 5,			\/* Whitespace.  *\/$/;"	e	enum:__anon1
-__ISwprint	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwprint = 6,			\/* Printing.  *\/$/;"	e	enum:__anon1
-__ISwgraph	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwgraph = 7,			\/* Graphical.  *\/$/;"	e	enum:__anon1
-__ISwblank	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwblank = 8,			\/* Blank (usually SPC and TAB).  *\/$/;"	e	enum:__anon1
-__ISwcntrl	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwcntrl = 9,			\/* Control character.  *\/$/;"	e	enum:__anon1
-__ISwpunct	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwpunct = 10,			\/* Punctuation.  *\/$/;"	e	enum:__anon1
-__ISwalnum	E:/project/ide/compiler/m7002/include/wctype.h	/^  __ISwalnum = 11,			\/* Alphanumeric.  *\/$/;"	e	enum:__anon1
-_ISwupper	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwupper = _ISwbit (__ISwupper),	\/* UPPERCASE.  *\/$/;"	e	enum:__anon1
-_ISwlower	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwlower = _ISwbit (__ISwlower),	\/* lowercase.  *\/$/;"	e	enum:__anon1
-_ISwalpha	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwalpha = _ISwbit (__ISwalpha),	\/* Alphabetic.  *\/$/;"	e	enum:__anon1
-_ISwdigit	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwdigit = _ISwbit (__ISwdigit),	\/* Numeric.  *\/$/;"	e	enum:__anon1
-_ISwxdigit	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwxdigit = _ISwbit (__ISwxdigit),	\/* Hexadecimal numeric.  *\/$/;"	e	enum:__anon1
-_ISwspace	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwspace = _ISwbit (__ISwspace),	\/* Whitespace.  *\/$/;"	e	enum:__anon1
-_ISwprint	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwprint = _ISwbit (__ISwprint),	\/* Printing.  *\/$/;"	e	enum:__anon1
-_ISwgraph	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwgraph = _ISwbit (__ISwgraph),	\/* Graphical.  *\/$/;"	e	enum:__anon1
-_ISwblank	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwblank = _ISwbit (__ISwblank),	\/* Blank (usually SPC and TAB).  *\/$/;"	e	enum:__anon1
-_ISwcntrl	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwcntrl = _ISwbit (__ISwcntrl),	\/* Control character.  *\/$/;"	e	enum:__anon1
-_ISwpunct	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwpunct = _ISwbit (__ISwpunct),	\/* Punctuation.  *\/$/;"	e	enum:__anon1
-_ISwalnum	E:/project/ide/compiler/m7002/include/wctype.h	/^  _ISwalnum = _ISwbit (__ISwalnum)	\/* Alphanumeric.  *\/$/;"	e	enum:__anon1
-wctrans_t	E:/project/ide/compiler/m7002/include/wctype.h	/^typedef unsigned int wctrans_t;$/;"	t
+cc_t	E:/project/ide/compiler/m7002/include/bits/termios.h	/^typedef unsigned char	cc_t;$/;"	t
+speed_t	E:/project/ide/compiler/m7002/include/bits/termios.h	/^typedef unsigned int	speed_t;$/;"	t
+tcflag_t	E:/project/ide/compiler/m7002/include/bits/termios.h	/^typedef unsigned int	tcflag_t;$/;"	t
+NCCS	E:/project/ide/compiler/m7002/include/bits/termios.h	29;"	d
+termios	E:/project/ide/compiler/m7002/include/bits/termios.h	/^struct termios$/;"	s
+c_iflag	E:/project/ide/compiler/m7002/include/bits/termios.h	/^    tcflag_t c_iflag;		\/* input mode flags *\/$/;"	m	struct:termios
+c_oflag	E:/project/ide/compiler/m7002/include/bits/termios.h	/^    tcflag_t c_oflag;		\/* output mode flags *\/$/;"	m	struct:termios
+c_cflag	E:/project/ide/compiler/m7002/include/bits/termios.h	/^    tcflag_t c_cflag;		\/* control mode flags *\/$/;"	m	struct:termios
+c_lflag	E:/project/ide/compiler/m7002/include/bits/termios.h	/^    tcflag_t c_lflag;		\/* local mode flags *\/$/;"	m	struct:termios
+c_line	E:/project/ide/compiler/m7002/include/bits/termios.h	/^    cc_t c_line;			\/* line discipline *\/$/;"	m	struct:termios
+c_cc	E:/project/ide/compiler/m7002/include/bits/termios.h	/^    cc_t c_cc[NCCS];		\/* control characters *\/$/;"	m	struct:termios
+c_ispeed	E:/project/ide/compiler/m7002/include/bits/termios.h	/^    speed_t c_ispeed;		\/* input speed *\/$/;"	m	struct:termios
+c_ospeed	E:/project/ide/compiler/m7002/include/bits/termios.h	/^    speed_t c_ospeed;		\/* output speed *\/$/;"	m	struct:termios
+_HAVE_STRUCT_TERMIOS_C_ISPEED	E:/project/ide/compiler/m7002/include/bits/termios.h	40;"	d
+_HAVE_STRUCT_TERMIOS_C_OSPEED	E:/project/ide/compiler/m7002/include/bits/termios.h	41;"	d
+VINTR	E:/project/ide/compiler/m7002/include/bits/termios.h	45;"	d
+VQUIT	E:/project/ide/compiler/m7002/include/bits/termios.h	46;"	d
+VERASE	E:/project/ide/compiler/m7002/include/bits/termios.h	47;"	d
+VKILL	E:/project/ide/compiler/m7002/include/bits/termios.h	48;"	d
+VEOF	E:/project/ide/compiler/m7002/include/bits/termios.h	49;"	d
+VTIME	E:/project/ide/compiler/m7002/include/bits/termios.h	50;"	d
+VMIN	E:/project/ide/compiler/m7002/include/bits/termios.h	51;"	d
+VSWTC	E:/project/ide/compiler/m7002/include/bits/termios.h	52;"	d
+VSTART	E:/project/ide/compiler/m7002/include/bits/termios.h	53;"	d
+VSTOP	E:/project/ide/compiler/m7002/include/bits/termios.h	54;"	d
+VSUSP	E:/project/ide/compiler/m7002/include/bits/termios.h	55;"	d
+VEOL	E:/project/ide/compiler/m7002/include/bits/termios.h	56;"	d
+VREPRINT	E:/project/ide/compiler/m7002/include/bits/termios.h	57;"	d
+VDISCARD	E:/project/ide/compiler/m7002/include/bits/termios.h	58;"	d
+VWERASE	E:/project/ide/compiler/m7002/include/bits/termios.h	59;"	d
+VLNEXT	E:/project/ide/compiler/m7002/include/bits/termios.h	60;"	d
+VEOL2	E:/project/ide/compiler/m7002/include/bits/termios.h	61;"	d
+IGNBRK	E:/project/ide/compiler/m7002/include/bits/termios.h	64;"	d
+BRKINT	E:/project/ide/compiler/m7002/include/bits/termios.h	65;"	d
+IGNPAR	E:/project/ide/compiler/m7002/include/bits/termios.h	66;"	d
+PARMRK	E:/project/ide/compiler/m7002/include/bits/termios.h	67;"	d
+INPCK	E:/project/ide/compiler/m7002/include/bits/termios.h	68;"	d
+ISTRIP	E:/project/ide/compiler/m7002/include/bits/termios.h	69;"	d
+INLCR	E:/project/ide/compiler/m7002/include/bits/termios.h	70;"	d
+IGNCR	E:/project/ide/compiler/m7002/include/bits/termios.h	71;"	d
+ICRNL	E:/project/ide/compiler/m7002/include/bits/termios.h	72;"	d
+IUCLC	E:/project/ide/compiler/m7002/include/bits/termios.h	73;"	d
+IXON	E:/project/ide/compiler/m7002/include/bits/termios.h	74;"	d
+IXANY	E:/project/ide/compiler/m7002/include/bits/termios.h	75;"	d
+IXOFF	E:/project/ide/compiler/m7002/include/bits/termios.h	76;"	d
+IMAXBEL	E:/project/ide/compiler/m7002/include/bits/termios.h	77;"	d
+IUTF8	E:/project/ide/compiler/m7002/include/bits/termios.h	78;"	d
+OPOST	E:/project/ide/compiler/m7002/include/bits/termios.h	81;"	d
+OLCUC	E:/project/ide/compiler/m7002/include/bits/termios.h	82;"	d
+ONLCR	E:/project/ide/compiler/m7002/include/bits/termios.h	83;"	d
+OCRNL	E:/project/ide/compiler/m7002/include/bits/termios.h	84;"	d
+ONOCR	E:/project/ide/compiler/m7002/include/bits/termios.h	85;"	d
+ONLRET	E:/project/ide/compiler/m7002/include/bits/termios.h	86;"	d
+OFILL	E:/project/ide/compiler/m7002/include/bits/termios.h	87;"	d
+OFDEL	E:/project/ide/compiler/m7002/include/bits/termios.h	88;"	d
+NLDLY	E:/project/ide/compiler/m7002/include/bits/termios.h	90;"	d
+NL0	E:/project/ide/compiler/m7002/include/bits/termios.h	91;"	d
+NL1	E:/project/ide/compiler/m7002/include/bits/termios.h	92;"	d
+CRDLY	E:/project/ide/compiler/m7002/include/bits/termios.h	93;"	d
+CR0	E:/project/ide/compiler/m7002/include/bits/termios.h	94;"	d
+CR1	E:/project/ide/compiler/m7002/include/bits/termios.h	95;"	d
+CR2	E:/project/ide/compiler/m7002/include/bits/termios.h	96;"	d
+CR3	E:/project/ide/compiler/m7002/include/bits/termios.h	97;"	d
+TABDLY	E:/project/ide/compiler/m7002/include/bits/termios.h	98;"	d
+TAB0	E:/project/ide/compiler/m7002/include/bits/termios.h	99;"	d
+TAB1	E:/project/ide/compiler/m7002/include/bits/termios.h	100;"	d
+TAB2	E:/project/ide/compiler/m7002/include/bits/termios.h	101;"	d
+TAB3	E:/project/ide/compiler/m7002/include/bits/termios.h	102;"	d
+BSDLY	E:/project/ide/compiler/m7002/include/bits/termios.h	103;"	d
+BS0	E:/project/ide/compiler/m7002/include/bits/termios.h	104;"	d
+BS1	E:/project/ide/compiler/m7002/include/bits/termios.h	105;"	d
+FFDLY	E:/project/ide/compiler/m7002/include/bits/termios.h	106;"	d
+FF0	E:/project/ide/compiler/m7002/include/bits/termios.h	107;"	d
+FF1	E:/project/ide/compiler/m7002/include/bits/termios.h	108;"	d
+VTDLY	E:/project/ide/compiler/m7002/include/bits/termios.h	111;"	d
+VT0	E:/project/ide/compiler/m7002/include/bits/termios.h	112;"	d
+VT1	E:/project/ide/compiler/m7002/include/bits/termios.h	113;"	d
+XTABS	E:/project/ide/compiler/m7002/include/bits/termios.h	116;"	d
+CBAUD	E:/project/ide/compiler/m7002/include/bits/termios.h	121;"	d
+B0	E:/project/ide/compiler/m7002/include/bits/termios.h	123;"	d
+B50	E:/project/ide/compiler/m7002/include/bits/termios.h	124;"	d
+B75	E:/project/ide/compiler/m7002/include/bits/termios.h	125;"	d
+B110	E:/project/ide/compiler/m7002/include/bits/termios.h	126;"	d
+B134	E:/project/ide/compiler/m7002/include/bits/termios.h	127;"	d
+B150	E:/project/ide/compiler/m7002/include/bits/termios.h	128;"	d
+B200	E:/project/ide/compiler/m7002/include/bits/termios.h	129;"	d
+B300	E:/project/ide/compiler/m7002/include/bits/termios.h	130;"	d
+B600	E:/project/ide/compiler/m7002/include/bits/termios.h	131;"	d
+B1200	E:/project/ide/compiler/m7002/include/bits/termios.h	132;"	d
+B1800	E:/project/ide/compiler/m7002/include/bits/termios.h	133;"	d
+B2400	E:/project/ide/compiler/m7002/include/bits/termios.h	134;"	d
+B4800	E:/project/ide/compiler/m7002/include/bits/termios.h	135;"	d
+B9600	E:/project/ide/compiler/m7002/include/bits/termios.h	136;"	d
+B19200	E:/project/ide/compiler/m7002/include/bits/termios.h	137;"	d
+B38400	E:/project/ide/compiler/m7002/include/bits/termios.h	138;"	d
+EXTA	E:/project/ide/compiler/m7002/include/bits/termios.h	140;"	d
+EXTB	E:/project/ide/compiler/m7002/include/bits/termios.h	141;"	d
+CSIZE	E:/project/ide/compiler/m7002/include/bits/termios.h	143;"	d
+CS5	E:/project/ide/compiler/m7002/include/bits/termios.h	144;"	d
+CS6	E:/project/ide/compiler/m7002/include/bits/termios.h	145;"	d
+CS7	E:/project/ide/compiler/m7002/include/bits/termios.h	146;"	d
+CS8	E:/project/ide/compiler/m7002/include/bits/termios.h	147;"	d
+CSTOPB	E:/project/ide/compiler/m7002/include/bits/termios.h	148;"	d
+CREAD	E:/project/ide/compiler/m7002/include/bits/termios.h	149;"	d
+PARENB	E:/project/ide/compiler/m7002/include/bits/termios.h	150;"	d
+PARODD	E:/project/ide/compiler/m7002/include/bits/termios.h	151;"	d
+HUPCL	E:/project/ide/compiler/m7002/include/bits/termios.h	152;"	d
+CLOCAL	E:/project/ide/compiler/m7002/include/bits/termios.h	153;"	d
+CBAUDEX	E:/project/ide/compiler/m7002/include/bits/termios.h	155;"	d
+BOTHER	E:/project/ide/compiler/m7002/include/bits/termios.h	157;"	d
+B57600	E:/project/ide/compiler/m7002/include/bits/termios.h	158;"	d
+B115200	E:/project/ide/compiler/m7002/include/bits/termios.h	159;"	d
+B230400	E:/project/ide/compiler/m7002/include/bits/termios.h	160;"	d
+B460800	E:/project/ide/compiler/m7002/include/bits/termios.h	161;"	d
+B500000	E:/project/ide/compiler/m7002/include/bits/termios.h	162;"	d
+B576000	E:/project/ide/compiler/m7002/include/bits/termios.h	163;"	d
+B921600	E:/project/ide/compiler/m7002/include/bits/termios.h	164;"	d
+B1000000	E:/project/ide/compiler/m7002/include/bits/termios.h	165;"	d
+B1152000	E:/project/ide/compiler/m7002/include/bits/termios.h	166;"	d
+B1500000	E:/project/ide/compiler/m7002/include/bits/termios.h	167;"	d
+B2000000	E:/project/ide/compiler/m7002/include/bits/termios.h	168;"	d
+B2500000	E:/project/ide/compiler/m7002/include/bits/termios.h	169;"	d
+B3000000	E:/project/ide/compiler/m7002/include/bits/termios.h	170;"	d
+B3500000	E:/project/ide/compiler/m7002/include/bits/termios.h	171;"	d
+B4000000	E:/project/ide/compiler/m7002/include/bits/termios.h	172;"	d
+__MAX_BAUD	E:/project/ide/compiler/m7002/include/bits/termios.h	173;"	d
+CIBAUD	E:/project/ide/compiler/m7002/include/bits/termios.h	175;"	d
+CMSPAR	E:/project/ide/compiler/m7002/include/bits/termios.h	176;"	d
+CRTSCTS	E:/project/ide/compiler/m7002/include/bits/termios.h	177;"	d
+ISIG	E:/project/ide/compiler/m7002/include/bits/termios.h	181;"	d
+ICANON	E:/project/ide/compiler/m7002/include/bits/termios.h	182;"	d
+XCASE	E:/project/ide/compiler/m7002/include/bits/termios.h	184;"	d
+ECHO	E:/project/ide/compiler/m7002/include/bits/termios.h	186;"	d
+ECHOE	E:/project/ide/compiler/m7002/include/bits/termios.h	187;"	d
+ECHOK	E:/project/ide/compiler/m7002/include/bits/termios.h	188;"	d
+ECHONL	E:/project/ide/compiler/m7002/include/bits/termios.h	189;"	d
+NOFLSH	E:/project/ide/compiler/m7002/include/bits/termios.h	190;"	d
+TOSTOP	E:/project/ide/compiler/m7002/include/bits/termios.h	191;"	d
+ECHOCTL	E:/project/ide/compiler/m7002/include/bits/termios.h	193;"	d
+ECHOPRT	E:/project/ide/compiler/m7002/include/bits/termios.h	194;"	d
+ECHOKE	E:/project/ide/compiler/m7002/include/bits/termios.h	195;"	d
+FLUSHO	E:/project/ide/compiler/m7002/include/bits/termios.h	196;"	d
+PENDIN	E:/project/ide/compiler/m7002/include/bits/termios.h	197;"	d
+IEXTEN	E:/project/ide/compiler/m7002/include/bits/termios.h	199;"	d
+TCOOFF	E:/project/ide/compiler/m7002/include/bits/termios.h	202;"	d
+TCOON	E:/project/ide/compiler/m7002/include/bits/termios.h	203;"	d
+TCIOFF	E:/project/ide/compiler/m7002/include/bits/termios.h	204;"	d
+TCION	E:/project/ide/compiler/m7002/include/bits/termios.h	205;"	d
+TCIFLUSH	E:/project/ide/compiler/m7002/include/bits/termios.h	208;"	d
+TCOFLUSH	E:/project/ide/compiler/m7002/include/bits/termios.h	209;"	d
+TCIOFLUSH	E:/project/ide/compiler/m7002/include/bits/termios.h	210;"	d
+TCSANOW	E:/project/ide/compiler/m7002/include/bits/termios.h	213;"	d
+TCSADRAIN	E:/project/ide/compiler/m7002/include/bits/termios.h	214;"	d
+TCSAFLUSH	E:/project/ide/compiler/m7002/include/bits/termios.h	215;"	d
+_IOT_termios	E:/project/ide/compiler/m7002/include/bits/termios.h	218;"	d
