@@ -1,0 +1,35 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectDir="E:/FT-M700/project/t"
+ProjectType=Executable
+CPUFamily=M7002
+Config=Debug
+[Source Files]
+Source="main.c"
+Source="readme.txt"
+Source="t.lds"
+Source="DSPF_sp_cholesky.c"
+Source="DSPF_sp_cholesky.h"
+Source="Debug/DSPF_sp_cholesky.o"
+Source="Debug/DSPF_sp_cholesky.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/t.map"
+Source="Debug/t.out"
+["Compiler" Settings: "Debug"]
+Options=-O2 -g -ffunction-sections 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Debug"]
+
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/t.out" --gc-sections -T"t.lds" 
+["Linker" Settings: "Release"]
+Options=-o"Release/t.out" --gc-sections -T"t.lds" 
+[Opened files]
+OpenedSource="main.c",line=67
+OpenedSource="DSPF_sp_cholesky.c",line=1
+OpenedSource="DSPF_sp_cholesky.h",line=1
