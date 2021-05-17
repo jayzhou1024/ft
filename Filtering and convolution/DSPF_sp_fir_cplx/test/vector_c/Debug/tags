@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+_SYS_UTSNAME_H	E:/project/ide/compiler/m7002/include/sys/utsname.h	24;"	d
+_UTSNAME_SYSNAME_LENGTH	E:/project/ide/compiler/m7002/include/sys/utsname.h	33;"	d
+_UTSNAME_NODENAME_LENGTH	E:/project/ide/compiler/m7002/include/sys/utsname.h	36;"	d
+_UTSNAME_RELEASE_LENGTH	E:/project/ide/compiler/m7002/include/sys/utsname.h	39;"	d
+_UTSNAME_VERSION_LENGTH	E:/project/ide/compiler/m7002/include/sys/utsname.h	42;"	d
+_UTSNAME_MACHINE_LENGTH	E:/project/ide/compiler/m7002/include/sys/utsname.h	45;"	d
+utsname	E:/project/ide/compiler/m7002/include/sys/utsname.h	/^struct utsname$/;"	s
+sysname	E:/project/ide/compiler/m7002/include/sys/utsname.h	/^    char sysname[_UTSNAME_SYSNAME_LENGTH];$/;"	m	struct:utsname
+nodename	E:/project/ide/compiler/m7002/include/sys/utsname.h	/^    char nodename[_UTSNAME_NODENAME_LENGTH];$/;"	m	struct:utsname
+release	E:/project/ide/compiler/m7002/include/sys/utsname.h	/^    char release[_UTSNAME_RELEASE_LENGTH];$/;"	m	struct:utsname
+version	E:/project/ide/compiler/m7002/include/sys/utsname.h	/^    char version[_UTSNAME_VERSION_LENGTH];$/;"	m	struct:utsname
+machine	E:/project/ide/compiler/m7002/include/sys/utsname.h	/^    char machine[_UTSNAME_MACHINE_LENGTH];$/;"	m	struct:utsname
+domainname	E:/project/ide/compiler/m7002/include/sys/utsname.h	/^    char domainname[_UTSNAME_DOMAIN_LENGTH];$/;"	m	struct:utsname
+__domainname	E:/project/ide/compiler/m7002/include/sys/utsname.h	/^    char __domainname[_UTSNAME_DOMAIN_LENGTH];$/;"	m	struct:utsname
+SYS_NMLN	E:/project/ide/compiler/m7002/include/sys/utsname.h	77;"	d
