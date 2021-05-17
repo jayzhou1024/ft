@@ -1,0 +1,75 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_fir_gen
+ProjectDir="E:/project/function  demo/function/DSP_fir_gen"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="DSP_fir_gen.lds"
+Source="DSP_fir_gen.pjt"
+Source="DSP_fir_gen.pst"
+Source="DSP_fir_gen_cn.c"
+Source="DSP_fir_gen_vc1.c"
+Source="DSP_fir_gen_vc2.c"
+Source="main.c"
+Source="readme.txt"
+Source="Release/ConfRegOp.o"
+Source="Release/ConfRegOp.s"
+Source="Release/datatransfer.o"
+Source="Release/datatransfer.s"
+Source="Release/DSP_fir_gen.map"
+Source="Release/DSP_fir_gen.out"
+Source="Release/DSP_fir_gen_cn.o"
+Source="Release/DSP_fir_gen_cn.s"
+Source="Release/DSP_fir_gen_vc4.o"
+Source="Release/DSP_fir_gen_vc4.s"
+Source="Release/main.o"
+Source="Release/main.s"
+Source="Release/Timer.o"
+Source="Release/Timer.s"
+Source="Timer.c"
+Source="Timer.h"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSP_fir_gen.map"
+Source="Debug/DSP_fir_gen.out"
+Source="Debug/DSP_fir_gen_cn.o"
+Source="Debug/DSP_fir_gen_cn.s"
+Source="Debug/DSP_fir_gen_vc1.o"
+Source="Debug/DSP_fir_gen_vc1.s"
+Source="Debug/DSP_fir_gen_vc2.o"
+Source="Debug/DSP_fir_gen_vc2.s"
+Source="Debug/DSP_fir_gen_vc3.o"
+Source="Debug/DSP_fir_gen_vc3.s"
+Source="Debug/DSP_fir_gen_vc4.o"
+Source="Debug/DSP_fir_gen_vc4.s"
+Source="Debug/DSP_fir_gen_vc5.o"
+Source="Debug/DSP_fir_gen_vc5.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-g -ffunction-sections -flax-vector-conversions -mlong-calls -O2 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSP_fir_gen.out" --gc-sections -T"DSP_fir_gen.lds" 
+["Compiler" Settings: "Release"]
+Options=-O1 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSP_fir_gen.out" --gc-sections -T"DSP_fir_gen.lds" 
+[Opened files]
+OpenedSource="main.c",line=110
+OpenedSource="Timer.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]
