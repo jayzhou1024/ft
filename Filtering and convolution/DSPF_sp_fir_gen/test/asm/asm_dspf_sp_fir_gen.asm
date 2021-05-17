@@ -1,8 +1,8 @@
-.global asm_dspf_sp_fir_gen
+.global asm_dspf_sp_fir_gen1
 
 asm_dspf_sp_fir_gen:  ;
-;  vectorC   verson3°æ±¾·­Òë
-;part 1    ±£´æÏÖ³¡                     part1+part2 30cycle
+;  vectorC   verson3ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½
+;part 1    ï¿½ï¿½ï¿½ï¿½ï¿½Ö³ï¿½                     part1+part2 30cycle
 			SMOVIL		-576,R2
 			SMOVIL		-1,R3
 			SADDA.M2		R3:R2,AR15,AR12
@@ -23,13 +23,13 @@ asm_dspf_sp_fir_gen:  ;
 			SSTW			R43, *+AR12[19]
 			SSTW			R48, *+AR12[20]
 			SSTW			R49, *+AR12[21]
-;part 2   ³õÊ¼»¯¼Ä´æÆ÷     VR£¬RÓÃµ½Ç°×¢Òâ³õÊ¼»¯  
+;part 2   ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½     VRï¿½ï¿½Rï¿½Ãµï¿½Ç°×¢ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½  
 ;		  R30,R32,R34  i j k    R36:h[i]  R38:t
-;         VR3:h[i]¹ã²¥ 
-;		  VR7¡¢VR9 ¡¢VR11  temp4 temp5 tem6
-;		  VR8¡¢VR10¡¢VR12  temp7 temp8 temp9
+;         VR3:h[i]ï¿½ã²¥ 
+;		  VR7ï¿½ï¿½VR9 ï¿½ï¿½VR11  temp4 temp5 tem6
+;		  VR8ï¿½ï¿½VR10ï¿½ï¿½VR12  temp7 temp8 temp9
 ;
-;		  R40: R21<<2  x+iÆ«ÒÆ   i<<2
+;		  R40: R21<<2  x+iÆ«ï¿½ï¿½   i<<2
 ;         R42: R20<<2            j<<2
 ;		  R44:         R45:R44=>R11:R10+(i+j)*4    
 ; 		  R46: k<<4    
@@ -40,7 +40,7 @@ asm_dspf_sp_fir_gen:  ;
 |       VMOVIL			0, VR12
 		SMOVIH			0, R30		  ;			 
 |       VMOVIH			0, VR7
-	    SMVAGA36.M1 	R13:R12, AR10  ;h»ùÖ·
+	    SMVAGA36.M1 	R13:R12, AR10  ;hï¿½ï¿½Ö·
 |		SMOVIL			0, R45		  
 |		VMOVIL			0, VR8		 
 		SMOVIH			0, R45	
@@ -62,55 +62,55 @@ asm_dspf_sp_fir_gen:  ;
 		SMVAGA36.M1 	R49:R48, OR3
 |		SMOVIH			0, R47
 |		VMOVIH			0, VR11
-		SMVCGC.L		R42, VLR      ;P5 SIEU   ÅäÖÃVPE¸öÊý
+		SMVCGC.L		R42, VLR      ;P5 SIEU   ï¿½ï¿½ï¿½ï¿½VPEï¿½ï¿½ï¿½ï¿½
 |		SSUB.M1			1,R16,R16
-;		SMOVIL			3,	R0		  ±¥ºÍÅäÖÃ	  				
+;		SMOVIL			3,	R0		  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	  				
 ;;		SMVCGC			R0,	SCR
 
 ;part3:
-dspf_sp_fir_gen_LOOP1:    ;ÍâÑ­»·    6p
+dspf_sp_fir_gen_LOOP1:    ;ï¿½ï¿½Ñ­ï¿½ï¿½    6p
 		SLDW			*AR10++[1],R36     ;p6
 |		SSHFLL			2, R30,R40         ;SIEU    p1  i*4
-		SMOVIL			0, R34             ;ÍâÑ­»·³õÊ¼»¯k
+		SMOVIL			0, R34             ;ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½k
 	    SMOVIH			0, R34			
-		SMOVIL			0, R32			   ;ÍâÑ­»·³õÊ¼»¯j
+		SMOVIL			0, R32			   ;ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½j
 		SNOP       		2
 		SADD.M2			R40,R10,R44	       ;x+i
 |		SVBCAST.M1		R36, VR3           ;SMAC    p4
 |		SMOVIH			0, R32
-dspf_sp_fir_gen_LOOP2:   ;ÄÚÑ­»·   36
+dspf_sp_fir_gen_LOOP2:   ;ï¿½ï¿½Ñ­ï¿½ï¿½   36
 		SSUB.M1 		R32,R18,R38  ;nr-j
 		SSHFLL			2, R32,R42   ;2<<j
 		SADD.M2			R42,R44,R48  ;x+i+j	
 |		SSHFLL			4, R34,R46	 ;4<<k  
 		SADD.M2		    R14,R46,R46	 ;r+k
-|       SMVAGA36.M1 	R49:R48, AR3 ;x+i+j»ùÖ·
-		SMVAGA36.M1 	R47:R46, AR4 ;r+k»ùÖ·
-		SMVAGA36.M1 	R47:R46, AR5 ;ÓÃÓÚÊý¾ÝÐ´»Ør		   
+|       SMVAGA36.M1 	R49:R48, AR3 ;x+i+jï¿½ï¿½Ö·
+		SMVAGA36.M1 	R47:R46, AR4 ;r+kï¿½ï¿½Ö·
+		SMVAGA36.M1 	R47:R46, AR5 ;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½r		   
 		VLDW			*AR3++[OR3], VR7  ;temp4    p8
 |		VLDW			*AR4++[OR3], VR8  ;temp7
 		VLDW			*AR3++[OR3], VR9  ;temp5
 |		VLDW			*AR4++[OR3], VR10 ;temp8
 		VLDW			*AR3++[OR3], VR11 ;temp6
 |		VLDW			*AR4++[OR3], VR12 ;temp9
-|		SLT				4,R38,R2		  ;Ìõ¼þÅÐ¶Ï  t>4?
-		SLT				8,R38,R3 		  ;Ìõ¼þÅÐ¶Ï  t>8?
+|		SLT				4,R38,R2		  ;ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½  t>4?
+		SLT				8,R38,R3 		  ;ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½  t>8?
 		SVBCAST2.M1		R3:R2, VR1:VR0    ;p4
 |		SADD.M2			12,R32,R32        ;j+=12
-		SLT				R32,R18,R0        ;ÄÚÑ­»·Ìõ¼þ nr>j   SIEU
+		SLT				R32,R18,R0        ;ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nr>j   SIEU
 		SNOP  			4				  
 		VFMULAS32.M1	VR7, VR3, VR8, VR8  ;p6
 |[VR0]	VFMULAS32.M2	VR9, VR3, VR10, VR10 
 |[VR1]	VFMULAS32.M3	VR11, VR3, VR12, VR12 
 		SNOP			5
-		VSTW			VR8, *AR5++[OR3]    ;AR5Ö®¼ä´æÔÚÊý¾ÝÒÀÀµ  ÎÞ·¨²¢ÐÐ  ÕâÀï¶àÁË2p
+		VSTW			VR8, *AR5++[OR3]    ;AR5Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2p
  [VR0]	VSTW			VR10, *AR5++[OR3]
  [VR1]	VSTW			VR12, *AR5++[OR3] 
 |[R0]   SBR				dspf_sp_fir_gen_LOOP2
 |		SADD.M1			3, R34,R34           ;k+=3
-		SNOP	     	6					 ;×ªÒÆÖ¸ÁîÁô6p  ±£Ö¤Ö¸ÁîÅÅ¿Õ
+		SNOP	     	6					 ;×ªï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½6p  ï¿½ï¿½Ö¤Ö¸ï¿½ï¿½ï¿½Å¿ï¿½
 		SADD 		    1, R30, R30       ;SMAC1  i++
-	    SEQ			    R30,R16,R1   	  ;SIEU   ÍâÑ­»·Ìõ¼þ  i!=nh
+	    SEQ			    R30,R16,R1   	  ;SIEU   ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  i!=nh
 
 |[!R1]	SBR				dspf_sp_fir_gen_LOOP1
 		SNOP			6

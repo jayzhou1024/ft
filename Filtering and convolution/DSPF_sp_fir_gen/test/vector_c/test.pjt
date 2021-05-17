@@ -1,28 +1,16 @@
 ; FT M7000 IDE(JAVA), Version 1.0
 
 [Project Settings]
-ProjectDir="E:/project/ÏîÄ¿/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fir_gen/test/vector_c"
+ProjectName=test
+ProjectDir="E:/project/function  demo/function/DSPF_sp_fir_gen"
 ProjectType=Executable
-CPUFamily=M7002
 Config=Debug
 [Source Files]
 Source="ConfRegOp.c"
 Source="ConfRegOp.h"
 Source="datatransfer.c"
-Source="Debug/ConfRegOp.o"
-Source="Debug/ConfRegOp.s"
-Source="Debug/datatransfer.o"
-Source="Debug/datatransfer.s"
-Source="Debug/dspfces.s"
-Source="Debug/DSPF_sp_fir_gen.o"
-Source="Debug/DSPF_sp_fir_gen.s"
-Source="Debug/main.o"
-Source="Debug/main.s"
-Source="Debug/test.map"
-Source="Debug/test.out"
-Source="Debug/Timer.o"
-Source="Debug/Timer.s"
-Source="DSPF_sp_fir_gen.c"
+Source="DSPF_sp_fir_gen_cn.c"
+Source="DSPF_sp_fir_gen_vc.c"
 Source="main.c"
 Source="readme.txt"
 Source="tags"
@@ -31,22 +19,45 @@ Source="test.pjt"
 Source="test.pst"
 Source="Timer.c"
 Source="Timer.h"
+Source="verson/DSPF_sp_fir_gen_vc1.c"
+Source="verson/DSPF_sp_fir_gen_vc2.c"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/dspfces.s"
+Source="Debug/DSPF_sp_fir_gen.o"
+Source="Debug/DSPF_sp_fir_gen.s"
+Source="Debug/DSPF_sp_fir_gen_cn.o"
+Source="Debug/DSPF_sp_fir_gen_cn.s"
+Source="Debug/DSPF_sp_fir_gen_vc.o"
+Source="Debug/DSPF_sp_fir_gen_vc.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/test.map"
+Source="Debug/test.out"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+Source="Debug/verson/DSPF_sp_fir_gen_vc1.o"
+Source="Debug/verson/DSPF_sp_fir_gen_vc1.s"
+Source="Debug/verson/DSPF_sp_fir_gen_vc2.o"
+Source="Debug/verson/DSPF_sp_fir_gen_vc2.s"
 ["Compiler" Settings: "Debug"]
-Options=-O2 -ffunction-sections -g 
-["Compiler" Settings: "Release"]
-Options=-O2 -ffunction-sections 
+Options=-ffunction-sections -g -O2 -flax-vector-conversions 
 ["Assembler" Settings: "Debug"]
-
-["Assembler" Settings: "Release"]
 
 ["Linker" Settings: "Debug"]
 Options=-o"Debug/test.out" --gc-sections -T"test.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
 ["Linker" Settings: "Release"]
 Options=-o"Release/test.out" --gc-sections -T"test.lds" 
 [Opened files]
-OpenedSource="Debug/DSPF_sp_fir_gen.s",line=707
-OpenedSource="main.c",line=28
-OpenedSource="DSPF_sp_fir_gen.c",line=1
-OpenedSource="datatransfer.c",line=1
-OpenedSource="Debug/test.map",line=1
-OpenedSource="tags",line=1
+OpenedSource="DSPF_sp_fir_gen_cn.c",line=1
+OpenedSource="DSPF_sp_fir_gen_vc.c",line=1
+OpenedSource="main.c",line=58
+[Builders]
+m7002.builder
+[Debug Configurations]

@@ -1,9 +1,9 @@
 ; FT M7000 IDE(JAVA), Version 1.0
 
 [Project Settings]
-ProjectDir="E:/project/asm_test"
+ProjectName=asm_test
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fir_gen/test/asm"
 ProjectType=Executable
-CPUFamily=M7002
 Config=Debug
 [Source Files]
 Source="asm_dspf_sp_fir_gen.asm"
@@ -17,9 +17,11 @@ Source="main.c"
 Source="tags"
 Source="Timer.c"
 Source="Timer.h"
+Source="asm_v2.asm"
 Source="Debug/asm_dspf_sp_fir_gen.o"
 Source="Debug/asm_test.map"
 Source="Debug/asm_test.out"
+Source="Debug/asm_v2.o"
 Source="Debug/ConfRegOp.o"
 Source="Debug/ConfRegOp.s"
 Source="Debug/datatransfer.o"
@@ -28,21 +30,33 @@ Source="Debug/DSPF_sp_fir_gen.o"
 Source="Debug/DSPF_sp_fir_gen.s"
 Source="Debug/main.o"
 Source="Debug/main.s"
+Source="Debug/test.o"
 Source="Debug/Timer.o"
 Source="Debug/Timer.s"
 ["Compiler" Settings: "Debug"]
-Options=-ffunction-sections -flax-vector-conversions -g -O2 
-["Compiler" Settings: "Release"]
-Options=-O2 -ffunction-sections 
+Options=-ffunction-sections -flax-vector-conversions -g -O0 
 ["Assembler" Settings: "Debug"]
-
-["Assembler" Settings: "Release"]
 
 ["Linker" Settings: "Debug"]
 Options=-o"Debug/asm_test.out" --gc-sections -T"asm_test.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
 ["Linker" Settings: "Release"]
 Options=-o"Release/asm_test.out" --gc-sections -T"asm_test.lds" 
 [Opened files]
 OpenedSource="asm_test.lds",line=1
-OpenedSource="Debug/main.s",line=1
-OpenedSource="main.c",line=105
+OpenedSource="Debug/main.s",line=1042
+OpenedSource="main.c",line=67
+OpenedSource="asm_dspf_sp_fir_gen.asm",line=1
+OpenedSource="Timer.c",line=1
+OpenedSource="datatransfer.c",line=1
+OpenedSource="asm_test.pst",line=1
+OpenedSource="tags",line=1
+OpenedSource="Timer.h",line=1
+OpenedSource="asm_v2.asm",line=45
+OpenedSource="ConfRegOp.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

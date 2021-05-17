@@ -8,7 +8,7 @@
 
     要求r必须初始化为0
 */
-void DSPF_sp_fir_gen_vc2(
+void DSPF_sp_fir_gen_vc(
     vector float *x,   
     float *h,    
     vector float *r,    

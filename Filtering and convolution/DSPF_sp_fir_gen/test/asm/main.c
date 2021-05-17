@@ -22,15 +22,15 @@ void DSPF_sp_fir_gen_vc1 (
     int nr                   
 ) {
 	int i,j,k;
-	mov_to_vlr(0x000F);      //只开VPE0~3     这时向量长度�?  访存写回都是以四个数�?�?  （虽然传入的参数为vector float,但是读写只会使用前四个数�?
+	mov_to_vlr(0x000F);      //只开VPE0~3     这时向量长度�?  访存写回都是以四个数�?�?  （虽然传入的参数为vector float,但是读写只会使用前四个数�?
     float (*tempr)[4]=(float (*)[4])r;
     vector float temp1,temp2;
     vector float* temp3;
     for(i = 0; i < nh; i++) {
         temp1 = vec_svbcast(h[i]);
 		for(j = 0,k = 0; j < nr; j+=4,k++) { 
-          temp2=*((vector float *)((float *)x+i+j));    //x四个�?组计�? �? 4 8 12 ...
-          temp3=(vector float *)(tempr+k);              //r每次移动4�?
+          temp2=*((vector float *)((float *)x+i+j));    //x四个�?组计�? �? 4 8 12 ...
+          temp3=(vector float *)(tempr+k);              //r每次移动4�?
           temp3[0]=vec_mula(temp2,temp1,temp3[0]);  
 		}
 	}
@@ -107,7 +107,7 @@ void main(){
 	TimerStart(0);
 	
 	unsigned long c_time=GetTimerCount(0)-GetTimerCount(0);
-	//å�¯åŠ¨Timer0å®šæ—¶ï�?	TimerStart(0);
+	//å�¯åŠ¨Timer0å®šæ—¶ï�?	TimerStart(0);
 	for(nr = 32; nr <= NR; nr += 8) {   //nr  
       for(nh = 4; nh <= NH; nh += 4) {  
 		   memset(r,0,sizeof(r));
@@ -126,7 +126,7 @@ void main(){
 		   
 		   time_cn=getTime_cn(x,h,r_cn,nh,nr);
 		   unsigned long time1=getTime(x,h,r1,nh,nr);
-		   printf("\tNX = %-3d\t  NH = %-2d\t cn_cycle:%-4d\t  ����C cycle:%-4d\t  ��� cycle: %-4d\n", nr, nh,time_cn-c_time,time1-c_time,time-c_time);
+		   printf("\tNX = %-3d\t  NH = %-2d\t cn_cycle:%-4d\t  ����C cycle:%-4d\t  ��� cycle: %-4d\n", nr, nh,time_cn-c_time,time1-c_time,time-c_time);
 		}
 	}
 	printf("helloworld");

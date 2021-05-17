@@ -3,7 +3,7 @@
 #include <math.h> 
 
 //一次循环计算4个h的中间变量
-void DSPF_sp_fir_gen_vc3 (
+void DSPF_sp_fir_gen_vc4 (
     vector float *x,
            float *h,
     vector float *r,
