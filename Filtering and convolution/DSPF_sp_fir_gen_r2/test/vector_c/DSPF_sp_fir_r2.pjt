@@ -1,0 +1,53 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSPF_sp_fir_r2
+ProjectDir="E:/project/function  demo/function/DSPF_sp_fir_r2"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="DSPF_sp_fir_r2.lds"
+Source="DSPF_sp_fir_r2.pjt"
+Source="DSPF_sp_fir_r2.pst"
+Source="DSPF_sp_fir_r2_cn.c"
+Source="DSPF_sp_fir_r2_vc.c"
+Source="main.c"
+Source="readme.txt"
+Source="Timer.c"
+Source="Timer.h"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSPF_sp_fir_r2.map"
+Source="Debug/DSPF_sp_fir_r2.out"
+Source="Debug/DSPF_sp_fir_r2_cn.o"
+Source="Debug/DSPF_sp_fir_r2_cn.s"
+Source="Debug/DSPF_sp_fir_r2_vc.o"
+Source="Debug/DSPF_sp_fir_r2_vc.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -g -ffunction-sections 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSPF_sp_fir_r2.out" --gc-sections -T"DSPF_sp_fir_r2.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSPF_sp_fir_r2.out" --gc-sections -T"DSPF_sp_fir_r2.lds" 
+[Opened files]
+OpenedSource="DSPF_sp_fir_r2_cn.c",line=1
+OpenedSource="DSPF_sp_fir_r2_vc.c",line=12
+OpenedSource="main.c",line=49
+[Builders]
+m7002.builder
+[Debug Configurations]

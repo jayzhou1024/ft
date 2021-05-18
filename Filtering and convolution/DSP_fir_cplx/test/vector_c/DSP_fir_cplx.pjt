@@ -2,7 +2,7 @@
 
 [Project Settings]
 ProjectName=DSP_fir_cplx
-ProjectDir="E:/project/function  demo/function/DSP_fir_cplx"
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSP_fir_cplx/test/vector_c"
 ProjectType=Executable
 Config=Debug
 [Source Files]
@@ -51,12 +51,12 @@ Options=-O2 -ffunction-sections
 ["Linker" Settings: "Release"]
 Options=-o"Release/DSP_fir_cplx.out" --gc-sections -T"DSP_fir_cplx.lds" 
 [Opened files]
-OpenedSource="main.c",line=102
+OpenedSource="main.c",line=92
 OpenedSource="DSP_fir_cplx_cn.c",line=1
 OpenedSource="datatransfer.c",line=1
-OpenedSource="DSP_fir_cplx_vc1.c",line=34
+OpenedSource="DSP_fir_cplx_vc1.c",line=24
 OpenedSource="ConfRegOp.c",line=1
-OpenedSource="DSP_fir_cplx_vc2.c",line=50
+OpenedSource="DSP_fir_cplx_vc2.c",line=7
 [Builders]
 m7002.builder
 [Debug Configurations]
