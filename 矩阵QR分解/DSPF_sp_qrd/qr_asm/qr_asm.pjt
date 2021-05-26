@@ -1,0 +1,51 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=qr_asm
+ProjectDir="F:/aTop/projects/QR_asm"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="qr_asm.lds"
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="DSPF_sp_qrd_cn.c"
+Source="DSPF_sp_qrd_cn.h"
+Source="main.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="qrd.s"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSPF_sp_qrd.o"
+Source="Debug/DSPF_sp_qrd.s"
+Source="Debug/DSPF_sp_qrd_cn.o"
+Source="Debug/DSPF_sp_qrd_cn.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/qrd.o"
+Source="Debug/qr_asm.map"
+Source="Debug/qr_asm.out"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -g 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/qr_asm.out" --gc-sections -T"qr_asm.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/qr_asm.out" --gc-sections -T"qr_asm.lds" 
+[Opened files]
+OpenedSource="main.c",line=251
+OpenedSource="qrd.s",line=304
+[Builders]
+m7002.builder
+[Debug Configurations]

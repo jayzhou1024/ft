@@ -1,0 +1,1849 @@
+;;;在最新版本O2的基础上改动
+;;;96规模一下均成功 112有问题 修改
+	.align	2
+	.global	update_uv_R
+	.type	update_uv_R, @function
+update_uv_R:
+		SMVAGA36.M1		R13:R12, AR10
+	|	SVBCAST.M2 		 R14,VR3
+	|	SMOVIL		1, R0
+		SMVAGA36.M1		R11:R10, AR0
+		SLDW		*AR10, R42
+		SNOP		5
+		SFADDS32.M2		R42, R14, R14
+		SNOP		2
+		SSTW		R14, *AR10
+	|	SMVCGC.L		R0, VLR
+		SMOVIL		65535, R1
+		SNOP		1
+		VLDW.LS 		*AR0,VR4
+	|	SMOVIH		65535, R1
+		SNOP		7
+		VFSUBS32.M1		VR3,VR4,VR0
+		SNOP		2
+		VSTW.LS 		VR0,*AR0
+	|	SMVCGC.L		R1, VLR
+		SNOP		2
+		SBR		R62
+		SNOP		6
+	;; return occurs
+	.size	update_uv_R, .-update_uv_R
+	.align	2
+	.global	reduce_16
+	.type	reduce_16, @function
+reduce_16:
+		SMOVIL		-80, R6
+		SMOVIL		-1, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SMOVIL		64, R14
+		SSTDW		R63:R62, *+AR15[9]
+		SBR		M7002_datatrans
+	|	SADDA.M2		8,AR15,OR11
+		SMOVIL		reduce, R62
+		SMVAAGL.M2		OR11, R13:R12
+	|	SMOVIH		reduce, R62
+		SMOVIH4.L		reduce, R63
+		SMVAAGH.M2		OR11, R13:R12
+	;; call to M7002_datatrans occurs, with return value
+		SNOP		2
+reduce:
+		SLDW		*+AR15[2], R10
+	|	SMOVIL		80, R6
+		SLDW		*+AR15[3], R42
+	|	SMOVIL		0, R7
+		SLDW		*+AR15[4], R44
+		SLDW		*+AR15[5], R43
+		SLDW		*+AR15[6], R1
+		SNOP		2
+		SFADDS32.M2		R10, R42, R0
+		SNOP		2
+		SFADDS32.M2		R0, R44, R2
+	|	SLDW		*+AR15[7], R52
+		SLDW		*+AR15[8], R51
+		SLDW		*+AR15[9], R50
+		SFADDS32.M2		R2, R43, R3
+	|	SLDW		*+AR15[10], R49
+		SLDW		*+AR15[11], R48
+		SNOP		1
+		SFADDS32.M2		R3, R1, R9
+		SNOP		2
+		SFADDS32.M2		R9, R52, R13
+		SLDW		*+AR15[12], R47
+		SLDW		*+AR15[13], R46
+		SFADDS32.M2		R13, R51, R14
+	|	SLDW		*+AR15[14], R45
+		SLDW		*+AR15[15], R8
+		SLDW		*+AR15[16], R11
+		SFADDS32.M2		R14, R50, R15
+		SNOP		2
+		SFADDS32.M2		R15, R49, R16
+		SNOP		1
+		SLDW		*+AR15[17], R12
+		SFADDS32.M2		R16, R48, R17
+	|	SLDDW		*+AR15[9], R63:R62
+	|	SADDA.M1		R7:R6,AR15,AR15
+		SNOP		2
+		SFADDS32.M2		R17, R47, R18
+		SNOP		2
+		SFADDS32.M2		R18, R46, R19
+	|	SMVCGC.L		R63, BRReg
+		SNOP		2
+		SFADDS32.M2		R19, R45, R20
+		SNOP		2
+		SFADDS32.M2		R20, R8, R21
+		SNOP		1
+		SBR		R62
+		SFADDS32.M2		R21, R11, R22
+		SNOP		2
+		SFADDS32.M2		R22, R12, R10
+		SNOP		2
+	;; return occurs
+	.size	reduce_16, .-reduce_16
+	.align	2
+	.global	norm2
+	.type	norm2, @function
+norm2:
+		SMOVIL		0, R42
+	|	SMVAGA36.M2		R11:R10, OR11
+	|	SADD.M1		-1,R16,R18
+		SMOVIH		0, R42
+		SMOVIL		192, R6
+	|	SVBCAST.M2 		 R42,VR3
+		SMOVIL		0, R7
+		SSUBA.L		R7:R6, AR7, AR7
+		SMOVIL		-40, R6
+		SNOP		1
+		SMOVIL		-1, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SSHFLL		2, R18, R18
+		SSTDW		R33:R32, *+AR15[3]
+		SSTDW		R63:R62, *+AR15[4]
+		SMOV.M2		R16, R33
+	|	SMOV.M1		R14, R32
+	|	SMOVIL		1, R16
+		SNOP		1
+		SSTDW		R31:R30, *+AR15[2]
+		VSTW.LS 		VR3,*+AR7[16]
+	|	SMVAAGL.M2		OR11, R31:R30
+		VLDW.LS 		*+AR7[16],VR0
+		SMVAAGH.M2		OR11, R31:R30
+		SBR		M7002_datatrans_index
+		SMOVIL		norm_start, R62
+		SMOVIH		norm_start, R62
+		SMOVIH4.L		norm_start, R63
+		SNOP		2
+	;; call to M7002_datatrans_index occurs, with return value
+		VSTW.LS 		VR0,*AR7
+norm_start:
+		SMOVIL		1, R0
+		SMVCGC.L		R0, VLR
+		SMOVIL		0, R1
+		SNOP		1
+		SLT		R1, R32, R2
+	|	SMVAGA36.M1		R31:R30, AR2
+	[!R2]	SBR		get_res
+	|	SSHFLL		1, R33, R44
+		SSHFAR		31, R33, R45
+		SLTU		R44, R33, R46
+		SSHFLL		1, R45, R3
+		SSHFLL		2, R33, R8
+	|	SADD.M2		R3,R46,R9
+		SLTU		R8, R44, R10
+	|	SMOV.M2		R8, R42
+		SSHFLL		1, R9, R11
+	;; condjump to get_res occurs
+		SADD.M2		R11,R10,R43
+	|	SMOVIL		0, R12
+	;no-op trunc di R43:R42 to pdi R43:R42
+norm_loop1:   ;;循环sum = vec_mula(vtmp[0], vtmp[0], sum);
+		VLDW.LS 		*AR7,VR1
+	|	VLDW.LS 		*AR2,VR4
+	|	SADD.M1		1,R12,R12
+	|	SADDA.M2		R43:R42,AR2,AR2
+		SEQ		R32, R12, R0
+		SNOP		6
+		VFMULAS32.M3	VR4,VR4,VR1,VR1
+	|[!R0]	SBR		norm_loop1
+		SNOP		5
+		VSTW.LS 		VR1,*AR7
+	;; condjump to norm_loop1 occurs
+		SMVAGA36.M1		R31:R30, AR0
+	|	SMOVIL		0, R13
+		SNOP		1
+norm_loop2:    ;;循环 vtmp[0] = vec_muli(vtmp[0], vzero);
+		VLDW.LS 		*AR0,VR5
+	|	VLDW.LS 		*+AR7[16],VR2
+	|	SADD.M2		1,R13,R13
+		SEQ		R32, R13, R1
+		SNOP		6
+		VFMULS32.M3	VR5,VR2,VR6
+	|[!R1]	SBR		norm_loop2
+		SNOP		3
+		VSTW.LS 		VR6,*AR0
+	|	SADDA.M2		R43:R42,AR0,AR0
+		SNOP		2
+	;; condjump to norm_loop2 occurs
+get_res:       ;;将结果传回res
+		SMOVIL		65535, R14
+		SMOVIH		65535, R14
+		SMVCGC.L		R14, VLR
+		SMOVIL		128, R12
+		SNOP		1
+		VLDW.LS 		*AR7,VR7
+	|	SMOVIL		0, R13
+	|	SADDA.M2		12,AR15,OR12
+		SADDA.M1		R13:R12,AR7,OR0
+	|	SMOVIL		4, R14
+		SBR		vmemcpy
+	|	SMVAAGL.M2		OR12, R11:R10
+		SMOVIL		norm_end, R62
+		SMVAAGL.M1		OR0, R13:R12
+	|	SMVAAGH.M2		OR12, R11:R10
+	|	SMOVIH		norm_end, R62
+		SMOVIH4.L		norm_end, R63
+		SMVAAGH.M2		OR0, R13:R12
+		SNOP		1
+	;; call to vmemcpy occurs, with return value
+		VSTW.LS 		VR7,*+AR7[32]
+norm_end:
+		SLDW		*+AR15[3], R10
+	|	SMOVIL		192, R6
+		SLDDW		*+AR15[4], R63:R62
+	|	SMOVIL		0, R7
+		SLDDW		*+AR15[2], R31:R30
+	|	SADDA.M2		R7:R6,AR7,AR7
+		SLDDW		*+AR15[3], R33:R32
+	|	SMOVIL		40, R6
+		SMOVIL		0, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	;; return occurs
+	.size	norm2, .-norm2
+.align	2
+	.global	update_r
+	.type	update_r, @function
+update_r:
+		SMVAGA36.M1		R13:R12, AR1 ;*sum
+	|	SMOVIL		0, R42
+	|	SMVAGA36.M2		R15:R14, OR11 ;*u
+		SLT		R42, R16, R0
+	|	SVBCAST.M1 		 R24,VR3
+		SMVAAGL.M2		AR1, R43:R42
+	|	SMOVIL		0, R1
+	|	SADD.M1		-1,R16,R17
+		SMOVIL		128, R6
+	|	SMVAAGL.M2		OR11, R51:R50
+		SMVAAGH.M1		AR1, R43:R42
+	|	SMOVIL		0, R7
+		SMOVIH		0, R1
+	|	SMVAAGH.M1		OR11, R51:R50
+		SMOVIL		64, R13
+	|	SVBCAST.M1 		 R1,VR4
+		SSUBA.L		R7:R6, AR7, AR7
+		SMOVIL		-16, R6
+	[!R0]	SBR		r_end
+	|	SADD.M2		R13,R42,R44
+		SMOVIL		-1, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SLTU		R44, R42, R46
+		SSTW		R30, *+AR15[3]
+		VSTW.LS 		VR4,*+AR7[16]  ;cast
+	|	SSHFLL		6, R17, R47
+	|	SADD.M2		R43,R46,R2
+		VSTW.LS 		VR3,*AR7 ;v_scale
+	|	SSHFLR		26, R17, R3
+	|	SADD.M2		R47,R44,R8
+	;; condjump to r_end occurs
+		SLTU		R8, R44, R48
+	|	SADD.M2		R3,R2,R9
+		SADD.M2		R9,R48,R12
+r_setsum: ;循环将sum清0
+		SLTU		R44, R42, R14
+	|	SMVAGA36.M1		R43:R42, AR0 ;*sum
+	|	VLDW.LS 		*+AR7[16],VR0
+	|	SMOV.M2		R44, R42
+		SADD.M2		R43,R14,R43
+	|	SEQ		R44, R8, R0
+	[R0]	SEQ		R43, R12, R0
+	[!R0]	SBR		r_setsum
+	|	SMOVIL		64, R19
+		SADD.M2		R19,R44,R44
+		SNOP		3
+		VSTW.LS 		VR0,*AR0
+		SNOP		1
+	;; condjump to r_setsum occurs
+r_start:
+		SMOVIL		0, R25
+	|	SMOV.M2		R50, R52
+	|	SMOV.M1		R51, R53
+		SMOVIL		1431655766, R21
+	|	SMVAGA36.M2		R53:R52, AR10
+	|	SADD.M1		4,R50,R44
+		SLT		R25, R20, R1
+	|	SMVAGA36.M1		R11:R10, AR5 ;*v1
+		SMOVIH		1431655766, R21
+	|	SADD.M2		-2,R16,R55
+		SMULS.M2		R21,R17,R43:R42
+	|[!R1]	SBR		r_mula_res
+	|	SSHFAR		31, R17, R24
+		SMOVIL		65535, R23
+		SMOVIH		65535, R23
+		SSHFAR		R18, R23, R18
+		SSUB.M2		R24, R43, R26
+	|	SMOVIL		0, R12
+	|	SADD.M1		-1,R20,R43
+		SSHFLL		1, R26, R27
+		SADD.M2		R26,R27,R15
+	|	SSHFLL		1, R43, R54
+	;; condjump to r_mula_res occurs
+		SLDW		*AR10, R42
+	|	SLT		R12, R15, R0
+		SSHFLL		1, R22, R28
+		SSHFAR		31, R22, R29
+		SSHFLL		2, R43, R59
+		SLTU		R54, R43, R60
+	|	SADD.M2		R59,R44,R61
+		SLTU		R28, R22, R49
+		SSHFLL		1, R29, R56
+	|	SVBCAST.M2 		 R42,VR1
+		SLTU		R59, R54, R47
+	|	SADD.M1		R56,R49,R58
+		SSHFLL		2, R22, R57
+		SLTU		R44, R50, R46
+	|	SMOV.M1		R57, R24
+		SSHFLL		1, R60, R3
+	|	SADD.M2		R51,R46,R2
+	|	VSTW.LS 		VR1,*+AR7[16]
+		SADD.M2		R3,R47,R48
+	|	SLTU		R57, R28, R13
+	[!R0]	SBR		r_mula_loop
+	|	SMOVIL		128, R46
+	|	SADD.M2		R48,R2,R9
+		SMOVIL		0, R47
+		SMOVIL		192, R54
+		SSHFLL		1, R58, R45
+		SLTU		R44, R52, R14
+	|	SMOV.M2		R44, R52
+	|	SADD.M1		R45,R13,R25
+	;no-op trunc di R25:R24 to pdi R25:R24
+		SADD.M2		R53,R14,R53
+	|	SLTU		R61, R44, R8
+		SADD.M2		R9,R8,R21
+	;; condjump to r_mula_loop occurs
+r_start_res:
+		SMOVIL		0, R28
+		SMOVIL		0, R43
+		SMOVIL		0, R49
+r_mula_inloop1:
+		SMOV.M2		R28, R44
+	|	SMOV.M1		R43, R45
+	|	VLDW.LS 		*+AR7[16],VR7 ;cast
+	|	VLDW.LS 		*+AR7[16],VR6 ;cast
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SADDA.M1		R45:R44,AR1,AR0 ;sum
+	|	SADDA.M2		R45:R44,AR5,AR2 ;v1
+	|	SMOVIL		64, R44
+	|	VLDW.LS 		*+AR7[16],VR5
+		SMOVIL		0, R45
+		SNOP		1
+		VLDW.LS 		*AR2,VR2 ;v1[i]
+	|	VLDW.LS 		*AR0,VR12 ;sum[i]
+	|	SADDA.M1		R45:R44,AR0,AR6 ;sum[i+1]
+	|	SADDA.M2		R47:R46,AR2,AR3 ;v1[i+2]
+		SNOP		1
+		SADDA.M1		R45:R44,AR2,AR2 ;v1[i+1]
+	|	SADDA.M2		R47:R46,AR0,AR4 ;sum[i+2]
+		SNOP		2
+		SADD.M2		3,R49,R49
+	|	SADD.M1		R54,R28,R26
+		SLT		R49, R15, R2
+		SLTU		R26, R28, R27
+	|	SMOV.M2		R26, R28
+
+    	VLDW.LS 		*AR2,VR9 ;v1[i+1]
+	|	VLDW.LS 		*AR6,VR13 ;sum[i+1]
+		SNOP		7
+		VLDW.LS 		*AR3,VR11 ;v1[i+2]
+	|	VLDW.LS 		*AR4,VR14 ;sum[i+2]
+		SNOP		7
+
+		VFMULAS32.M1	VR2,VR7,VR12,VR12 ;v1[i]
+    |   VFMULAS32.M2	VR9,VR6,VR13,VR13 ;v1[i+1]
+    |	VFMULAS32.M3	VR11,VR5,VR14,VR14 ;v1[i+2]
+	|	SADD.M2		R43,R27,R43		
+	| [R2]	SBR		r_mula_inloop1
+        SNOP    5
+		VSTDW.LS 		VR13:VR12,*AR0
+	|	VSTW.LS 		VR14,*AR4
+	;|	VSTW.LS 		VR10,*AR6
+	
+	;; condjump to r_mula_inloop1 occurs
+		SSHFAR		31, R49, R29
+		SSHFLL		6, R29, R56
+		SSHFLR		26, R49, R30
+		SOR		R56, R30, R57
+		SSHFLL		6, R49, R56
+r_mula_cond:
+		SLT		R49, R17, R2
+	|	SMVAAGL.M2		AR5, R13:R12
+	|	SADD.M1		-1,R49,R58
+	[!R2]	SBR		r_mula_partop
+	|	SLTU		R58, R49, R60
+		SMVAAGH.M2		AR5, R13:R12
+	|	SSHFLR		26, R58, R19
+		SSHFLR		26, R49, R9
+		SMOV.M2		R13, R14
+	|	SMOVIL		64, R45
+		SLTU		R55, R49, R44
+	|	SADD.M2		R45,R12,R48
+		SSHFLL		6, R58, R28
+		SSHFLL		6, R49, R26
+	;; condjump to r_mula_partop occurs
+		SSHFAR		31, R49, R57
+		SADD.M2		-1,R57,R3
+	|	SSHFLL		6, R57, R13
+	|	SADD.M1		R57,R44,R30
+		SADD.M2		R3,R60,R8
+	|	SOR		R13, R9, R27
+	|	SMOV.M1		R28, R44
+		SSHFLL		6, R8, R42
+	|	SMOV.M2		R27, R43
+		SOR		R42, R19, R29
+	|	SMOV.M2		R26, R42
+		SMOV.M1		R29, R45
+	;no-op trunc di R43:R42 to pdi R43:R42
+	|	SADDA.M2		R43:R42,AR5,OR0
+	|	SLTU		R48, R12, R12
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SADDA.M1		R45:R44,AR1,OR1
+	|	SSHFLR		26, R55, R56
+		SSHFLL		6, R30, R57
+		SSHFLL		6, R55, R58
+	|	SMVAAGL.M1		OR0, R43:R42
+	|	SADD.M2		R14,R12,R2
+		SMVAAGL.M1		OR1, R45:R44
+	|	SADD.M2		R58,R48,R60
+	|	SOR		R57, R56, R59
+		SLTU		R60, R48, R3
+	|	SMVAAGH.M1		OR0, R43:R42
+	|	SADD.M2		R59,R2,R48
+		SMVAAGH.M1		OR1, R45:R44
+	|	SADD.M2		R48,R3,R8
+		SNOP		1
+r_mula_inloop2:
+		SMOVIL		64, R9
+	|	SMVAGA36.M1		R43:R42, AR2
+	|	VLDW.LS 		*+AR7[16],VR13
+		SADD.M2		R9,R44,R14
+	|	SMOVIL		64, R27
+		SLTU		R14, R44, R19
+	|	SMOV.M2		R14, R44
+	|	VLDW.LS 		*AR2,VR14
+	|	SADD.M1		R27,R42,R29
+		SADD.M2		R45,R19,R45
+	|	SLTU		R29, R42, R26
+	|	SMOV.M1		R29, R42
+		SMVAGA36.M1		R45:R44, AR0
+	|	SADD.M2		R43,R26,R43
+	|	SEQ		R29, R60, R2
+	[R2]	SEQ		R43, R8, R2
+		VLDW.LS 		*AR0,VR15
+		SNOP		7
+	[!R2]	SBR		r_mula_inloop2
+	|	VFMULAS32.M3	VR14,VR13,VR15,VR15
+		SNOP		5
+		VSTW.LS 		VR15,*AR0
+	;; condjump to r_mula_inloop2 occurs
+		SNOT		R49, R45
+	|	SADD.M2		1,R49,R49
+		SADD.M2		R45,R17,R42
+		SADD.M2		R42,R49,R44
+		SSHFAR		31, R44, R30
+		SSHFLR		26, R44, R28
+		SSHFLL		6, R30, R12
+		SOR		R12, R28, R57
+		SSHFLL		6, R44, R56
+r_mula_partop:
+		SMVCGC.L		R18, VLR
+		SNOP		2
+		SMOV.M2		R56, R42
+	|	SMOV.M1		R57, R43
+	|	VLDW.LS 		*+AR7[16],VR16
+	;no-op trunc di R43:R42 to pdi R43:R42
+		SADDA.M1		R43:R42,AR1,AR0
+	|	SADDA.M2		R43:R42,AR5,AR2
+		SNOP		2
+		VLDW.LS 		*AR0,VR17
+	|	VLDW.LS 		*AR2,VR18
+		SNOP		7
+		VFMULAS32.M3	VR18,VR16,VR17,VR17
+		SNOP		5
+		VSTW.LS 		VR17,*AR0
+	|	SMVCGC.L		R23, VLR
+		SNOP		2
+		SEQ		R52, R61, R2
+	|	SMVAGA36.M1		R53:R52, AR10
+	|	SADDA.M2		R25:R24,AR5,AR5
+	[R2]	SEQ		R53, R21, R2
+	[R2]	SBR		r_muli_start
+	|	SADD.M1		4,R52,R44
+		SLTU		R44, R52, R14
+	|	SMOV.M2		R44, R52
+		SADD.M2		R53,R14,R53
+		SNOP		4
+	;; condjump to r_muli_start occurs
+		SLDW		*AR10, R42
+		SNOP		3
+	[R0]	SBR		r_start_res
+		SNOP		1
+		SVBCAST.M2 		 R42,VR1
+		SNOP		3
+		VSTW.LS 		VR1,*+AR7[16]
+	;; condjump to r_start_res occurs
+r_mula_loop:
+		SBR		r_mula_cond
+	|	SMOVIL		0, R56
+		SMOVIL		0, R57
+		SMOVIL		0, R49
+		SNOP		4
+	;; jump to r_mula_cond occurs
+r_mula_res:
+		SLT		R25, R15, R0
+r_muli_start:
+	[!R0]	SBR		r_end_res
+	|	SMVAAGL.M2		AR1, R43:R42
+	|	SMOVIL		0, R25
+		SMOVIL		128, R46
+		SMVAAGH.M2		AR1, R43:R42
+	|	SMOVIL		0, R47
+		SMOVIL		192, R24
+		SNOP		3
+	;; condjump to r_end_res occurs
+r_muli_inloop1:
+		SMVAGA36.M1		R43:R42, AR0
+	|	VLDW.LS 		*AR7,VR19 ;v_scale
+	|	SMOVIL		64, R56
+	|	VLDW.LS 		*AR7,VR20
+	|	SADD.M2		3,R25,R25
+		SMOVIL		0, R57
+	|	VLDW.LS 		*AR7,VR21
+	|	SADD.M2		R24,R42,R23
+		VLDW.LS 		*AR0,VR22 ;sum[i]
+	|	SADDA.M1		R57:R56,AR0,AR4 ;sum[i+1]
+	|	SADDA.M2		R47:R46,AR0,AR2 ;sum[i+2]
+	|	SLT		R25, R15, R2
+		SLTU		R23, R42, R53
+		SNOP		1
+		SADD.M2		R43,R53,R43
+	|	SMOV.M1		R23, R42
+		SNOP		4
+
+        VLDW.LS 		*AR4,VR24 ;sum[i+1]
+	|	VLDW.LS 		*AR2,VR26
+        SNOP		7
+
+		VFMULS32.M1	VR19,VR22,VR27
+	|	VFMULS32.M2	VR20,VR24,VR28
+    |   VFMULS32.M3	VR21,VR26,VR29	
+	| [R2]	SBR		r_muli_inloop1
+		SNOP 5
+        VSTDW.LS 		VR29:VR28,*AR4 ;sum[i+2] sum[i+1]
+	|	VSTW.LS 		VR27,*AR0
+        
+		
+	;; condjump to r_muli_inloop1 occurs
+		SSHFAR		31, R25, R55
+		SSHFLR		26, R25, R61
+		SSHFLL		6, R55, R46
+		SOR		R46, R61, R45
+		SSHFLL		6, R25, R44
+r_muli_cond:
+		SSHFAR		31, R25, R21
+	|	SMVAAGL.M2		AR1, R47:R46
+	|	SADD.M1		-2,R16,R54
+		SLT		R25, R17, R2
+		SSHFLR		26, R25, R60
+	|[!R2]	SBR		r_muli_partop
+	|	SMVAAGH.M2		AR1, R47:R46
+		SSHFLL		6, R21, R3
+		SOR		R3, R60, R43
+		SSHFLL		6, R25, R42
+	;no-op trunc di R43:R42 to pdi R43:R42
+		SADDA.M2		R43:R42,AR1,OR2
+	|	SMOVIL		64, R58
+		SLTU		R54, R25, R48
+	|	SADD.M1		R58,R46,R59
+		SADD.M1		R21,R48,R8
+	|	SLTU		R59, R46, R9
+	;; condjump to r_muli_partop occurs
+		SSHFLR		26, R54, R14
+	|	SMVAAGL.M2		OR2, R43:R42
+	|	SADD.M1		R47,R9,R47
+		SSHFLL		6, R8, R13
+		SSHFLL		6, R54, R19
+	|	SMVAAGH.M2		OR2, R43:R42
+		SOR		R13, R14, R27
+	|	SADD.M1		R19,R59,R29
+		SLTU		R29, R59, R26
+	|	SADD.M2		R27,R47,R45
+		SADD.M2		R45,R26,R44
+r_muli_inloop2:
+		SMVAGA36.M1		R43:R42, AR0
+	|	VLDW.LS 		*AR7,VR28
+	|	SMOVIL		64, R49
+		SADD.M2		R49,R42,R30
+		VLDW.LS 		*AR0,VR29
+	|	SLTU		R30, R42, R28
+	|	SMOV.M2		R30, R42
+		SADD.M2		R43,R28,R43
+	|	SEQ		R30, R29, R2
+	[R2]	SEQ		R43, R44, R2
+		SNOP		3
+	[!R2]	SBR		r_muli_inloop2
+		SNOP		1
+		VFMULS32.M3	VR28,VR29,VR30
+		SNOP		3
+		VSTW.LS 		VR30,*AR0
+	;; condjump to r_muli_inloop2 occurs
+		SNOT		R25, R42
+	|	SADD.M2		1,R25,R12
+		SADD.M2		R42,R17,R57
+		SADD.M2		R57,R12,R56
+		SSHFAR		31, R56, R24
+		SSHFLR		26, R56, R23
+		SSHFLL		6, R24, R25
+		SOR		R25, R23, R45
+		SSHFLL		6, R56, R44
+r_muli_partop:
+		SMVCGC.L		R18, VLR
+		SMOVIL		65535, R3
+		SNOP		1
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SADDA.M2		R45:R44,AR1,AR0
+	|	VLDW.LS 		*AR7,VR31
+	|	SMOVIH		65535, R3
+		SNOP		2
+		VLDW.LS 		*AR0,VR32
+		SNOP		7
+		VFMULS32.M3	VR31,VR32,VR33
+		SNOP		3
+		VSTW.LS 		VR33,*AR0
+	|	SMVCGC.L		R3, VLR
+		SNOP		2
+		SMVCGC.L		R3, VLR
+		SMOVIL		64, R52
+	|	VMOVIL		31,	VR34
+		SNOP		1
+	[!R1]	SBR		r_mulb_res
+	|	SMVAGA36.M2		R51:R50, AR10
+	|	SADD.M1		-1,R20,R20
+	|	SSHFLL		1, R22, R1
+		SMVAAGL.M2		AR1, R43:R42
+	|	SSHFAR		31, R22, R53
+	|	SADD.M1		4,R50,R24
+		SSHFLL		1, R20, R61
+	|	SADD.M1		-2,R16,R16
+		SMVAAGH.M2		AR1, R43:R42
+	|	SLTU		R1, R22, R46
+		SSHFLL		1, R53, R58
+		SSHFLL		2, R20, R60
+	|	SADD.M2		R58,R46,R59
+	|	SADD.M1		R52,R42,R21
+		SLTU		R61, R20, R48
+	|	SADD.M2		R60,R24,R8
+	;; condjump to r_mulb_res occurs
+		SLDW		*AR10, R44
+	|	SLTU		R24, R50, R47
+		SSHFLL		2, R22, R22
+	|	SADD.M2		R51,R47,R19
+		SLTU		R60, R61, R13
+	|	SMOV.M2		R22, R52
+		SSHFLL		1, R48, R27
+		SLTU		R22, R1, R9
+	|	SADD.M2		R27,R13,R29
+		SSHFLL		1, R59, R14
+	|	SADD.M2		R29,R19,R45
+	[!R0]	SBR		r_mulb_loop
+	|	SMOVIL		128, R46
+	|	SVBCAST.M2 		 R44,VR35
+	|	SADD.M1		R14,R9,R53
+	;no-op trunc di R53:R52 to pdi R53:R52
+		SMOVIL		0, R47
+		SMOVIL		192, R2
+		SLTU		R24, R50, R12
+	|	SMOV.M1		R24, R50
+		SADD.M2		R51,R12,R51
+	|	VSTW.LS 		VR35,*+AR7[16]
+	|	SLTU		R8, R24, R26
+		SADD.M2		R45,R26,R30
+	|	SLTU		R21, R42, R49
+		SADD.M2		R43,R49,R28
+	;; condjump to r_mulb_loop occurs
+r_muli_res:
+		SMOVIL		0, R42
+		SMOVIL		0, R23
+		SMOVIL		0, R56
+r_mulb_inloop1:
+		SMVAGA36.M1		R11:R10, OR3
+	|	SMOV.M2		R42, R44
+	|	VLDW.LS 		*+AR7[16],VR36 ;cast
+	|	VLDW.LS 		*+AR7[16],VR37
+		SMOV.M2		R23, R45
+	|	VLDW.LS 		*+AR7[16],VR38
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SADDA.M1		R45:R44,OR3,AR0 ;v1
+	|	SADDA.M2		R45:R44,AR1,AR4 ;sum
+	|	SMOVIL		64, R44
+		SMOVIL		0, R45
+		SNOP		1
+		VLDW.LS 		*AR4,VR39 ;sum[i]
+	|	VLDW.LS 		*AR0,VR40 ;v1[i]
+	|	SADDA.M1		R45:R44,AR0,AR2 ;v1[i+1]
+	|	SADDA.M2		R47:R46,AR4,AR3 ;sum[i+2]
+		SNOP		1
+		SADDA.M1		R45:R44,AR4,AR4 ;sum[i+1]
+	|	SADDA.M2		R47:R46,AR0,AR6 ;v1[i+2]
+		SNOP		2
+		SADD.M2		3,R56,R56
+	|	SADD.M1		R2,R42,R57
+		SLT		R56, R15, R1
+		SLTU		R57, R42, R24
+	|	SMOV.M2		R57, R42
+		SADD.M2		R23,R24,R23
+		
+		VLDW.LS 		*AR4,VR41 ;sum[i+1]
+	|	VLDW.LS 		*AR2,VR42 ;v1[i+1]
+		SNOP		7
+		VLDW.LS 		*AR6,VR44 ;v1[i+2]
+	|	VLDW.LS 		*AR3,VR43 ;sum[i+2]
+		SNOP		7
+
+        VFMULBS32.M1	VR36,VR39,VR40,VR40
+	|	VFMULBS32.M2	VR37,VR41,VR42,VR42
+    |   VFMULBS32.M3	VR38,VR43,VR44,VR44
+	    SNOP        5
+		VBEX		VR34,	VR40,	VR46
+    	VSTW.LS 		VR46,*AR0
+
+	[R1]	SBR		r_mulb_inloop1
+        VBEX		VR34,	VR42,	VR47
+		SNOP        2
+		VBEX		VR34,	VR44,	VR49
+        VSTW.LS 		VR47,*AR2
+		VSTW.LS 		VR49,*AR6
+	;; condjump to r_mulb_inloop1 occurs
+		SSHFAR		31, R56, R25
+		SSHFLR		26, R56, R20
+		SSHFLL		6, R25, R55
+		SOR		R55, R20, R29
+		SSHFLL		6, R56, R26
+r_mulb_cond:
+		SLT		R56, R17, R1
+	|	SADD.M2		-1,R56,R22
+	|	SSUB.M1		R56, R16, R58
+	[!R1]	SBR		r_mulb_partop
+	|	SSHFAR		31, R56, R54
+	|	SADD.M2		R56,R58,R48
+	|	SMVAGA36.M1		R11:R10, OR5
+		SLTU		R22, R56, R61
+	|	SADD.M2		-1,R54,R59
+		SADD.M2		R59,R61,R60
+	|	SSHFLR		26, R56, R9
+		SSHFLL		6, R54, R14
+		SSHFLR		26, R22, R13
+		SSHFLL		6, R60, R19
+		SSHFLL		6, R56, R45
+	;; condjump to r_mulb_partop occurs
+		SOR		R14, R9, R27
+	|	SMOV.M2		R45, R42
+		SOR		R19, R13, R29
+	|	SMOV.M2		R27, R43
+		SSHFLL		6, R22, R12
+	|	SMOV.M1		R29, R45
+	;no-op trunc di R43:R42 to pdi R43:R42
+	|	SADDA.M2		R43:R42,AR1,OR4
+		SLTU		R48, R58, R26
+	|	SMOV.M1		R12, R44
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SADD.M1		R54,R26,R49
+	|	SADDA.M2		R45:R44,OR5,OR6
+	|	SSHFLR		26, R48, R24
+		SSHFLL		6, R49, R57
+		SSHFLL		6, R48, R43
+		SOR		R57, R24, R44
+	|	SADD.M1		R43,R21,R23
+	|	SMVAAGL.M2		OR4, R43:R42
+		SADD.M1		R44,R28,R20
+	|	SMVAAGL.M2		OR6, R45:R44
+	|	SLTU		R23, R21, R25
+		SMVAAGH.M2		OR4, R43:R42
+	|	SADD.M1		R20,R25,R55
+		SMVAAGH.M1		OR6, R45:R44
+		SNOP		1
+r_mulb_inloop2:
+		SMOVIL		64, R1
+	|	SMVAGA36.M1		R43:R42, AR2
+	|	VLDW.LS 		*+AR7[16],VR50
+		SADD.M2		R1,R44,R54
+	|	SMOVIL		64, R61
+		SLTU		R54, R44, R58
+	|	SMOV.M2		R54, R44
+	|	VLDW.LS 		*AR2,VR51
+	|	SADD.M1		R61,R42,R59
+		SADD.M2		R45,R58,R45
+	|	SLTU		R59, R42, R48
+	|	SMOV.M1		R59, R42
+		SMVAGA36.M1		R45:R44, AR0
+	|	SADD.M2		R43,R48,R43
+	|	SEQ		R59, R23, R1
+	[R1]	SEQ		R43, R55, R1
+		VLDW.LS 		*AR0,VR52
+		SNOP		7
+		VFMULBS32.M3	VR50,VR51,VR52,VR52
+	[!R1]	SBR		r_mulb_inloop2
+		SNOP		4
+		VBEX		VR34,	VR52,	VR53
+		VSTW.LS 		VR53,*AR0
+	;; condjump to r_mulb_inloop2 occurs
+		SNOT		R56, R42
+	|	SADD.M2		1,R56,R56
+		SADD.M2		R42,R17,R9
+		SADD.M2		R9,R56,R14
+		SSHFAR		31, R14, R13
+		SSHFLR		26, R14, R19
+		SSHFLL		6, R13, R27
+		SOR		R27, R19, R29
+		SSHFLL		6, R14, R26
+r_mulb_partop:
+		SMVCGC.L		R18, VLR
+		SNOP		2
+		SMVAGA36.M1		R11:R10, OR0
+	|	SMOV.M2		R26, R42
+	|	VLDW.LS 		*+AR7[16],VR54
+		SMOV.M2		R29, R43
+	;no-op trunc di R43:R42 to pdi R43:R42
+		SADDA.M1		R43:R42,OR0,AR0
+	|	SADDA.M2		R43:R42,AR1,AR2
+		SNOP		2
+		VLDW.LS 		*AR0,VR55
+	|	VLDW.LS 		*AR2,VR56
+		SNOP		7
+		VFMULBS32.M3	VR54,VR56,VR55,VR55
+		SNOP		5
+		VBEX		VR34,	VR55,	VR57
+		VSTW.LS 		VR57,*AR0
+	|	SMVCGC.L		R3, VLR
+		SNOP		2
+		SEQ		R50, R8, R1
+	|	SMVAGA36.M1		R51:R50, AR10
+	|	SMVAGA36.M2		R11:R10, OR12
+	[R1]	SEQ		R51, R30, R1
+	[R1]	SBR		r_mulb_res
+	|	SADDA.M2		R53:R52,OR12,OR13
+	|	SADD.M1		4,R50,R24
+		SLTU		R24, R50, R12
+	|	SMOV.M1		R24, R50
+		SMVAAGL.M2		OR13, R11:R10
+	|	SADD.M1		R51,R12,R51
+		SNOP		1
+		SMVAAGH.M2		OR13, R11:R10
+		SNOP		2
+	;; condjump to r_mulb_res occurs
+		SLDW		*AR10, R44
+		SNOP		3
+	[R0]	SBR		r_muli_res
+		SNOP		1
+		SVBCAST.M2 		 R44,VR35
+		SNOP		3
+		VSTW.LS 		VR35,*+AR7[16]
+	;; condjump to r_muli_res occurs
+r_mulb_loop:  ;;;外循环
+		SBR		r_mulb_cond
+	|	SMOVIL		0, R26
+		SMOVIL		0, R29
+		SMOVIL		0, R56
+		SNOP		4
+	;; jump to r_mulb_cond occurs
+r_mulb_res:
+		SLDW		*+AR15[3], R30
+	|	SMOVIL		128, R6
+		SMOVIL		0, R7
+		SADDA.M2		R7:R6,AR7,AR7
+		SMOVIL		16, R6
+		SMOVIL		0, R7
+		SADDA.M2		R7:R6,AR15,AR15
+	|	SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	;; return occurs
+r_end:
+		SBR		r_start
+	|	SADD.M2		-1,R16,R17
+		SNOP		6
+	;; jump to r_start occurs
+r_end_res:
+		SBR		r_muli_cond
+	|	SMOVIL		0, R44
+		SMOVIL		0, R45
+		SMOVIL		0, R25
+		SNOP		4
+	;; jump to r_muli_cond occurs
+	.size	update_r, .-update_r
+
+	.align	2
+	.global	update_q
+	.type	update_q, @function
+update_q:
+		SMOVIL		320, R6
+	|	SADD.M2		-1,R14,R53
+	|	VMOVIL		31,	VR0
+	|	SADD.M1		-2,R14,R57
+		SMOVIL		0, R7
+		SSUBA.L		R7:R6, AR7, AR7
+		SMOVIL		-144, R6
+		SNOP		1
+		SMOVIL		-1, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SMVAAGL.M1		AR14, R7:R6
+	|	SMOVIL		1431655766, R42
+	|	SMVAAA.M2		AR7, OR11
+		SMOVIH		1431655766, R42
+	|	SSTDW		R37:R36, *+AR15[10]
+		SMVAAGH.M1		AR14, R7:R6
+	|	SMULS.M2		R42,R53,R43:R42
+	|	SMOVIL		0, R44
+	|	SSTDW		R63:R62, *+AR15[16]
+		SLT		R44, R18, R0
+		SSHFAR		31, R53, R1
+		SSTDW		R7:R6, *+AR15[17]
+		SMVAAGL.M2		OR9, R7:R6
+	|	SSUB.M1		R1, R43, R3
+	|	SMOVIL		0, R43
+	|	SSTDW		R41:R40, *+AR15[12]
+		SSHFLL		1, R20, R46
+		SMVAAGH.M2		OR9, R7:R6
+	|	SSHFAR		31, R20, R8
+		SMOVIH		0, R43
+	|	SSTDW		R39:R38, *+AR15[11]
+		SSTDW		R7:R6, *+AR15[15]
+		SMVAAGL.M1		OR8, R7:R6
+	|	SLTU		R46, R20, R48
+	|	SVBCAST.M2 		 R43,VR3  ;vzero
+		SSHFLL		1, R8, R9
+		SMVAAGH.M1		OR8, R7:R6
+	|	SSHFLL		2, R20, R20
+	|	SSTDW		R35:R34, *+AR15[9]
+		SMVAGA36.M1		R11:R10, OR8
+	|	SMOVIL		64, R47
+	|	SSTDW		R33:R32, *+AR15[8]
+		SADD.M2		R9,R48,R10
+	|	SLTU		R20, R46, R11
+		SMOVIL		65535, R2
+	|	SMOV.M2		R20, R42
+		SSTDW		R7:R6, *+AR15[14]
+		SMVAAGL.M2		AR8, R7:R6
+	|	SSHFLL		1, R3, R52
+	|	SSTDW		R31:R30, *+AR15[7]
+	[!R0]	SBR		q_mulb_res
+	|	SMOVIL		192, R46
+	|	SADD.M1		R3,R52,R52
+		SMVAAGH.M1		AR8, R7:R6
+	|	SMVAGA36.M2		R13:R12, AR8
+	|	SSHFLL		1, R10, R12
+		SSTW		R18, *+AR15[10]
+	|	SMOVIH		65535, R2
+		SSTDW		R7:R6, *+AR15[13]
+		VSTW.LS 		VR3,*AR7
+	|	SMVAAGL.M2		AR8, R45:R44
+	|	SADD.M1		R12,R11,R43
+	|	SMOVIL		0, R55
+		SMVAGA36.M1		R43:R42, AR14
+	|	SSHFAR		R16, R2, R16
+		SSTW		R22, *+AR15[11]
+	|[R0]	SMVAAGH.M1		AR8, R45:R44
+	|	SLT		R55, R52, R37
+	;; condjump to q_mulb_res occurs
+		VSTW.LS 		VR0,*+AR7[64]
+		SADD.M2		R47,R44,R54
+	|	SMOVIL		0, R47
+		SLTU		R54, R44, R13
+	|	SADDA.M2		R47:R46,OR11,OR9
+		SADD.M1		R45,R13,R36
+q_start: ;外循环
+		VLDW.LS 		*AR7,VR1
+	|	SMOV.M2		R37, R1
+	|	SMOVIL		0, R17
+		SMOVIL		0, R18
+		SMOVIL		0, R58
+		SMOVIL		128, R46
+		SMOVIL		0, R47
+		SMOVIL		192, R14
+		SNOP		2
+		VSTW.LS 		VR1,*+AR7[48] ;sum1_1=vzero
+		VLDW.LS 		*AR7,VR2
+		SNOP		7
+		VSTW.LS 		VR2,*+AR7[32] ;sum1_2
+		VLDW.LS 		*AR7,VR4
+		SNOP		1
+	[!R1]	SBR		q_end_res
+		SNOP		5
+		VSTW.LS 		VR4,*+AR7[16] ;sum1_3
+	;; condjump to q_end_res occurs
+q_mula_inloop1:  ;内循环 mula
+		SMVAAA.M2		OR8, OR0
+	|	SMOV.M1		R17, R44
+	|	VLDW.LS 		*+AR7[48],VR11 ;sum1_1
+		SMOV.M1		R18, R45
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SADDA.M2		R45:R44,OR0,AR2
+	|	SMVAAA.M1		AR8, OR0
+		SNOP		1
+		SADDA.M2		R45:R44,OR0,AR0
+	|	SMOVIL		64, R44
+	|	SADD.M1		3,R58,R58
+		VLDW.LS 		*AR2,VR8 ;v1[i]
+	|	SMOVIL		0, R45
+	|	SADD.M1		R14,R17,R59
+		SADDA.M1		R45:R44,AR2,AR6 ;v1[i+1]
+	|	SADDA.M2		R47:R46,AR2,AR2 ;v1[i+2]
+	|	SLT		R58, R52, R0
+		VLDW.LS 		*AR0,VR9 ;v2[i]
+	|	SLTU		R59, R17, R60
+		SADDA.M1		R47:R46,AR0,AR4 ;v2[i+2]
+	|	SADDA.M2		R45:R44,AR0,AR0 ;v2[i+1]
+		VLDW.LS 		*AR6,VR6 ;v1[i+1]
+	|	VLDW.LS 		*AR2,VR10 ;v1[i+2]
+		SNOP		1
+		VLDW.LS 		*AR0,VR7 ;v2[i+1]
+	|	VLDW.LS 		*AR4,VR5 ;v2[i+2]
+	|	SMOV.M2		R59, R17
+	|	SADD.M1		R18,R60,R18
+		SNOP		3
+        VLDW.LS 		*+AR7[32],VR12 ;sum1_2
+    |   VLDW.LS 		*+AR7[16],VR13 ;sum1_3
+        SNOP        7
+
+    	VFMULAS32.M1	VR8,VR9,VR11,VR11 ;sum1_1
+	|	VFMULAS32.M2	VR6,VR7,VR12,VR12 ;sum1_2
+	|	VFMULAS32.M3	VR10,VR5,VR13,VR13 ;sum1_3	
+		SNOP		5
+		VSTW.LS 		VR11,*+AR7[48]
+    	    
+	[R0]	SBR		q_mula_inloop1	
+		VSTW.LS 		VR12,*+AR7[32]
+		VSTW.LS 		VR13,*+AR7[16]
+	;; condjump to q_mula_inloop1 occurs
+		SSHFAR		31, R58, R19
+		SSHFLR		26, R58, R21
+		SSHFLL		6, R19, R31
+		SOR		R31, R21, R60
+		SSHFLL		6, R58, R0
+q_mula_cond:
+		SSHFAR		31, R58, R22
+	|	SADD.M1		-1,R58,R23
+	|	SMVAAA.M2		OR8, OR0
+		SLTU		R23, R58, R45
+	|	SADD.M1		-1,R22,R24
+		SADD.M2		R24,R45,R25
+	|	SSHFLR		26, R23, R26
+		SSHFLL		6, R25, R35
+		SOR		R35, R26, R28
+		SSHFLL		6, R23, R34
+	|	SMOV.M2		R28, R45
+		SSHFLR		26, R58, R27
+	|	SMOV.M2		R34, R44
+		SSHFLL		6, R22, R39
+	;no-op trunc di R45:R44 to pdi R45:R44
+	|	SADDA.M2		R45:R44,OR0,OR1
+	|	SMVAAA.M1		AR8, OR0
+		SOR		R39, R27, R29
+		SSHFLL		6, R58, R38
+	|	SMOV.M1		R29, R43
+		SMOV.M1		R38, R42
+	|	SLT		R58, R53, R2
+	|	SMVAAGL.M2		OR1, R45:R44
+	;no-op trunc di R43:R42 to pdi R43:R42
+		SADDA.M1		R43:R42,OR0,OR2
+	|[!R2]	SBR		q_mula_partop
+	|	SLTU		R57, R58, R30
+		SADD.M2		R22,R30,R32
+	|	SSHFLR		26, R57, R33
+		SSHFLL		6, R32, R40
+	|	SMVAAGH.M1		OR1, R45:R44
+		SSHFLL		6, R57, R41
+	|	SMVAAGL.M1		OR2, R43:R42
+		SOR		R40, R33, R56
+	|	SADD.M2		R41,R54,R61
+		SLTU		R61, R54, R3
+	|	SADD.M1		R56,R36,R46
+	|	SMVAAGH.M2		OR2, R43:R42
+		SADD.M1		R46,R3,R8
+	;; condjump to q_mula_partop occurs
+q_mula_inloop2:
+		SMOVIL		64, R9
+	|	SMVAGA36.M1		R43:R42, AR2
+	|	VLDW.LS 		*+AR7[48],VR14
+		SADD.M2		R9,R44,R20
+		SLTU		R20, R44, R48
+	|	SMOV.M2		R20, R44
+	|	VLDW.LS 		*AR2,VR15
+	|	SADD.M1		R9,R42,R10
+		SADD.M2		R45,R48,R45
+	|	SLTU		R10, R42, R11
+	|	SMOV.M1		R10, R42
+		SMVAGA36.M1		R45:R44, AR0
+	|	SADD.M2		R43,R11,R43
+	|	SEQ		R10, R61, R1
+	[R1]	SEQ		R43, R8, R1
+		VLDW.LS 		*AR0,VR16
+		SNOP		7
+	[!R1]	SBR		q_mula_inloop2
+	|	VFMULAS32.M3	VR16,VR15,VR14,VR14
+		SNOP		5
+		VSTW.LS 		VR14,*+AR7[48]
+	;; condjump to q_mula_inloop2 occurs
+		SNOT		R58, R42
+	|	SADD.M2		1,R58,R44
+		SADD.M2		R42,R53,R12
+		SADD.M2		R12,R44,R13
+		SSHFAR		31, R13, R58
+		SSHFLR		26, R13, R14
+		SSHFLL		6, R58, R59
+		SOR		R59, R14, R60
+		SSHFLL		6, R13, R0
+q_mula_partop:  ;;开关vpe部分计算 并计算得出res1
+		SMVCGC.L		R16, VLR
+		SMOVIL		65535, R15
+		SNOP		1
+		SMVAAA.M2		OR8, OR0
+	|	SMOV.M1		R0, R42
+	|	VLDW.LS 		*+AR7[48],VR17
+	|	SMOVIH		65535, R15
+		SMOV.M1		R60, R43
+	;no-op trunc di R43:R42 to pdi R43:R42
+		SADDA.M2		R43:R42,OR0,AR2
+	|	SMVAAA.M1		AR8, OR0
+		SNOP		1
+		SADDA.M1		R43:R42,OR0,AR0
+		VLDW.LS 		*AR2,VR18
+		SNOP		1
+		VLDW.LS 		*AR0,VR19
+		SNOP		7
+		VFMULAS32.M3	VR18,VR19,VR17,VR17
+		SNOP		5
+		VSTW.LS 		VR17,*+AR7[48]
+	|	SMVCGC.L		R15, VLR
+		SNOP		2
+		VLDW.LS 		*+AR7[48],VR20
+	|	VLDW.LS 		*+AR7[32],VR21
+	|	SMVAAGL.M2		OR9, R11:R10
+		SNOP		1
+		SMVAAGH.M2		OR9, R11:R10
+		SNOP		5
+		VFADDS32.M1 		VR20,VR21,VR22
+		SNOP		2
+		VSTW.LS 		VR22,*+AR7[48]
+		VLDW.LS 		*+AR7[48],VR23
+	|	VLDW.LS 		*+AR7[16],VR24
+		SNOP		7
+		VFADDS32.M1 		VR23,VR24,VR25
+		SNOP		2
+		VSTW.LS 		VR25,*+AR7[48]
+		SSTW		R16, *+AR15[8]
+		SSTW		R50, *+AR15[6]
+		SNOP		2
+		SSTW		R51, *+AR15[5]
+		SSTW		R52, *+AR15[9]
+		SNOP		1
+		SBR		reduce_16
+		SSTW		R53, *+AR15[4]
+	|	SMOVIL		q_mula_res, R62
+		SSTW		R54, *+AR15[3]
+	|	SMOVIH		q_mula_res, R62
+		SMOVIH4.L		q_mula_res, R63
+		SNOP		1
+		SSTW		R55, *+AR15[7]
+	;; call to reduce_16 occurs, with return value
+		SSTW		R57, *+AR15[2]
+q_mula_res:  ;;为mulb阶段做准备
+		SMOV.M2		R37, R2
+	|	SMOVIL		0, R22
+		SMOVIL		0, R23
+		SSTW		R10, *+AR15[13]
+	|	SMOVIL		0, R17
+		SLDW		*+AR15[11], R50
+	|	SMOVIL		128, R46
+		SMOVIL		0, R47
+		SLDW		*+AR15[13], R16
+	|	SMOVIL		192, R18
+		SLDW		*+AR15[9], R52
+		SLDW		*+AR15[3], R54
+		SNOP		1
+		SLDW		*+AR15[7], R55
+		SNOP		1
+		SFMULS32.M2		R16, R50, R51
+		SNOP		1
+		SLDW		*+AR15[2], R57
+		SNOP		1
+		SSTW		R51, *+AR15[13]
+		SLDW		*+AR15[8], R16
+		SNOP		2
+		SLDW		*+AR15[13], R53
+		SLDW		*+AR15[6], R50
+		SNOP		1
+		SLDW		*+AR15[5], R51
+		SNOP		2
+	[!R2]	SBR		q_end
+	|	SVBCAST.M2 		 R53,VR26 ;sum1_1
+		SLDW		*+AR15[4], R53
+		SNOP		2
+		VSTW.LS 		VR26,*+AR7[48]
+		SNOP		2
+	;; condjump to q_end occurs
+q_mulb_inloop1:
+		SMVAAA.M2		OR8, OR0
+	|	SMOV.M1		R22, R44
+	|	VLDW.LS 		*+AR7[48],VR27 ;sum1_1
+	|	VLDW.LS 		*+AR7[48],VR28 ;sum1_1
+		SMOV.M1		R23, R45
+	|	VLDW.LS 		*+AR7[64],VR37 
+	|	VLDW.LS 		*+AR7[48],VR29 ;sum1_1
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SADDA.M2		R45:R44,OR0,AR0
+	|	SMVAAA.M1		AR8, OR0
+		SNOP		1
+		SADDA.M2		R45:R44,OR0,AR4
+	|	SMOVIL		64, R44
+	|	SADD.M1		3,R17,R17
+		VLDW.LS 		*AR0,VR31 ;v1[i]
+	|	SMOVIL		0, R45
+	|	SADDA.M1		R47:R46,AR0,AR6 ;v1[i+2]
+		SADDA.M2		R45:R44,AR0,AR2 ;v1[i+1]
+	|	SLT		R17, R52, R1
+		VLDW.LS 		*AR4,VR30 ;v2[i]
+	|	SADDA.M1		R47:R46,AR4,AR1 ;v2[i+2]
+		SADDA.M2		R45:R44,AR4,AR4 ;v2[i+1]
+		SNOP		1
+		SADD.M1		R18,R22,R19
+		SLTU		R19, R22, R21
+	|	SMOV.M2		R19, R22
+		SADD.M2		R23,R21,R23
+		SNOP		2
+
+        VLDW.LS 		*AR4,VR32 ;v2[i+1]
+	|	VLDW.LS 		*AR2,VR33 ;v1[i+1]
+		SNOP		7
+        VLDW.LS 		*AR1,VR34 ;v2[i+2]
+	|	VLDW.LS 		*AR6,VR35 ;v1[i+2]
+		SNOP		7
+
+		VFMULBS32.M1	VR30,VR27,VR31,VR31
+	|	VFMULBS32.M2	VR32,VR28,VR33,VR33
+    |	VFMULBS32.M3	VR34,VR29,VR35,VR35
+		SNOP        5
+
+        VBEX		VR37,	VR31,	VR38
+		VSTW.LS 		VR38,*AR0
+   [R1]	SBR		q_mulb_inloop1
+		VBEX		VR37,	VR33,	VR39
+		VBEX		VR37,	VR35,	VR41
+        SNOP		2
+        VSTW.LS 		VR39,*AR2
+		VSTW.LS 		VR41,*AR6
+	;; condjump to q_mulb_inloop1 occurs
+		SSHFAR		31, R17, R49
+		SSHFLR		26, R17, R45
+		SSHFLL		6, R49, R24
+		SOR		R24, R45, R18
+		SSHFLL		6, R17, R19
+q_mulb_cond:
+		SLT		R17, R53, R0
+	|	SADD.M1		-1,R17,R26
+	|	SMVAAA.M2		AR8, OR0
+	[!R0]	SBR		q_mulb_partop
+	|	SSHFAR		31, R17, R25
+		SLTU		R26, R17, R27
+	|	SADD.M2		-1,R25,R39
+		SSHFLR		26, R17, R29
+	|	SADD.M2		R39,R27,R28
+		SSHFLL		6, R25, R30
+		SOR		R30, R29, R38
+		SSHFLL		6, R17, R40
+	|	SMOV.M2		R38, R43
+		SSHFLR		26, R26, R34
+	|	SMOV.M2		R40, R42
+	;; condjump to q_mulb_partop occurs
+		SSHFLL		6, R28, R32
+	;no-op trunc di R43:R42 to pdi R43:R42
+	|	SADDA.M2		R43:R42,OR0,OR3
+	|	SMVAAA.M1		OR8, OR0
+		SOR		R32, R34, R51
+		SSHFLL		6, R26, R50
+	|	SMOV.M1		R51, R45
+		SMOV.M1		R50, R44
+	|	SLTU		R57, R17, R33
+	|	SMVAAGL.M2		OR3, R43:R42
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SADDA.M2		R45:R44,OR0,OR4
+	|	SADD.M1		R25,R33,R41
+	|	SSHFLR		26, R57, R56
+		SSHFLL		6, R41, R61
+	|	SMVAAGH.M1		OR3, R43:R42
+		SSHFLL		6, R57, R3
+		SMVAAGL.M2		OR4, R45:R44
+	|	SOR		R61, R56, R46
+	|	SADD.M1		R3,R54,R8
+		SLTU		R8, R54, R9
+	|	SADD.M1		R46,R36,R20
+		SMVAAGH.M2		OR4, R45:R44
+	|	SADD.M1		R20,R9,R10
+		SNOP		1
+q_mulb_inloop2:
+		SMOVIL		64, R11
+	|	SMVAGA36.M1		R43:R42, AR2
+	|	VLDW.LS 		*+AR7[48],VR42
+	|	VLDW.LS 		*+AR7[64],VR45
+		SADD.M2		R11,R44,R12
+		SLTU		R12, R44, R48
+	|	SMOV.M2		R12, R44
+	|	VLDW.LS 		*AR2,VR43
+	|	SADD.M1		R11,R42,R13
+		SADD.M2		R45,R48,R45
+	|	SLTU		R13, R42, R58
+	|	SMOV.M1		R13, R42
+		SMVAGA36.M1		R45:R44, AR0
+	|	SADD.M2		R43,R58,R43
+	|	SEQ		R13, R8, R2
+	[R2]	SEQ		R43, R10, R2
+		VLDW.LS 		*AR0,VR44
+		SNOP		7
+		VFMULBS32.M3	VR43,VR42,VR44,VR44
+	[!R2]	SBR		q_mulb_inloop2
+		SNOP		4
+		VBEX		VR45,	VR44,	VR46
+		VSTW.LS 		VR46,*AR0
+	;; condjump to q_mulb_inloop2 occurs
+		SNOT		R17, R42
+	|	SADD.M2		1,R17,R44
+		SADD.M2		R42,R53,R14
+		SADD.M2		R14,R44,R59
+		SSHFAR		31, R59, R60
+		SSHFLR		26, R59, R15
+		SSHFLL		6, R60, R17
+		SOR		R17, R15, R18
+		SSHFLL		6, R59, R19
+q_mulb_partop:
+		SMVCGC.L		R16, VLR
+		SMOVIL		65535, R21
+		SNOP		1
+		SMVAAA.M2		OR8, OR0
+	|	SMOV.M1		R19, R42
+	|	VLDW.LS 		*+AR7[48],VR47
+	|	VLDW.LS 		*+AR7[64],VR50
+	|	SMOVIH		65535, R21
+		SMOV.M1		R18, R43
+	;no-op trunc di R43:R42 to pdi R43:R42
+		SADDA.M2		R43:R42,OR0,AR0
+	|	SMVAAA.M1		AR8, OR0
+		SNOP		1
+		SADDA.M1		R43:R42,OR0,AR2
+		VLDW.LS 		*AR0,VR48
+		SNOP		1
+		VLDW.LS 		*AR2,VR49
+		SNOP		7
+		VFMULBS32.M3	VR49,VR47,VR48,VR48
+		SNOP		5
+		VBEX		VR50,	VR48,	VR51
+		VSTW.LS 		VR51,*AR0
+	|	SMVCGC.L		R21, VLR
+		SNOP		2
+		SLDW		*+AR15[10], R1
+	|	SADD.M1		1,R55,R55
+	|	SMVAAGL.M2		AR14, R23:R22
+		SNOP		1
+		SMVAAGH.M2		AR14, R23:R22
+		SNOP		1
+		SADDA.M2		R23:R22,OR8,OR8
+		SNOP		1
+		SEQ		R1, R55, R0
+	[!R0]	SBR		q_start
+		SNOP		6
+	;; condjump to q_start occurs
+q_mulb_res:
+		SMOVIL		320, R6
+	|	SLDDW		*+AR15[16], R63:R62
+		SMOVIL		0, R7
+	|	SLDDW		*+AR15[7], R31:R30
+		SADDA.M2		R7:R6,AR7,AR7
+		SLDDW		*+AR15[13], R7:R6
+		SLDDW		*+AR15[8], R33:R32
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SLDDW		*+AR15[9], R35:R34
+		SNOP		1
+		SMVAGA36.M2		R7:R6, AR8
+		SLDDW		*+AR15[14], R7:R6
+		SLDDW		*+AR15[10], R37:R36
+		SNOP		1
+		SLDDW		*+AR15[11], R39:R38
+		SLDDW		*+AR15[12], R41:R40
+		SNOP		1
+		SMVAGA36.M2		R7:R6, OR8
+		SLDDW		*+AR15[15], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, OR9
+	|	SLDDW		*+AR15[17], R7:R6
+		SNOP		2
+		SBR		R62
+		SNOP		2
+		SMVAGA36.M2		R7:R6, AR14
+	|	SMOVIL		144, R6
+		SMOVIL		0, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SNOP		1
+	;; return occurs
+q_end:
+		SBR		q_mulb_cond
+	|	SMOVIL		0, R19
+		SMOVIL		0, R18
+		SMOVIL		0, R17
+		SNOP		4
+	;; jump to q_mulb_cond occurs
+q_end_res:
+		SBR		q_mula_cond
+	|	SMOVIL		0, R0
+		SMOVIL		0, R60
+		SMOVIL		0, R58
+		SNOP		4
+	;; jump to q_mula_cond occurs
+	.size	update_q, .-update_q
+
+.align	2
+	.global	DSPF_sp_qrd
+	.type	DSPF_sp_qrd, @function
+DSPF_sp_qrd:
+		SMOVIL		-128, R6
+		SMOVIL		-1, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SMVAAGL.M1		AR14, R7:R6
+	|	SMOVIL		0, R13
+		SSTDW		R63:R62, *+AR15[14]
+		SMVAAGH.M1		AR14, R7:R6
+	|	SMVAGA36.M2		R19:R18, AR14
+	|	SSTDW		R41:R40, *+AR15[9]
+		SSHFAR		31, R10, R11
+		SMOV.M2		R12, R41    ;Ncols
+	|	SMOVIL		4, R12
+		SSTDW		R7:R6, *+AR15[15]
+		SMVAAGL.M2		OR9, R7:R6
+	|	SSTDW		R31:R30, *+AR15[4]
+		SMOV.M1		R10, R30    ;Nrows
+		SMVAAGH.M1		OR9, R7:R6
+	|	SMVAGA36.M2		R17:R16, OR9
+		SSTDW		R39:R38, *+AR15[8]
+		SSTDW		R7:R6, *+AR15[13]
+		SMVAAGL.M2		OR8, R7:R6
+		SNOP		1
+		SMVAAGH.M1		OR8, R7:R6
+	|	SMVAGA36.M2		R15:R14, OR8
+	|	SSTDW		R37:R36, *+AR15[7]
+		SSTDW		R35:R34, *+AR15[6]
+		SNOP		2
+		SSTDW		R7:R6, *+AR15[12]
+		SMVAAGL.M2		AR9, R7:R6
+	|	SSTDW		R33:R32, *+AR15[5]
+		SNOP		1
+		SMVAAGH.M1		AR9, R7:R6
+	|	SMVAGA36.M2		R21:R20, AR9
+		SBR		calloc
+		SSTDW		R7:R6, *+AR15[11]
+	|	SMOVIL		qr_start, R62
+		SMVAAGL.M2		AR8, R7:R6
+	|	SMOVIH		qr_start, R62
+		SMOVIH4.L		qr_start, R63
+		SMVAAGH.M2		AR8, R7:R6
+		SNOP		1
+	;; call to calloc occurs, with return value
+		SSTDW		R7:R6, *+AR15[10]
+qr_start:  ;if (Nrows <= Ncols) 
+		SLT		R41, R30, R0
+	|	SMVAGA36.M2		R11:R10, AR8
+	[R0]	SBR		update_start_res
+		SNOP		6
+	;; condjump to update_start_res occurs
+		SADD.M2		-2,R30,R32
+qr_loop_cond:
+		SMOVIL		0, R42
+	|	SADD.M2		15,R30,R3
+	|	SADD.M1		15,R41,R8
+		SSTW		R42, *+AR15[7]
+	|	SMOVIL		0, R31
+		SMOVIL		1073741824, R37
+		SMOVIL		-2147483648, R38
+		SLDW		*+AR15[7], R1
+	|	SMOVIH		0, R31
+		SMOVIH		1073741824, R37
+		SMOVIH		-2147483648, R38
+		SNOP		3
+		SLT		R32, R1, R2
+	[R2]	SBR		call_free
+		SNOP		6
+	;; condjump to call_free occurs
+		SSTW		R3, *+AR15[4]
+		SSTW		R8, *+AR15[5]
+call_norm2:
+		SLDW		*+AR15[7], R34
+	|	SMVAAGL.M2		AR8, R13:R12
+	|	SMOV.M1		R41, R16
+		SLDW		*+AR15[7], R36
+		SLDW		*+AR15[7], R33
+	|	SMVAAGH.M2		AR8, R13:R12
+		SLDW		*+AR15[7], R35
+		SLDW		*+AR15[7], R45
+		SNOP		5
+		SLDW		*+AR15[7], R46
+	|	SMULIS.M2		R45,R41,R9
+		SLDW		*+AR15[7], R14
+		SNOP		1
+		SSHFAR		31, R9, R47
+		SNOP		2
+		SADD.M2		R46,R9,R44
+	|	SSHFAR		31, R46, R10
+		SLTU		R44, R9, R11
+	|	SADD.M2		R10,R47,R15
+	|	SSUB.M1		R14, R30, R14
+		SSHFLL		1, R44, R17
+	|	SADD.M2		R15,R11,R18
+		SLTU		R17, R44, R19
+		SSHFLL		1, R18, R20
+		SSHFLL		2, R44, R21
+	|	SADD.M2		R20,R19,R22
+		SLTU		R21, R17, R23
+	|	SMOV.M2		R21, R10
+		SSHFLL		1, R22, R43
+		SADD.M2		R43,R23,R24
+		SMOV.M2		R24, R11
+	|	SBR		norm2
+	;no-op trunc di R11:R10 to pdi R11:R10
+		SADDA.M2		R11:R10,OR8,OR11
+	|	SMOVIL		call_norm2res, R62
+		SMOVIH		call_norm2res, R62
+		SMVAAGL.M2		OR11, R11:R10
+	|	SMOVIH4.L		call_norm2res, R63
+		SNOP		1
+		SMVAAGH.M2		OR11, R11:R10
+	;; call to norm2 occurs, with return value
+		SNOP		1
+call_norm2res:  ;if (sum != 0)
+		SFCMPES32.M2		R10, R31, R0
+	[!R0]	SBR		call_sqrt
+		SNOP		6
+	;; condjump to call_sqrt occurs
+qr_cond:
+		SLDW		*+AR15[7], R12
+		SNOP		5
+		SADD.M2		1,R12,R13
+		SSTW		R13, *+AR15[7]
+		SNOP		2
+		SLDW		*+AR15[7], R0
+		SNOP		5
+		SLT		R32, R0, R1
+	[!R1]	SBR		call_norm2
+		SNOP		6
+	;; condjump to call_norm2 occurs
+call_free:
+		SBR		free
+	|	SMVAAGL.M2		AR8, R11:R10
+		SMOVIL		qr_cal, R62
+		SMVAAGH.M2		AR8, R11:R10
+	|	SMOVIH		qr_cal, R62
+		SMOVIH4.L		qr_cal, R63
+	;; call to free occurs
+		SNOP		3
+qr_cal:
+		SLDDW		*+AR15[10], R7:R6
+	|	SMOVIL		0, R10
+		SLDDW		*+AR15[14], R63:R62
+		SLDDW		*+AR15[4], R31:R30
+		SLDDW		*+AR15[5], R33:R32
+		SLDDW		*+AR15[6], R35:R34
+		SNOP		1
+		SMVAGA36.M2		R7:R6, AR8
+		SMVCGC.L		R63, BRReg
+		SNOP		2
+		SLDDW		*+AR15[11], R7:R6
+		SLDDW		*+AR15[7], R37:R36
+		SLDDW		*+AR15[8], R39:R38
+		SLDDW		*+AR15[9], R41:R40
+		SNOP		2
+		SMVAGA36.M2		R7:R6, AR9
+		SNOP		2
+		SLDDW		*+AR15[12], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, OR8
+	|	SLDDW		*+AR15[13], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, OR9
+	|	SLDDW		*+AR15[15], R7:R6
+		SNOP		2
+		SBR		R62
+		SNOP		2
+		SMVAGA36.M2		R7:R6, AR14
+	|	SMOVIL		128, R6
+		SMOVIL		0, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SNOP		1
+	;; return occurs
+call_sqrt:
+		SBR		sqrt
+	|	SLDW		*AR8, R39
+	|	SFSPDP32T.M2		R10, R11:R10
+		SMOVIL		qr_update_cond, R62
+		SMOVIH		qr_update_cond, R62
+		SMOVIH4.L		qr_update_cond, R63
+	;; call to sqrt occurs, with return value
+		SNOP		3
+qr_update_cond:
+		SFCMPGS32.M1		R39, R31, R1
+	|	SFDPSP32.M2		R11:R10, R40
+	[!R1]	SFCMPES32.M1		R39, R31, R1
+	[!R1]	SBR		call_update_uv_R
+		SXOR		R38, R40, R12
+		SNOP		5
+	;; condjump to call_update_uv_R occurs
+		SMOV.M2		R12, R40
+call_update_uv_R:
+		SLDW		*+AR15[7], R16
+	|	SMVAAGL.M2		AR8, R13:R12
+	|	SMOV.M1		R40, R14
+		SLDW		*+AR15[7], R25
+		SMVAAGH.M2		AR8, R13:R12
+		SNOP		3
+		SMULIS.M2		R16,R41,R26
+		SSHFAR		31, R25, R48
+		SNOP		1
+		SADD.M2		R25,R26,R27
+	|	SSHFAR		31, R26, R49
+		SLTU		R27, R26, R28
+	|	SADD.M2		R48,R49,R29
+		SSHFLL		1, R27, R50
+	|	SADD.M2		R29,R28,R51
+		SLTU		R50, R27, R52
+		SSHFLL		1, R51, R53
+		SSHFLL		2, R27, R54
+	|	SADD.M2		R53,R52,R55
+		SLTU		R54, R50, R56
+	|	SMOV.M2		R54, R10
+		SSHFLL		1, R55, R57
+		SADD.M2		R57,R56,R58
+		SMOV.M2		R58, R11
+	|	SBR		update_uv_R
+	;no-op trunc di R11:R10 to pdi R11:R10
+		SADDA.M2		R11:R10,OR8,OR12
+	|	SMOVIL		call_datatrans, R62
+		SMOVIH		call_datatrans, R62
+		SMVAAGL.M2		OR12, R11:R10
+	|	SMOVIH4.L		call_datatrans, R63
+		SNOP		1
+		SMVAAGH.M2		OR12, R11:R10
+	;; call to update_uv_R occurs
+		SNOP		1
+call_datatrans:
+		SLDW		*+AR15[7], R59
+	|	SMVAAGL.M1		AR8, R11:R10
+	|	SMVAAGL.M2		AR14, R13:R12
+		SBR		M7002_datatrans
+		SMVAAGH.M1		AR14, R13:R12
+	|	SMVAAGH.M2		AR8, R11:R10
+	|	SMOVIL		call_update_q1, R62
+		SMOVIH		call_update_q1, R62
+		SMOVIH4.L		call_update_q1, R63
+		SNOP		1
+		SSUB.M2		R59, R30, R60
+	;; call to M7002_datatrans occurs, with return value
+		SSHFLL		2, R60, R14
+call_update_q1:  ;;如果不可update_r，即col + 1 >=Ncols 则直接update_q
+		SFADDS32.M2		R39, R40, R13
+		SNOP		2
+		SFMULS32.M2		R13, R40, R61
+		SNOP		3
+		SFCMPES32.M2		R61, R31, R2
+	[R2]	SBR		qr_cond
+		SNOP		6
+	;; condjump to qr_cond occurs
+		SFRCPS32.M1		R61, R42
+	|	SLDW		*+AR15[7], R3
+	|	SMVAAGL.M2		AR14, R13:R12
+		SFMULS32.M2		R61, R42, R8
+	|	SLDW		*+AR15[4], R22
+	|	SMOV.M1		R30, R18
+		SMVAAGH.M2		AR14, R13:R12
+	|	SMOV.M1		R30, R20
+		SNOP		2
+		SFSUBS32.M2		R8, R37, R45
+		SADD.M2		1,R3,R46
+		SLT		R46, R41, R0
+		SFMULS32.M2		R42, R45, R9
+		SNOP		3
+		SFMULS32.M2		R61, R9, R14
+		SNOP		3
+	[R0]	SBR		call_update_r
+	|	SFSUBS32.M2		R14, R37, R47
+		SNOP		2
+		SFMULS32.M2		R9, R47, R57
+		SNOP		3
+	;; condjump to call_update_r occurs
+		SLDW		*+AR15[7], R15
+	|	SSUB.M2		R34, R22, R34
+	|	SSUB.M1		R30, R33, R33
+		SSHFAR		31, R34, R24
+	|	SMOV.M2		R57, R22
+		SSHFLR		28, R24, R16
+		SADD.M2		R34,R16,R58
+	|	SAND		15, R33, R16
+		SSHFAR		4, R58, R14
+		SNOP		1
+		SSHFLL		1, R15, R59
+		SSHFAR		31, R15, R60
+		SLTU		R59, R15, R61
+		SSHFLL		1, R60, R2
+		SSHFLL		2, R15, R42
+	|	SADD.M2		R2,R61,R3
+		SLTU		R42, R59, R8
+	|	SMOV.M2		R42, R10
+		SSHFLL		1, R3, R45
+		SADD.M2		R45,R8,R46
+		SMOV.M2		R46, R11
+	|	SBR		update_q
+	;no-op trunc di R11:R10 to pdi R11:R10
+		SADDA.M2		R11:R10,OR9,OR14
+	|	SMOVIL		update_start, R62
+		SMOVIH		update_start, R62
+		SMVAAGL.M2		OR14, R11:R10
+	|	SMOVIH4.L		update_start, R63
+		SNOP		1
+		SMVAAGH.M2		OR14, R11:R10
+	;; call to update_q occurs
+		SNOP		1
+;.L124:
+update_start:
+		SLDW		*+AR15[7], R12
+		SNOP		5
+		SADD.M2		1,R12,R13
+		SSTW		R13, *+AR15[7]
+		SNOP		2
+		SLDW		*+AR15[7], R0
+		SNOP		5
+		SLT		R32, R0, R1
+	[!R1]	SBR		call_norm2
+		SNOP		6
+	;; condjump to call_norm2 occurs
+		SBR		call_free
+		SNOP		6
+	;; jump to call_free occurs
+update_start_res:
+		SBR		qr_loop_cond
+	|	SADD.M2		-1,R41,R32
+		SNOP		6
+	;; jump to qr_loop_cond occurs
+call_update_r:
+		SLDW		*+AR15[7], R10
+	|	SMVAAGL.M1		AR9, R13:R12
+	|	SMVAAGL.M2		AR8, R15:R14
+		SLDW		*+AR15[7], R11
+		SLDW		*+AR15[5], R44
+	|	SSUB.M1		R41, R35, R35
+	|	SMVAAGH.M2		AR8, R15:R14
+		SLDW		*+AR15[7], R19
+	|	SMVAAGH.M2		AR9, R13:R12
+	|	SADD.M1		1,R35,R18
+		SMOV.M1		R41, R22
+	|	SAND		15, R18, R18
+		SMOV.M2		R57, R24
+	|	SSUB.M1		R30, R33, R33
+		SMULIS.M2		R10,R41,R43
+		SADD.M2		1,R11,R39
+	|	SSHFAR		31, R11, R1
+		SLTU		R39, R11, R40
+	|	SSUB.M1		R36, R44, R36
+		SADD.M2		R43,R39,R25
+	|	SADD.M1		R1,R40,R26
+	|	SSHFAR		31, R43, R48
+	|	SSTW		R57, *+AR15[3]
+		SLTU		R25, R39, R27
+	|	SADD.M2		R48,R26,R49
+	|	SADD.M1		-1,R36,R17
+		SSHFLL		1, R25, R28
+	|	SADD.M2		R49,R27,R29
+		SLTU		R28, R25, R50
+		SSHFLL		1, R29, R51
+		SSHFLL		2, R25, R52
+	|	SADD.M2		R51,R50,R53
+		SLTU		R52, R28, R54
+	|	SMOV.M2		R52, R10
+		SSHFLL		1, R53, R55
+		SADD.M2		R55,R54,R56
+	|	SSHFAR		31, R17, R20
+		SMOV.M2		R56, R11
+	|	SBR		update_r
+	|	SSHFLR		28, R20, R21
+	|	SSUB.M1		R19, R30, R20
+		SADD.M1		R17,R21,R23
+	;no-op trunc di R11:R10 to pdi R11:R10
+	|	SADDA.M2		R11:R10,OR8,OR13
+	|	SMOVIL		call_update_q, R62
+		SMOVIH		call_update_q, R62
+		SMVAAGL.M2		OR13, R11:R10
+	|	SMOVIH4.L		call_update_q, R63
+		SSHFAR		4, R23, R16
+		SMVAAGH.M2		OR13, R11:R10
+	;; call to update_r occurs
+		SNOP		1
+call_update_q:
+		SLDW		*+AR15[7], R15
+	|	SMVAAGL.M2		AR14, R13:R12
+	|	SMOV.M1		R30, R18
+		SLDW		*+AR15[4], R22
+	|	SMOV.M1		R30, R20
+		SLDW		*+AR15[3], R57
+	|	SMVAAGH.M2		AR14, R13:R12
+		SNOP		3
+		SSHFLL		1, R15, R59
+		SSHFAR		31, R15, R60
+	|	SSUB.M2		R34, R22, R34
+		SLTU		R59, R15, R61
+	|	SMOV.M2		R57, R22
+		SSHFLL		1, R60, R2
+		SSHFLL		2, R15, R42
+	|	SADD.M2		R2,R61,R3
+		SLTU		R42, R59, R8
+	|	SMOV.M2		R42, R10
+		SSHFLL		1, R3, R45
+		SADD.M2		R45,R8,R46
+	|	SSHFAR		31, R34, R24
+		SMOV.M2		R46, R11
+	|	SBR		update_q
+	|	SSHFLR		28, R24, R16
+		SADD.M1		R34,R16,R58
+	;no-op trunc di R11:R10 to pdi R11:R10
+	|	SADDA.M2		R11:R10,OR9,OR14
+	|	SMOVIL		qr_end, R62
+		SMOVIH		qr_end, R62
+		SMVAAGL.M2		OR14, R11:R10
+	|	SMOVIH4.L		qr_end, R63
+		SAND		15, R33, R16
+		SMVAAGH.M2		OR14, R11:R10
+	|	SSHFAR		4, R58, R14
+	;; call to update_q occurs
+		SNOP		1
+qr_end:
+		SBR		update_start
+		SNOP		6
+	;; jump to update_start occurs
+	.size	DSPF_sp_qrd, .-DSPF_sp_qrd
+
