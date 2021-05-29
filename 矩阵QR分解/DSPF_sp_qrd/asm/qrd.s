@@ -1037,6 +1037,7 @@ q_mula_inloop1:  ;内循环 mula
 	[R0]	SBR		q_mula_inloop1	
 		VSTW.LS 		VR12,*+AR7[32]
 		VSTW.LS 		VR13,*+AR7[16]
+		SNOP 		4     ;延时槽添加
 	;; condjump to q_mula_inloop1 occurs
 		SSHFAR		31, R58, R19
 		SSHFLR		26, R58, R21
