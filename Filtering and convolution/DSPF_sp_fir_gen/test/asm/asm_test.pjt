@@ -15,9 +15,15 @@ Source="asm_v2.asm"
 Source="ConfRegOp.c"
 Source="ConfRegOp.h"
 Source="datatransfer.c"
+Source="DSPF_sp_fir_gen_cn.c"
+Source="main.c"
+Source="tags"
+Source="Timer.c"
+Source="Timer.h"
 Source="Debug/asm_dspf_sp_fir_gen.o"
 Source="Debug/asm_test.map"
 Source="Debug/asm_test.out"
+Source="Debug/asm_v1.o"
 Source="Debug/asm_v2.o"
 Source="Debug/asm_V3.o"
 Source="Debug/ConfRegOp.o"
@@ -32,11 +38,6 @@ Source="Debug/main.o"
 Source="Debug/main.s"
 Source="Debug/Timer.o"
 Source="Debug/Timer.s"
-Source="DSPF_sp_fir_gen_cn.c"
-Source="main.c"
-Source="tags"
-Source="Timer.c"
-Source="Timer.h"
 ["Compiler" Settings: "Debug"]
 Options=-ffunction-sections -flax-vector-conversions -g -O0 
 ["Assembler" Settings: "Debug"]
@@ -51,7 +52,7 @@ Options=-O2 -ffunction-sections
 Options=-o"Release/asm_test.out" --gc-sections -T"asm_test.lds" 
 [Opened files]
 OpenedSource="asm_test.lds",line=1
-OpenedSource="Debug/main.s",line=989
+OpenedSource="Debug/main.s",line=995
 OpenedSource="main.c",line=68
 OpenedSource="asm_dspf_sp_fir_gen.asm",line=1
 OpenedSource="Timer.c",line=1
