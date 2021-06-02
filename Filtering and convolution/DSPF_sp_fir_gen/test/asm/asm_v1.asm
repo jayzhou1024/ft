@@ -1,5 +1,5 @@
-.global asm_dspf_sp_fir_gen  ;全局符号声明，可以在其他C或汇编文件中调用
-asm_dspf_sp_fir_gen:  ;
+.global asm_dspf_sp_fir_gen1   ;全局符号声明，可以在其他C或汇编文件中调用
+asm_dspf_sp_fir_gen1:  ;
 ;	vectorC   verson3版本翻译
 ;	为了直观展示，该版本没有完全的做并行化，part1和part2 很多地方可以并行
 ;	
@@ -113,4 +113,4 @@ dspf_sp_fir_gen_LOOP2:   ;内循环
 		SBR			R62                                 
 		SNOP		6                                   
 		
-.size asm_dspf_sp_fir_gen, .-asm_dspf_sp_fir_gen
+.size asm_dspf_sp_fir_gen1, .-asm_dspf_sp_fir_gen1

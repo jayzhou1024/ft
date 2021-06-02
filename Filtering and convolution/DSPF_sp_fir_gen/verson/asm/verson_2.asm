@@ -1,4 +1,6 @@
 .global asm_dspf_sp_fir_gen
+
+;终版   在verson1的基础上 一次内循环计算x_0_32,进行并行化和软流水
 asm_dspf_sp_fir_gen:  ;
 ;part 1    保存现场  &&  初始化寄存器                
 		SMOVIL		-576,R2

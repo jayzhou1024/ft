@@ -10,29 +10,33 @@ Source="asm_dspf_sp_fir_gen.asm"
 Source="asm_test.lds"
 Source="asm_test.pjt"
 Source="asm_test.pst"
+Source="asm_v1.asm"
+Source="asm_v2.asm"
 Source="ConfRegOp.c"
 Source="ConfRegOp.h"
 Source="datatransfer.c"
-Source="main.c"
-Source="tags"
-Source="Timer.c"
-Source="Timer.h"
-Source="asm_v2.asm"
 Source="Debug/asm_dspf_sp_fir_gen.o"
 Source="Debug/asm_test.map"
 Source="Debug/asm_test.out"
 Source="Debug/asm_v2.o"
+Source="Debug/asm_V3.o"
 Source="Debug/ConfRegOp.o"
 Source="Debug/ConfRegOp.s"
 Source="Debug/datatransfer.o"
 Source="Debug/datatransfer.s"
 Source="Debug/DSPF_sp_fir_gen.o"
 Source="Debug/DSPF_sp_fir_gen.s"
+Source="Debug/DSPF_sp_fir_gen_cn.o"
+Source="Debug/DSPF_sp_fir_gen_cn.s"
 Source="Debug/main.o"
 Source="Debug/main.s"
-Source="Debug/test.o"
 Source="Debug/Timer.o"
 Source="Debug/Timer.s"
+Source="DSPF_sp_fir_gen_cn.c"
+Source="main.c"
+Source="tags"
+Source="Timer.c"
+Source="Timer.h"
 ["Compiler" Settings: "Debug"]
 Options=-ffunction-sections -flax-vector-conversions -g -O0 
 ["Assembler" Settings: "Debug"]
@@ -47,15 +51,15 @@ Options=-O2 -ffunction-sections
 Options=-o"Release/asm_test.out" --gc-sections -T"asm_test.lds" 
 [Opened files]
 OpenedSource="asm_test.lds",line=1
-OpenedSource="Debug/main.s",line=1042
-OpenedSource="main.c",line=67
+OpenedSource="Debug/main.s",line=989
+OpenedSource="main.c",line=68
 OpenedSource="asm_dspf_sp_fir_gen.asm",line=1
 OpenedSource="Timer.c",line=1
 OpenedSource="datatransfer.c",line=1
 OpenedSource="asm_test.pst",line=1
 OpenedSource="tags",line=1
 OpenedSource="Timer.h",line=1
-OpenedSource="asm_v2.asm",line=45
+OpenedSource="asm_v2.asm",line=1
 OpenedSource="ConfRegOp.c",line=1
 [Builders]
 m7002.builder
