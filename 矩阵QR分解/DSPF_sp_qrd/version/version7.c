@@ -5,7 +5,7 @@
 
 /*
 version7
-在version6基础上展开
+在version6基础上展开 ，与论文对应
 */
 
 //更新uv、R主对角元?
