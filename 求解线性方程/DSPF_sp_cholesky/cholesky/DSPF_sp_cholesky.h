@@ -10,6 +10,6 @@
 #define VPE_NUM 16
 #define OFF_FLOAT_PTR(base,off)(*((vector float*)( ((float*)base)+(off) )) )
 
-void DSPF_sp_cholesky(int order,vector float *L_am,vector float* t_am);
+void DSPF_sp_cholesky(int order,vector float* A_am,vector float* L_am);
 
 #endif 
