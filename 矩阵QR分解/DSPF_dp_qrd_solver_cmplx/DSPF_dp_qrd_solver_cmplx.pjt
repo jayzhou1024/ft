@@ -1,0 +1,49 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSPF_dp_qrd_solver_cmplx
+ProjectDir="C:/Users/LinGuanguo/source/杜亚娟老师项目/DSPF_dp_qrd_solver_cmplx"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="DSPF_dp_qrd_solver_cmplx.lds"
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="main.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="version.h"
+Source="version_trival.c"
+Source="version_vector.c"
+Source="version_asm"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/DSPF_dp_qrd_solver_cmplx.map"
+Source="Debug/DSPF_dp_qrd_solver_cmplx.out"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+Source="Debug/version_trival.o"
+Source="Debug/version_trival.s"
+Source="Debug/version_vector.o"
+Source="Debug/version_vector.s"
+["Compiler" Settings: "Debug"]
+Options=-O0 -g -ffunction-sections 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSPF_dp_qrd_solver_cmplx.out" --gc-sections -T"DSPF_dp_qrd_solver_cmplx.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSPF_dp_qrd_solver_cmplx.out" --gc-sections -T"DSPF_dp_qrd_solver_cmplx.lds" 
+[Opened files]
+OpenedSource="main.c",line=188
+OpenedSource="version_trival.c",line=70
+OpenedSource="version_vector.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

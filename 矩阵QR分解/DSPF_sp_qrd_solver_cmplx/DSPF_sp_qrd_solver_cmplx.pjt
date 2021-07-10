@@ -40,7 +40,7 @@ Source="Debug/version_trival.s"
 Source="Debug/version_vector.o"
 Source="Debug/version_vector.s"
 ["Compiler" Settings: "Debug"]
-Options=-g -ffunction-sections -flax-vector-conversions -O2 
+Options=-g -ffunction-sections -O2 -flax-vector-conversions 
 ["Assembler" Settings: "Debug"]
 
 ["Linker" Settings: "Debug"]
@@ -52,9 +52,9 @@ Options=-O2 -ffunction-sections
 ["Linker" Settings: "Release"]
 Options=-o"Release/DSPF_sp_qrd_solver_cmplx.out" --gc-sections -T"DSPF_sp_qrd_solver_cmplx.lds" 
 [Opened files]
-OpenedSource="main.c",line=230
-OpenedSource="version_vector.c",line=19
-OpenedSource="version_trival.c",line=251
+OpenedSource="main.c",line=24
+OpenedSource="version_vector.c",line=52
+OpenedSource="version_trival.c",line=112
 [Builders]
 m7002.builder
 [Debug Configurations]

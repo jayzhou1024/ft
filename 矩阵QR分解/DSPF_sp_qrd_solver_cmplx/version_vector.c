@@ -13,9 +13,9 @@ int DSPF_sp_qrd_solver_cmplx_v1(
     lvector double *y, lvector double *x)
 {
     short row, col, loop_cnt, i, j;
-    float xreal, ximag, yreal, yimag, zreal, zimag, sum_real, sum_imag;
+    float xreal, ximag, zreal, zimag, sum_real, sum_imag;
     float temp_cplx[2];
-
+    float buf[16];
 
     lvector double vdt1;
     lvector double vdt2;
@@ -33,34 +33,33 @@ int DSPF_sp_qrd_solver_cmplx_v1(
     int Nrows16 = Nrows / 16;
     int Ncols16 = Ncols / 16;
 
-    // part1 #############################################
-
+    // part1 
     for(i = 0; i < Ncols16; ++i){
         y[i] = vec_svbcast2(0.0);
     }
     for (row = 0; row < Nrows; row++)
     {
-        M7002_datatrans((double* )b + row , temp_cplx, sizeof(double));
+        mov_to_svr_v16sf( *(vector float*)((double*)b+row) );
+        *(int*)&temp_cplx[0] = mov_from_svr0();
+        *(int*)&temp_cplx[1] = mov_from_svr1();
+
+        // Q的一行乘上b的一项
         vdt2 = vec_svbcast2 ( *(double*)(temp_cplx) );
         for(col = 0; col < Nrows16; ++col){
             vdt1 = vec_ldm2(row * Ncols + col * 16, Q);
-            vdt1 = complex_vmov (vdt1);     //共轭
-            
-            vft1 = vec_fcreal32(vdt1, vdt2);
-            vft2 = vec_fcimag32(vdt1, vdt2);
-
+            vdt1 = complex_vmov (vdt1); //共轭
+            vft1 = vec_fcreal32(vdt1, vdt2); //复数乘法实部
+            vft2 = vec_fcimag32(vdt1, vdt2); //复数乘法虚部
             yf[2*col] = vec_add(yf[2*col], vft1);
             yf[2*col+1] = vec_add(yf[2*col+1], vft2);
         }
     }
+    // 调整内存中存储顺序，模16 -> 模2
     for(col = 0; col < Ncols16; ++col){
         vec_stm16(y[col], 0, &y[col]);
     }
 
-    // part2 ###########################################
-    
-    float buf[16];
-
+    // part2
     if (Nrows >= Ncols)
         loop_cnt = Ncols;
     else
@@ -86,28 +85,65 @@ int DSPF_sp_qrd_solver_cmplx_v1(
             vft4 = vec_add(vft4, vft2);
         }
 
-        M7002_datatrans(&vft3, buf, sizeof(float) * 16);
+        mov_to_svr_v16sf( vft3 );
+        *(int*)&buf[0] = mov_from_svr0();
+        *(int*)&buf[1] = mov_from_svr1();
+        *(int*)&buf[2] = mov_from_svr2();
+        *(int*)&buf[3] = mov_from_svr3();
+        *(int*)&buf[4] = mov_from_svr4();
+        *(int*)&buf[5] = mov_from_svr5();
+        *(int*)&buf[6] = mov_from_svr6();
+        *(int*)&buf[7] = mov_from_svr7();
+        *(int*)&buf[8] = mov_from_svr8();
+        *(int*)&buf[9] = mov_from_svr9();
+        *(int*)&buf[10] = mov_from_svr10();
+        *(int*)&buf[11] = mov_from_svr11();
+        *(int*)&buf[12] = mov_from_svr12();
+        *(int*)&buf[13] = mov_from_svr13();
+        *(int*)&buf[14] = mov_from_svr14();
+        *(int*)&buf[15] = mov_from_svr15();
         xreal = buf[0] + buf[1] + buf[2] + buf[3] + buf[4] + buf[5] + buf[6] + buf[7] + 
             buf[8] + buf[9] + buf[10] + buf[11] + buf[12] + buf[13] + buf[14] + buf[15];
     
-        M7002_datatrans(&vft4, buf, sizeof(float) * 16);
+        mov_to_svr_v16sf( vft4 );
+        *(int*)&buf[0] = mov_from_svr0();
+        *(int*)&buf[1] = mov_from_svr1();
+        *(int*)&buf[2] = mov_from_svr2();
+        *(int*)&buf[3] = mov_from_svr3();
+        *(int*)&buf[4] = mov_from_svr4();
+        *(int*)&buf[5] = mov_from_svr5();
+        *(int*)&buf[6] = mov_from_svr6();
+        *(int*)&buf[7] = mov_from_svr7();
+        *(int*)&buf[8] = mov_from_svr8();
+        *(int*)&buf[9] = mov_from_svr9();
+        *(int*)&buf[10] = mov_from_svr10();
+        *(int*)&buf[11] = mov_from_svr11();
+        *(int*)&buf[12] = mov_from_svr12();
+        *(int*)&buf[13] = mov_from_svr13();
+        *(int*)&buf[14] = mov_from_svr14();
+        *(int*)&buf[15] = mov_from_svr15();
         ximag = buf[0] + buf[1] + buf[2] + buf[3] + buf[4] + buf[5] + buf[6] + buf[7] + 
             buf[8] + buf[9] + buf[10] + buf[11] + buf[12] + buf[13] + buf[14] + buf[15];
-
         
         // y[row] - sum
-        M7002_datatrans((double*)y + row, temp_cplx, sizeof(double));
-        yreal = temp_cplx[0] - xreal;
-        yimag = temp_cplx[1] - ximag;
-
+        mov_to_svr_v16sf( *(vector float*)((double*)y + row) );
+        *(int*)&temp_cplx[0] = mov_from_svr0();
+        *(int*)&temp_cplx[1] = mov_from_svr1();
+        xreal = temp_cplx[0] - xreal;
+        ximag = temp_cplx[1] - ximag;
+        
         // R[row][row]
-        M7002_datatrans((double*)R + row * Ncols + row, temp_cplx, sizeof(double));
-
+        mov_to_svr_v16sf( *(vector float*)((double*)R + row * Ncols + row) );
+        *(int*)&temp_cplx[0] = mov_from_svr0();
+        *(int*)&temp_cplx[1] = mov_from_svr1();
         // y[row] - sum / R[row][row]
-        complex_sp_div(yreal, yimag, temp_cplx[0], temp_cplx[1], temp_cplx, temp_cplx + 1); 
+        complex_sp_div(xreal, ximag, temp_cplx[0], temp_cplx[1], temp_cplx, temp_cplx + 1);
 
         // 回存x[row]
-        M7002_datatrans(temp_cplx, (double*)x + row, sizeof(double));
+        mov_to_svr_v16sf(*(vector float*)((double*)x + row));
+        mov_to_svr0(*(int*)&temp_cplx[0]);
+        mov_to_svr1(*(int*)&temp_cplx[1]);
+        *(vector float*)((double*)x + row) = mov_from_svr_v16sf();
     }
     return 0;
 }

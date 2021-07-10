@@ -214,7 +214,7 @@ printMatrix:
 	.type	DSPF_sp_qrd_cmplx_wrapper, @function
 DSPF_sp_qrd_cmplx_wrapper:
 .LFB4:
-	.loc 1 38 0
+	.loc 1 49 0
 	.cfi_startproc
 .LVL9:
 		SMOVIL		-72, R6
@@ -235,10 +235,10 @@ DSPF_sp_qrd_cmplx_wrapper:
 		SMVAGA36.M1		R21:R20, OR13
 	|	SMVAGA36.M2		R11:R10, AR14
 	|	SMOVIL		0, R10
-	.loc 1 39 0
+	.loc 1 50 0
 		SNOP		1
 .LVL10:
-	.loc 1 38 0
+	.loc 1 49 0
 		SSTDW		R7:R6, *+AR15[8]
 	.cfi_offset 14, -8
 	.cfi_offset 48, -56
@@ -254,11 +254,11 @@ DSPF_sp_qrd_cmplx_wrapper:
 	.cfi_offset 46, -64
 	.cfi_offset 47, -60
 	.cfi_offset 88, -24
-	.loc 1 39 0
+	.loc 1 50 0
 		SBR		GetTimerCount
 	|	SMVAAGL.M1		OR11, R31:R30
 	|	SMVAGA36.M2		R23:R22, OR8
-	.loc 1 38 0
+	.loc 1 49 0
 		SMVAAGH.M1		OR12, R33:R32
 	|	SMVAAGL.M2		AR8, R7:R6
 	|	SMOVIL		.L18, R62
@@ -273,13 +273,13 @@ DSPF_sp_qrd_cmplx_wrapper:
 		SNOP		1
 		SSTDW		R7:R6, *+AR15[5]
 	.cfi_offset 8, -32
-	.loc 1 39 0
+	.loc 1 50 0
 	;; call to GetTimerCount occurs, with return value
 		SMOV.M2		R14, R36
 	|	SMOV.M1		R16, R37
 .LVL11:
 .L18:
-	.loc 1 40 0
+	.loc 1 51 0
 		SMVAAGL.M1		OR8, R19:R18
 	|	SMVAGA36.M2		R33:R32, OR14
 		SMVAGA36.M1		R35:R34, OR11
@@ -303,7 +303,7 @@ DSPF_sp_qrd_cmplx_wrapper:
 		SNOP		1
 .LVL13:
 .L19:
-	.loc 1 41 0
+	.loc 1 52 0
 		SBR		GetTimerCount
 	|	SMOV.M2		R10, R31
 	|	SMOVIL		0, R10
@@ -314,13 +314,13 @@ DSPF_sp_qrd_cmplx_wrapper:
 	;; call to GetTimerCount occurs, with return value
 		SNOP		3
 .LVL15:
-	.loc 1 43 0
+	.loc 1 54 0
 .L20:
 		SLDDW		*+AR15[5], R7:R6
-	.loc 1 41 0
+	.loc 1 52 0
 		SSTW		R10, *AR8
 	|	SMOV.M2		R31, R10
-	.loc 1 43 0
+	.loc 1 54 0
 		SLDDW		*+AR15[7], R63:R62
 		SNOP		1
 		SLDDW		*+AR15[1], R31:R30
@@ -362,7 +362,7 @@ DSPF_sp_qrd_cmplx_wrapper:
 	.type	DSPF_sp_qrd_solver_cmplx_wrapper, @function
 DSPF_sp_qrd_solver_cmplx_wrapper:
 .LFB5:
-	.loc 1 46 0
+	.loc 1 57 0
 	.cfi_startproc
 .LVL19:
 		SMOVIL		-128, R6
@@ -385,10 +385,10 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SMVAAGL.M1		OR11, R43:R42
 	|	SMOVIH4.L		v_Q, R45
 	|	SMVAGA36.M2		R13:R12, AR14
-	.loc 1 54 0
+	.loc 1 61 0
 		SSHFLL		3, R14, R40
 	|	SMVAGA36.M1		R45:R44, AR10
-	.loc 1 46 0
+	.loc 1 57 0
 		SSTDW		R7:R6, *+AR15[15]
 	.cfi_offset 14, -8
 	.cfi_offset 52, -72
@@ -396,10 +396,10 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SMVAAGL.M1		OR9, R7:R6
 	|	SMULIS.M2		R16,R40,R41
 	|	SSTDW		R37:R36, *+AR15[7]
-	.loc 1 56 0
+	.loc 1 63 0
 		SMOVIL.L		v_b, R46
 	|	SMVAAGH.M1		OR11, R43:R42
-	.loc 1 46 0
+	.loc 1 57 0
 		SMVAAGH.M1		OR9, R7:R6
 	|	SMVAGA36.M2		R21:R20, OR9
 	|	SMOVIH.L		v_b, R46
@@ -423,37 +423,37 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 	.cfi_offset 88, -32
 		SMVAAGL.M1		AR9, R7:R6
 	|	SMVAGA36.M2		R47:R46, OR9
-	.loc 1 56 0
+	.loc 1 63 0
 		SNOP		1
-	.loc 1 46 0
+	.loc 1 57 0
 		SMVAAGH.M1		AR9, R7:R6
 	|	SMVAGA36.M2		R11:R10, AR9
-	.loc 1 54 0
+	.loc 1 61 0
 		SMVAAGL.M1		OR11, R11:R10
 	|	SSTW		R43, *+AR15[3]
 .LVL21:
-	.loc 1 46 0
+	.loc 1 57 0
 		SSTDW		R7:R6, *+AR15[11]
 	.cfi_offset 9, -40
 		SMVAAGL.M1		AR8, R7:R6
 	|	SMVAAGH.M2		OR11, R11:R10
-	.loc 1 54 0
+	.loc 1 61 0
 		SNOP		1
-	.loc 1 46 0
+	.loc 1 57 0
 		SMVAAGH.M1		AR8, R7:R6
 	|	SMVAGA36.M2		R27:R26, AR8
 	|	SSTW		R44, *+AR15[7]
-	.loc 1 54 0
+	.loc 1 61 0
 		SSTW		R45, *+AR15[6]
 		SNOP		2
-	.loc 1 46 0
+	.loc 1 57 0
 		SSTDW		R7:R6, *+AR15[10]
-	.loc 1 54 0
+	.loc 1 61 0
 		SSTW		R16, *+AR15[5]
 		SBR		M7002_datatrans
 		SMOVIL		.L22, R62
 	.cfi_offset 8, -48
-	.loc 1 46 0
+	.loc 1 57 0
 		SSTDW		R39:R38, *+AR15[8]
 	|	SMOVIH		.L22, R62
 	.cfi_offset 54, -64
@@ -466,16 +466,16 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 	|	SMOV.M1		R41, R14
 	|	SMOVIL.L		.LC3, R32
 .LVL22:
-	.loc 1 63 0
+	.loc 1 70 0
 		SMOVIH.L		.LC3, R32
 	.cfi_offset 46, -96
 	.cfi_offset 47, -92
-	.loc 1 54 0
+	.loc 1 61 0
 	;; call to M7002_datatrans occurs
 		SSTDW		R31:R30, *+AR15[4]
 .LVL23:
 .L22:
-	.loc 1 55 0
+	.loc 1 62 0
 		SMOVIH4.L		v_R, R47
 	|	SMVAGA36.M2		R37:R36, OR13
 	|	SMOV.M1		R41, R14
@@ -491,15 +491,15 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 	|	SMOVIL		.L23, R62
 		SMOVIH		.L23, R62
 		SMOVIH4.L		.L23, R63
-	.loc 1 64 0
+	.loc 1 71 0
 		SMOVIH.L		.LC4, R30
 		SMOVIH4.L		.LC4, R31
-	.loc 1 55 0
+	.loc 1 62 0
 	;; call to M7002_datatrans occurs
 		SSHFLL		1, R39, R38
 .LVL24:
 .L23:
-	.loc 1 56 0
+	.loc 1 63 0
 		SMVAAA.M1		OR9, AR10
 	|	SMVAGA36.M2		R35:R34, OR14
 		SBR		M7002_datatrans
@@ -514,7 +514,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL25:
 .L24:
-	.loc 1 58 0
+	.loc 1 65 0
 		SBR		GetTimerCount
 	|	SMOVIL		0, R10
 		SMOVIL		.L25, R62
@@ -524,7 +524,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL26:
 .L25:
-	.loc 1 59 0
+	.loc 1 66 0
 		SLDW		*+AR15[7], R44
 		SLDW		*+AR15[6], R45
 		SLDW		*+AR15[5], R0
@@ -544,9 +544,9 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SLDDW		*AR10, R17:R16
 	|	SMVAAA.M1		OR9, AR10
 	|	SMVAGA36.M2		R31:R30, OR9
-	.loc 1 64 0
+	.loc 1 71 0
 		SNOP		1
-	.loc 1 59 0
+	.loc 1 66 0
 		SLDDW		*AR10, R19:R18
 	|	SMVAGA36.M2		R45:R44, AR10
 	|	SMOVIL.L		v_x, R44
@@ -564,7 +564,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL27:
 .L26:
-	.loc 1 60 0
+	.loc 1 67 0
 		SBR		GetTimerCount
 	|	SMOVIL		0, R10
 		SMOVIL		.L27, R62
@@ -574,7 +574,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL28:
 .L27:
-	.loc 1 61 0
+	.loc 1 68 0
 		SMOVIL.L		v_x, R44
 	|	SMVAAGL.M2		AR8, R13:R12
 	|	SSTW		R10, *AR14
@@ -592,7 +592,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL29:
 .L28:
-	.loc 1 62 0
+	.loc 1 69 0
 		SMOVIH4.L		v_y, R45
 	|	SMVAAGL.M2		OR8, R13:R12
 	|	SMOV.M1		R40, R14
@@ -609,7 +609,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL30:
 .L29:
-	.loc 1 63 0
+	.loc 1 70 0
 		SBR		printMatrix
 	|	SMVAGA36.M2		R33:R32, OR11
 	|	SMOV.M1		R38, R16
@@ -625,7 +625,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		2
 .LVL31:
 .L30:
-	.loc 1 64 0
+	.loc 1 71 0
 		SBR		printMatrix
 	|	SMOV.M1		R38, R16
 	|	SMOVIL		1, R14
@@ -640,7 +640,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL32:
 .L31:
-	.loc 1 68 0
+	.loc 1 75 0
 		SBR		GetTimerCount
 	|	SMOVIL		0, R10
 		SMOVIL		.L32, R62
@@ -650,7 +650,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL33:
 .L32:
-	.loc 1 69 0
+	.loc 1 76 0
 		SLDW		*+AR15[4], R42
 	|	SMVAGA36.M1		R35:R34, OR14
 	|	SMVAGA36.M2		R37:R36, OR13
@@ -680,7 +680,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		1
 .LVL34:
 .L33:
-	.loc 1 70 0
+	.loc 1 77 0
 		SBR		GetTimerCount
 	|	SMOV.M2		R10, R35
 	|	SMOVIL		0, R10
@@ -692,7 +692,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		3
 .LVL36:
 .L34:
-	.loc 1 71 0
+	.loc 1 78 0
 		SBR		printMatrix
 	|	SMVAGA36.M2		R33:R32, OR11
 	|	SSTW		R10, *AR14
@@ -709,7 +709,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 		SNOP		2
 .LVL37:
 .L35:
-	.loc 1 72 0
+	.loc 1 79 0
 		SMVAAGL.M2		OR8, R11:R10
 	|	SMOV.M1		R38, R16
 	|	SMOVIL		1, R14
@@ -726,7 +726,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 	;; call to printMatrix occurs
 		SNOP		1
 .LVL39:
-	.loc 1 76 0
+	.loc 1 83 0
 .L36:
 		SLDDW		*+AR15[10], R7:R6
 	|	SMOV.M2		R35, R10
@@ -773,7 +773,7 @@ DSPF_sp_qrd_solver_cmplx_wrapper:
 	.type	DSPF_sp_qrd_inverse_cmplx_wrapper, @function
 DSPF_sp_qrd_inverse_cmplx_wrapper:
 .LFB6:
-	.loc 1 78 0
+	.loc 1 85 0
 	.cfi_startproc
 .LVL43:
 		SMOVIL		-64, R6
@@ -794,10 +794,10 @@ DSPF_sp_qrd_inverse_cmplx_wrapper:
 		SMVAAGL.M1		OR12, R33:R32
 	|	SMVAGA36.M2		R11:R10, AR14
 	|	SMOVIL		0, R10
-	.loc 1 79 0
+	.loc 1 86 0
 		SNOP		1
 .LVL44:
-	.loc 1 78 0
+	.loc 1 85 0
 		SSTDW		R7:R6, *+AR15[7]
 	.cfi_offset 14, -8
 	.cfi_offset 46, -56
@@ -813,10 +813,10 @@ DSPF_sp_qrd_inverse_cmplx_wrapper:
 		SMVAAGH.M1		OR11, R31:R30
 	|	SSTDW		R35:R34, *+AR15[3]
 	.cfi_offset 88, -24
-	.loc 1 79 0
+	.loc 1 86 0
 		SBR		GetTimerCount
 	|	SSTDW		R7:R6, *+AR15[5]
-	.loc 1 78 0
+	.loc 1 85 0
 		SMOV.M2		R14, R34
 	|	SMOV.M1		R16, R35
 	|	SMOVIL		.L38, R62
@@ -827,12 +827,12 @@ DSPF_sp_qrd_inverse_cmplx_wrapper:
 	|	SMVAGA36.M2		R13:R12, AR8
 		SNOP		1
 	.cfi_offset 8, -32
-	.loc 1 79 0
+	.loc 1 86 0
 	;; call to GetTimerCount occurs, with return value
 		SSTDW		R7:R6, *+AR15[4]
 .LVL45:
 .L38:
-	.loc 1 80 0
+	.loc 1 87 0
 		SBR		DSPF_sp_qrd_inverse_cmplx_cn
 	|	SMVAGA36.M1		R31:R30, OR14
 	|	SMVAGA36.M2		R33:R32, OR13
@@ -852,7 +852,7 @@ DSPF_sp_qrd_inverse_cmplx_wrapper:
 	|	SMOV.M1		R34, R10
 .LVL46:
 .L39:
-	.loc 1 81 0
+	.loc 1 88 0
 		SBR		GetTimerCount
 	|	SMOV.M2		R10, R31
 	|	SMOVIL		0, R10
@@ -863,13 +863,13 @@ DSPF_sp_qrd_inverse_cmplx_wrapper:
 	;; call to GetTimerCount occurs, with return value
 		SNOP		3
 .LVL48:
-	.loc 1 83 0
+	.loc 1 90 0
 .L40:
 		SLDDW		*+AR15[4], R7:R6
-	.loc 1 81 0
+	.loc 1 88 0
 		SSTW		R10, *AR8
 	|	SMOV.M2		R31, R10
-	.loc 1 83 0
+	.loc 1 90 0
 		SLDDW		*+AR15[6], R63:R62
 		SNOP		1
 		SLDDW		*+AR15[1], R31:R30
@@ -933,7 +933,7 @@ DSPF_sp_qrd_inverse_cmplx_wrapper:
 	.type	test_qr_solver_complx, @function
 test_qr_solver_complx:
 .LFB8:
-	.loc 1 131 0
+	.loc 1 129 0
 	.cfi_startproc
 .LVL53:
 		SMOVIL		-304, R6
@@ -966,9 +966,9 @@ test_qr_solver_complx:
 		SMVAAGL.M2		OR8, R7:R6
 	|	SSTDW		R43:R42, *+AR15[8]
 	|	SMOVIL		1, R43
-	.loc 1 166 0
+	.loc 1 164 0
 		SNOP		1
-	.loc 1 131 0
+	.loc 1 129 0
 		SMVAAGH.M1		OR8, R7:R6
 	|	SMVAGA36.M2		R15:R14, OR8
 		SSTDW		R19:R18, *+AR15[19]
@@ -990,20 +990,20 @@ test_qr_solver_complx:
 	|	SSTDW		R35:R34, *+AR15[28]
 		SMVAAGL.M1		OR8, R35:R34
 		SMVAAGH.M1		AR8, R7:R6
-	.loc 1 159 0
+	.loc 1 157 0
 		SSTW		R0, *+AR15[22]
 	|	SMVAAGH.M1		OR8, R35:R34
-	.loc 1 131 0
+	.loc 1 129 0
 		SSTDW		R7:R6, *+AR15[32]
 		SNOP		2
 		SSTDW		R17:R16, *+AR15[17]
-	.loc 1 166 0
+	.loc 1 164 0
 		SSTH		R43, *+AR15[28]
 		SNOP		1
-	.loc 1 155 0
+	.loc 1 153 0
 		SBR		GetTimerCount
 	.cfi_offset 8, -48
-	.loc 1 131 0
+	.loc 1 129 0
 		SSTDW		R41:R40, *+AR15[31]
 	|	SMOVIL		.L156, R62
 	.cfi_offset 56, -56
@@ -1019,21 +1019,21 @@ test_qr_solver_complx:
 	.cfi_offset 49, -84
 	.cfi_offset 46, -96
 	.cfi_offset 47, -92
-	.loc 1 155 0
+	.loc 1 153 0
 	;; call to GetTimerCount occurs, with return value
 		SSTDW		R31:R30, *+AR15[26]
 .LVL55:
 .L156:
-	.loc 1 159 0
+	.loc 1 157 0
 		SMOVIL		208, R44
 		SMOVIL		0, R45
 		SLDDW		*+AR15[18], R47:R46
 	|	SADDA.M2		R45:R44,AR15,OR15
 		SLDDW		*+AR15[12], R9:R8
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDW		*+AR15[17], R1
 	|	SMVAAGL.M2		OR15, R45:R44
-	.loc 1 159 0
+	.loc 1 157 0
 		SNOP		1
 		SMVAAGH.M2		OR15, R45:R44
 		SNOP		1
@@ -1052,7 +1052,7 @@ test_qr_solver_complx:
 		SMVAAGL.M1		OR14, R13:R12
 		SMVAAGH.M1		OR12, R3:R2
 	|	SADDA.M2		4,OR8,OR12
-	.loc 1 157 0
+	.loc 1 155 0
 		SBR		GetTimerCount
 	|	SMVAAGH.M1		OR14, R13:R12
 	|	SMVAAGH.M2		OR11, R15:R14
@@ -1069,16 +1069,16 @@ test_qr_solver_complx:
 		SSTDW		R17:R16, *+AR15[22]
 .LVL57:
 .L157:
-	.loc 1 128 0
+	.loc 1 126 0
 		SMOVIL		18428, R9
 		SMOVIL		4, R13
 		SLDW		*+AR15[16], R15
 	|	SMOVIL		4, R21
 		SLDW		*+AR15[16], R45
 		SLDW		*+AR15[17], R48
-	.loc 1 159 0
+	.loc 1 157 0
 		SLDW		*--AR9[2], R3
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDW		*+AR15[23], R19
 		SNOP		1
 		SSUB.M2		R15, R13, R39
@@ -1088,26 +1088,26 @@ test_qr_solver_complx:
 		SLTU		R11, R15, R17
 		SNEG		R48, R18
 .LVL58:
-	.loc 1 157 0
+	.loc 1 155 0
 		SSTW		R10, *+AR15[51]
 	|	SADD.M2		R19,R17,R20
 	|	SSUB.M1		R3, R10, R10
 .LVL59:
-	.loc 1 128 0
+	.loc 1 126 0
 		SSUB.M2		R22, R18, R38
 	|	SSTW		R11, *+AR15[46]
 		SNOP		2
-	.loc 1 159 0
+	.loc 1 157 0
 		SSTW		R10, *+AR15[30]
 .LVL60:
-	.loc 1 128 0
+	.loc 1 126 0
 		SSTW		R20, *+AR15[47]
 		SNOP		2
 		SSTW		R39, *+AR15[48]
 		SSTW		R38, *+AR15[49]
 .LVL61:
 .L95:
-	.loc 1 170 0
+	.loc 1 168 0
 		SMOVIL.L		.LC5, R46
 		SMOVIH.L		.LC5, R46
 		SMOVIH4.L		.LC5, R47
@@ -1115,9 +1115,9 @@ test_qr_solver_complx:
 	|	SMOVIL		973082626, R36
 		SLDW		*+AR15[22], R47
 	|	SMOVIH		973082626, R36
-	.loc 1 183 0
+	.loc 1 181 0
 		SMOV.M2		R36, R40
-	.loc 1 170 0
+	.loc 1 168 0
 		SBR		printf
 		SMOVIL		.L158, R62
 		SMOVIH		.L158, R62
@@ -1127,16 +1127,16 @@ test_qr_solver_complx:
 		SNOP		2
 .LVL62:
 .L158:
-	.loc 1 172 0
+	.loc 1 170 0
 		SLDW		*+AR15[22], R23
 	|	SMOVIL		2, R26
 		SMOVIL		3, R27
 	|	SLDDW		*+AR15[10], R33:R32
 		SLDDW		*+AR15[13], R31:R30
 	|	SMOVIL		1, R10
-	.loc 1 210 0
+	.loc 1 208 0
 		SNOP		3
-	.loc 1 172 0
+	.loc 1 170 0
 		SSHFLL		16, R23, R24
 		SSHFLR		16, R24, R25
 		SEQ		R26, R25, R0
@@ -1147,7 +1147,7 @@ test_qr_solver_complx:
 	[R2]	SBR		.L44
 		SNOP		6
 	;; condjump to .L44 occurs
-	.loc 1 178 0
+	.loc 1 176 0
 		SBR		srand
 		SMOVIL		.L159, R62
 		SMOVIH		.L159, R62
@@ -1156,7 +1156,7 @@ test_qr_solver_complx:
 		SNOP		3
 .LVL63:
 .L159:
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDW		*+AR15[16], R29
 	|	SMOVIL		2044, R28
 		SLDW		*+AR15[23], R50
@@ -1168,14 +1168,14 @@ test_qr_solver_complx:
 		SMOV.M2		R51, R39
 .LVL64:
 .L45:
-	.loc 1 128 0 is_stmt 0 discriminator 1
+	.loc 1 126 0 is_stmt 0 discriminator 1
 		SMOVIL		128, R52
 		SADD.M2		R52,R30,R37
 		SLTU		R37, R30, R54
 		SADD.M2		R31,R54,R38
 .LVL65:
 .L46:
-	.loc 1 183 0 is_stmt 1 discriminator 2
+	.loc 1 181 0 is_stmt 1 discriminator 2
 		SBR		rand
 		SMOVIL		.L160, R62
 		SMOVIH		.L160, R62
@@ -1190,44 +1190,44 @@ test_qr_solver_complx:
 	|	SMOV.M2		R56, R30
 		SADD.M1		R31,R57,R31
 	|	SEQ		R56, R37, R1
-	.loc 1 181 0 discriminator 2
+	.loc 1 179 0 discriminator 2
 	[R1]	SEQ		R31, R38, R1
 	|	SFMULS32.M2		R55, R36, R59
 	|	SMVAGA36.M1		R31:R30, AR10
 	[!R1]	SBR		.L46
 		SNOP		2
-	.loc 1 183 0 discriminator 2
+	.loc 1 181 0 discriminator 2
 		SSTW		R59, *AR10
 		SNOP		3
-	.loc 1 181 0 discriminator 2
+	.loc 1 179 0 discriminator 2
 	;; condjump to .L46 occurs
-	.loc 1 185 0
+	.loc 1 183 0
 		SBR		rand
 	|	SMVAGA36.M2		R33:R32, AR8
-	.loc 1 128 0
+	.loc 1 126 0
 		SMOVIL		.L161, R62
 		SMOVIH		.L161, R62
 		SMOVIH4.L		.L161, R63
-	.loc 1 185 0
+	.loc 1 183 0
 	;; call to rand occurs, with return value
 		SNOP		3
 .LVL67:
 .L161:
 		SFINTS32.M2		R10,R60
-	.loc 1 186 0
+	.loc 1 184 0
 		SBR		rand
 		SMOVIL		.L162, R62
-	.loc 1 185 0
+	.loc 1 183 0
 		SFMULS32.M2		R60, R40, R61
 	|	SMOVIH		.L162, R62
 		SMOVIH4.L		.L162, R63
 		SNOP		2
-	.loc 1 186 0
+	.loc 1 184 0
 	;; call to rand occurs, with return value
 		SSTW		R61, *-AR8[1]
 .LVL68:
 .L162:
-	.loc 1 179 0
+	.loc 1 177 0
 		SEQ		R41, R37, R0
 	|	SFINTS32.M2		R10,R46
 	|	SADD.M1		8,R32,R42
@@ -1237,14 +1237,14 @@ test_qr_solver_complx:
 	|	SMOV.M1		R42, R32
 		SADD.M1		R33,R44,R33
 	|	SFMULS32.M2		R46, R40, R43
-	.loc 1 186 0
+	.loc 1 184 0
 		SNOP		3
 		SSTW		R43, *AR8
 		SNOP		1
-	.loc 1 179 0
+	.loc 1 177 0
 	;; condjump to .L45 occurs
 .LVL69:
-	.loc 1 227 0
+	.loc 1 225 0
 		SMOVIL		204, R42
 	|	SMVAAGL.M1		AR9, R11:R10
 	|	SMVAAGL.M2		OR9, R21:R20
@@ -1261,9 +1261,9 @@ test_qr_solver_complx:
 	|	SMOVIH		.L163, R62
 		SMVAAGL.M1		OR13, R13:R12
 	|	SMOVIH4.L		.L163, R63
-	.loc 1 179 0
+	.loc 1 177 0
 		SMOVIL		16, R30
-	.loc 1 227 0
+	.loc 1 225 0
 		SMVAAGH.M2		OR13, R13:R12
 	|	SMOV.M1		R30, R14
 	|	SMOVIL		-1, R31
@@ -1272,26 +1272,26 @@ test_qr_solver_complx:
 	|	SSTW		R30, *+AR15[11]
 .LVL70:
 .L163:
-	.loc 1 228 0
+	.loc 1 226 0
 		SLDW		*+AR15[50], R59
 	|	SEQ		R31, R10, R32
-	.loc 1 229 0
+	.loc 1 227 0
 		SMOV.M2		R32, R1
-	.loc 1 228 0
+	.loc 1 226 0
 		SLDW		*+AR15[51], R60
 		SLDW		*+AR15[30], R46
-	.loc 1 229 0
+	.loc 1 227 0
 	[R1]	SBR		.L141
 	|	SLDW		*+AR15[11], R8
 		SNOP		3
-	.loc 1 228 0
+	.loc 1 226 0
 		SSUB.M2		R59, R60, R61
 		SSUB.M2		R46, R61, R42
 		SSTW		R42, *+AR15[33]
 	;; condjump to .L141 occurs
 .LVL71:
 .L52:
-	.loc 1 128 0 discriminator 1
+	.loc 1 126 0 discriminator 1
 		SSHFLL		1, R8, R44
 	|	SLDDW		*+AR15[21], R37:R36
 	|	SMOV.M2		R34, R13
@@ -1303,18 +1303,18 @@ test_qr_solver_complx:
 		SLDW		*+AR15[18], R3
 	|	SMOVIL		0, R17
 		SMOVIL		-2147483648, R38
-	.loc 1 265 0 discriminator 1
+	.loc 1 263 0 discriminator 1
 		SMOVIL		1092616192, R40
 	|	SSTDW		R37:R36, *+AR15[14]
 	|	SMOV.M2		R36, R41
 	|	SMOV.M1		R37, R36
-	.loc 1 128 0 discriminator 1
+	.loc 1 126 0 discriminator 1
 		SMOVIH		-2147483648, R38
 	|	SMOV.M2		R9, R37
-	.loc 1 265 0 discriminator 1
+	.loc 1 263 0 discriminator 1
 		SMOVIH		1092616192, R40
 		SNOP		1
-	.loc 1 128 0 discriminator 1
+	.loc 1 126 0 discriminator 1
 		SLTU		R33, R3, R43
 	|	SLDDW		*+AR15[8], R33:R32
 		SSHFAR		31, R3, R45
@@ -1335,7 +1335,7 @@ test_qr_solver_complx:
 		SMVAGA36.M1		R31:R30, AR0
 	|	SMOV.M2		R13, R22
 	|	SMOVIL		4, R23
-	.loc 1 195 0 discriminator 1
+	.loc 1 193 0 discriminator 1
 		SMOV.M2		R18, R20
 	|	SMOVIL		0, R24
 		SMOVIL		0, R21
@@ -1361,7 +1361,7 @@ test_qr_solver_complx:
 	|	SSUB.M1		R27, R47, R50
 .LVL75:
 .L54:
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SADD.M2		R42,R25,R46
 	|	SADD.M1		R43,R50,R52
 		SLTU		R46, R25, R51
@@ -1375,12 +1375,12 @@ test_qr_solver_complx:
 	|	SLDW		*AR10, R53
 	|	SLT		R28, R32, R0
 	|	SADD.M2		8,R44,R58
-	.loc 1 248 0 discriminator 2
+	.loc 1 246 0 discriminator 2
 		SLDW		*-AR10[1], R55
 	|	SADD.M2		R42,R37,R59
 	|	SLTU		R58, R44, R60
 .LVL76:
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SMVAAA.M2		AR2, OR14
 	|	SLTU		R59, R42, R61
 	|	SADD.M1		R43,R39,R1
@@ -1388,71 +1388,71 @@ test_qr_solver_complx:
 		SADDA.M2		R49:R48,OR14,AR12
 	|	SMOV.M1		R59, R42
 		SADD.M1		R45,R60,R45
-	.loc 1 253 0 discriminator 2
+	.loc 1 251 0 discriminator 2
 		SFMULS32.M2		R53, R54, R2
 	|	SADD.M1		R1,R61,R43
-	.loc 1 251 0 discriminator 2
+	.loc 1 249 0 discriminator 2
 		SLDW		*AR12, R56
 		SNOP		5
 .LVL77:
-	.loc 1 252 0 discriminator 2
+	.loc 1 250 0 discriminator 2
 		SFMULS32.M1		R53, R56, R57
 	|	SFMULAS32.M2	R55, R56, R2, R2
-	.loc 1 253 0 discriminator 2
+	.loc 1 251 0 discriminator 2
 		SNOP		3
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SXOR		R38, R57, R8
-	.loc 1 252 0 discriminator 2
+	.loc 1 250 0 discriminator 2
 		SFMULAS32.M1	R55, R54, R8, R8
-	.loc 1 253 0 discriminator 2
+	.loc 1 251 0 discriminator 2
 		SFADDS32.M1		R26, R2, R26
-	.loc 1 246 0 discriminator 2
+	.loc 1 244 0 discriminator 2
 	[R0]	SBR		.L54
 		SNOP		3
-	.loc 1 252 0 discriminator 2
+	.loc 1 250 0 discriminator 2
 		SFADDS32.M2		R29, R8, R29
 		SNOP		2
 .LVL78:
-	.loc 1 246 0 discriminator 2
+	.loc 1 244 0 discriminator 2
 	;; condjump to .L54 occurs
 		SMVAAGL.M2		OR0, R43:R42
 	|	SADD.M1		1,R21,R21
-	.loc 1 242 0
+	.loc 1 240 0
 		SLT		R21, R32, R0
 	|	SADD.M1		8,R23,R9
 		SMVAAGH.M2		OR0, R43:R42
 		SNOP		1
-	.loc 1 128 0
+	.loc 1 126 0
 		SMVAGA36.M2		R43:R42, OR11
 	|	SMVAGA36.M1		R43:R42, AR0
 		SNOP		1
 		SADDA.M2		R49:R48,OR11,AR10
 		SNOP		1
-	.loc 1 260 0
+	.loc 1 258 0
 		SLDW		*-AR10[1], R49
-	.loc 1 255 0
+	.loc 1 253 0
 		SLDW		*AR10, R12
 		SNOP		4
-	.loc 1 260 0
+	.loc 1 258 0
 		SFSUBS32.M2		R29, R49, R44
-	.loc 1 255 0
+	.loc 1 253 0
 		SFSUBS32.M1		R26, R12, R14
 		SNOP		1
-	.loc 1 260 0
+	.loc 1 258 0
 		SFSPDP32T.M2		R44, R17:R16
-	.loc 1 255 0
+	.loc 1 253 0
 		SFSPDP32T.M1		R14, R11:R10
-	.loc 1 260 0
+	.loc 1 258 0
 		SFABSD.M2		R17:R16, R45:R44
-	.loc 1 255 0
+	.loc 1 253 0
 		SFABSD.M1		R11:R10, R43:R42
-	.loc 1 260 0
+	.loc 1 258 0
 		SFDPSP32.M2		R45:R44, R3
-	.loc 1 255 0
+	.loc 1 253 0
 		SFDPSP32.M1		R43:R42, R43
 		SNOP		1
 .LVL79:
-	.loc 1 265 0
+	.loc 1 263 0
 		SFCMPGS32.M2		R3, R40, R2
 	[R2]	SBR		.L142
 	|	SADD.M2		8,R22,R11
@@ -1461,19 +1461,19 @@ test_qr_solver_complx:
 		SADD.M2		R20,R17,R20
 		SNOP		4
 	;; condjump to .L142 occurs
-	.loc 1 271 0
+	.loc 1 269 0
 		SFCMPGS32.M2		R43, R40, R1
 	[R1]	SBR		.L143
 		SNOP		6
 	;; condjump to .L143 occurs
-	.loc 1 242 0
+	.loc 1 240 0
 	[R0]	SBR		.L61
 	|	SLTU		R9, R23, R45
 	|	SMOV.M2		R9, R23
 		SADD.M2		R24,R45,R24
 		SNOP		5
 	;; condjump to .L61 occurs
-	.loc 1 240 0
+	.loc 1 238 0
 		SADD.M2		1,R33,R33
 	|	SADD.M1		R30,R37,R20
 .LVL80:
@@ -1493,7 +1493,7 @@ test_qr_solver_complx:
 	;; condjump to .L53 occurs
 .LVL82:
 .L151:
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDW		*+AR15[18], R30
 	|	SMOVIL		0, R28
 	|	SMOV.M2		R32, R25
@@ -1526,24 +1526,24 @@ test_qr_solver_complx:
 		SSTW		R43, *+AR15[19]
 	|	SMOVIL		1092616192, R38
 		SMOVIL		0, R30
-	.loc 1 298 0
+	.loc 1 296 0
 		SMOVIH		-2147483648, R40
-	.loc 1 315 0
+	.loc 1 313 0
 		SMOVIH		1092616192, R38
 .LVL83:
 .L60:
-	.loc 1 318 0 discriminator 1
+	.loc 1 316 0 discriminator 1
 		SMOVIL.L		.LC9, R42
 		SMOVIH.L		.LC9, R42
 		SMOVIH4.L		.LC9, R43
 		SMVAGA36.M2		R43:R42, AR8
 	|	SMOVIL		0, R32
-	.loc 1 317 0 discriminator 1
+	.loc 1 315 0 discriminator 1
 		SMOVIL		0, R33
 		SMOVIL		0, R59
 .LVL84:
 .L70:
-	.loc 1 128 0 discriminator 1
+	.loc 1 126 0 discriminator 1
 		SMOVIL		0, R56
 	|	SMOV.M2		R32, R46
 	|	SMOV.M1		R33, R47
@@ -1555,7 +1555,7 @@ test_qr_solver_complx:
 	|	SMOVIL		0, R60
 .LVL85:
 .L62:
-	.loc 1 128 0 is_stmt 0 discriminator 2
+	.loc 1 126 0 is_stmt 0 discriminator 2
 		SADD.M2		R42,R30,R44
 	|	SADD.M1		R43,R31,R58
 		SLTU		R44, R30, R55
@@ -1566,54 +1566,54 @@ test_qr_solver_complx:
 		SMVAGA36.M1		R45:R44, AR0
 	|	SLDW		*AR10, R61
 	|	SADD.M2		8,R42,R8
-	.loc 1 295 0 is_stmt 1 discriminator 2
+	.loc 1 293 0 is_stmt 1 discriminator 2
 		SLDW		*-AR10[1], R12
 	|	SLTU		R8, R42, R49
 	|	SMOV.M2		R8, R42
 .LVL86:
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SMVAAA.M2		AR0, OR12
 	|	SADD.M1		R43,R49,R43
 		SNOP		1
 		SADDA.M2		R47:R46,OR12,AR10
 		SNOP		2
-	.loc 1 298 0 discriminator 2
+	.loc 1 296 0 discriminator 2
 		SLDW		*AR10, R14
-	.loc 1 297 0 discriminator 2
+	.loc 1 295 0 discriminator 2
 		SLDW		*-AR10[1], R16
 		SNOP		4
 .LVL87:
-	.loc 1 298 0 discriminator 2
+	.loc 1 296 0 discriminator 2
 		SXOR		R40, R14, R10
 .LVL88:
-	.loc 1 299 0 discriminator 2
+	.loc 1 297 0 discriminator 2
 		SFMULS32.M1		R61, R10, R3
 	|	SFMULS32.M2		R61, R16, R9
-	.loc 1 300 0 discriminator 2
+	.loc 1 298 0 discriminator 2
 		SNOP		3
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SXOR		R40, R3, R11
 	|	SFMULAS32.M2	R12, R10, R9, R9
-	.loc 1 299 0 discriminator 2
+	.loc 1 297 0 discriminator 2
 		SFMULAS32.M1	R12, R16, R11, R11
 		SNOP		1
-	.loc 1 293 0 discriminator 2
+	.loc 1 291 0 discriminator 2
 	[R1]	SBR		.L62
 		SNOP		2
-	.loc 1 300 0 discriminator 2
+	.loc 1 298 0 discriminator 2
 		SFADDS32.M1		R56, R9, R56
-	.loc 1 299 0 discriminator 2
+	.loc 1 297 0 discriminator 2
 		SFADDS32.M1		R57, R11, R57
 		SNOP		2
 .LVL89:
-	.loc 1 293 0 discriminator 2
+	.loc 1 291 0 discriminator 2
 	;; condjump to .L62 occurs
-	.loc 1 302 0
+	.loc 1 300 0
 		SEQ		R59, R34, R0
 	[R0]	SBR		.L144
 		SNOP		6
 	;; condjump to .L144 occurs
-	.loc 1 308 0
+	.loc 1 306 0
 		SFSPDP32T.M2		R57, R47:R46
 		SNOP		1
 		SFABSD.M2		R47:R46, R45:R44
@@ -1622,34 +1622,34 @@ test_qr_solver_complx:
 		SNOP		2
 .LVL90:
 .L64:
-	.loc 1 310 0
+	.loc 1 308 0
 		SFSPDP32T.M2		R56, R23:R22
 	|	SFCMPGS32.M1		R45, R38, R2
-	.loc 1 315 0
+	.loc 1 313 0
 	[R2]	SBR		.L65
-	.loc 1 310 0
+	.loc 1 308 0
 		SFABSD.M2		R23:R22, R43:R42
 		SNOP		1
 		SFDPSP32.M2		R43:R42, R15
 		SNOP		3
 .LVL91:
-	.loc 1 315 0
+	.loc 1 313 0
 	;; condjump to .L65 occurs
-	.loc 1 315 0 is_stmt 0 discriminator 1
+	.loc 1 313 0 is_stmt 0 discriminator 1
 		SFCMPGS32.M2		R15, R38, R1
 	[!R1]	SBR		.L66
 		SNOP		6
 	;; condjump to .L66 occurs
 .L65:
 .LVL92:
-	.loc 1 318 0 is_stmt 1
+	.loc 1 316 0 is_stmt 1
 		SMVAAGL.M1		AR8, R27:R26
 	|	SFSPDP32T.M2		R45, R21:R20
 	|	SMOVIL		0, R17
 	|	SSTW		R59, *+AR15[13]
-	.loc 1 317 0
+	.loc 1 315 0
 		SSTH		R17, *+AR15[28]
-	.loc 1 318 0
+	.loc 1 316 0
 		SFSPDP32T.M2		R15, R25:R24
 	|	SMVAAGH.M1		AR8, R27:R26
 		SNOP		1
@@ -1668,7 +1668,7 @@ test_qr_solver_complx:
 		SNOP		5
 .LVL94:
 .L66:
-	.loc 1 289 0
+	.loc 1 287 0
 		SADD.M2		1,R59,R59
 	|	SADD.M1		R32,R35,R19
 .LVL95:
@@ -1687,7 +1687,7 @@ test_qr_solver_complx:
 		SLTU		R43, R36, R47
 	|	SLDW		*+AR15[19], R36
 	|	SADD.M2		R37,R41,R37
-	.loc 1 287 0
+	.loc 1 285 0
 		SLT		R34, R39, R2
 	|	SADD.M2		R37,R47,R37
 	[R2]	SBR		.L60
@@ -1709,7 +1709,7 @@ test_qr_solver_complx:
 	|	SMOV.M2		R39, R37
 	|	SMOV.M1		R41, R29
 .LVL97:
-	.loc 1 128 0
+	.loc 1 126 0
 		SSHFLL		1, R50, R18
 		SLTU		R13, R18, R51
 		SSHFLL		3, R50, R53
@@ -1719,16 +1719,16 @@ test_qr_solver_complx:
 	|	SADD.M2		R33,R32,R59
 .LVL98:
 		SMOVIL		0, R60
-	.loc 1 332 0
+	.loc 1 330 0
 		SMOVIH		1092616192, R56
 .L73:
-	.loc 1 128 0
+	.loc 1 126 0
 		SMVAGA36.M2		R43:R42, AR10
 	|	SADD.M1		R42,R53,R57
-	.loc 1 330 0
+	.loc 1 328 0
 		SADD.M1		1,R60,R60
 	|	SLTU		R57, R42, R38
-	.loc 1 332 0
+	.loc 1 330 0
 		SLDW		*-AR10[1], R39
 	|	SADD.M2		R43,R59,R40
 	|	SLT		R60, R37, R1
@@ -1745,7 +1745,7 @@ test_qr_solver_complx:
 	[!R2]	SBR		.L71
 		SNOP		6
 	;; condjump to .L71 occurs
-	.loc 1 332 0 is_stmt 0 discriminator 1
+	.loc 1 330 0 is_stmt 0 discriminator 1
 		SLDW		*AR10, R55
 		SNOP		5
 		SFSPDP32T.M2		R55, R13:R12
@@ -1758,21 +1758,21 @@ test_qr_solver_complx:
 	[!R2]	SBR		.L71
 		SNOP		6
 	;; condjump to .L71 occurs
-	.loc 1 334 0 is_stmt 1
+	.loc 1 332 0 is_stmt 1
 		SMOVIL		0, R0
 .L71:
 .LVL99:
-	.loc 1 330 0
+	.loc 1 328 0
 	[R1]	SBR		.L73
 		SNOP		6
 	;; condjump to .L73 occurs
-	.loc 1 346 0
+	.loc 1 344 0
 	[!R0]	SBR		.L74
 	|	SMOVIL		204, R44
 	|	SMVAAGL.M1		AR9, R11:R10
 	|	SMVAAGL.M2		OR9, R19:R18
 	|	SLDDW		*+AR15[20], R25:R24
-	.loc 1 348 0
+	.loc 1 346 0
 		SMOVIL		0, R45
 	|	SMVAAGL.M1		OR8, R21:R20
 	|	SMVAAGL.M2		AR14, R27:R26
@@ -1799,7 +1799,7 @@ test_qr_solver_complx:
 		SNOP		2
 .LVL100:
 .L165:
-	.loc 1 349 0
+	.loc 1 347 0
 		SLDW		*+AR15[50], R49
 	|	SMOVIL		-1, R54
 		SLDW		*+AR15[51], R44
@@ -1807,17 +1807,17 @@ test_qr_solver_complx:
 		SLDW		*+AR15[30], R16
 	|	SMOV.M2		R61, R1
 	|	SMOVIL		-2147483648, R20
-	.loc 1 350 0
+	.loc 1 348 0
 		SLDW		*+AR15[11], R27
 	|	SMOVIL		1, R3
 	[R1]	SBR		.L145
 	|	SLDW		*+AR15[12], R17
 	|	SMOVIL		1092616192, R24
-	.loc 1 128 0
+	.loc 1 126 0
 		SMOVIH		-2147483648, R20
-	.loc 1 384 0
+	.loc 1 382 0
 		SMOVIH		1092616192, R24
-	.loc 1 349 0
+	.loc 1 347 0
 		SSUB.M2		R49, R44, R14
 		SSUB.M2		R16, R14, R10
 .LVL101:
@@ -1825,18 +1825,18 @@ test_qr_solver_complx:
 		SSTW		R10, *+AR15[31]
 	;; condjump to .L145 occurs
 .LVL102:
-	.loc 1 350 0
+	.loc 1 348 0
 		SLDW		*+AR15[13], R25
 	|	SMOVIL		0, R11
-	.loc 1 361 0
+	.loc 1 359 0
 		SNOP		1
 		SLDDW		*+AR15[10], R49:R48
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDDW		*+AR15[8], R47:R46
 		SNOP		5
 .LVL103:
 .L76:
-	.loc 1 334 0 discriminator 1
+	.loc 1 332 0 discriminator 1
 		SMOVIL		0, R9
 	|	SMVAGA36.M1		R47:R46, AR0
 		SMOVIH		0, R9
@@ -1846,7 +1846,7 @@ test_qr_solver_complx:
 		SMOVIL		0, R15
 .LVL104:
 .L77:
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SMVAAA.M2		AR0, OR14
 	|	SMOV.M1		R42, R44
 		SMOV.M1		R43, R45
@@ -1854,79 +1854,79 @@ test_qr_solver_complx:
 		SADDA.M1		R45:R44,OR14,AR10
 	|	SADDA.M2		R45:R44,AR14,AR12
 		SNOP		1
-	.loc 1 368 0 discriminator 2
+	.loc 1 366 0 discriminator 2
 		SLDW		*+AR10[1], R21
 	|	SADD.M2		1,R15,R15
 	|	SADD.M1		8,R42,R19
-	.loc 1 370 0 discriminator 2
+	.loc 1 368 0 discriminator 2
 		SLDW		*+AR12[1], R45
 	|	SLT		R15, R27, R2
-	.loc 1 369 0 discriminator 2
+	.loc 1 367 0 discriminator 2
 		SLDW		*AR12, R37
 	|	SLTU		R19, R42, R23
 	|	SMOV.M2		R19, R42
-	.loc 1 367 0 discriminator 2
+	.loc 1 365 0 discriminator 2
 		SLDW		*AR10, R30
 	|	SADD.M2		R43,R23,R43
 		SNOP		3
-	.loc 1 371 0 discriminator 2
+	.loc 1 369 0 discriminator 2
 		SFMULS32.M2		R21, R45, R28
 .LVL105:
-	.loc 1 372 0 discriminator 2
+	.loc 1 370 0 discriminator 2
 		SFMULS32.M1		R21, R37, R36
 		SNOP		2
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SXOR		R20, R28, R29
-	.loc 1 371 0 discriminator 2
+	.loc 1 369 0 discriminator 2
 		SFMULAS32.M1	R30, R37, R29, R29
 	|	SFMULAS32.M2	R30, R45, R36, R36
-	.loc 1 372 0 discriminator 2
+	.loc 1 370 0 discriminator 2
 		SNOP		1
-	.loc 1 365 0 discriminator 2
+	.loc 1 363 0 discriminator 2
 	[R2]	SBR		.L77
 		SNOP		3
-	.loc 1 371 0 discriminator 2
+	.loc 1 369 0 discriminator 2
 		SFADDS32.M1		R22, R29, R22
 	|	SFADDS32.M2		R9, R36, R9
 .LVL106:
-	.loc 1 372 0 discriminator 2
+	.loc 1 370 0 discriminator 2
 		SNOP		2
 .LVL107:
-	.loc 1 365 0 discriminator 2
+	.loc 1 363 0 discriminator 2
 	;; condjump to .L77 occurs
-	.loc 1 128 0
+	.loc 1 126 0
 		SMVAGA36.M2		R49:R48, AR10
 	|	SADD.M1		8,R48,R59
 		SLTU		R59, R48, R60
 	|	SADD.M1		R47,R25,R47
-	.loc 1 374 0
+	.loc 1 372 0
 		SLDW		*-AR10[1], R50
 	|	SMOV.M2		R59, R48
 	|	SADD.M1		R49,R60,R49
-	.loc 1 379 0
+	.loc 1 377 0
 		SLDW		*AR10, R13
 		SNOP		4
-	.loc 1 374 0
+	.loc 1 372 0
 		SFSUBS32.M2		R22, R50, R18
-	.loc 1 379 0
+	.loc 1 377 0
 		SFSUBS32.M1		R9, R13, R51
 		SNOP		1
-	.loc 1 374 0
+	.loc 1 372 0
 		SFSPDP32T.M2		R18, R33:R32
-	.loc 1 379 0
+	.loc 1 377 0
 		SFSPDP32T.M1		R51, R57:R56
-	.loc 1 374 0
+	.loc 1 372 0
 		SFABSD.M2		R33:R32, R45:R44
-	.loc 1 379 0
+	.loc 1 377 0
 		SFABSD.M1		R57:R56, R43:R42
-	.loc 1 374 0
+	.loc 1 372 0
 		SFDPSP32.M2		R45:R44, R53
 .LVL108:
-	.loc 1 379 0
+	.loc 1 377 0
 		SFDPSP32.M1		R43:R42, R33
 		SNOP		1
 .LVL109:
-	.loc 1 384 0
+	.loc 1 382 0
 		SFCMPGS32.M2		R53, R24, R0
 	[R0]	SBR		.L146
 	|	SADD.M2		R46,R17,R57
@@ -1935,19 +1935,19 @@ test_qr_solver_complx:
 		SADD.M2		R47,R39,R47
 		SNOP		4
 	;; condjump to .L146 occurs
-	.loc 1 390 0
+	.loc 1 388 0
 		SFCMPGS32.M2		R33, R24, R1
 	[R1]	SBR		.L147
 		SNOP		6
 	;; condjump to .L147 occurs
-	.loc 1 361 0
+	.loc 1 359 0
 		SADD.M2		1,R11,R11
 .LVL110:
 		SLT		R11, R27, R2
 	[R2]	SBR		.L76
 		SNOP		6
 	;; condjump to .L76 occurs
-	.loc 1 403 0
+	.loc 1 401 0
 		SMOVIL		204, R46
 	|	SMVAAGL.M1		AR9, R11:R10
 	|	SMVAAGL.M2		OR9, R19:R18
@@ -1975,20 +1975,20 @@ test_qr_solver_complx:
 		SNOP		2
 .LVL112:
 .L166:
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDDW		*+AR15[17], R9:R8
-	.loc 1 404 0
+	.loc 1 402 0
 		SLDW		*+AR15[50], R41
 		SLDW		*+AR15[51], R55
 		SLDW		*+AR15[30], R58
 		SLDW		*+AR15[11], R61
 		SNOP		1
-	.loc 1 128 0
+	.loc 1 126 0
 		SMVAGA36.M1		R9:R8, OR1
 		SNOP		1
 		SADDA.M2		4,OR1,OR2
 	|	SSUB.M1		R41, R55, R12
-	.loc 1 404 0
+	.loc 1 402 0
 		SSUB.M1		R58, R12, R54
 		SLDW		*+AR15[13], R49
 	|	SMOV.M1		R61, R33
@@ -2007,42 +2007,42 @@ test_qr_solver_complx:
 		SSTW		R54, *+AR15[32]
 .LVL115:
 .L83:
-	.loc 1 392 0 discriminator 1
+	.loc 1 390 0 discriminator 1
 		SLDW		*+AR15[23], R3
 	|	SMOVIL		-2147483648, R22
 	|	SMOV.M2		R36, R16
-	.loc 1 429 0 discriminator 1
+	.loc 1 427 0 discriminator 1
 		SMOVIL		1065353216, R14
-	.loc 1 444 0 discriminator 1
+	.loc 1 442 0 discriminator 1
 		SMOVIL		1092616192, R15
-	.loc 1 392 0 discriminator 1
+	.loc 1 390 0 discriminator 1
 		SMOVIL		0, R9
-	.loc 1 128 0 discriminator 1
+	.loc 1 126 0 discriminator 1
 		SMOVIH		-2147483648, R22
-	.loc 1 429 0 discriminator 1
+	.loc 1 427 0 discriminator 1
 		SMOVIH		1065353216, R14
-	.loc 1 444 0 discriminator 1
+	.loc 1 442 0 discriminator 1
 		SMOVIH		1092616192, R15
 .LVL116:
 .L92:
 		SSUB.M2		R16, R36, R20
 	|	SMOVIL		0, R24
 	|	SSUB.M1		R3, R37, R10
-	.loc 1 392 0 discriminator 1
+	.loc 1 390 0 discriminator 1
 		SMOVIH		0, R24
 	|	SMOV.M2		R16, R42
 	|	SMOV.M1		R3, R43
-	.loc 1 128 0 discriminator 1
+	.loc 1 126 0 discriminator 1
 		SLTU		R36, R20, R26
 	|	SMOV.M2		R30, R44
 	|	SMOV.M1		R31, R45
-	.loc 1 392 0 discriminator 1
+	.loc 1 390 0 discriminator 1
 		SMOV.M2		R24, R17
 	|	SSUB.M1		R26, R10, R25
 	|	SMOVIL		0, R27
 .LVL117:
 .L84:
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SADD.M2		R42,R20,R48
 	|	SADD.M1		R43,R25,R23
 		SLTU		R48, R20, R19
@@ -2060,9 +2060,9 @@ test_qr_solver_complx:
 	|	SLDW		*-AR10[1], R13
 .LVL118:
 	;no-op trunc di R47:R46 to pdi R47:R46
-	.loc 1 418 0 discriminator 2
+	.loc 1 416 0 discriminator 2
 		SADD.M1		1,R27,R27
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SADDA.M2		R47:R46,OR12,AR12
 	|	SLT		R27, R33, R0
 	|	SADD.M1		8,R44,R51
@@ -2071,62 +2071,62 @@ test_qr_solver_complx:
 		SLTU		R53, R42, R59
 	|	SADD.M2		R43,R38,R43
 	|	SMOV.M1		R51, R44
-	.loc 1 425 0 discriminator 2
+	.loc 1 423 0 discriminator 2
 		SFMULS32.M2		R29, R52, R50
 	|	SMOV.M1		R53, R42
-	.loc 1 423 0 discriminator 2
+	.loc 1 421 0 discriminator 2
 		SLDW		*AR12, R18
 	|	SADD.M2		R45,R1,R45
 	|	SADD.M1		R43,R59,R43
 .LVL119:
 		SNOP		5
-	.loc 1 424 0 discriminator 2
+	.loc 1 422 0 discriminator 2
 		SFMULS32.M1		R29, R18, R56
 	|	SFMULAS32.M2	R13, R18, R50, R50
-	.loc 1 425 0 discriminator 2
+	.loc 1 423 0 discriminator 2
 		SNOP		3
-	.loc 1 128 0 discriminator 2
+	.loc 1 126 0 discriminator 2
 		SXOR		R22, R56, R57
-	.loc 1 424 0 discriminator 2
+	.loc 1 422 0 discriminator 2
 		SFMULAS32.M1	R13, R52, R57, R57
-	.loc 1 425 0 discriminator 2
+	.loc 1 423 0 discriminator 2
 		SFADDS32.M1		R24, R50, R24
-	.loc 1 418 0 discriminator 2
+	.loc 1 416 0 discriminator 2
 	[R0]	SBR		.L84
 		SNOP		3
-	.loc 1 424 0 discriminator 2
+	.loc 1 422 0 discriminator 2
 		SFADDS32.M2		R17, R57, R17
 		SNOP		2
 .LVL120:
-	.loc 1 418 0 discriminator 2
+	.loc 1 416 0 discriminator 2
 	;; condjump to .L84 occurs
-	.loc 1 427 0
+	.loc 1 425 0
 		SEQ		R9, R32, R2
 	[R2]	SBR		.L148
 		SNOP		6
 	;; condjump to .L148 occurs
-	.loc 1 433 0
+	.loc 1 431 0
 		SFSPDP32T.M1		R17, R43:R42
 	|	SFSPDP32T.M2		R24, R49:R48
-	.loc 1 439 0
+	.loc 1 437 0
 		SNOP		1
-	.loc 1 433 0
+	.loc 1 431 0
 		SFABSD.M2		R43:R42, R45:R44
 		SNOP		1
 		SFDPSP32.M2		R45:R44, R11
 	|	SFABSD.M1		R49:R48, R43:R42
 .LVL121:
-	.loc 1 439 0
+	.loc 1 437 0
 		SNOP		1
 		SFDPSP32.M1		R43:R42, R47
 .LVL122:
-	.loc 1 444 0
+	.loc 1 442 0
 		SFCMPGS32.M2		R11, R15, R1
 	[R1]	SBR		.L149
 		SNOP		6
 	;; condjump to .L149 occurs
 .L133:
-	.loc 1 414 0
+	.loc 1 412 0
 		SADD.M2		1,R9,R9
 	|	SFCMPGS32.M1		R47, R15, R0
 .LVL123:
@@ -2137,13 +2137,13 @@ test_qr_solver_complx:
 	|	SMOV.M2		R8, R16
 		SADD.M2		R3,R55,R3
 		SNOP		4
-	.loc 1 450 0
+	.loc 1 448 0
 	;; condjump to .L150 occurs
-	.loc 1 414 0
+	.loc 1 412 0
 	[R2]	SBR		.L92
 		SNOP		6
 	;; condjump to .L92 occurs
-	.loc 1 412 0
+	.loc 1 410 0
 		SADD.M2		1,R32,R32
 	|	SADD.M1		R30,R40,R49
 .LVL124:
@@ -2160,14 +2160,14 @@ test_qr_solver_complx:
 		SMOV.M2		R33, R37
 .LVL126:
 .L74:
-	.loc 1 461 0
+	.loc 1 459 0
 		SLDH		*+AR15[28], R36
 		SNOP		5
 		SAND		1, R36, R0
 	[!R0]	SBR		.L93
 		SNOP		6
 	;; condjump to .L93 occurs
-	.loc 1 463 0
+	.loc 1 461 0
 		SMOVIL.L		.LC15, R42
 	|	SSTW		R37, *+AR15[11]
 		SMOVIH.L		.LC15, R42
@@ -2181,7 +2181,7 @@ test_qr_solver_complx:
 		SNOP		3
 .LVL127:
 .L167:
-	.loc 1 464 0
+	.loc 1 462 0
 		SLDW		*+AR15[11], R9
 	|	SMOVIL.L		.LC16, R46
 		SLDW		*+AR15[33], R22
@@ -2207,7 +2207,7 @@ test_qr_solver_complx:
 .L168:
 		SLDW		*+AR15[22], R20
 	|	SMOVIL		4, R47
-	.loc 1 168 0
+	.loc 1 166 0
 		SNOP		5
 		SADD.M2		1,R20,R24
 		SEQ		R47, R24, R2
@@ -2217,7 +2217,7 @@ test_qr_solver_complx:
 	;; condjump to .L95 occurs
 .LVL129:
 .L153:
-	.loc 1 472 0
+	.loc 1 470 0
 		SLDDW		*+AR15[32], R7:R6
 		SLDDW		*+AR15[36], R63:R62
 		SLDDW		*+AR15[26], R31:R30
@@ -2255,7 +2255,7 @@ test_qr_solver_complx:
 	;; return occurs
 .LVL133:
 .L141:
-	.loc 1 231 0
+	.loc 1 229 0
 		SBR		puts
 	|	SMOVIH4.L		.LC6, R11
 		SMOVIL		.L169, R62
@@ -2275,12 +2275,12 @@ test_qr_solver_complx:
 .LVL136:
 		SLDDW		*+AR15[21], R37:R36
 	|	SMOVIL		1092616192, R40
-	.loc 1 128 0
+	.loc 1 126 0
 		SMOVIH		-2147483648, R38
-	.loc 1 265 0
+	.loc 1 263 0
 		SMOVIH		1092616192, R40
 		SNOP		2
-	.loc 1 128 0
+	.loc 1 126 0
 		SSHFLL		1, R8, R44
 		SSTW		R44, *+AR15[18]
 	|	SSHFLL		2, R8, R33
@@ -2311,7 +2311,7 @@ test_qr_solver_complx:
 	;; jump to .L53 occurs
 .LVL137:
 .L144:
-	.loc 1 304 0
+	.loc 1 302 0
 		SMOVIL		1065353216, R42
 		SMOVIH		1065353216, R42
 		SFSUBS32.M2		R42, R57, R43
@@ -2327,13 +2327,13 @@ test_qr_solver_complx:
 	;; jump to .L64 occurs
 .LVL139:
 .L148:
-	.loc 1 429 0
+	.loc 1 427 0
 		SFSUBS32.M1		R14, R17, R60
 	|	SFSPDP32T.M2		R24, R49:R48
-	.loc 1 439 0
+	.loc 1 437 0
 		SNOP		1
 		SFABSD.M2		R49:R48, R43:R42
-	.loc 1 429 0
+	.loc 1 427 0
 		SFSPDP32T.M1		R60, R47:R46
 		SNOP		1
 		SFABSD.M2		R47:R46, R45:R44
@@ -2341,17 +2341,17 @@ test_qr_solver_complx:
 		SFDPSP32.M1		R45:R44, R11
 	|	SFDPSP32.M2		R43:R42, R47
 .LVL140:
-	.loc 1 439 0
+	.loc 1 437 0
 		SNOP		2
 .LVL141:
-	.loc 1 444 0
+	.loc 1 442 0
 		SFCMPGS32.M2		R11, R15, R1
 	[!R1]	SBR		.L133
 		SNOP		6
 	;; condjump to .L133 occurs
 .L149:
 .LVL142:
-	.loc 1 447 0
+	.loc 1 445 0
 		SFSPDP32T.M2		R11, R55:R54
 	|	SMOVIL.L		.LC13, R44
 	|	SADD.M1		1,R32,R32
@@ -2363,15 +2363,15 @@ test_qr_solver_complx:
 	|	SMOVIL		.L170, R62
 		SMOVIH		.L170, R62
 		SMOVIH4.L		.L170, R63
-	.loc 1 446 0
+	.loc 1 444 0
 		SMOVIL		0, R61
 		SSTH		R61, *+AR15[28]
-	.loc 1 447 0
+	.loc 1 445 0
 	;; call to printf occurs, with return value
 		SNOP		1
 .LVL143:
 .L170:
-	.loc 1 412 0
+	.loc 1 410 0
 		SLT		R32, R33, R1
 	|	SADD.M2		R30,R40,R49
 	|	SADD.M1		R31,R38,R43
@@ -2386,38 +2386,38 @@ test_qr_solver_complx:
 	;; jump to .L137 occurs
 .LVL144:
 .L142:
-	.loc 1 268 0
+	.loc 1 266 0
 		SFSPDP32T.M2		R3, R49:R48
 	|	SMOVIL.L		.LC7, R44
 	|	SSTW		R13, *+AR15[13]
 		SMOVIH.L		.LC7, R44
 	|	SSTW		R18, *+AR15[12]
-	.loc 1 274 0
+	.loc 1 272 0
 		SBR		printf
 	|	SMOVIH4.L		.LC7, R45
-	.loc 1 268 0
+	.loc 1 266 0
 		SMOVIL		.L171, R62
 		SSTDW		R45:R44, *+AR15[1]
 	|	SMOVIH		.L171, R62
-	.loc 1 274 0
+	.loc 1 272 0
 		SSTDW		R49:R48, *+AR15[2]
 	|	SMOVIH4.L		.L171, R63
-	.loc 1 267 0
+	.loc 1 265 0
 		SMOVIL		0, R22
 		SNOP		1
-	.loc 1 274 0
+	.loc 1 272 0
 	;; call to printf occurs, with return value
 		SSTH		R22, *+AR15[28]
 .LVL145:
 .L171:
-	.loc 1 275 0
+	.loc 1 273 0
 		SLDW		*+AR15[13], R13
 		SNOP		1
 		SLDW		*+AR15[12], R18
 		SNOP		5
 .L152:
 .LVL146:
-	.loc 1 240 0
+	.loc 1 238 0
 		SADD.M2		1,R33,R33
 	|	SADD.M1		R30,R37,R20
 .LVL147:
@@ -2439,7 +2439,7 @@ test_qr_solver_complx:
 	;; jump to .L151 occurs
 .LVL148:
 .L143:
-	.loc 1 274 0
+	.loc 1 272 0
 		SFSPDP32T.M2		R43, R49:R48
 	|	SMOVIL.L		.LC8, R44
 	|	SSTW		R13, *+AR15[13]
@@ -2452,15 +2452,15 @@ test_qr_solver_complx:
 	|	SMOVIH		.L172, R62
 		SSTDW		R49:R48, *+AR15[2]
 	|	SMOVIH4.L		.L172, R63
-	.loc 1 273 0
+	.loc 1 271 0
 		SMOVIL		0, R19
 		SNOP		1
-	.loc 1 274 0
+	.loc 1 272 0
 	;; call to printf occurs, with return value
 		SSTH		R19, *+AR15[28]
 .LVL149:
 .L172:
-	.loc 1 275 0
+	.loc 1 273 0
 		SLDW		*+AR15[13], R13
 		SBR		.L152
 		SLDW		*+AR15[12], R18
@@ -2468,7 +2468,7 @@ test_qr_solver_complx:
 	;; jump to .L152 occurs
 .LVL150:
 .L150:
-	.loc 1 453 0
+	.loc 1 451 0
 		SFSPDP32T.M2		R47, R13:R12
 	|	SMOVIL.L		.LC14, R44
 	|	SADD.M1		1,R32,R32
@@ -2480,15 +2480,15 @@ test_qr_solver_complx:
 	|	SMOVIL		.L173, R62
 		SMOVIH		.L173, R62
 		SMOVIH4.L		.L173, R63
-	.loc 1 452 0
+	.loc 1 450 0
 		SMOVIL		0, R58
 		SSTH		R58, *+AR15[28]
-	.loc 1 453 0
+	.loc 1 451 0
 	;; call to printf occurs, with return value
 		SNOP		1
 .LVL151:
 .L173:
-	.loc 1 412 0
+	.loc 1 410 0
 		SLT		R32, R33, R1
 	|	SADD.M2		R30,R40,R49
 	|	SADD.M1		R31,R38,R43
@@ -2503,7 +2503,7 @@ test_qr_solver_complx:
 	;; jump to .L137 occurs
 .LVL152:
 .L93:
-	.loc 1 468 0
+	.loc 1 466 0
 		SMOVIL.L		.LC17, R42
 	|	SSTW		R37, *+AR15[4]
 		SMOVIH.L		.LC17, R42
@@ -2518,7 +2518,7 @@ test_qr_solver_complx:
 		SNOP		3
 .LVL153:
 .L174:
-	.loc 1 469 0
+	.loc 1 467 0
 		SLDW		*+AR15[31], R16
 	|	SMOVIL.L		.LC16, R42
 		SLDW		*+AR15[11], R30
@@ -2544,7 +2544,7 @@ test_qr_solver_complx:
 .L175:
 		SLDW		*+AR15[22], R20
 	|	SMOVIL		4, R47
-	.loc 1 168 0
+	.loc 1 166 0
 		SNOP		5
 		SADD.M2		1,R20,R24
 		SEQ		R47, R24, R2
@@ -2557,21 +2557,21 @@ test_qr_solver_complx:
 	;; jump to .L153 occurs
 .LVL155:
 .L44:
-	.loc 1 210 0
+	.loc 1 208 0
 		SBR		srand
 	|	SMOVIL		973082626, R40
-	.loc 1 215 0
+	.loc 1 213 0
 		SMOVIL		.L176, R62
 		SMOVIH		.L176, R62
 		SMOVIH4.L		.L176, R63
 		SMOVIH		973082626, R40
 		SMOV.M2		R40, R38
-	.loc 1 210 0
+	.loc 1 208 0
 	;; call to srand occurs
 		SNOP		1
 .LVL156:
 .L176:
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDW		*+AR15[16], R12
 	|	SMOVIL		32764, R8
 		SLDW		*+AR15[23], R3
@@ -2582,14 +2582,14 @@ test_qr_solver_complx:
 		SMOV.M2		R9, R39
 .LVL157:
 .L50:
-	.loc 1 128 0 is_stmt 0 discriminator 1
+	.loc 1 126 0 is_stmt 0 discriminator 1
 		SMOVIL		512, R45
 		SADD.M2		R45,R30,R36
 		SLTU		R36, R30, R10
 		SADD.M2		R31,R10,R37
 .LVL158:
 .L51:
-	.loc 1 215 0 is_stmt 1 discriminator 2
+	.loc 1 213 0 is_stmt 1 discriminator 2
 		SBR		rand
 		SMOVIL		.L177, R62
 		SMOVIH		.L177, R62
@@ -2604,44 +2604,44 @@ test_qr_solver_complx:
 	|	SMOV.M2		R15, R30
 		SADD.M1		R31,R17,R31
 	|	SEQ		R15, R36, R2
-	.loc 1 213 0 discriminator 2
+	.loc 1 211 0 discriminator 2
 	[R2]	SEQ		R31, R37, R2
 	|	SFMULS32.M2		R13, R40, R18
 	|	SMVAGA36.M1		R31:R30, AR10
 	[!R2]	SBR		.L51
 		SNOP		2
-	.loc 1 215 0 discriminator 2
+	.loc 1 213 0 discriminator 2
 		SSTW		R18, *AR10
 		SNOP		3
-	.loc 1 213 0 discriminator 2
+	.loc 1 211 0 discriminator 2
 	;; condjump to .L51 occurs
-	.loc 1 217 0
+	.loc 1 215 0
 		SBR		rand
 	|	SMVAGA36.M2		R33:R32, AR8
-	.loc 1 128 0
+	.loc 1 126 0
 		SMOVIL		.L178, R62
 		SMOVIH		.L178, R62
 		SMOVIH4.L		.L178, R63
-	.loc 1 217 0
+	.loc 1 215 0
 	;; call to rand occurs, with return value
 		SNOP		3
 .LVL160:
 .L178:
 		SFINTS32.M2		R10,R19
-	.loc 1 218 0
+	.loc 1 216 0
 		SBR		rand
 		SMOVIL		.L179, R62
-	.loc 1 217 0
+	.loc 1 215 0
 		SFMULS32.M2		R19, R38, R20
 	|	SMOVIH		.L179, R62
 		SMOVIH4.L		.L179, R63
 		SNOP		2
-	.loc 1 218 0
+	.loc 1 216 0
 	;; call to rand occurs, with return value
 		SSTW		R20, *-AR8[1]
 .LVL161:
 .L179:
-	.loc 1 211 0
+	.loc 1 209 0
 		SEQ		R36, R41, R1
 	|	SFINTS32.M2		R10,R21
 	|	SADD.M1		8,R32,R22
@@ -2651,13 +2651,13 @@ test_qr_solver_complx:
 	|	SMOV.M1		R22, R32
 		SADD.M1		R33,R47,R33
 	|	SFMULS32.M2		R21, R38, R24
-	.loc 1 218 0
+	.loc 1 216 0
 		SNOP		3
 		SSTW		R24, *AR8
 		SNOP		1
-	.loc 1 211 0
+	.loc 1 209 0
 	;; condjump to .L50 occurs
-	.loc 1 227 0
+	.loc 1 225 0
 		SMOVIL		204, R42
 	|	SMVAAGL.M1		AR9, R11:R10
 	|	SMVAAGL.M2		OR9, R21:R20
@@ -2674,10 +2674,10 @@ test_qr_solver_complx:
 	|	SMOVIH		.L180, R62
 		SMVAAGL.M1		OR13, R13:R12
 	|	SMOVIH4.L		.L180, R63
-	.loc 1 211 0
+	.loc 1 209 0
 		SMOVIL		64, R30
 .LVL162:
-	.loc 1 227 0
+	.loc 1 225 0
 		SMVAAGH.M2		OR13, R13:R12
 	|	SMOV.M1		R30, R14
 	|	SMOVIL		-1, R31
@@ -2686,19 +2686,19 @@ test_qr_solver_complx:
 	|	SSTW		R30, *+AR15[11]
 .LVL163:
 .L180:
-	.loc 1 228 0
+	.loc 1 226 0
 		SLDW		*+AR15[50], R59
 	|	SEQ		R31, R10, R32
-	.loc 1 229 0
+	.loc 1 227 0
 		SMOV.M2		R32, R1
-	.loc 1 228 0
+	.loc 1 226 0
 		SLDW		*+AR15[51], R60
 		SLDW		*+AR15[30], R46
-	.loc 1 229 0
+	.loc 1 227 0
 	[!R1]	SBR		.L52
 	|	SLDW		*+AR15[11], R8
 		SNOP		3
-	.loc 1 228 0
+	.loc 1 226 0
 		SSUB.M2		R59, R60, R61
 		SSUB.M2		R46, R61, R42
 		SSTW		R42, *+AR15[33]
@@ -2709,7 +2709,7 @@ test_qr_solver_complx:
 	;; jump to .L141 occurs
 .LVL165:
 .L43:
-	.loc 1 194 0
+	.loc 1 192 0
 		SBR		srand
 	|	SLDDW		*+AR15[10], R33:R32
 	|	SMOVIL		1, R10
@@ -2717,10 +2717,10 @@ test_qr_solver_complx:
 	|	SMOVIL		.L181, R62
 		SMOVIH		.L181, R62
 		SMOVIH4.L		.L181, R63
-	.loc 1 199 0
+	.loc 1 197 0
 		SMOVIL		973082626, R36
 		SMOVIH		973082626, R36
-	.loc 1 194 0
+	.loc 1 192 0
 	;; call to srand occurs
 		SMOV.M2		R36, R37
 .LVL166:
@@ -2730,14 +2730,14 @@ test_qr_solver_complx:
 		SNOP		5
 .LVL167:
 .L48:
-	.loc 1 128 0 discriminator 1
+	.loc 1 126 0 discriminator 1
 		SMOVIL		384, R25
 		SADD.M2		R25,R30,R38
 		SLTU		R38, R30, R27
 		SADD.M2		R31,R27,R40
 .LVL168:
 .L49:
-	.loc 1 199 0 discriminator 2
+	.loc 1 197 0 discriminator 2
 		SBR		rand
 		SMOVIL		.L182, R62
 		SMOVIH		.L182, R62
@@ -2752,44 +2752,44 @@ test_qr_solver_complx:
 	|	SMOV.M2		R29, R30
 		SADD.M1		R31,R49,R31
 	|	SEQ		R29, R38, R0
-	.loc 1 197 0 discriminator 2
+	.loc 1 195 0 discriminator 2
 	[R0]	SEQ		R31, R40, R0
 	|	SFMULS32.M2		R28, R36, R51
 	|	SMVAGA36.M1		R31:R30, AR10
 	[!R0]	SBR		.L49
 		SNOP		2
-	.loc 1 199 0 discriminator 2
+	.loc 1 197 0 discriminator 2
 		SSTW		R51, *AR10
 		SNOP		3
-	.loc 1 197 0 discriminator 2
+	.loc 1 195 0 discriminator 2
 	;; condjump to .L49 occurs
-	.loc 1 201 0
+	.loc 1 199 0
 		SBR		rand
 	|	SMVAGA36.M2		R33:R32, AR8
-	.loc 1 128 0
+	.loc 1 126 0
 		SMOVIL		.L183, R62
 		SMOVIH		.L183, R62
 		SMOVIH4.L		.L183, R63
-	.loc 1 201 0
+	.loc 1 199 0
 	;; call to rand occurs, with return value
 		SNOP		3
 .LVL170:
 .L183:
 		SFINTS32.M2		R10,R52
-	.loc 1 202 0
+	.loc 1 200 0
 		SBR		rand
 		SMOVIL		.L184, R62
-	.loc 1 201 0
+	.loc 1 199 0
 		SFMULS32.M2		R52, R37, R53
 	|	SMOVIH		.L184, R62
 		SMOVIH4.L		.L184, R63
 		SNOP		2
-	.loc 1 202 0
+	.loc 1 200 0
 	;; call to rand occurs, with return value
 		SSTW		R53, *-AR8[1]
 .LVL171:
 .L184:
-	.loc 1 195 0
+	.loc 1 193 0
 		SEQ		R38, R39, R2
 	|	SFINTS32.M2		R10,R54
 	|	SADD.M1		8,R32,R55
@@ -2799,13 +2799,13 @@ test_qr_solver_complx:
 	|	SMOV.M1		R55, R32
 		SADD.M1		R33,R56,R33
 	|	SFMULS32.M2		R54, R37, R58
-	.loc 1 202 0
+	.loc 1 200 0
 		SNOP		3
 		SSTW		R58, *AR8
 		SNOP		1
-	.loc 1 195 0
+	.loc 1 193 0
 	;; condjump to .L48 occurs
-	.loc 1 227 0
+	.loc 1 225 0
 		SMOVIL		204, R42
 	|	SMVAAGL.M1		AR9, R11:R10
 	|	SMVAAGL.M2		OR9, R21:R20
@@ -2822,10 +2822,10 @@ test_qr_solver_complx:
 	|	SMOVIH		.L185, R62
 		SMVAAGL.M1		OR13, R13:R12
 	|	SMOVIH4.L		.L185, R63
-	.loc 1 195 0
+	.loc 1 193 0
 		SMOVIL		48, R30
 .LVL172:
-	.loc 1 227 0
+	.loc 1 225 0
 		SMVAAGH.M2		OR13, R13:R12
 	|	SMOV.M1		R30, R14
 	|	SMOVIL		-1, R31
@@ -2834,19 +2834,19 @@ test_qr_solver_complx:
 	|	SSTW		R30, *+AR15[11]
 .LVL173:
 .L185:
-	.loc 1 228 0
+	.loc 1 226 0
 		SLDW		*+AR15[50], R59
 	|	SEQ		R31, R10, R32
-	.loc 1 229 0
+	.loc 1 227 0
 		SMOV.M2		R32, R1
-	.loc 1 228 0
+	.loc 1 226 0
 		SLDW		*+AR15[51], R60
 		SLDW		*+AR15[30], R46
-	.loc 1 229 0
+	.loc 1 227 0
 	[!R1]	SBR		.L52
 	|	SLDW		*+AR15[11], R8
 		SNOP		3
-	.loc 1 228 0
+	.loc 1 226 0
 		SSUB.M2		R59, R60, R61
 		SSUB.M2		R46, R61, R42
 		SSTW		R42, *+AR15[33]
@@ -2857,7 +2857,7 @@ test_qr_solver_complx:
 	;; jump to .L141 occurs
 .LVL175:
 .L147:
-	.loc 1 393 0
+	.loc 1 391 0
 		SFSPDP32T.M2		R33, R47:R46
 	|	SMOVIL.L		.LC12, R44
 	|	SSTW		R11, *+AR15[6]
@@ -2865,9 +2865,9 @@ test_qr_solver_complx:
 	|	SSTW		R26, *+AR15[7]
 		SMOVIH4.L		.LC12, R45
 .LVL176:
-	.loc 1 392 0
+	.loc 1 390 0
 		SMOVIL		0, R48
-	.loc 1 393 0
+	.loc 1 391 0
 		SSTDW		R45:R44, *+AR15[1]
 		SSTDW		R47:R46, *+AR15[2]
 		SNOP		1
@@ -2879,21 +2879,21 @@ test_qr_solver_complx:
 		SMOVIH4.L		.L186, R63
 		SNOP		1
 		SSTW		R27, *+AR15[11]
-	.loc 1 392 0
+	.loc 1 390 0
 		SSTH		R48, *+AR15[28]
-	.loc 1 393 0
+	.loc 1 391 0
 	;; call to printf occurs, with return value
 		SNOP		2
 .LVL177:
 .L186:
-	.loc 1 394 0
+	.loc 1 392 0
 		SLDW		*+AR15[12], R17
 		SLDW		*+AR15[13], R25
 		SLDW		*+AR15[11], R27
 		SNOP		5
 .L154:
 .LVL178:
-	.loc 1 403 0
+	.loc 1 401 0
 		SMOVIL		204, R46
 	|	SMVAAGL.M1		AR9, R11:R10
 	|	SMVAAGL.M2		OR9, R19:R18
@@ -2921,20 +2921,20 @@ test_qr_solver_complx:
 		SNOP		2
 .LVL180:
 .L187:
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDDW		*+AR15[17], R9:R8
-	.loc 1 404 0
+	.loc 1 402 0
 		SLDW		*+AR15[50], R41
 		SLDW		*+AR15[51], R55
 		SLDW		*+AR15[30], R58
 		SLDW		*+AR15[11], R61
 		SNOP		1
-	.loc 1 128 0
+	.loc 1 126 0
 		SMVAGA36.M1		R9:R8, OR1
 		SNOP		1
 		SADDA.M2		4,OR1,OR2
 	|	SSUB.M1		R41, R55, R12
-	.loc 1 404 0
+	.loc 1 402 0
 		SSUB.M1		R58, R12, R54
 		SLDW		*+AR15[13], R49
 	|	SMOV.M1		R61, R33
@@ -2955,7 +2955,7 @@ test_qr_solver_complx:
 	;; jump to .L83 occurs
 .LVL183:
 .L146:
-	.loc 1 387 0
+	.loc 1 385 0
 		SFSPDP32T.M2		R53, R47:R46
 	|	SMOVIL.L		.LC11, R44
 	|	SSTW		R11, *+AR15[6]
@@ -2963,11 +2963,11 @@ test_qr_solver_complx:
 	|	SSTW		R26, *+AR15[7]
 		SMOVIH4.L		.LC11, R45
 .LVL184:
-	.loc 1 386 0
+	.loc 1 384 0
 		SMOVIL		0, R40
-	.loc 1 387 0
+	.loc 1 385 0
 		SSTDW		R45:R44, *+AR15[1]
-	.loc 1 393 0
+	.loc 1 391 0
 		SSTDW		R47:R46, *+AR15[2]
 		SNOP		1
 		SBR		printf
@@ -2978,14 +2978,14 @@ test_qr_solver_complx:
 		SMOVIH4.L		.L188, R63
 		SNOP		1
 		SSTW		R27, *+AR15[11]
-	.loc 1 386 0
+	.loc 1 384 0
 		SSTH		R40, *+AR15[28]
-	.loc 1 393 0
+	.loc 1 391 0
 	;; call to printf occurs, with return value
 		SNOP		2
 .LVL185:
 .L188:
-	.loc 1 394 0
+	.loc 1 392 0
 		SLDW		*+AR15[12], R17
 		SBR		.L154
 	|	SLDW		*+AR15[13], R25
@@ -2994,7 +2994,7 @@ test_qr_solver_complx:
 	;; jump to .L154 occurs
 .LVL186:
 .L145:
-	.loc 1 352 0
+	.loc 1 350 0
 		SBR		puts
 	|	SMOVIH4.L		.LC10, R11
 		SMOVIL		.L189, R62
@@ -3016,10 +3016,10 @@ test_qr_solver_complx:
 		SBR		.L76
 	|	SLDDW		*+AR15[10], R49:R48
 	|	SMOVIL		0, R11
-	.loc 1 128 0
+	.loc 1 126 0
 		SLDDW		*+AR15[8], R47:R46
 	|	SMOVIH		-2147483648, R20
-	.loc 1 384 0
+	.loc 1 382 0
 		SMOVIH		1092616192, R24
 		SMAX		R27, R3, R26
 		SNOP		3
@@ -3038,92 +3038,58 @@ test_qr_solver_complx:
 	.type	main, @function
 main:
 .LFB7:
-	.loc 1 87 0
+	.loc 1 93 0
 	.cfi_startproc
 .LVL189:
-		SMOVIL		-88, R6
+		SMOVIL		-24, R6
 		SMOVIL		-1, R7
-		SADDA.M2		R7:R6,AR15,AR15
+	.loc 1 97 0
+		SMOVIL		1075052548, R46
+	|	SADDA.M2		R7:R6,AR15,AR15
 .LCFI5:
-	.cfi_def_cfa_offset 88
-		SMVAAGL.M1		AR14, R7:R6
-	|	SMOVIL		1075052548, R46
-	.cfi_offset 78, -16
-	.cfi_offset 79, -12
-	.loc 1 91 0
+	.cfi_def_cfa_offset 24
 		SMOVIH		1075052548, R46
-	|	SSTDW		R63:R62, *+AR15[9]
-	.cfi_offset 54, -40
-	.cfi_offset 55, -36
-	.loc 1 87 0
-		SMVAAGH.M2		AR14, R7:R6
-	|	SMOVIL		0, R47
-	|	SSTDW		R39:R38, *+AR15[6]
-	.loc 1 91 0
-		SMVAGA36.M1		R47:R46, AR10
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
+		SMOVIL		0, R47
+	|	SSTDW		R63:R62, *+AR15[2]
+	.loc 1 97 0
+		SMVAGA36.M2		R47:R46, AR10
 	|	SMOVIL		1075052544, R42
 		SMOVIL		1, R44
-	.loc 1 87 0
-		SSTDW		R7:R6, *+AR15[10]
-	.cfi_offset 14, -8
-	.cfi_offset 52, -48
-	.cfi_offset 53, -44
-		SMVAAGL.M2		OR8, R7:R6
-	|	SSTDW		R37:R36, *+AR15[5]
-	.loc 1 92 0
+	.loc 1 98 0
 		SMOVIH		1075052544, R42
-	.loc 1 87 0
-		SMVAAGH.M2		OR8, R7:R6
-	|	SMOVIL		0, R43
-		SSTDW		R35:R34, *+AR15[4]
-		SSTDW		R7:R6, *+AR15[8]
-		SMVAAGL.M2		AR8, R7:R6
+	|	SSTW		R44, *AR10
+		SMOVIL		0, R43
+		SMVAGA36.M2		R43:R42, AR10
 		SNOP		1
-	.cfi_offset 50, -56
-	.cfi_offset 51, -52
-	.cfi_offset 88, -24
-	.cfi_offset 48, -64
-	.cfi_offset 49, -60
-		SMVAAGH.M2		AR8, R7:R6
-	|	SSTDW		R33:R32, *+AR15[3]
-		SSTDW		R31:R30, *+AR15[2]
-		SNOP		2
-		SSTDW		R7:R6, *+AR15[7]
-	.cfi_offset 46, -72
-	.cfi_offset 47, -68
-	.cfi_offset 8, -32
-	.loc 1 91 0
 		SSTW		R44, *AR10
-	|	SMVAGA36.M2		R43:R42, AR10
-	.loc 1 92 0
-		SNOP		2
-		SSTW		R44, *AR10
-	.loc 1 93 0
+	.loc 1 99 0
 		SSTW		R44, *+AR15[3]
 		SNOP		2
 .LVL190:
-	.loc 1 94 0
+	.loc 1 100 0
 		SLDW		*+AR15[3], R0
 		SNOP		5
 	[!R0]	SBR		.L192
 		SNOP		6
 	;; condjump to .L192 occurs
 .L193:
-	.loc 1 95 0
+	.loc 1 101 0
 		SLDW		*AR10, R42
 		SNOP		5
 .LVL191:
 		SSTW		R42, *+AR15[3]
 		SNOP		2
 .LVL192:
-	.loc 1 94 0
+	.loc 1 100 0
 		SLDW		*+AR15[3], R1
 		SNOP		5
 	[R1]	SBR		.L193
 		SNOP		6
 	;; condjump to .L193 occurs
 .L192:
-	.loc 1 97 0
+	.loc 1 103 0
 		SBR		SetTimerPeriod
 	|	SMOVIL		-1, R12
 		SMOVIL		.L198, R62
@@ -3134,7 +3100,7 @@ main:
 		SNOP		2
 .LVL193:
 .L198:
-	.loc 1 98 0
+	.loc 1 104 0
 		SBR		TimerStart
 	|	SMOVIL		0, R10
 		SMOVIL		.L199, R62
@@ -3144,303 +3110,161 @@ main:
 		SNOP		3
 .LVL194:
 .L199:
-	.loc 1 103 0
-		SBR		malloc
-	|	SMOVIL		0, R11
-		SMOVIL		.L200, R62
-		SMOVIH		.L200, R62
-		SMOVIH4.L		.L200, R63
-		SMOVIL		131072, R10
-		SMOVIH		131072, R10
-	;; call to malloc occurs, with return value
-		SNOP		1
-.LVL195:
-.L200:
-	.loc 1 104 0
-		SBR		malloc
-	|	SMVAGA36.M2		R11:R10, OR11
-	|	SMOVIL		0, R11
-		SMOVIL		.L201, R62
-	.loc 1 103 0
-		SMVAAGL.M2		OR11, R39:R38
-	|	SMOVIH		.L201, R62
-		SMOVIH4.L		.L201, R63
-		SMVAAGH.M2		OR11, R39:R38
-	|	SMOVIL		131072, R10
-.LVL196:
-	.loc 1 104 0
-		SMOVIH		131072, R10
-	;; call to malloc occurs, with return value
-		SNOP		1
-.LVL197:
-.L201:
-	.loc 1 105 0
-		SBR		malloc
-	|	SMVAGA36.M2		R11:R10, OR8
-	|	SMOVIL		0, R11
-		SMOVIL		.L202, R62
-	.loc 1 104 0
-		SMVAAGL.M2		OR8, R37:R36
-	|	SMOVIH		.L202, R62
-		SMOVIH4.L		.L202, R63
-	.loc 1 105 0
-		SMOVIL		131072, R10
-	|	SMVAAGH.M2		OR8, R37:R36
-.LVL198:
-		SMOVIH		131072, R10
-	;; call to malloc occurs, with return value
-		SNOP		1
-.LVL199:
-.L202:
-	.loc 1 106 0
-		SBR		malloc
-	|	SMVAGA36.M2		R11:R10, OR12
-	|	SMOVIL		0, R11
-		SMOVIL		.L203, R62
-	.loc 1 105 0
-		SMVAAGL.M2		OR12, R35:R34
-	|	SMOVIH		.L203, R62
-		SMOVIH4.L		.L203, R63
-		SMVAAGH.M2		OR12, R35:R34
-	|	SMOVIL		131072, R10
-.LVL200:
-	.loc 1 106 0
-		SMOVIH		131072, R10
-	;; call to malloc occurs, with return value
-		SNOP		1
-.LVL201:
-.L203:
-	.loc 1 107 0
-		SBR		malloc
-	|	SMVAGA36.M2		R11:R10, OR13
-	|	SMOVIL		1024, R10
-		SMOVIL		.L204, R62
-	.loc 1 106 0
-		SMVAAGL.M2		OR13, R33:R32
-	|	SMOVIH		.L204, R62
-		SMOVIH4.L		.L204, R63
-		SMVAAGH.M2		OR13, R33:R32
-	|	SMOVIL		0, R11
-.LVL202:
-	.loc 1 107 0
-	;; call to malloc occurs, with return value
-		SNOP		2
-.LVL203:
-.L204:
-	.loc 1 108 0
-		SBR		malloc
-	|	SMVAGA36.M2		R11:R10, OR14
-	|	SMOVIL		1024, R10
-		SMOVIL		.L205, R62
-	.loc 1 107 0
-		SMVAAGL.M2		OR14, R31:R30
-	|	SMOVIH		.L205, R62
-		SMOVIH4.L		.L205, R63
-		SMVAAGH.M2		OR14, R31:R30
-	|	SMOVIL		0, R11
-.LVL204:
-	.loc 1 108 0
-	;; call to malloc occurs, with return value
-		SNOP		2
-.LVL205:
-.L205:
-	.loc 1 109 0
-		SBR		malloc
-	|	SMVAGA36.M2		R11:R10, AR14
-	|	SMOVIL		1024, R10
-.LVL206:
-		SMOVIL		.L206, R62
-		SMOVIH		.L206, R62
-		SMOVIH4.L		.L206, R63
-		SMOVIL		0, R11
-	;; call to malloc occurs, with return value
-		SNOP		2
-.LVL207:
-.L206:
-	.loc 1 110 0
-		SBR		malloc
-	|	SMVAGA36.M2		R11:R10, AR8
-	|	SMOVIL		1024, R10
-.LVL208:
-		SMOVIL		.L207, R62
-		SMOVIH		.L207, R62
-		SMOVIH4.L		.L207, R63
-		SMOVIL		0, R11
-	;; call to malloc occurs, with return value
-		SNOP		2
-.LVL209:
-.L207:
-	.loc 1 112 0
+	.loc 1 111 0
 		SMOVIL.L		v_A, R44
-	|	SMVAGA36.M2		R11:R10, OR8
-.LVL210:
 		SMOVIH.L		v_A, R44
 		SMOVIH4.L		v_A, R45
 		SMVAGA36.M2		R45:R44, AR10
 	|	SMOVIL		1073741824, R42
-	.loc 1 113 0
-		SMOVIL.L		v_Q, R46
 	.loc 1 112 0
+		SMOVIL.L		v_Q, R46
+	.loc 1 111 0
 		SMOVIH		1073741824, R42
 		SMOVIL		0, R43
-	.loc 1 113 0
+	.loc 1 112 0
 		SMOVIH.L		v_Q, R46
 	|	SSTDW		R43:R42, *AR10
 		SMOVIH4.L		v_Q, R47
 		SMVAGA36.M2		R47:R46, AR10
-	|	SMOVIL		1073879296, R42
-	.loc 1 114 0
-		SMOVIL.L		v_R, R44
+	|	SMOVIL		1073780992, R42
 	.loc 1 113 0
-		SMOVIH		1073879296, R42
+		SMOVIL.L		v_R, R44
+	.loc 1 112 0
+		SMOVIH		1073780992, R42
 		SMOVIL		0, R43
-	.loc 1 114 0
+	.loc 1 113 0
 		SMOVIH.L		v_R, R44
 	|	SSTDW		R43:R42, *AR10
 		SMOVIH4.L		v_R, R45
 		SMVAGA36.M2		R45:R44, AR10
-	|	SMOVIL		1074016768, R42
-	.loc 1 116 0
-		SMOVIL.L		v_u, R46
+	|	SMOVIL		1073820160, R42
 	.loc 1 114 0
-		SMOVIH		1074016768, R42
+		SMOVIL.L		v_u, R46
+	.loc 1 113 0
+		SMOVIH		1073820160, R42
 		SMOVIL		0, R43
-	.loc 1 116 0
+	.loc 1 114 0
 		SMOVIH.L		v_u, R46
 	|	SSTDW		R43:R42, *AR10
 		SMOVIH4.L		v_u, R47
 		SMVAGA36.M2		R47:R46, AR10
-	|	SMOVIL		1074024192, R42
-	.loc 1 117 0
+	|	SMOVIL		1073827072, R42
+	.loc 1 115 0
 		SMOVIL.L		v_b, R44
-	.loc 1 116 0
-		SMOVIH		1074024192, R42
+	.loc 1 114 0
+		SMOVIH		1073827072, R42
 		SMOVIL		0, R43
-	.loc 1 117 0
+	.loc 1 115 0
 		SMOVIH.L		v_b, R44
 	|	SSTDW		R43:R42, *AR10
 		SMOVIH4.L		v_b, R45
 		SMVAGA36.M2		R45:R44, AR10
-	|	SMOVIL		1074031616, R42
-	.loc 1 118 0
+	|	SMOVIL		1073833984, R42
+	.loc 1 116 0
 		SMOVIL.L		v_y, R46
 		SMOVIH.L		v_y, R46
 		SMOVIH4.L		v_y, R47
-	.loc 1 117 0
-		SMOVIH		1074031616, R42
+	.loc 1 115 0
+		SMOVIH		1073833984, R42
 		SMOVIL		0, R43
 		SSTDW		R43:R42, *AR10
 	|	SMOVIL.L		v_x, R44
 	|	SMVAGA36.M2		R47:R46, AR10
-	.loc 1 118 0
-		SMOVIL		1074039040, R42
-	.loc 1 119 0
+	.loc 1 116 0
+		SMOVIL		1073840896, R42
+	.loc 1 117 0
 		SMOVIH.L		v_x, R44
 		SMOVIH4.L		v_x, R45
-	.loc 1 118 0
-		SMOVIH		1074039040, R42
+	.loc 1 116 0
+		SMOVIH		1073840896, R42
 		SMOVIL		0, R43
 		SSTDW		R43:R42, *AR10
 	|	SMVAGA36.M2		R45:R44, AR10
-	|	SMOVIL		1074046464, R42
+	|	SMOVIL		1073847808, R42
+	.loc 1 117 0
+		SMOVIH		1073847808, R42
 	.loc 1 119 0
-		SMOVIH		1074046464, R42
-	.loc 1 121 0
 		SBR		puts
 	|	SMOVIL		0, R43
-	.loc 1 119 0
+	.loc 1 117 0
 		SSTDW		R43:R42, *AR10
-	|	SMOVIL		.L208, R62
-		SMOVIH		.L208, R62
-		SMOVIH4.L		.L208, R63
-	.loc 1 121 0
+	|	SMOVIL		.L200, R62
+		SMOVIH		.L200, R62
+		SMOVIH4.L		.L200, R63
+	.loc 1 119 0
 		SMOVIH4.L		.LC18, R11
 		SMOVIL.L		.LC18, R10
-.LVL211:
 	;; call to puts occurs, with return value
 		SMOVIH.L		.LC18, R10
-.LVL212:
-.L208:
-	.loc 1 123 0
-		SMVAGA36.M1		R39:R38, OR11
-	|	SMVAGA36.M2		R37:R36, OR12
-		SMVAGA36.M1		R35:R34, OR13
-	|	SMVAGA36.M2		R33:R32, OR14
-		SMVAAGL.M1		OR11, R11:R10
-	|	SMVAAGL.M2		OR12, R13:R12
-		SMVAAGL.M1		OR13, R15:R14
-	|	SMVAAGL.M2		OR14, R17:R16
-		SMVAAGH.M1		OR11, R11:R10
-	|	SMVAGA36.M2		R31:R30, OR11
+.LVL195:
+.L200:
+	.loc 1 121 0
+		SMOVIH4.L		Q, R13
+		SMOVIL.L		A, R10
+		SMOVIL.L		Q, R12
+		SMOVIL.L		R, R14
+		SMOVIL.L		inv_A, R16
+		SMOVIL.L		u, R18
+		SMOVIL.L		b, R20
+		SMOVIL.L		y, R22
+		SMOVIL.L		x, R24
+		SMOVIH.L		Q, R12
+		SMOVIH.L		R, R14
+		SMOVIH4.L		R, R15
+		SMOVIH.L		inv_A, R16
+		SMOVIH4.L		inv_A, R17
+		SMOVIH.L		u, R18
+		SMOVIH4.L		u, R19
+		SMOVIH.L		b, R20
+		SMOVIH4.L		b, R21
+		SMOVIH.L		y, R22
+		SMOVIH4.L		y, R23
 		SBR		test_qr_solver_complx
-	|	SMVAAGH.M1		OR12, R13:R12
-	|	SMVAAGH.M2		OR13, R15:R14
-		SMVAAGL.M1		OR11, R19:R18
-	|	SMVAAGH.M2		OR14, R17:R16
-	|	SMOVIL		.L209, R62
-		SMVAAGL.M1		AR14, R21:R20
-	|	SMVAAGL.M2		AR8, R23:R22
-	|	SMOVIH		.L209, R62
-		SMVAAGH.M1		OR11, R19:R18
-	|	SMVAAGL.M2		OR8, R25:R24
-	|	SMOVIH4.L		.L209, R63
-		SMVAAGH.M1		AR14, R21:R20
-	|	SMVAAGH.M2		AR8, R23:R22
-		SMVAAGH.M1		OR8, R25:R24
+	|	SMOVIH.L		x, R24
+		SMOVIL		.L201, R62
+		SMOVIH		.L201, R62
+		SMOVIH4.L		.L201, R63
+		SMOVIH4.L		x, R25
+		SMOVIH.L		A, R10
 	;; call to test_qr_solver_complx occurs
-		SNOP		1
-.LVL213:
-.L209:
-	.loc 1 125 0
+		SMOVIH4.L		A, R11
+.LVL196:
+.L201:
+	.loc 1 123 0
 		SBR		puts
 	|	SMOVIH4.L		.LC19, R11
-		SMOVIL		.L210, R62
-		SMOVIH		.L210, R62
-		SMOVIH4.L		.L210, R63
+		SMOVIL		.L202, R62
+		SMOVIH		.L202, R62
+		SMOVIH4.L		.L202, R63
 		SMOVIL.L		.LC19, R10
 		SMOVIH.L		.LC19, R10
 	;; call to puts occurs, with return value
 		SNOP		1
-.LVL214:
-	.loc 1 126 0
-.L210:
-		SLDDW		*+AR15[7], R7:R6
-	|	SMOVIL		0, R10
-		SLDDW		*+AR15[9], R63:R62
-		SLDDW		*+AR15[2], R31:R30
-.LVL215:
-		SLDDW		*+AR15[3], R33:R32
-.LVL216:
-		SLDDW		*+AR15[4], R35:R34
-		SNOP		1
-.LVL217:
-		SMVAGA36.M2		R7:R6, AR8
-.LVL218:
-		SMVCGC.L		R63, BRReg
-		SNOP		2
-		SLDDW		*+AR15[8], R7:R6
-		SLDDW		*+AR15[5], R37:R36
-.LVL219:
-		SLDDW		*+AR15[6], R39:R38
-		SNOP		3
-.LVL220:
-		SMVAGA36.M2		R7:R6, OR8
-		SNOP		1
-.LVL221:
-		SLDDW		*+AR15[10], R7:R6
-		SNOP		2
-		SBR		R62
-		SNOP		2
-		SMVAGA36.M2		R7:R6, AR14
-	|	SMOVIL		88, R6
-.LVL222:
+.LVL197:
+	.loc 1 124 0
+.L202:
+		SLDDW		*+AR15[2], R63:R62
+	|	SMOVIL		24, R6
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
+	|	SMOVIL		0, R10
+		SNOP		3
+		SMVCGC.L		R63, BRReg
 		SNOP		1
+		SBR		R62
+		SNOP		6
 	;; return occurs
 	.cfi_endproc
 .LFE7:
 	.size	main, .-main
+	.common	x,512,8
+	.common	y,512,8
+	.common	b,512,8
+	.common	u,512,8
+	.common	inv_A,32768,8
+	.common	R,32768,8
+	.common	Q,32768,8
+	.common	A,32768,8
 	.common	v_x,8,8
 	.common	v_y,8,8
 	.common	v_b,8,8
@@ -3452,7 +3276,7 @@ main:
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.4byte	0xe96
+	.4byte	0xe79
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x8
@@ -3653,7 +3477,7 @@ main:
 	.byte	0x1
 	.4byte	.LASF23
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.byte	0x1
 	.4byte	0xb6
 	.llong	.LFB4
@@ -3664,55 +3488,55 @@ main:
 	.uleb128 0x5
 	.4byte	.LASF18
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.4byte	0x2b9
 	.4byte	.LLST8
 	.uleb128 0x5
 	.4byte	.LASF19
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.4byte	0x2b9
 	.4byte	.LLST9
 	.uleb128 0x5
 	.4byte	.LASF20
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.4byte	0x2bf
 	.4byte	.LLST10
 	.uleb128 0x5
 	.4byte	.LASF21
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.4byte	0x2bf
 	.4byte	.LLST11
 	.uleb128 0xd
 	.string	"A"
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.4byte	0x18d
 	.4byte	.LLST12
 	.uleb128 0xd
 	.string	"Q"
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.4byte	0x18d
 	.4byte	.LLST13
 	.uleb128 0xd
 	.string	"R"
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.4byte	0x18d
 	.4byte	.LLST14
 	.uleb128 0xd
 	.string	"u"
 	.byte	0x1
-	.byte	0x26
+	.byte	0x31
 	.4byte	0x18d
 	.4byte	.LLST15
 	.uleb128 0xe
 	.4byte	.LASF22
 	.byte	0x1
-	.byte	0x28
+	.byte	0x33
 	.4byte	0xb6
 	.byte	0x2
 	.byte	0x90
@@ -3818,7 +3642,7 @@ main:
 	.byte	0x1
 	.4byte	.LASF24
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.byte	0x1
 	.4byte	0xb6
 	.llong	.LFB5
@@ -3829,61 +3653,61 @@ main:
 	.uleb128 0x5
 	.4byte	.LASF18
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x2b9
 	.4byte	.LLST17
 	.uleb128 0x5
 	.4byte	.LASF19
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x2b9
 	.4byte	.LLST18
 	.uleb128 0x5
 	.4byte	.LASF20
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x2bf
 	.4byte	.LLST19
 	.uleb128 0x5
 	.4byte	.LASF21
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x2bf
 	.4byte	.LLST20
 	.uleb128 0xd
 	.string	"Q"
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x18d
 	.4byte	.LLST21
 	.uleb128 0xd
 	.string	"R"
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x18d
 	.4byte	.LLST22
 	.uleb128 0xd
 	.string	"b"
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x18d
 	.4byte	.LLST23
 	.uleb128 0xd
 	.string	"y"
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x18d
 	.4byte	.LLST24
 	.uleb128 0xd
 	.string	"x"
 	.byte	0x1
-	.byte	0x2d
+	.byte	0x38
 	.4byte	0x18d
 	.4byte	.LLST25
 	.uleb128 0xe
 	.4byte	.LASF22
 	.byte	0x1
-	.byte	0x2f
+	.byte	0x3a
 	.4byte	0xb6
 	.byte	0x2
 	.byte	0x90
@@ -4285,7 +4109,7 @@ main:
 	.byte	0x1
 	.4byte	.LASF25
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x55
 	.byte	0x1
 	.4byte	0xb6
 	.llong	.LFB6
@@ -4296,49 +4120,49 @@ main:
 	.uleb128 0x5
 	.4byte	.LASF18
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x55
 	.4byte	0x2b9
 	.4byte	.LLST27
 	.uleb128 0x5
 	.4byte	.LASF19
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x55
 	.4byte	0x2b9
 	.4byte	.LLST28
 	.uleb128 0x5
 	.4byte	.LASF20
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x55
 	.4byte	0x2bf
 	.4byte	.LLST29
 	.uleb128 0x5
 	.4byte	.LASF21
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x55
 	.4byte	0x2bf
 	.4byte	.LLST30
 	.uleb128 0xd
 	.string	"Q"
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x55
 	.4byte	0x18d
 	.4byte	.LLST31
 	.uleb128 0xd
 	.string	"R"
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x55
 	.4byte	0x18d
 	.4byte	.LLST32
 	.uleb128 0x5
 	.4byte	.LASF26
 	.byte	0x1
-	.byte	0x4e
+	.byte	0x55
 	.4byte	0x18d
 	.4byte	.LLST33
 	.uleb128 0xe
 	.4byte	.LASF22
 	.byte	0x1
-	.byte	0x50
+	.byte	0x57
 	.4byte	0xb6
 	.byte	0x2
 	.byte	0x90
@@ -4423,7 +4247,7 @@ main:
 	.byte	0x1
 	.4byte	.LASF55
 	.byte	0x1
-	.byte	0x80
+	.byte	0x7e
 	.byte	0x1
 	.llong	.LFB8
 	.llong	.LFE8
@@ -4433,240 +4257,240 @@ main:
 	.uleb128 0xd
 	.string	"A"
 	.byte	0x1
-	.byte	0x81
+	.byte	0x7f
 	.4byte	0x18d
 	.4byte	.LLST35
 	.uleb128 0xd
 	.string	"Q"
 	.byte	0x1
-	.byte	0x81
+	.byte	0x7f
 	.4byte	0x18d
 	.4byte	.LLST36
 	.uleb128 0xd
 	.string	"R"
 	.byte	0x1
-	.byte	0x81
+	.byte	0x7f
 	.4byte	0x18d
 	.4byte	.LLST37
 	.uleb128 0x5
 	.4byte	.LASF26
 	.byte	0x1
-	.byte	0x81
+	.byte	0x7f
 	.4byte	0x18d
 	.4byte	.LLST38
 	.uleb128 0xd
 	.string	"u"
 	.byte	0x1
-	.byte	0x82
+	.byte	0x80
 	.4byte	0x18d
 	.4byte	.LLST39
 	.uleb128 0xd
 	.string	"b"
 	.byte	0x1
-	.byte	0x82
+	.byte	0x80
 	.4byte	0x18d
 	.4byte	.LLST40
 	.uleb128 0xd
 	.string	"y"
 	.byte	0x1
-	.byte	0x82
+	.byte	0x80
 	.4byte	0x18d
 	.4byte	.LLST41
 	.uleb128 0xd
 	.string	"x"
 	.byte	0x1
-	.byte	0x82
+	.byte	0x80
 	.4byte	0x18d
 	.4byte	.LLST42
 	.uleb128 0x10
 	.4byte	.LASF27
 	.byte	0x1
-	.byte	0x85
+	.byte	0x83
 	.4byte	0xb6
 	.byte	0x1
 	.uleb128 0x11
 	.4byte	.LASF28
 	.byte	0x1
-	.byte	0x87
+	.byte	0x85
 	.4byte	0x93
 	.4byte	.LLST43
 	.uleb128 0x11
 	.4byte	.LASF29
 	.byte	0x1
-	.byte	0x87
+	.byte	0x85
 	.4byte	0x93
 	.4byte	.LLST44
 	.uleb128 0x11
 	.4byte	.LASF20
 	.byte	0x1
-	.byte	0x87
+	.byte	0x85
 	.4byte	0x93
 	.4byte	.LLST45
 	.uleb128 0x11
 	.4byte	.LASF21
 	.byte	0x1
-	.byte	0x87
+	.byte	0x85
 	.4byte	0x93
 	.4byte	.LLST45
 	.uleb128 0x12
 	.4byte	.LASF30
 	.byte	0x1
-	.byte	0x88
+	.byte	0x86
 	.4byte	0x38
 	.byte	0x4
 	.4byte	0x41200000
 	.uleb128 0x11
 	.4byte	.LASF31
 	.byte	0x1
-	.byte	0x89
+	.byte	0x87
 	.4byte	0x38
 	.4byte	.LLST47
 	.uleb128 0x11
 	.4byte	.LASF32
 	.byte	0x1
-	.byte	0x89
+	.byte	0x87
 	.4byte	0x38
 	.4byte	.LLST48
 	.uleb128 0x11
 	.4byte	.LASF33
 	.byte	0x1
-	.byte	0x89
+	.byte	0x87
 	.4byte	0x38
 	.4byte	.LLST49
 	.uleb128 0x11
 	.4byte	.LASF34
 	.byte	0x1
-	.byte	0x89
+	.byte	0x87
 	.4byte	0x38
 	.4byte	.LLST50
 	.uleb128 0x11
 	.4byte	.LASF35
 	.byte	0x1
-	.byte	0x8a
+	.byte	0x88
 	.4byte	0x38
 	.4byte	.LLST51
 	.uleb128 0x11
 	.4byte	.LASF36
 	.byte	0x1
-	.byte	0x8a
+	.byte	0x88
 	.4byte	0x38
 	.4byte	.LLST52
 	.uleb128 0x11
 	.4byte	.LASF37
 	.byte	0x1
-	.byte	0x8a
+	.byte	0x88
 	.4byte	0x38
 	.4byte	.LLST53
 	.uleb128 0x11
 	.4byte	.LASF38
 	.byte	0x1
-	.byte	0x8a
+	.byte	0x88
 	.4byte	0x38
 	.4byte	.LLST54
 	.uleb128 0x13
 	.4byte	.LASF39
 	.byte	0x1
-	.byte	0x8b
+	.byte	0x89
 	.4byte	0x38
 	.uleb128 0x13
 	.4byte	.LASF40
 	.byte	0x1
-	.byte	0x8b
+	.byte	0x89
 	.4byte	0x38
 	.uleb128 0x13
 	.4byte	.LASF41
 	.byte	0x1
-	.byte	0x8b
+	.byte	0x89
 	.4byte	0x38
 	.uleb128 0x13
 	.4byte	.LASF42
 	.byte	0x1
-	.byte	0x8b
+	.byte	0x89
 	.4byte	0x38
 	.uleb128 0x13
 	.4byte	.LASF43
 	.byte	0x1
-	.byte	0x8b
+	.byte	0x89
 	.4byte	0x38
 	.uleb128 0x13
 	.4byte	.LASF44
 	.byte	0x1
-	.byte	0x8b
+	.byte	0x89
 	.4byte	0x38
 	.uleb128 0x13
 	.4byte	.LASF45
 	.byte	0x1
-	.byte	0x8c
+	.byte	0x8a
 	.4byte	0x38
 	.uleb128 0x13
 	.4byte	.LASF46
 	.byte	0x1
-	.byte	0x8c
+	.byte	0x8a
 	.4byte	0x38
 	.uleb128 0x6
 	.string	"row"
 	.byte	0x1
-	.byte	0x8d
+	.byte	0x8b
 	.4byte	0xb6
 	.4byte	.LLST55
 	.uleb128 0x6
 	.string	"col"
 	.byte	0x1
-	.byte	0x8d
+	.byte	0x8b
 	.4byte	0xb6
 	.4byte	.LLST56
 	.uleb128 0x6
 	.string	"k"
 	.byte	0x1
-	.byte	0x8d
+	.byte	0x8b
 	.4byte	0xb6
 	.4byte	.LLST57
 	.uleb128 0x11
 	.4byte	.LASF22
 	.byte	0x1
-	.byte	0x8d
+	.byte	0x8b
 	.4byte	0xb6
 	.4byte	.LLST58
 	.uleb128 0x11
 	.4byte	.LASF47
 	.byte	0x1
-	.byte	0x8d
+	.byte	0x8b
 	.4byte	0xb6
 	.4byte	.LLST59
 	.uleb128 0x11
 	.4byte	.LASF48
 	.byte	0x1
-	.byte	0x8e
+	.byte	0x8c
 	.4byte	0xbd
 	.4byte	.LLST60
 	.uleb128 0x11
 	.4byte	.LASF18
 	.byte	0x1
-	.byte	0x93
+	.byte	0x91
 	.4byte	0xa1
 	.4byte	.LLST61
 	.uleb128 0x11
 	.4byte	.LASF19
 	.byte	0x1
-	.byte	0x93
+	.byte	0x91
 	.4byte	0xa1
 	.4byte	.LLST62
 	.uleb128 0x11
 	.4byte	.LASF49
 	.byte	0x1
-	.byte	0x94
+	.byte	0x92
 	.4byte	0xa1
 	.4byte	.LLST63
 	.uleb128 0x11
 	.4byte	.LASF50
 	.byte	0x1
-	.byte	0x95
+	.byte	0x93
 	.4byte	0xa1
 	.4byte	.LLST64
 	.uleb128 0x11
 	.4byte	.LASF51
 	.byte	0x1
-	.byte	0x96
+	.byte	0x94
 	.4byte	0xa1
 	.4byte	.LLST65
 	.uleb128 0x7
@@ -5350,114 +5174,66 @@ main:
 	.byte	0x1
 	.4byte	.LASF56
 	.byte	0x1
-	.byte	0x56
+	.byte	0x5c
 	.4byte	0xb6
 	.llong	.LFB7
 	.llong	.LFE7
 	.4byte	.LLST66
 	.byte	0x1
-	.4byte	0xde1
+	.4byte	0xd01
 	.uleb128 0x15
 	.4byte	.LASF57
 	.byte	0x1
-	.byte	0x58
-	.4byte	0xde1
+	.byte	0x5e
+	.4byte	0xd01
 	.4byte	0x40140004
 	.uleb128 0x15
 	.4byte	.LASF58
 	.byte	0x1
-	.byte	0x59
-	.4byte	0xde1
+	.byte	0x5f
+	.4byte	0xd01
 	.4byte	0x40140000
 	.uleb128 0x11
 	.4byte	.LASF59
 	.byte	0x1
-	.byte	0x5a
-	.4byte	0xde7
+	.byte	0x60
+	.4byte	0xd07
 	.4byte	.LLST67
 	.uleb128 0x16
 	.string	"i"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x6a
 	.4byte	0xb6
 	.uleb128 0x16
 	.string	"j"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x6a
 	.4byte	0xb6
 	.uleb128 0x16
 	.string	"row"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x6a
 	.4byte	0xb6
 	.uleb128 0x16
 	.string	"col"
 	.byte	0x1
-	.byte	0x64
+	.byte	0x6a
 	.4byte	0xb6
 	.uleb128 0x10
 	.4byte	.LASF20
 	.byte	0x1
-	.byte	0x65
+	.byte	0x6b
 	.4byte	0xb6
-	.byte	0x80
+	.byte	0x40
 	.uleb128 0x10
 	.4byte	.LASF21
 	.byte	0x1
-	.byte	0x66
-	.4byte	0xb6
-	.byte	0x80
-	.uleb128 0x6
-	.string	"A"
-	.byte	0x1
-	.byte	0x67
-	.4byte	0x18d
-	.4byte	.LLST68
-	.uleb128 0x6
-	.string	"Q"
-	.byte	0x1
-	.byte	0x68
-	.4byte	0x18d
-	.4byte	.LLST69
-	.uleb128 0x6
-	.string	"R"
-	.byte	0x1
-	.byte	0x69
-	.4byte	0x18d
-	.4byte	.LLST70
-	.uleb128 0x11
-	.4byte	.LASF26
-	.byte	0x1
-	.byte	0x6a
-	.4byte	0x18d
-	.4byte	.LLST71
-	.uleb128 0x6
-	.string	"u"
-	.byte	0x1
-	.byte	0x6b
-	.4byte	0x18d
-	.4byte	.LLST72
-	.uleb128 0x6
-	.string	"b"
-	.byte	0x1
 	.byte	0x6c
-	.4byte	0x18d
-	.4byte	.LLST73
-	.uleb128 0x6
-	.string	"y"
-	.byte	0x1
-	.byte	0x6d
-	.4byte	0x18d
-	.4byte	.LLST74
-	.uleb128 0x6
-	.string	"x"
-	.byte	0x1
-	.byte	0x6e
-	.4byte	0x18d
-	.4byte	.LLST75
+	.4byte	0xb6
+	.byte	0x40
 	.uleb128 0x7
 	.llong	.LVL193
-	.4byte	0xd5b
+	.4byte	0xcf1
 	.uleb128 0x8
 	.byte	0x1
 	.byte	0x6c
@@ -5470,121 +5246,13 @@ main:
 	.byte	0x1
 	.byte	0x30
 	.byte	0
-	.uleb128 0x7
+	.uleb128 0x9
 	.llong	.LVL194
-	.4byte	0xd6e
 	.uleb128 0x8
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x1
 	.byte	0x30
-	.byte	0
-	.uleb128 0x9
-	.llong	.LVL213
-	.uleb128 0x8
-	.byte	0x8
-	.byte	0x90
-	.uleb128 0x28
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x29
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x3
-	.byte	0x92
-	.uleb128 0x58
-	.sleb128 0
-	.uleb128 0x8
-	.byte	0x8
-	.byte	0x90
-	.uleb128 0x26
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x27
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x2
-	.byte	0x78
-	.sleb128 0
-	.uleb128 0x8
-	.byte	0x8
-	.byte	0x90
-	.uleb128 0x24
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x25
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x2
-	.byte	0x7e
-	.sleb128 0
-	.uleb128 0x8
-	.byte	0x8
-	.byte	0x90
-	.uleb128 0x22
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x23
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x3
-	.byte	0x92
-	.uleb128 0x2e
-	.sleb128 0
-	.uleb128 0x8
-	.byte	0x8
-	.byte	0x90
-	.uleb128 0x20
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x21
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x3
-	.byte	0x92
-	.uleb128 0x30
-	.sleb128 0
-	.uleb128 0x8
-	.byte	0x6
-	.byte	0x6e
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x6f
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x3
-	.byte	0x92
-	.uleb128 0x32
-	.sleb128 0
-	.uleb128 0x8
-	.byte	0x6
-	.byte	0x6c
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x6d
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x3
-	.byte	0x92
-	.uleb128 0x34
-	.sleb128 0
-	.uleb128 0x8
-	.byte	0x6
-	.byte	0x6a
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x6b
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x3
-	.byte	0x92
-	.uleb128 0x36
-	.sleb128 0
 	.byte	0
 	.byte	0
 	.uleb128 0xa
@@ -5595,27 +5263,27 @@ main:
 	.uleb128 0x18
 	.byte	0x1
 	.4byte	0x38
-	.4byte	0xdf9
+	.4byte	0xd19
 	.uleb128 0x19
 	.byte	0xf
 	.byte	0
 	.uleb128 0x1a
 	.string	"v_A"
 	.byte	0x1
-	.byte	0x1a
-	.4byte	0xe0f
+	.byte	0x1d
+	.4byte	0xd2f
 	.byte	0x1
 	.byte	0x9
 	.byte	0x3
 	.llong	v_A
 	.uleb128 0xa
 	.byte	0x8
-	.4byte	0xdec
+	.4byte	0xd0c
 	.uleb128 0x1a
 	.string	"v_Q"
 	.byte	0x1
-	.byte	0x1b
-	.4byte	0xe0f
+	.byte	0x1e
+	.4byte	0xd2f
 	.byte	0x1
 	.byte	0x9
 	.byte	0x3
@@ -5623,8 +5291,8 @@ main:
 	.uleb128 0x1a
 	.string	"v_R"
 	.byte	0x1
-	.byte	0x1c
-	.4byte	0xe0f
+	.byte	0x1f
+	.4byte	0xd2f
 	.byte	0x1
 	.byte	0x9
 	.byte	0x3
@@ -5632,8 +5300,8 @@ main:
 	.uleb128 0x1a
 	.string	"v_u"
 	.byte	0x1
-	.byte	0x1d
-	.4byte	0xe0f
+	.byte	0x20
+	.4byte	0xd2f
 	.byte	0x1
 	.byte	0x9
 	.byte	0x3
@@ -5641,8 +5309,8 @@ main:
 	.uleb128 0x1a
 	.string	"v_b"
 	.byte	0x1
-	.byte	0x1e
-	.4byte	0xe0f
+	.byte	0x21
+	.4byte	0xd2f
 	.byte	0x1
 	.byte	0x9
 	.byte	0x3
@@ -5650,8 +5318,8 @@ main:
 	.uleb128 0x1a
 	.string	"v_y"
 	.byte	0x1
-	.byte	0x1f
-	.4byte	0xe0f
+	.byte	0x22
+	.4byte	0xd2f
 	.byte	0x1
 	.byte	0x9
 	.byte	0x3
@@ -5659,12 +5327,98 @@ main:
 	.uleb128 0x1a
 	.string	"v_x"
 	.byte	0x1
-	.byte	0x20
-	.4byte	0xe0f
+	.byte	0x23
+	.4byte	0xd2f
 	.byte	0x1
 	.byte	0x9
 	.byte	0x3
 	.llong	v_x
+	.uleb128 0x1b
+	.4byte	0x38
+	.4byte	0xdca
+	.uleb128 0x1c
+	.4byte	0xcb
+	.2byte	0x1fff
+	.byte	0
+	.uleb128 0x1a
+	.string	"A"
+	.byte	0x1
+	.byte	0x24
+	.4byte	0xdb9
+	.byte	0x1
+	.byte	0x9
+	.byte	0x3
+	.llong	A
+	.uleb128 0x1a
+	.string	"Q"
+	.byte	0x1
+	.byte	0x25
+	.4byte	0xdb9
+	.byte	0x1
+	.byte	0x9
+	.byte	0x3
+	.llong	Q
+	.uleb128 0x1a
+	.string	"R"
+	.byte	0x1
+	.byte	0x26
+	.4byte	0xdb9
+	.byte	0x1
+	.byte	0x9
+	.byte	0x3
+	.llong	R
+	.uleb128 0x1d
+	.4byte	.LASF26
+	.byte	0x1
+	.byte	0x27
+	.4byte	0xdb9
+	.byte	0x1
+	.byte	0x9
+	.byte	0x3
+	.llong	inv_A
+	.uleb128 0x1b
+	.4byte	0x38
+	.4byte	0xe2c
+	.uleb128 0x1e
+	.4byte	0xcb
+	.byte	0x7f
+	.byte	0
+	.uleb128 0x1a
+	.string	"u"
+	.byte	0x1
+	.byte	0x28
+	.4byte	0xe1c
+	.byte	0x1
+	.byte	0x9
+	.byte	0x3
+	.llong	u
+	.uleb128 0x1a
+	.string	"b"
+	.byte	0x1
+	.byte	0x29
+	.4byte	0xe1c
+	.byte	0x1
+	.byte	0x9
+	.byte	0x3
+	.llong	b
+	.uleb128 0x1a
+	.string	"y"
+	.byte	0x1
+	.byte	0x2a
+	.4byte	0xe1c
+	.byte	0x1
+	.byte	0x9
+	.byte	0x3
+	.llong	y
+	.uleb128 0x1a
+	.string	"x"
+	.byte	0x1
+	.byte	0x2b
+	.4byte	0xe1c
+	.byte	0x1
+	.byte	0x9
+	.byte	0x3
+	.llong	x
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
@@ -6038,6 +5792,50 @@ main:
 	.uleb128 0xc
 	.uleb128 0x2
 	.uleb128 0xa
+	.byte	0
+	.byte	0
+	.uleb128 0x1b
+	.uleb128 0x1
+	.byte	0x1
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x1c
+	.uleb128 0x21
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2f
+	.uleb128 0x5
+	.byte	0
+	.byte	0
+	.uleb128 0x1d
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0
+	.byte	0
+	.uleb128 0x1e
+	.uleb128 0x21
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2f
+	.uleb128 0xb
 	.byte	0
 	.byte	0
 	.byte	0
@@ -8000,123 +7798,22 @@ main:
 	.sleb128 0
 	.llong	.LCFI5
 	.llong	.LFE7
-	.2byte	0x3
+	.2byte	0x2
 	.byte	0x7f
-	.sleb128 88
+	.sleb128 24
 	.llong	0
 	.llong	0
 .LLST67:
 	.llong	.LVL190
 	.llong	.LVL191
-	.2byte	0x3
+	.2byte	0x2
 	.byte	0x91
-	.sleb128 -76
+	.sleb128 -12
 	.llong	.LVL192
 	.llong	.LFE7
 	.2byte	0x2
 	.byte	0x90
 	.uleb128 0x3a
-	.llong	0
-	.llong	0
-.LLST68:
-	.llong	.LVL196
-	.llong	.LVL220
-	.2byte	0x8
-	.byte	0x90
-	.uleb128 0x36
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x37
-	.byte	0x93
-	.uleb128 0x4
-	.llong	0
-	.llong	0
-.LLST69:
-	.llong	.LVL198
-	.llong	.LVL219
-	.2byte	0x8
-	.byte	0x90
-	.uleb128 0x34
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x35
-	.byte	0x93
-	.uleb128 0x4
-	.llong	0
-	.llong	0
-.LLST70:
-	.llong	.LVL200
-	.llong	.LVL217
-	.2byte	0x8
-	.byte	0x90
-	.uleb128 0x32
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x33
-	.byte	0x93
-	.uleb128 0x4
-	.llong	0
-	.llong	0
-.LLST71:
-	.llong	.LVL202
-	.llong	.LVL216
-	.2byte	0x8
-	.byte	0x90
-	.uleb128 0x30
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x31
-	.byte	0x93
-	.uleb128 0x4
-	.llong	0
-	.llong	0
-.LLST72:
-	.llong	.LVL204
-	.llong	.LVL215
-	.2byte	0x8
-	.byte	0x90
-	.uleb128 0x2e
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x90
-	.uleb128 0x2f
-	.byte	0x93
-	.uleb128 0x4
-	.llong	0
-	.llong	0
-.LLST73:
-	.llong	.LVL206
-	.llong	.LVL222
-	.2byte	0x1
-	.byte	0x5e
-	.llong	0
-	.llong	0
-.LLST74:
-	.llong	.LVL208
-	.llong	.LVL218
-	.2byte	0x1
-	.byte	0x58
-	.llong	0
-	.llong	0
-.LLST75:
-	.llong	.LVL210
-	.llong	.LVL211
-	.2byte	0x6
-	.byte	0x6a
-	.byte	0x93
-	.uleb128 0x4
-	.byte	0x6b
-	.byte	0x93
-	.uleb128 0x4
-	.llong	.LVL211
-	.llong	.LVL221
-	.2byte	0x2
-	.byte	0x90
-	.uleb128 0x58
 	.llong	0
 	.llong	0
 	.section	.debug_aranges,"",@progbits
