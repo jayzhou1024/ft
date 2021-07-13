@@ -1,8 +1,9 @@
 #include "DSPF_sp_cholesky.h"
 
 /*
-	cholesky decomposition with float.
-	order is L matrix's order.
+	cholesky分解
+	处理一行向量时每次取16个元素
+	vesion:1.4
 */
 void DSPF_sp_cholesky(int order,vector float* A_am,vector float* L_am){
 	//iteration index
@@ -10,25 +11,37 @@ void DSPF_sp_cholesky(int order,vector float* A_am,vector float* L_am){
 	vector float temp;
 	//control VPE close
 	unsigned short close;
-	//allocate memory for buffer
-	float* buffer = (float*)calloc(order,sizeof(float));
 
-	//M7002_datatrans_index parameter
-	int increment_src = (order-1) * sizeof(float);
-	int increment_dest = (1-1) * sizeof(float);
-	int increment = increment_dest << 16 | increment_src;
+	//配置混洗方式0
+	//广播src1的第1个元素
+	/*
+		比如src1 = 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+		src2 = 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16
+		那么混洗方式0得到的混洗结果为
+		dst = 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	*/
+	int * shuf_addr = 0x040160000;
+	*(shuf_addr+0) = 0;
+	*(shuf_addr+1) = 0;
+	*(shuf_addr+2) = 0;
+	*(shuf_addr+3) = 0;
+	//设置SMR寄存为混洗方式0
+	//只有这一种混洗方式，因此只需要在初始化时设置混洗方式
+	shuff_mode(0);
 
 	int len;
 	for (j=0;j<order;j++) {
 		vector float* t_am = (vector float*)((float*)L_am+j*order);
 		vsip_mfill_f_v(0,t_am,order);
-		if(j>0){
-			//index 高半字为目的阵列索引，低半字位源阵列索引
-			//帧数要减一，索引数要减一
-			M7002_datatrans_index(((float*)L_am)+j, buffer, j-1, 1,increment);
-		}
+
 		for(i=0;i<j;i++){
-			temp = vec_svbcast(buffer[i]);
+			//取从L[0][j]到L[j][j]这个列向量的各个元素，并进行广播
+			//也就是取L[i][j]并广播			
+			temp = vec_ld(i*order+j,L_am);
+			//此时temp中第1个元素是L[i][j]
+			//通过混洗进行广播
+			//广播temp[0]
+			temp = vec_shufw(0,temp,temp);
 			
 			len = order - j;
 			for(k=0;len>0;k++){
@@ -72,19 +85,17 @@ void DSPF_sp_cholesky(int order,vector float* A_am,vector float* L_am){
 
 		//calculate Ljj
 		vsip_vsqrt_f_v(&OFF_FLOAT_PTR(L_am,j*order+j),&OFF_FLOAT_PTR(L_am,j*order+j),1);
-		//mov Ljj to svr		
-		mov_to_svr_v16sf(OFF_FLOAT_PTR(L_am,j*order+j));
-		//return value is int,change view of Ljj_i
-		int Ljj_i = mov_from_svr0();
-		float Ljj = *((float*)&Ljj_i);
-		//divide remain
-		vsip_vsdiv_f_v(&OFF_FLOAT_PTR(L_am,j*order+j+1),
-						Ljj,
+		//取L[j][j]
+		temp = vec_ld(j*order+j,L_am);
+		//通过混洗进行广播
+		temp = vec_shufw(0,temp,temp);
+		//两行向量相除
+		//第二行向量是Ljj的广播	
+		vsip_vdiv_f_v(&OFF_FLOAT_PTR(L_am,j*order+j+1),
+						&temp,
 						&OFF_FLOAT_PTR(L_am,j*order+j+1),
 						order-j-1);
 
 	}
-
-	//free buffer
-	free(buffer);
 }
+
