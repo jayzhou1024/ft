@@ -11,21 +11,52 @@ int DSPF_sp_qrd_solver7(
     vector float *x
 )
 {
-    int row, col, loop_cnt;
+    int row, col, cur_index, loop_cnt;
     float sum;
     float temp, temp_y, temp_r;
     float buf[16];
+    int close;
 
     vector float vft1;
 
-    int Nrows16 = (Nrows + 15) / 16;
-    int Ncols16 = (Nrows + 15) / 16;
+
+    //y[] = 0
+    for(row = 0;; )
+    {
+        cur_index = row;
+        row += 16;
+        if(row > Nrows){
+            close = 0xffff >> (col - Ncols);
+            mov_to_vlr(close);
+        }
+
+        *(vector float*)((float*)y + cur_index) = vec_svbcast(0.0f);
+
+        if(row >= Nrows){
+            mov_to_vlr(0xffff);
+            break;
+        }
+    }    
+    // x[] = 0
+    for (col = 0;; )
+    {
+        cur_index = col;
+        col += 16;
+        if(col > Ncols){
+            close = 0xffff >> (col - Ncols);
+            mov_to_vlr(close);
+        }
+
+        *(vector float*)((float*)x + cur_index) = vec_svbcast(0.0f);
+
+        if(col >= Ncols){
+            mov_to_vlr(0xffff);
+            break;
+        }
+    }
+
 
     // part1
-    for(col = 0; col < Ncols16; ++col){
-        // 累加初值初始化为0
-        y[col] = vec_svbcast(0.0f);
-    }
     for (row = 0; row < Nrows; row++)
     {
         // 通过svr取出b向量中的一项
@@ -33,12 +64,20 @@ int DSPF_sp_qrd_solver7(
         *(int*)&temp = mov_from_svr0();
         vft1 = vec_svbcast ( temp );
         // Q的一行乘上b的一项
-        for(col = 0; col < Nrows16; ++col){
-            *(vector float*)((float*)y + col * 16) = vec_mula(vft1, 
-                *(vector float*)((float*)Q + row * Nrows + col * 16), 
-                *(vector float*)((float*)y + col * 16)
+        for(col = 0; col < Ncols;){
+            cur_index = col;
+            col += 16;
+            if(col > Ncols){
+                close = 0xffff >> (col - Ncols);
+                mov_to_vlr(close);
+            }
+
+            *(vector float*)((float*)y + cur_index) = vec_mula(vft1, 
+                *(vector float*)((float*)Q + row * Nrows + cur_index), 
+                *(vector float*)((float*)y + cur_index)
             );
         }
+        mov_to_vlr(0xffff);
     }
 
     // part2
@@ -47,19 +86,25 @@ int DSPF_sp_qrd_solver7(
     else
         loop_cnt = Nrows;
 
-    for (col = 0; col < Ncols16; ++col){
-        x[col] = vec_svbcast(0.0f);
-    }
     for (row = loop_cnt - 1; row >= 0; row--)
     {   
         // R的一行与x点乘(每项分别乘后加)
         vft1 = vec_svbcast(0.0f);
-        for (col = 0; col < Ncols16; ++col){
+        for (col = 0; col < Ncols;){
+            cur_index = col;
+            col += 16;
+            if(col > Ncols){
+                close = 0xffff >> (col - Ncols);
+                mov_to_vlr(close);
+            }
+
             vft1 = vec_mula(
-                *(vector float*)((float*)R + row * Ncols + col * 16), 
-                *(vector float*)((float*)x + col * 16), 
+                *(vector float*)((float*)R + row * Ncols + cur_index), 
+                *(vector float*)((float*)x + cur_index), 
                 vft1);
         }
+        mov_to_vlr(0xffff);
+
         // 通过svr取出，进行16项最后的相加
         mov_to_svr_v16sf( vft1 );
         *(int*)&buf[0] = mov_from_svr0();

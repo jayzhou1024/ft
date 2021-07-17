@@ -90,119 +90,17 @@ int DSPF_sp_qrd_inverse_cmplx_wrapper(unsigned int* t_start, unsigned int* t_sto
     return status;
 }
 
-void test_dp_cplx()
+// 双精度乘法汇编模板，16个双精度浮点数乘16个双精度浮点数
+void dp_cmplx_mul_asm(lvector double* vd1, lvector double* vd2, lvector double* res);
+
+void dp_cmplx_mul_test()
 {
-        
-    int* shuf_addr = 0x040160000;
-    // 混洗1：提取奇数项
-    *(shuf_addr + 0) = 0x06040200;
-    *(shuf_addr + 1) = 0x0e0c0a08;
-    *(shuf_addr + 2) = 0x16141210;
-    *(shuf_addr + 3) = 0x1e1c1a18;
-    // 混洗2：提取偶数项
-    *(shuf_addr + 4) = 0x07050301;
-    *(shuf_addr + 5) = 0x0f0d0b09;
-    *(shuf_addr + 6) = 0x17151311;
-    *(shuf_addr + 7) = 0x1f1d1b19;
-
-    vector float vf1;
-    vector float vf2;
-    vector float vf3;
-    vector float vf4;
-    // 混洗测试
-    float farr1[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-    float farr2[16] = {17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32};
-    M7002_datatrans(farr1, &vf1, sizeof(float) * 16);
-    M7002_datatrans(farr2, &vf2, sizeof(float) * 16);
-    shuff_mode(0);
-    vf3 = vec_shufw ( 0, vf1, vf2 );
-    shuff_mode(1);
-    vf4 = vec_shufw ( 1, vf1, vf2 );
-    v_A[0] = vf3;
-    v_A[1] = vf4;
-
-
-    // 双精度乘法
-    lvector double vd1_1; //乘数1
-    lvector double vd1_2; //乘数1续
-    lvector double vd2_1; //乘数2
-    lvector double vd2_2; //乘数2续
-    vector float hi1_1, lo1_1; //乘数的高低32位(两个寄存器)
-    vector float hi1_2, lo1_2;
-    vector float hi2_1, lo2_1;
-    vector float hi2_2, lo2_2;
-
-    lvector double vd1_r; //乘数的虚部实部分离
-    lvector double vd1_i;
-    lvector double vd2_r;
-    lvector double vd2_i;
-    vector float hi1_i, lo1_i; //实部虚部的高低32位
-    vector float hi1_r, lo1_r;
-    vector float hi2_i, lo2_i;
-    vector float hi2_r, lo2_r;
-
-    lvector double vdres_r;
-    lvector double vdres_i;
-
-    double darr1[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-    double darr2[16] = {17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32};
+    double darr1[32] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16, 17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32};
+    double darr2[32] = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64};
     // 传送到向量空间
-    M7002_datatrans(darr1, &v_x, sizeof(double) * 8);
-    M7002_datatrans(darr1 + 8, &v_x + 1, sizeof(double) * 8);
-    M7002_datatrans(darr2, &v_x + 2, sizeof(double) * 8);
-    M7002_datatrans(darr2 + 8, &v_x + 3, sizeof(double) * 8);
-    // 模2取
-    vd1_1 = vec_ldm2(0, (lvector double*)&v_x); //乘数1
-    vd1_2 = vec_ldm2(0, (lvector double*)(&v_x + 1)); //乘数1续
-    vd2_1 = vec_ldm2(0, (lvector double*)(&v_x + 2)); //乘数2
-    vd2_2 = vec_ldm2(0, (lvector double*)(&v_x + 3)); //乘数2续
-    // 获取高位低位寄存器 double -> float,float
-    hi1_1 = ((vector float*)&vd1_1)[1];
-    lo1_1 = ((vector float*)&vd1_1)[0];
-    hi1_2 = ((vector float*)&vd1_2)[1];
-    lo1_2 = ((vector float*)&vd1_2)[0];
-    hi2_1 = ((vector float*)&vd2_1)[1];
-    lo2_1 = ((vector float*)&vd2_1)[0];
-    hi2_2 = ((vector float*)&vd2_2)[1];
-    lo2_2 = ((vector float*)&vd2_2)[0];
-
-    // 实部虚部靠混洗分离
-    shuff_mode(0); //乘数1实部
-    hi1_r = vec_shufw ( 0, hi1_1, hi1_2 );
-    lo1_r = vec_shufw ( 0, lo1_1, lo1_2 );
-    //乘数2实部
-    hi2_r = vec_shufw ( 0, hi2_1, hi2_2 );
-    lo2_r = vec_shufw ( 0, lo2_1, lo2_2 );
-    shuff_mode(1); //乘数1虚部
-    hi1_i = vec_shufw ( 1, hi1_1, hi1_2 );
-    lo1_i = vec_shufw ( 1, lo1_1, lo1_2 );
-    //乘数2虚部
-    hi2_i = vec_shufw ( 1, hi2_1, hi2_2 );
-    lo2_i = vec_shufw ( 1, lo2_1, lo2_2 );
-
-    // 实部虚部结合，(汇编层面可以直接操作寄存器)
-    ((vector float*)&vd1_r)[1] = hi1_r;
-    ((vector float*)&vd1_r)[0] = lo1_r;
-    ((vector float*)&vd1_i)[1] = hi1_i;
-    ((vector float*)&vd1_i)[0] = lo1_i;
-    ((vector float*)&vd2_r)[1] = hi2_r;
-    ((vector float*)&vd2_r)[0] = lo2_r;
-    ((vector float*)&vd2_i)[1] = hi2_i;
-    ((vector float*)&vd2_i)[0] = lo2_i;
-    
-    vdres_r = vec_muli(vd1_i, vd2_i);
-    vdres_r = vec_mulb(vd1_r, vd2_r, vdres_r); //vec_mulb, [src1 * src2 -src3]
-
-    vdres_i = vec_muli(vd1_r, vd2_r);
-    vdres_i = vec_mula(vd1_i, vd2_i, vdres_i);
-    
-    // 存储，防止优化
-    //M7002_datatrans(&vdres_r, &v_Q, sizeof(double) * 16);
-    //M7002_datatrans(&vdres_i, &v_R, sizeof(double) * 16);
-    *(lvector double*)v_Q = vdres_r;
-    *(lvector double*)v_R = vdres_i;
-
-    return;
+    M7002_datatrans(darr1, v_Q, sizeof(double) * 32);
+    M7002_datatrans(darr2, v_R, sizeof(double) * 32);
+    dp_cmplx_mul_asm((lvector double*)v_Q, (lvector double*)v_R, (lvector double*)v_A);
 }
 
 
@@ -234,7 +132,7 @@ int main()
     printf("begin test\n");
 
     //test_qr_solver_complx(A, Q, R, inv_A, u, b, y, x);
-    test_dp_cplx();
+    dp_cmplx_mul_test();
 
     printf("end\n");
 }

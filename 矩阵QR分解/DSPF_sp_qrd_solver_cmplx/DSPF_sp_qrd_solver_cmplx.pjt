@@ -52,9 +52,8 @@ Options=-O2 -ffunction-sections
 ["Linker" Settings: "Release"]
 Options=-o"Release/DSPF_sp_qrd_solver_cmplx.out" --gc-sections -T"DSPF_sp_qrd_solver_cmplx.lds" 
 [Opened files]
-OpenedSource="main.c",line=24
-OpenedSource="version_vector.c",line=52
-OpenedSource="version_trival.c",line=112
+OpenedSource="main.c",line=148
+OpenedSource="version_vector.c",line=130
 [Builders]
 m7002.builder
 [Debug Configurations]

@@ -16,8 +16,10 @@ Source="version.h"
 Source="version_trival.c"
 Source="version_vector.c"
 Source="version_asm"
+Source="dp_cmplx_mul_asm.asm"
 Source="Debug/ConfRegOp.o"
 Source="Debug/ConfRegOp.s"
+Source="Debug/dp_cmplx_mul_asm.o"
 Source="Debug/DSPF_dp_qrd_solver_cmplx.map"
 Source="Debug/DSPF_dp_qrd_solver_cmplx.out"
 Source="Debug/main.o"
@@ -41,9 +43,10 @@ Options=-O2 -ffunction-sections
 ["Linker" Settings: "Release"]
 Options=-o"Release/DSPF_dp_qrd_solver_cmplx.out" --gc-sections -T"DSPF_dp_qrd_solver_cmplx.lds" 
 [Opened files]
-OpenedSource="main.c",line=188
-OpenedSource="version_trival.c",line=70
+OpenedSource="main.c",line=54
+OpenedSource="version_trival.c",line=1
 OpenedSource="version_vector.c",line=1
+OpenedSource="dp_cmplx_mul_asm.asm",line=1
 [Builders]
 m7002.builder
 [Debug Configurations]

@@ -56,6 +56,7 @@ int DSPF_sp_qrd_solver_wrapper(unsigned int* t_start, unsigned int* t_stop, cons
         M7002_datatrans(b, v_b, sizeof(float) * Nrows);
 
         *t_start = GetTimerCount(0);
+        //status = DSPF_sp_qrd_solver_asm(Nrows, Ncols, v_Q, v_R, v_b, v_y, v_x);
         status = DSPF_sp_qrd_solver7(Nrows, Ncols, v_Q, v_R, v_b, v_y, v_x);
         *t_stop = GetTimerCount(0);
         M7002_datatrans(v_x, x, sizeof(float) * Ncols);
@@ -97,8 +98,8 @@ void main()
     v_A = 0x040000000;
     v_Q = v_A + MAX_NROW * MAX_NCOL / 16 + 100;
     v_R = v_Q + MAX_NROW * MAX_NCOL / 16 + 100;
-    v_u = v_R + (MAX_NROW > MAX_NCOL ? MAX_NROW : MAX_NCOL) / 16 + 100;
-    v_b = v_u + MAX_NROW / 16 + 100;
+    v_u = v_R + MAX_NROW * MAX_NCOL / 16 + 100;
+    v_b = v_u + (MAX_NROW > MAX_NCOL ? MAX_NROW : MAX_NCOL) / 16 + 100;
     v_y = v_b + MAX_NROW / 16 + 100;
     v_x = v_y + MAX_NCOL / 16 + 100;
 
@@ -129,7 +130,7 @@ void testQr() {
     int Nrows;
     int Ncols;
 
-    for (test=1;test<=3;test++) {
+    for (test=3;test<=4;test++) {
 	    printf("DSPF_dp_qrd\tIter#: %d\t", test);
         switch(test) {
         case 1: {
@@ -163,6 +164,20 @@ void testQr() {
         case 3: {
             Nrows = 128;
             Ncols = 128;
+            srand(0);
+            for (row = 0; row < Nrows; row++)
+            {
+                for (col = 0; col < Ncols; col++)
+                {
+                    A[row * Ncols + col] = (float)(rand()) / ((float)RAND_MAX);
+                }
+                b[row] = (float)(rand()) / ((float)RAND_MAX);
+            }
+            break;
+        }
+        case 4: {
+            Nrows = 51;
+            Ncols = 51;
             srand(0);
             for (row = 0; row < Nrows; row++)
             {
@@ -323,7 +338,7 @@ void testQr() {
         if (pass)
         {
             printf("Successful");
-            printf("\torder=%2dx%2d, \tqr: %d, \tslover: %d, \tinverse: %d, \n", Nrows, Ncols, QRD_t, QRD_t_slover, QRD_t_inverse);
+            printf("\torder=%2dx%2d, \tqr: %d, \tsolver: %d, \tinverse: %d, \n", Nrows, Ncols, QRD_t, QRD_t_slover, QRD_t_inverse);
         }
         else
         {

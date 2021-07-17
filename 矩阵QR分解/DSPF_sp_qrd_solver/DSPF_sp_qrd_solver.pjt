@@ -27,12 +27,14 @@ Source="Release/qr.o"
 Source="Release/qr.s"
 Source="Release/Timer.o"
 Source="Release/Timer.s"
+Source="DSPF_sp_qrd_solver_asm.asm"
 Source="Debug/ConfRegOp.o"
 Source="Debug/ConfRegOp.s"
 Source="Debug/DSPF_sp_qrd_solver.map"
 Source="Debug/DSPF_sp_qrd_solver.o"
 Source="Debug/DSPF_sp_qrd_solver.out"
 Source="Debug/DSPF_sp_qrd_solver.s"
+Source="Debug/DSPF_sp_qrd_solver_asm.o"
 Source="Debug/main.o"
 Source="Debug/main.s"
 Source="Debug/qr.o"
@@ -40,7 +42,7 @@ Source="Debug/qr.s"
 Source="Debug/Timer.o"
 Source="Debug/Timer.s"
 ["Compiler" Settings: "Debug"]
-Options=-O0 -g -ffunction-sections 
+Options=-O2 -g -ffunction-sections 
 ["Assembler" Settings: "Debug"]
 
 ["Linker" Settings: "Debug"]
@@ -52,9 +54,9 @@ Options=-O2 -ffunction-sections
 ["Linker" Settings: "Release"]
 Options=-o"Release/DSPF_sp_qrd_solver.out" --gc-sections -T"DSPF_sp_qrd_solver.lds" 
 [Opened files]
-OpenedSource="main.c",line=263
-OpenedSource="qr.h",line=1
-OpenedSource="DSPF_sp_qrd_solver.c",line=67
+OpenedSource="main.c",line=1
+OpenedSource="DSPF_sp_qrd_solver.c",line=1
+OpenedSource="qr.c",line=1
 [Builders]
 m7002.builder
 [Debug Configurations]

@@ -24,8 +24,8 @@ void printMatrix(float *matrix, const char *name, int rowN, int colN){
 }
 
 
-#define MAX_NROW 64
-#define MAX_NCOL 64
+#define MAX_NROW 128
+#define MAX_NCOL 128
 vector float *v_A;
 vector float *v_Q;
 vector float *v_R;
@@ -111,8 +111,8 @@ int main()
     v_A = 0x040000000;
     v_Q = v_A + Nrows * Nrows * 2 / 16 + 100;
     v_R = v_Q + Nrows * Nrows * 2 / 16 + 100;
-    v_u = v_R + (Nrows > Ncols ? Nrows : Ncols) * 2 / 16 + 100;
-    v_b = v_u + Nrows * 2 / 16 + 100;
+    v_u = v_R + Nrows * Nrows * 2 / 16 + 100;
+    v_b = v_u + (Nrows > Ncols ? Nrows : Ncols) * 2 / 16 + 100;
     v_y = v_b + Nrows * 2 / 16 + 100;
     v_x = v_y + Ncols * 2 / 16 + 100;
 
@@ -203,7 +203,7 @@ void test_qr_solver_complx(
         }
         case 3:
         {
-            Nrows = 64;
+            Nrows = 128;
             Ncols = Nrows;
             srand(1);
             for (row = 0; row < Nrows; row++)

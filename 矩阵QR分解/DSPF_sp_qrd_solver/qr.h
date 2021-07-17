@@ -22,3 +22,13 @@ int DSPF_sp_qrd_solver7(
     vector float *x
 );
 
+int DSPF_sp_qrd_solver_asm(
+    const int Nrows,
+    const int Ncols,
+    vector float *Q,
+    vector float *R,
+    vector float *b,
+    vector float *y,
+    vector float *x
+);
+
