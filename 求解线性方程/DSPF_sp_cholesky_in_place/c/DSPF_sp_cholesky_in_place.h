@@ -12,13 +12,11 @@
 #define OFF_FLOAT_PTR(base,off)(*((vector float*)( ((float*)base)+(off) )) )
 
 /**
- * 对A矩阵进行cholesky分解，将分解得到的上三角矩阵存储在L矩阵上。
+ * 对A矩阵进行cholesky分解，将分解得到的上三角矩阵就地存储在A矩阵上。
  * 注意：分解得到的矩阵是上三角矩阵。不会对A矩阵是否是正定矩阵进行检查。
- * 注意：L矩阵的大小必须是16的倍数，否则会影响L矩阵后面的数据。
  * order：A矩阵的规模
- * A_am：A矩阵在AM空间上的起始地址
- * L_am: L矩阵在AM空间上的起始地址
+ * A_am：A矩阵和L矩阵在AM空间上的起始地址
 **/  
-void DSPF_sp_cholesky(int order,vector float* A_am,vector float* L_am);
+void DSPF_sp_cholesky_in_place(int order,vector float *A_am);
 
 #endif 

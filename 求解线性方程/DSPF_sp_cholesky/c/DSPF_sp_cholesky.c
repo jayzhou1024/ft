@@ -84,18 +84,16 @@ void DSPF_sp_cholesky(int order,vector float* A_am,vector float* L_am){
 		}
 
 		//calculate Ljj
-		vsip_vsqrt_f_v(&OFF_FLOAT_PTR(L_am,j*order+j),&OFF_FLOAT_PTR(L_am,j*order+j),1);
-		//取L[j][j]
-		temp = vec_ld(j*order+j,L_am);
-		//通过混洗进行广播
-		temp = vec_shufw(0,temp,temp);
-		//两行向量相除
-		//第二行向量是Ljj的广播	
-		vsip_vdiv_f_v(&OFF_FLOAT_PTR(L_am,j*order+j+1),
-						&temp,
+		mov_to_svr_v16sf(OFF_FLOAT_PTR(L_am,j*order+j));
+		int t = mov_from_svr0();
+		float Ljj = *((float*)(&t));
+		Ljj = sqrt(Ljj);
+		
+		//向量除以标量Ljj的开方
+		vsip_vsdiv_f_v(&OFF_FLOAT_PTR(L_am,j*order+j+1),
+						Ljj,
 						&OFF_FLOAT_PTR(L_am,j*order+j+1),
 						order-j-1);
 
 	}
 }
-

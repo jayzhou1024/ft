@@ -1,1 +1,5 @@
-vesion1.3:将以前的DMA传输从而进行广播的方式改为了通过混洗进行广播
+vesion1.4:将以前的DMA传输从而进行广播的方式改为了通过混洗进行广播
+
+2021/7/17 
+	修改了DSPF_sp_cholesky.c和DSPF_sp_cholesky.h。
+	修改了version1.4计算Ljj的方式，并且最后除法时采用vsip_vsdiv_f_v函数。
