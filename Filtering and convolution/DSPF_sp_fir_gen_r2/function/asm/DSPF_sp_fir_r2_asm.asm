@@ -1,5 +1,5 @@
-.global asm_dspf_sp_fir_gen   ;全局符号声明，可以在其他C或汇编文件中调用
-asm_dspf_sp_fir_gen:  ;
+.global asm_dspf_sp_fir_r2   ;全局符号声明，可以在其他C或汇编文件中调用
+asm_dspf_sp_fir_r2:  ;
 ;	寄存器规定：
 ;		R50 ~ R51: i,j
 ;       R53 ~ R60: h_0 ~ h_7
@@ -10,9 +10,8 @@ asm_dspf_sp_fir_gen:  ;
 ;       VR30：x_0_15  VR31: x_1_16   ... VR37：x_7_22
 ;		VR3: r[k]
 ;
-;   参数要求： nh % 4 = 0 &&  nh >= 4
-;			  nr % 4 = 0 &&  nr >= 4
-
+;   参数要求： nh % 2 = 0 &&  nh >= 4
+;			  nr % 2 = 0 
 
 ;      初始化寄存器 
         SMOVI0L	    	0, R50 			;初始化i
@@ -30,35 +29,43 @@ asm_dspf_sp_fir_gen:  ;
 		SMVCGC			R0,	SCR
 |		SMVAGA36.M1 	R45:R44, OR5    ;offset 16
 |		SADD.M2			R46,R46,R45      ;64
-;part3:  
+
 dspf_sp_fir_gen_LOOP1:    ;外循环 
 
         SMOVI0L	    	0, R51 	           ;j 置 0
 |       SSUB.M1 		R50,R16,R43 
 |		SLDW			*AR10++[1],R53     ;将存放在SM中的h_0取到寄存器中 p6
 
-        SLT				4,R43,R2           ;计算h_4 ~ h_7的条件
+        SLT				2,R43,R0           ;计算h_4 ~ h_7的条件
 |	    SMVAGA36.M1 	R15:R14, AR5       ;在外循环取r
 |       SLDW			*AR10++[1],R54
 
 		SSHFLL			2, R50,R40
 |       SLDW			*AR10++[1],R55	
-        SLDW			*AR10++[1],R56
-        SLDW			*AR10++[1],R57     
+
+		SLT				4,R43,R1
+|       SLDW			*AR10++[1],R56
+
+		SLT				6,R43,R2
+|       SLDW			*AR10++[1],R57     
  	    SLDW			*AR10++[1],R58    
  	    SLDW			*AR10++[1],R59
-|       SVBCAST.M2		R53, VR10          ;h_0取数结束，将其广播到向量寄存器中
-|       SADD.M1			R40,R10,R47        ;(Xaddr)+i*4
+|       SVBCAST.M1		R53, VR10          ;h_0取数结束，将其广播到向量寄存器中
+|       SADD.M2			R40,R10,R47        ;(Xaddr)+i*4
 
         SLDW			*AR10++[1],R60   
 |       SVBCAST.M1		R54, VR11  
+
+ [!R0]  SADD.M2     	0,R51,R55
+
 		SVBCAST.M1		R55, VR12
+|[!R0]  SADD.M2     	0,R51,R56
+
  		SVBCAST.M1		R56, VR13 
-		 	
- [!R2]  SADD.M2     	0,R51,R57
+|[!R1]  SADD.M2     	0,R51,R57
 
         SVBCAST.M1		R57, VR14 
-|[!R2]  SADD.M2     	0,R51,R58
+|[!R1]  SADD.M2     	0,R51,R58
 
 		SVBCAST.M1		R58, VR15 
 |[!R2]  SADD.M2     	0,R51,R59
@@ -189,4 +196,4 @@ dspf_sp_fir_gen_LOOP2:   ;内循环
  [!R1]  SBR				R62                       
 		SNOP			6                                
 		
-.size asm_dspf_sp_fir_gen, .-asm_dspf_sp_fir_gen
+.size asm_dspf_sp_fir_r2, .-asm_dspf_sp_fir_r2
