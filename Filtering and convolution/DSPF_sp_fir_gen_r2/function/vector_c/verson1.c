@@ -1,4 +1,6 @@
 #include "c6x-c.h" 
+
+
 #include <stdio.h>
 #include <math.h> 
 /*
@@ -17,7 +19,7 @@ void DSPF_sp_fir_r2_vc(
 ) {
 	int i,j,k;
     vector float* temp_x_offset_addr;
-    vector float temp_vh_0,temp_vh_1,temp_vh_2,temp_vh_3,temp_vr;
+    vector float &temp_vh_0,temp_vh_1,temp_vh_2,temp_vh_3,temp_vr;
     vector float temp_vx_0_15,temp_vx_1_16,temp_vx_2_17,temp_vx_3_18;
     int flag_h23;
     for(i = 0; i < nh; i+=4) {
@@ -45,7 +47,6 @@ void DSPF_sp_fir_r2_vc(
                 temp_vx_3_18 = vec_ld(j+3,temp_x_offset_addr);
                 temp_vr=vec_mula(temp_vx_3_18,temp_vh_3,temp_vr);  
             }
-
             r[k] = temp_vr;
 		}
 	}

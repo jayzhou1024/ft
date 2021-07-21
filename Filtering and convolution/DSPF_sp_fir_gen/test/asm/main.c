@@ -97,7 +97,7 @@ void random_h_sp(float *h, int n){
 unsigned long  getTime_vc(vector float * x,float *h,vector float* r,int nh,int nr){
 	unsigned long time1,time2;
     time1 = GetTimerCount(0);
-	asm_dspf_sp_fir_gen1(x,h,r,nh,nr);
+	asm_dspf_sp_fir_gen(x,h,r,nh,nr);
     time2 = GetTimerCount(0);
     return time2-time1;
 }

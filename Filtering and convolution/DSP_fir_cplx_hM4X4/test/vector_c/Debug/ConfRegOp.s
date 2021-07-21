@@ -76,7 +76,7 @@ SetConfReg:
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.4byte	0x130
+	.4byte	0x15e
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x8
@@ -84,7 +84,7 @@ SetConfReg:
 	.string	"GNU C 4.7.0"
 	.byte	0x1
 	.string	"../ConfRegOp.c"
-	.string	"/cygdrive/e/project/function  demo/function/DSP_fir_cplx_hM4X4/Debug"
+	.string	"/cygdrive/e/project/\351\241\271\347\233\256/ft-m7002-function-base/Filtering and convolution/DSP_fir_cplx_hM4X4/test/vector_c/Debug"
 	.4byte	.Ldebug_ranges0+0
 	.llong	0
 	.llong	0
@@ -95,19 +95,19 @@ SetConfReg:
 	.byte	0x1
 	.byte	0x1
 	.byte	0x1
-	.4byte	0xc2
+	.4byte	0xf0
 	.llong	.LFB0
 	.llong	.LFE0
 	.byte	0x2
 	.byte	0x7f
 	.byte	0
 	.byte	0x1
-	.4byte	0xc2
+	.4byte	0xf0
 	.byte	0x3
 	.string	"addr"
 	.byte	0x1
 	.byte	0x1
-	.4byte	0xc9
+	.4byte	0xf7
 	.4byte	.LLST0
 	.byte	0
 	.byte	0x4
@@ -130,19 +130,19 @@ SetConfReg:
 	.byte	0x7f
 	.byte	0
 	.byte	0x1
-	.4byte	0x123
+	.4byte	0x151
 	.byte	0x6
 	.string	"addr"
 	.byte	0x1
 	.byte	0x6
-	.4byte	0xc9
+	.4byte	0xf7
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x6
 	.string	"data"
 	.byte	0x1
 	.byte	0x6
-	.4byte	0x123
+	.4byte	0x151
 	.byte	0x1
 	.byte	0x6c
 	.byte	0

@@ -1,0 +1,248 @@
+[33mcommit 7f9eb7943090a05b0c99687404e42042329f86a1[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Wed Jun 2 15:04:04 2021 +0800
+
+    添加dsp_fir_r8_hM16_rM8A8X8
+
+[33mcommit bc11d525847cdb53ca4ad9fa22a6b8194debe42b[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Wed Jun 2 14:40:14 2021 +0800
+
+    更新 dspf_sp_fir_gen 汇编代码
+
+[33mcommit f13def21459c9864f1654aac79de556aea81a2e3[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Sat May 29 16:30:15 2021 +0800
+
+    q_mula_inloop1部分中SBR延时槽添加
+
+[33mcommit aaf77a51c21e899b82a1267abc725e97e994bbf1[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Sat May 29 16:27:50 2021 +0800
+
+    q_mula_inloop1 中的SBR延时槽添加
+    
+    虽然源代码运行无误，但修改延时槽后程序更加规范。
+
+[33mcommit f8c670479e2d7fd4e632583932b5e90021102b05[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Wed May 26 16:49:39 2021 +0800
+
+    qr分解md更新
+
+[33mcommit 8dafc1f005aa6e92b827b8a1136ebd3fb83baee0[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Wed May 26 16:49:07 2021 +0800
+
+    Delete QR分解优化.md
+
+[33mcommit 5274d0125ba1bef5b97f35a5f00e8d1ce4f81106[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Wed May 26 16:48:15 2021 +0800
+
+    readme图片更新
+
+[33mcommit 46f209f89600affcb3b8ec9a9cb473a53e0815e1[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Wed May 26 16:47:05 2021 +0800
+
+    QR分解汇编工程
+
+[33mcommit 8e7146e65d687b9ee1f1c2775f33367b3e30cbb9[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Wed May 26 16:45:32 2021 +0800
+
+    QR向量c工程
+
+[33mcommit 3883e0c44d264858f19f24b4e14b1923dddd17ed[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Wed May 26 16:43:53 2021 +0800
+
+    Delete 矩阵QR分解/DSPF_sp_qrd/QR directory
+
+[33mcommit 992ff8524a6f5809e536952922df08d34643ddfb[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Wed May 26 16:42:42 2021 +0800
+
+    version6、7为重构代码，向量c交付版本以version7为准
+    
+    改变计算方式，重构后不需要传转置矩阵，计算更合理
+
+[33mcommit 5e24cd0a89d0acff74415f52eb0d87136b151b21[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Wed May 26 16:28:36 2021 +0800
+
+    汇编代码
+    
+    在O2代码的基础上修改，使三个mac单元得以并行使用
+
+[33mcommit 4b49d178ae782f228a792b68dc257037eb261659[m
+Author: zzzlxhhh <38077620+zzzlxhhh@users.noreply.github.com>
+Date:   Sat May 22 12:21:38 2021 +0800
+
+    Add files via upload
+    
+    QR分解向量C优化，各版本说明见QR_readme
+
+[33mcommit 13cbfafb8d56406981a175330b2b13a0f778d81b[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Wed May 19 20:26:50 2021 +0800
+
+    add dsp_fir_cplx_hM4X4 vector c code and vector c test project
+
+[33mcommit d478c26467816dc38cae769932d0581cb99b26bb[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Tue May 18 20:10:51 2021 +0800
+
+    add dspf_sp_fir_r2 vector c code and vector c test project
+
+[33mcommit 75e1395dc80a7d0d6fcf01235c5936dfe4a5f2e2[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Tue May 18 16:46:00 2021 +0800
+
+    add dsp_fir_cplx vector C code and vector C test project
+
+[33mcommit 43d872e3f73ea90848ef8bb05da2a23ade5c9ddb[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Mon May 17 11:05:00 2021 +0800
+
+    add dsp_fir_gen vector code and vector test code
+
+[33mcommit 26dab3e83945c245e18613bf0c435f7d72c31a15[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Mon May 17 10:20:28 2021 +0800
+
+    add dspf_sp_fir_cplx   vector c code and vector c test code
+
+[33mcommit 1b8e75e64a21d3337ea2d81901bd5bdb324d72ad[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Mon May 17 09:22:27 2021 +0800
+
+    update dspf_sp_fir_gen  vector C code  and test code
+
+[33mcommit 545cdcd45e19f76312cc94b782381a37d5cf0e27[m
+Author: 90946 <909465861@99.com>
+Date:   Sat May 15 01:44:58 2021 +0800
+
+    单精度cholesky分解
+
+[33mcommit bc222d14cb04ae5e9ee9b5610b25d05f7dc975a4[m
+Author: Crspidey <51468842+Crspidey@users.noreply.github.com>
+Date:   Sat Apr 24 16:21:33 2021 +0800
+
+    Delete solver_cmplx.c
+
+[33mcommit 89a0bf5abad29cb0915b655db4b3d04288075b18[m
+Author: Crspidey <51468842+Crspidey@users.noreply.github.com>
+Date:   Fri Apr 23 18:15:56 2021 +0800
+
+    Add files via upload
+
+[33mcommit 5ddc321f0737ee12982a6983bdaa5b8ab55539cc[m
+Author: Crspidey <51468842+Crspidey@users.noreply.github.com>
+Date:   Fri Apr 23 18:11:56 2021 +0800
+
+    Delete DSPF_dp_qrd_solver_cmplx
+
+[33mcommit 898bb1286b913c6f94e110f2aa7eff28d20aa521[m
+Author: Crspidey <51468842+Crspidey@users.noreply.github.com>
+Date:   Fri Apr 23 18:10:52 2021 +0800
+
+    Create DSPF_dp_qrd_solver_cmplx
+
+[33mcommit 82f19ddd3db840305290a922d44008b0cd3b35bb[m
+Author: LinGuanguo <lin.guanguo@foxmail.com>
+Date:   Mon Apr 12 22:48:33 2021 +0800
+
+    qr_slover调整目录结构
+
+[33mcommit ea0be3e5fde4017af66994b38a83a3208a1a45c2[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Mon Apr 12 20:54:55 2021 +0800
+
+    move qrd_solver dir
+
+[33mcommit b46b72d5d7fc814c3b750f1e484f0ea9c7f7e244[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Mon Apr 12 19:57:47 2021 +0800
+
+    Update 函数介绍.md
+
+[33mcommit 2dd3d7473df4bee830ffe20ac6b5754a911654bd[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Mon Apr 12 19:56:45 2021 +0800
+
+    add function description
+
+[33mcommit 8064874ded4b6d941583b23023fe42e761fa89c5[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Mon Apr 12 19:53:57 2021 +0800
+
+    add function description
+
+[33mcommit e54677840bc5cc22dd864dcf7365e410fc6e88d6[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Mon Apr 12 19:48:12 2021 +0800
+
+    add function description
+
+[33mcommit 2dd9a846efcd3a35a7499bfc7e91858e94d978d7[m
+Author: LinGuanguo <lin.guanguo@foxmail.com>
+Date:   Mon Apr 12 15:49:53 2021 +0800
+
+    DSPF_sp_qrd_solver 初步完成，暂时只能处理16对齐矩阵
+
+[33mcommit 1fb088ad0944650c2d64128ba6af50013fdbc9cd[m
+Author: liuyue_ct <51190606+mooneclipsed@users.noreply.github.com>
+Date:   Sat Apr 10 10:23:14 2021 +0800
+
+    Create Readme.md
+
+[33mcommit 6adebe7622e5464b7001a1df593b4c1c41d1ac0d[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Thu Apr 8 20:20:35 2021 +0800
+
+    add dspf_sp_fir_gen asm verson1
+
+[33mcommit 522d4f5255d607e76bf29ca4658673702f45281c[m
+Merge: 7f9cdcb 25e642c
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Thu Apr 8 20:18:21 2021 +0800
+
+    Merge branch 'main' of github.com:jayzhou1024/ft-m7002-function-base into main
+
+[33mcommit 7f9cdcb3e71469f85146aee18091b4dc22bc4ed4[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Thu Apr 8 20:18:00 2021 +0800
+
+    add dspf_sp_fir_gen asm verson1
+
+[33mcommit 25e642c8d1f79f3fdf423de34762eb0cc758f17a[m
+Author: Starynight410 <68496626+Starynight410@users.noreply.github.com>
+Date:   Wed Apr 7 16:22:52 2021 +0800
+
+    Delete dspf_sp_iir.cpp
+
+[33mcommit 37d16bce4a109d094439b2dd104f7546c9e46a0e[m
+Author: Starynight410 <68496626+Starynight410@users.noreply.github.com>
+Date:   Wed Apr 7 16:20:00 2021 +0800
+
+    Create DSP_iir.c
+
+[33mcommit 3fa4d8a1d8727657eec012babe7ed56377bb1431[m
+Author: Starynight410 <68496626+Starynight410@users.noreply.github.com>
+Date:   Wed Apr 7 16:14:32 2021 +0800
+
+    Add files via upload
+
+[33mcommit 6270ee058c51581c55188077fabf40a38271153b[m
+Author: jayzhou1024 <45135667+jayzhou1024@users.noreply.github.com>
+Date:   Fri Apr 2 18:47:38 2021 +0800
+
+    add dir
+
+[33mcommit af9d606f3eaa84f91708675813fd9ba97bc0dcb6[m
+Author: jay <1396631647@qq.com>
+Date:   Wed Mar 31 21:23:09 2021 +0800
+
+    gite
