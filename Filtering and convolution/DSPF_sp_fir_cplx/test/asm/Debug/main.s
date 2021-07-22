@@ -1,0 +1,1102 @@
+	.file	"main.c"
+	.section	.text.randomx_sp_cplx,"ax",@progbits
+	.align	2
+	.global	randomx_sp_cplx
+	.type	randomx_sp_cplx, @function
+randomx_sp_cplx:
+		SMOVIL		-48, R6
+		SMOVIL		-1, R7
+		SMOVIL		0, R42
+	|	SADDA.M2		R7:R6,AR15,AR15
+		SLT		R42, R12, R0
+	|	SADD.M1		-1,R12,R12
+		SSHFLL		1, R12, R1
+	|	SSTDW		R33:R32, *+AR15[2]
+		SSHFLL		2, R12, R43
+	|	SADD.M2		4,R10,R32
+	|	SSTDW		R35:R34, *+AR15[3]
+	[!R0]	SBR		.L1
+	|	SLTU		R1, R12, R2
+	|	SADD.M2		R43,R32,R33
+	|	SMOV.M1		R14, R34
+		SLTU		R32, R10, R35
+		SSTDW		R31:R30, *+AR15[1]
+		SSTDW		R37:R36, *+AR15[4]
+		SLTU		R43, R1, R3
+	|	SADD.M2		R11,R35,R8
+	|	SMOV.M1		R10, R30
+		SSHFLL		1, R2, R9
+	|	SMOV.M2		R11, R31
+		SSTDW		R63:R62, *+AR15[5]
+	;; condjump to .L1 occurs
+		SADD.M2		R9,R3,R10
+	|	SMOVIL		1317011456, R37
+		SLTU		R33, R32, R11
+	|	SADD.M2		R10,R8,R13
+		SMOVIL		813694976, R36
+	|	SADD.M2		R13,R11,R35
+		SMOVIH		1317011456, R37
+		SMOVIH		813694976, R36
+.L3:
+		SBR		rand
+		SMOVIL		.L9, R62
+		SMOVIH		.L9, R62
+		SMOVIH4.L		.L9, R63
+	;; call to rand occurs, with return value
+		SNOP		3
+.L9:
+		SFINTS32.M2		R10,R14
+	|	SLTU		R32, R30, R15
+	|	SMVAGA36.M1		R31:R30, AR10
+		SEQ		R32, R33, R0
+	|	SADD.M2		R31,R15,R31
+	[R0]	SEQ		R31, R35, R0
+	|	SMOV.M1		R32, R30
+		SFSUBS32.M2		R37, R14, R17
+	|	SADD.M1		4,R32,R32
+		SNOP		2
+		SFMULS32.M2		R17, R36, R18
+		SNOP		1
+	[!R0]	SBR		.L3
+		SNOP		1
+		SFMULS32.M2		R18, R34, R19
+		SNOP		3
+		SSTW		R19, *AR10
+	;; condjump to .L3 occurs
+.L1:
+		SLDDW		*+AR15[5], R63:R62
+	|	SMOVIL		48, R6
+		SLDDW		*+AR15[1], R31:R30
+	|	SMOVIL		0, R7
+		SLDDW		*+AR15[2], R33:R32
+		SLDDW		*+AR15[3], R35:R34
+		SLDDW		*+AR15[4], R37:R36
+	|	SADDA.M2		R7:R6,AR15,AR15
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	;; return occurs
+	.size	randomx_sp_cplx, .-randomx_sp_cplx
+	.section	.text.randomh_sp_cplx,"ax",@progbits
+	.align	2
+	.global	randomh_sp_cplx
+	.type	randomh_sp_cplx, @function
+randomh_sp_cplx:
+		SFINTD.M2		R12,R49:R48
+	|	SMOVIL		1073741824, R51
+	|	SMVAGA36.M1		R11:R10, AR0
+		SMOVIL		0, R50
+	|	SADD.M2		-1,R12,R3
+		SMOVIH		1073741824, R51
+		SLTU		R12, R3, R13
+		SFRCPD.M2		R49:R48, R43:R42
+	|	SMOVIL		-56, R6
+		SMOVIL		-1, R7
+		SFMULD.M2		R49:R48, R43:R42, R47:R46
+	|	SADDA.M1		R7:R6,AR15,AR15
+		SSHFLR		31, R12, R44
+		SADD.M1		R12,R44,R0
+	|	SSHFLL		2, R12, R44
+	|	SSTW		R31, *+AR15[4]
+		SSTW		R30, *+AR15[3]
+		SSHFAR		1, R0, R1
+	|	SMVAAGL.M1		AR0, R31:R30
+		SLT		R50, R1, R2
+		SFSUBD.M2	R47:R46, R51:R50, R9:R8
+	|	SSTW		R36, *+AR15[9]
+		SMVAAGH.M1		AR0, R31:R30
+	|	SSTW		R34, *+AR15[7]
+		SNOP		1
+		SADD.M1		4,R30,R34
+		SSTW		R32, *+AR15[5]
+		SFMULD.M2		R43:R42, R9:R8, R11:R10
+	|	SSTW		R38, *+AR15[11]
+		SNOP		1
+		SSHFLL		1, R12, R43
+	|	SADD.M1		-1,R1,R9
+	|[!R2]	SBR		.L10
+		SSTW		R37, *+AR15[10]
+		SSTW		R33, *+AR15[6]
+		SLTU		R34, R30, R37
+	[R2]	SFMULD.M2		R49:R48, R11:R10, R15:R14
+	|	SADD.M1		R31,R37,R29
+		SSTW		R35, *+AR15[8]
+		SSTDW		R63:R62, *+AR15[6]
+		SNOP		3
+	;; condjump to .L10 occurs
+		SFSUBD.M2	R15:R14, R51:R50, R17:R16
+		SNOP		4
+		SFMULD.M2		R11:R10, R17:R16, R19:R18
+		SNOP		1
+		SSHFAR		31, R3, R11
+		SADD.M1		R11,R13,R15
+	|	SLTU		R43, R12, R17
+		SNOP		2
+		SFMULD.M2		R49:R48, R19:R18, R21:R20
+		SNOP		5
+		SFSUBD.M2	R21:R20, R51:R50, R23:R22
+		SNOP		1
+		SLTU		R44, R43, R21
+		SNOP		2
+		SFMULD.M2		R19:R18, R23:R22, R25:R24
+		SNOP		1
+		SSHFLL		1, R15, R19
+		SADD.M1		R19,R17,R12
+	|	SSHFLL		1, R9, R23
+		SSHFLL		1, R12, R45
+		SADD.M1		R45,R21,R45
+		SFADDD.M2		R25:R24, R25:R24, R27:R26
+	;no-op trunc di R45:R44 to pdi R45:R44
+	|	SADDA.M1		R45:R44,AR0,OR0
+		SNOP		1
+		SSHFLL		2, R9, R25
+		SLTU		R25, R23, R28
+	|	SADD.M1		R25,R34,R35
+		SLTU		R35, R34, R49
+		SFDPSP32.M2		R27:R26, R36
+		SNOP		1
+		SLTU		R23, R9, R27
+		SSHFLL		1, R27, R32
+		SADD.M1		R32,R28,R38
+	|	SMVAAGL.M2		OR0, R33:R32
+		SADD.M1		R38,R29,R50
+	|	SMOVIL		805306368, R38
+		SMVAAGH.M2		OR0, R33:R32
+	|	SMOVIH		805306368, R38
+	|	SADD.M1		R50,R49,R37
+		SNOP		1
+.L12:
+		SBR		rand
+		SMOVIL		.L18, R62
+		SMOVIH		.L18, R62
+		SMOVIH4.L		.L18, R63
+	;; call to rand occurs, with return value
+		SNOP		3
+.L18:
+		SFINTS32.M2		R10,R51
+	|	SLTU		R34, R30, R53
+	|	SMVAGA36.M1		R31:R30, AR12
+		SEQ		R34, R35, R0
+	|	SADD.M2		R31,R53,R31
+	[R0]	SEQ		R31, R37, R0
+	|	SADD.M1		-4,R32,R52
+		SFMULS32.M2		R51, R38, R56
+	|	SLTU		R52, R32, R54
+	|	SADD.M1		-1,R33,R55
+		SMOV.M2		R52, R32
+	|	SADD.M1		R55,R54,R33
+		SMVAGA36.M1		R33:R32, AR10
+	|	SMOV.M2		R34, R30
+		SNOP		1
+		SFMULS32.M2		R56, R36, R57
+	|	SADD.M1		4,R34,R34
+	[!R0]	SBR		.L12
+		SNOP		2
+		SSTW		R57, *AR12
+	|	SFSUBS32.M2		R57, R36, R58
+		SNOP		2
+		SSTW		R58, *AR10
+	;; condjump to .L12 occurs
+.L10:
+		SLDDW		*+AR15[6], R63:R62
+	|	SMOVIL		56, R6
+		SLDW		*+AR15[3], R30
+	|	SMOVIL		0, R7
+		SLDW		*+AR15[4], R31
+		SLDW		*+AR15[5], R32
+		SLDW		*+AR15[6], R33
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		3
+		SLDW		*+AR15[7], R34
+		SLDW		*+AR15[8], R35
+		SLDW		*+AR15[9], R36
+		SBR		R62
+	|	SLDW		*+AR15[10], R37
+		SLDW		*+AR15[11], R38
+	|	SADDA.M2		R7:R6,AR15,AR15
+		SNOP		5
+	;; return occurs
+	.size	randomh_sp_cplx, .-randomh_sp_cplx
+	.section	.text.get_time_cn,"ax",@progbits
+	.align	2
+	.global	get_time_cn
+	.type	get_time_cn, @function
+get_time_cn:
+		SMOVIL		-56, R6
+		SMOVIL		-1, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SMVAAGL.M1		AR14, R7:R6
+		SSTDW		R63:R62, *+AR15[5]
+		SMVAAGH.M1		AR14, R7:R6
+	|	SMVAGA36.M2		R13:R12, AR14
+	|	SSTW		R32, *+AR15[5]
+		SNOP		1
+		SMOV.M2		R16, R32
+		SSTDW		R7:R6, *+AR15[6]
+		SMVAAGL.M2		OR8, R7:R6
+	|	SSTW		R31, *+AR15[4]
+		SMOV.M1		R18, R31
+		SMVAAGH.M1		OR8, R7:R6
+	|	SMVAGA36.M2		R11:R10, OR8
+	|	SMOVIL		0, R10
+		SBR		GetTimerCount
+	|	SSTW		R30, *+AR15[3]
+		SSTDW		R7:R6, *+AR15[4]
+	|	SMOVIL		.L20, R62
+		SMVAAGL.M2		AR8, R7:R6
+	|	SMOVIH		.L20, R62
+		SMOVIH4.L		.L20, R63
+		SMVAAGH.M1		AR8, R7:R6
+	|	SMVAGA36.M2		R15:R14, AR8
+		SNOP		1
+	;; call to GetTimerCount occurs, with return value
+		SSTDW		R7:R6, *+AR15[3]
+.L20:
+		SBR		DSPF_sp_fir_cplx_cn
+	|	SMOV.M2		R32, R16
+	|	SMOV.M1		R31, R18
+		SMOV.M1		R10, R30
+	|	SMVAAGL.M2		AR14, R13:R12
+	|	SMOVIL		.L21, R62
+		SMVAAGL.M1		OR8, R11:R10
+	|	SMVAAGL.M2		AR8, R15:R14
+	|	SMOVIH		.L21, R62
+		SMVAAGH.M1		AR14, R13:R12
+	|	SMOVIH4.L		.L21, R63
+		SMVAAGH.M1		OR8, R11:R10
+	|	SMVAAGH.M2		AR8, R15:R14
+	;; call to DSPF_sp_fir_cplx_cn occurs
+		SNOP		2
+.L21:
+		SBR		GetTimerCount
+	|	SMOVIL		0, R10
+		SMOVIL		.L22, R62
+		SMOVIH		.L22, R62
+		SMOVIH4.L		.L22, R63
+	;; call to GetTimerCount occurs, with return value
+		SNOP		3
+.L22:
+		SLDDW		*+AR15[3], R7:R6
+	|	SSUB.M2		R30, R10, R10
+		SLDDW		*+AR15[5], R63:R62
+		SLDW		*+AR15[3], R30
+		SLDW		*+AR15[4], R31
+		SLDW		*+AR15[5], R32
+		SNOP		1
+		SMVAGA36.M2		R7:R6, AR8
+		SMVCGC.L		R63, BRReg
+		SNOP		2
+		SLDDW		*+AR15[4], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, OR8
+	|	SLDDW		*+AR15[6], R7:R6
+		SNOP		2
+		SBR		R62
+		SNOP		2
+		SMVAGA36.M2		R7:R6, AR14
+	|	SMOVIL		56, R6
+		SMOVIL		0, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SNOP		1
+	;; return occurs
+	.size	get_time_cn, .-get_time_cn
+	.section	.text.get_time_vc,"ax",@progbits
+	.align	2
+	.global	get_time_vc
+	.type	get_time_vc, @function
+get_time_vc:
+		SMOVIL		-56, R6
+		SMOVIL		-1, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SMVAAGL.M1		AR14, R7:R6
+		SSTDW		R63:R62, *+AR15[5]
+		SMVAAGH.M1		AR14, R7:R6
+	|	SMVAGA36.M2		R13:R12, AR14
+	|	SSTW		R32, *+AR15[5]
+		SNOP		1
+		SMOV.M2		R16, R32
+		SSTDW		R7:R6, *+AR15[6]
+		SMVAAGL.M2		OR8, R7:R6
+	|	SSTW		R31, *+AR15[4]
+		SMOV.M1		R18, R31
+		SMVAAGH.M1		OR8, R7:R6
+	|	SMVAGA36.M2		R11:R10, OR8
+	|	SMOVIL		0, R10
+		SBR		GetTimerCount
+	|	SSTW		R30, *+AR15[3]
+		SSTDW		R7:R6, *+AR15[4]
+	|	SMOVIL		.L24, R62
+		SMVAAGL.M2		AR8, R7:R6
+	|	SMOVIH		.L24, R62
+		SMOVIH4.L		.L24, R63
+		SMVAAGH.M1		AR8, R7:R6
+	|	SMVAGA36.M2		R15:R14, AR8
+		SNOP		1
+	;; call to GetTimerCount occurs, with return value
+		SSTDW		R7:R6, *+AR15[3]
+.L24:
+		SBR		DSPF_sp_fir_cplx_asm
+	|	SMOV.M2		R32, R16
+	|	SMOV.M1		R31, R18
+		SMOV.M1		R10, R30
+	|	SMVAAGL.M2		AR14, R13:R12
+	|	SMOVIL		.L25, R62
+		SMVAAGL.M1		OR8, R11:R10
+	|	SMVAAGL.M2		AR8, R15:R14
+	|	SMOVIH		.L25, R62
+		SMVAAGH.M1		AR14, R13:R12
+	|	SMOVIH4.L		.L25, R63
+		SMVAAGH.M1		OR8, R11:R10
+	|	SMVAAGH.M2		AR8, R15:R14
+	;; call to DSPF_sp_fir_cplx_asm occurs, with return value
+		SNOP		2
+.L25:
+		SBR		GetTimerCount
+	|	SMOVIL		0, R10
+		SMOVIL		.L26, R62
+		SMOVIH		.L26, R62
+		SMOVIH4.L		.L26, R63
+	;; call to GetTimerCount occurs, with return value
+		SNOP		3
+.L26:
+		SLDDW		*+AR15[3], R7:R6
+	|	SSUB.M2		R30, R10, R10
+		SLDDW		*+AR15[5], R63:R62
+		SLDW		*+AR15[3], R30
+		SLDW		*+AR15[4], R31
+		SLDW		*+AR15[5], R32
+		SNOP		1
+		SMVAGA36.M2		R7:R6, AR8
+		SMVCGC.L		R63, BRReg
+		SNOP		2
+		SLDDW		*+AR15[4], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, OR8
+	|	SLDDW		*+AR15[6], R7:R6
+		SNOP		2
+		SBR		R62
+		SNOP		2
+		SMVAGA36.M2		R7:R6, AR14
+	|	SMOVIL		56, R6
+		SMOVIL		0, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SNOP		1
+	;; return occurs
+	.size	get_time_vc, .-get_time_vc
+	.section	.const,"a",@progbits
+.LC0:
+	.string	"Result Failure  max_pct_diff = %f"
+.LC1:
+	.string	"Result Successful "
+.LC2:
+	.string	"\tNX = %-3d\t  NH = %-2d\t cn_cycle:%-4d\t  vc_cycle:%-4d\t \n"
+	.section	.text.startup.main,"ax",@progbits
+	.align	2
+	.global	main
+	.type	main, @function
+main:
+		SMOVIL		-6576, R6
+		SMOVIL		-1, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SMOVIL		821, R6
+		SMOVIL		0, R7
+	|	SADD.LS		AR15,84,AR10
+		SMVAGA36.M1		R7:R6, OR15
+	|	SMVAAGL.M2		AR14, R7:R6
+	|	SMOVIL		1075052548, R46
+		SMOVIL		1075052544, R42
+		SMVAAGH.M2		AR14, R7:R6
+	|	SMOVIH		1075052548, R46
+		SMOVIL		0, R47
+		SSTDW		R7:R6, *+AR15[OR15]
+		SMOVIL		820, R6
+	|	SMVAGA36.M2		R47:R46, AR12
+		SMOVIL		0, R7
+		SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		819, R6
+		SMOVIL		0, R7
+		SSTDW		R63:R62, *+AR15[OR15]
+		SMVAGA36.M1		R7:R6, OR15
+	|	SMVAAGL.M2		OR9, R7:R6
+	|	SMOVIH		1075052544, R42
+		SMOVIL		0, R43
+		SMVAAGH.M1		OR9, R7:R6
+	|	SMOVIL		1, R44
+	|	SMVAGA36.M2		R43:R42, AR11
+		SNOP		1
+		SSTDW		R7:R6, *+AR15[OR15]
+		SMOVIL		818, R6
+		SMOVIL		0, R7
+		SMVAGA36.M1		R7:R6, OR15
+	|	SMVAAGL.M2		OR8, R7:R6
+		SNOP		1
+		SMVAAGH.M2		OR8, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *+AR15[OR15]
+		SMOVIL		817, R6
+		SMOVIL		0, R7
+		SMVAGA36.M1		R7:R6, OR15
+	|	SMVAAGL.M2		AR9, R7:R6
+		SNOP		1
+		SMVAAGH.M2		AR9, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *+AR15[OR15]
+		SMOVIL		816, R6
+		SMOVIL		0, R7
+		SMVAGA36.M1		R7:R6, OR15
+	|	SMVAAGL.M2		AR8, R7:R6
+		SNOP		1
+		SMVAAGH.M2		AR8, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *+AR15[OR15]
+		SMOVIL		815, R6
+		SMOVIL		0, R7
+		SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		814, R6
+		SMOVIL		0, R7
+		SSTDW		R41:R40, *+AR15[OR15]
+		SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		813, R6
+		SMOVIL		0, R7
+		SSTDW		R39:R38, *+AR15[OR15]
+		SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		812, R6
+		SMOVIL		0, R7
+		SSTDW		R37:R36, *+AR15[OR15]
+		SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		811, R6
+		SMOVIL		0, R7
+		SSTDW		R35:R34, *+AR15[OR15]
+		SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		810, R6
+		SMOVIL		0, R7
+		SSTDW		R33:R32, *+AR15[OR15]
+		SMVAGA36.M2		R7:R6, OR15
+		SNOP		1
+		SSTDW		R31:R30, *+AR15[OR15]
+		SSTW		R44, *AR12
+	|	SMVAGA36.M2		R43:R42, AR12
+		SNOP		2
+		SSTW		R44, *AR11
+		SSTW		R44, *AR10
+		SNOP		2
+		SLDW		*AR10, R0
+		SNOP		5
+	[!R0]	SBR		.L30
+		SNOP		6
+	;; condjump to .L30 occurs
+.L51:
+		SLDW		*AR12, R42
+		SNOP		5
+		SSTW		R42, *AR10
+		SNOP		2
+		SLDW		*AR10, R1
+		SNOP		5
+	[R1]	SBR		.L51
+		SNOP		6
+	;; condjump to .L51 occurs
+.L30:
+		SBR		SetTimerPeriod
+	|	SMOVIL		-1, R12
+		SMOVIL		.L61, R62
+		SMOVIH		.L61, R62
+		SMOVIH4.L		.L61, R63
+		SMOVIL		0, R10
+		SMOVIL		0, R35
+	;; call to SetTimerPeriod occurs, with return value
+		SMOVIL		32, R36
+.L61:
+		SBR		TimerStart
+	|	SMOVIL		0, R10
+		SMOVIL		.L62, R62
+		SMOVIH		.L62, R62
+		SMOVIH4.L		.L62, R63
+		SMOVIH		0, R35
+	;; call to TimerStart occurs, with return value
+		SNOP		2
+.L62:
+		SBR		GetTimerCount
+	|	SMOVIL		0, R10
+		SMOVIL		.L63, R62
+		SMOVIH		.L63, R62
+		SMOVIH4.L		.L63, R63
+	;; call to GetTimerCount occurs, with return value
+		SNOP		3
+.L63:
+		SBR		GetTimerCount
+	|	SMOV.M2		R10, R30
+	|	SMOVIL		0, R10
+		SMOVIL		.L64, R62
+		SMOVIH		.L64, R62
+		SMOVIH4.L		.L64, R63
+	;; call to GetTimerCount occurs, with return value
+		SNOP		3
+.L64:
+		SMOVIL		1240, R44
+	|	SSUB.M2		R10, R30, R34
+		SMOVIL		0, R45
+		SADDA.M2		R45:R44,AR15,AR9
+	|	SMOVIL		2384, R46
+		SMOVIL		0, R47
+		SMVAAGL.M1		AR9, R43:R42
+	|	SADDA.M2		R47:R46,AR15,AR14
+	|	SMOVIL		8, R2
+		SMOVIL		8, R3
+		SMVAAGH.M2		AR9, R43:R42
+		SNOP		1
+		SSUB.M2		R42, R2, R47
+	|	SNEG		R43, R43
+		SLTU		R3, R47, R8
+	|	SSTW		R47, *+AR15[13]
+	|	SMVAAGL.M2		AR14, R47:R46
+		SSUB.M1		R8, R43, R9
+		SMVAAGH.M2		AR14, R47:R46
+		SSTW		R9, *+AR15[17]
+		SSTDW		R47:R46, *+AR15[9]
+.L29:
+		SADD.M1		15,R36,R10
+	|	SMOVIL		216, R46
+	|	SMVAAA.M2		AR9, OR0
+		SSHFAR		31, R10, R12
+	|	SADD.M1		14,R36,R11
+		SSHFLL		7, R12, R14
+	|	SADDA.M2		24,OR0,AR0
+	|	SSTW		R11, *+AR15[16]
+		SSTW		R14, *+AR15[12]
+	|	SMOVIL		0, R47
+		SADDA.M1		R47:R46,AR15,OR11
+	|	SSHFAR		4, R10, R41
+		SSHFLR		25, R41, R13
+	|	SMVAAGL.M1		AR0, R33:R32
+		SLDW		*+AR15[12], R45
+	|	SADDA.M1		-4,OR11,OR8
+	|	SMOVIL		210911779, R30
+		SMOVIL		1002937505, R31
+	|	SMVAAGH.M1		AR0, R33:R32
+		SMVAAGL.M1		OR8, R17:R16
+	|	SSHFLL		7, R41, R41
+		SSHFLL		1, R36, R37
+		SMVAAGH.M2		OR8, R17:R16
+	|	SMOVIL		4, R38
+		SMOVIH		210911779, R30
+		SOR		R45, R13, R15
+	|	SSTDW		R17:R16, *+AR15[7]
+		SSTW		R15, *+AR15[12]
+	|	SMOVIH		1002937505, R31
+.L41:
+		SLDW		*+AR15[16], R17
+	|	SBR		memset
+	|	SMOVIL		0, R12
+	|	SMVAAGL.M1		AR9, R11:R10
+	|	SMVAGA36.M2		R33:R32, OR9
+		SMOVIL		.L65, R62
+		SMVAAGH.M2		AR9, R11:R10
+	|	SMOVIH		.L65, R62
+		SMOVIH4.L		.L65, R63
+		SMOVIL		1144, R14
+		SMOVIL		0, R15
+	;; call to memset occurs, with return value
+		SADD.M2		R38,R17,R39
+.L65:
+		SBR		memset
+	|	SADD.LS		AR15,88,OR12
+	|	SMOVIL		0, R12
+		SMOVIL		.L66, R62
+		SMVAAGL.M2		OR12, R11:R10
+	|	SMOVIH		.L66, R62
+		SMOVIH4.L		.L66, R63
+		SMVAAGH.M2		OR12, R11:R10
+	|	SMOVIL		128, R14
+		SMOVIL		0, R15
+	;; call to memset occurs, with return value
+		SNOP		1
+.L66:
+		SMOVIL		216, R42
+		SMOVIL		0, R43
+	|	SBR		memset
+		SADDA.M2		R43:R42,AR15,OR13
+	|	SMOVIL		.L67, R62
+		SMOVIH		.L67, R62
+		SMVAAGL.M2		OR13, R11:R10
+	|	SMOVIH4.L		.L67, R63
+		SMOVIL		0, R12
+		SMVAAGH.M2		OR13, R11:R10
+	|	SMOVIL		1024, R14
+	;; call to memset occurs, with return value
+		SMOVIL		0, R15
+.L67:
+		SBR		memset
+	|	SMOVIL		0, R15
+	|	SMVAAGL.M2		AR14, R11:R10
+		SMOVIL		.L68, R62
+		SMVAAGH.M2		AR14, R11:R10
+	|	SMOVIH		.L68, R62
+		SMOVIH4.L		.L68, R63
+		SMOVIL		4096, R14
+		SMOVIL		0, R12
+	;; call to memset occurs, with return value
+		SNOP		1
+.L68:
+		SSHFAR		31, R39, R19
+		SSHFAR		4, R39, R18
+		SSHFLR		25, R18, R21
+		SBR		vmalloc
+	|	SSHFLL		7, R19, R20
+		SMOVIL		.L69, R62
+		SMOVIH		.L69, R62
+		SMOVIH4.L		.L69, R63
+		SOR		R20, R21, R39
+		SSHFLL		7, R18, R40
+	|	SMOV.M2		R39, R11
+	;; call to vmalloc occurs, with return value
+		SMOV.M2		R40, R10
+.L69:
+		SBR		vmalloc
+	|	SLDW		*+AR15[12], R11
+	|	SMOV.M2		R10, R22
+	|	SMOV.M1		R41, R10
+		SSTW		R22, *+AR15[8]
+	|	SMOVIL		.L70, R62
+		SMOVIH		.L70, R62
+		SMOVIH4.L		.L70, R63
+		SSHFAR		31, R22, R23
+		SNOP		1
+	;; call to vmalloc occurs, with return value
+		SSTW		R23, *+AR15[9]
+.L70:
+		SBR		randomx_sp_cplx
+	|	SMOV.M2		R10, R24
+	|	SMOV.M1		R37, R12
+	|	SMOVIL		1092616192, R14
+		SMVAAGL.M2		OR9, R11:R10
+	|	SMOVIL		.L71, R62
+		SSTW		R24, *+AR15[10]
+	|	SMOVIH		.L71, R62
+		SMVAAGH.M2		OR9, R11:R10
+	|	SMOVIH4.L		.L71, R63
+		SSHFAR		31, R24, R25
+		SSTW		R25, *+AR15[11]
+	|	SMOVIH		1092616192, R14
+	;; call to randomx_sp_cplx occurs
+		SNOP		1
+.L71:
+		SADD.LS		AR15,88,OR14
+	|	SSHFLL		1, R38, R12
+		SNOP		1
+		SLDDW		*+AR15[4], R27:R26
+	|	SMVAAGL.M2		OR14, R11:R10
+		SLDDW		*+AR15[5], R29:R28
+		SBR		randomh_sp_cplx
+	|	SMVAAGH.M2		OR14, R11:R10
+		SMOVIL		.L72, R62
+		SMOVIH		.L72, R62
+		SMOVIH4.L		.L72, R63
+		SMVAGA36.M2		R27:R26, AR8
+		SMVAGA36.M1		R29:R28, OR8
+	;; call to randomh_sp_cplx occurs
+		SNOP		1
+.L72:
+		SBR		M7002_datatrans
+	|	SMOV.M2		R40, R14
+	|	SMOV.M1		R39, R15
+		SMVAAGL.M1		AR9, R11:R10
+	|	SMVAAGL.M2		AR8, R13:R12
+	|	SMOVIL		.L73, R62
+		SMOVIH		.L73, R62
+		SMVAAGH.M1		AR9, R11:R10
+	|	SMVAAGH.M2		AR8, R13:R12
+	|	SMOVIH4.L		.L73, R63
+	;; call to M7002_datatrans occurs, with return value
+		SNOP		3
+.L73:
+		SBR		M7002_datatrans
+	|	SMOV.M1		R41, R14
+	|	SLDW		*+AR15[12], R15
+	|	SMVAAGL.M2		AR14, R11:R10
+		SMVAAGL.M1		OR8, R13:R12
+	|	SMOVIL		.L74, R62
+		SMVAAGH.M1		AR14, R11:R10
+	|	SMOVIH		.L74, R62
+		SMVAAGH.M1		OR8, R13:R12
+	|	SMOVIH4.L		.L74, R63
+	;; call to M7002_datatrans occurs, with return value
+		SNOP		3
+.L74:
+		SLDW		*+AR15[13], R27
+	|	SMOVIL		1074790400, R12
+		SLDW		*+AR15[17], R29
+	|	SMOVIH		1074790400, R12
+		SBR		M7002_datatrans
+	|	SADD.LS		AR15,88,OR11
+	|	SMOVIL		0, R13
+		SMOVIL		.L75, R62
+		SMVAAGL.M2		OR11, R11:R10
+	|	SMOVIH		.L75, R62
+		SMOVIH4.L		.L75, R63
+		SADD.M1		R32,R27,R14
+	|	SMVAAGH.M2		OR11, R11:R10
+		SLTU		R14, R27, R49
+	|	SADD.M1		R33,R29,R48
+	;; call to M7002_datatrans occurs, with return value
+		SADD.M2		R48,R49,R15
+.L75:
+		SMVAAGL.M2		OR9, R11:R10
+	|	SMOVIL		216, R42
+	|	SMOV.M1		R38, R16
+		SMOVIL		0, R43
+	|	SBR		get_time_cn
+	|	SMOV.M1		R36, R18
+		SADDA.M1		R43:R42,AR15,OR12
+	|	SMVAAGH.M2		OR9, R11:R10
+	|	SADD.LS		AR15,88,OR9
+	|	SMOVIL		.L76, R62
+		SMOVIH		.L76, R62
+		SMVAAGL.M1		OR12, R15:R14
+	|	SMVAAGL.M2		OR9, R13:R12
+	|	SMOVIH4.L		.L76, R63
+		SNOP		1
+		SMVAAGH.M1		OR12, R15:R14
+	|	SMVAAGH.M2		OR9, R13:R12
+	;; call to get_time_cn occurs, with return value
+		SNOP		1
+.L76:
+		SBR		get_time_vc
+	|	SMOV.M2		R36, R18
+	|	SMOV.M1		R38, R16
+	|	SMOVIL		0, R13
+		SMVAAGL.M2		OR8, R15:R14
+	|	SSUB.M1		R34, R10, R40
+	|	SMOVIL		.L77, R62
+		SMVAAGL.M1		AR8, R11:R10
+	|	SMOVIH		.L77, R62
+		SMVAAGH.M1		OR8, R15:R14
+	|	SMOVIH4.L		.L77, R63
+		SMVAAGH.M1		AR8, R11:R10
+	|	SMOVIL		1074790400, R12
+		SMOVIH		1074790400, R12
+	;; call to get_time_vc occurs, with return value
+		SNOP		1
+.L77:
+		SBR		M7002_datatrans
+	|	SMOV.M1		R41, R14
+	|	SLDW		*+AR15[12], R15
+	|	SMVAAGL.M2		AR14, R13:R12
+		SSUB.M1		R34, R10, R39
+	|	SMVAAGL.M2		OR8, R11:R10
+	|	SMOVIL		.L78, R62
+		SMVAAGH.M1		AR14, R13:R12
+	|	SMOVIH		.L78, R62
+		SMVAAGH.M1		OR8, R11:R10
+	|	SMOVIH4.L		.L78, R63
+	;; call to M7002_datatrans occurs, with return value
+		SNOP		3
+.L78:
+		SLDDW		*+AR15[7], R45:R44
+	|	SMOVIL		0, R57
+		SLDDW		*+AR15[9], R43:R42
+	|	SMOVIL		1073741824, R54
+		SMOVIL		1120403456, R56
+		SMOVIL		-2147483648, R55
+		SMOVIL		0, R18
+		SMOVIH		0, R57
+		SMOVIH		1073741824, R54
+		SMOVIH		1120403456, R56
+		SMOVIH		-2147483648, R55
+.L36:
+		SADD.M1		4,R44,R51
+	|	SMVAGA36.M2		R43:R42, AR12
+	|	SMOVIL		0, R15
+		SLTU		R51, R44, R50
+	|	SMOV.M1		R51, R44
+		SADD.M2		R45,R50,R45
+	|	SMOVIH		0, R15
+		SMVAGA36.M2		R45:R44, AR10
+		SNOP		1
+		SLDW		*AR10, R58
+		SNOP		5
+		SFSPDP32T.M2		R58, R61:R60
+		SNOP		1
+		SFABSD.M2		R61:R60, R47:R46
+		SNOP		1
+		SFDPSP32.M2		R47:R46, R53
+		SNOP		2
+		SFSPDP32T.M2		R53, R1:R0
+		SNOP		1
+		SFCMPGD.M2		R1:R0, R31:R30, R1
+		SNOP		1
+	[!R1]	SBR		.L31
+		SNOP		6
+	;; condjump to .L31 occurs
+		SLDW		*AR12, R59
+		SNOP		5
+		SFSPDP32T.M2		R59, R3:R2
+		SNOP		1
+		SFABSD.M2		R3:R2, R47:R46
+		SNOP		1
+		SFDPSP32.M2		R47:R46, R61
+		SNOP		2
+		SFSPDP32T.M2		R61, R9:R8
+		SNOP		1
+		SFCMPGD.M2		R9:R8, R31:R30, R0
+		SNOP		1
+	[!R0]	SBR		.L31
+		SNOP		6
+	;; condjump to .L31 occurs
+		SFRCPS32.M1		R58, R3
+	|	SFSUBS32.M2		R59, R58, R9
+		SFMULS32.M1		R58, R3, R47
+		SNOP		3
+		SFSUBS32.M2		R47, R54, R46
+		SNOP		2
+		SFMULS32.M2		R3, R46, R10
+		SNOP		3
+		SFMULS32.M2		R58, R10, R11
+		SNOP		3
+		SFSUBS32.M2		R11, R54, R12
+		SNOP		2
+		SFMULS32.M2		R10, R12, R13
+		SNOP		3
+		SFMULS32.M2		R9, R13, R14
+		SNOP		3
+		SFMULS32.M2		R14, R56, R15
+		SNOP		3
+		SFCMPLS32.M2		R15, R57, R1
+	|	SXOR		R55, R15, R16
+	[!R1]	SBR		.L31
+		SNOP		6
+	;; condjump to .L31 occurs
+		SMOV.M2		R16, R15
+.L31:
+		SFCMPGS32.M2		R15, R35, R2
+	|	SADD.M1		4,R42,R17
+	[!R2]	SBR		.L35
+	|	SADD.M2		1,R18,R18
+	|	SLTU		R17, R42, R19
+	|	SMOV.M1		R17, R42
+		SLT		R18, R37, R0
+		SNOP		5
+	;; condjump to .L35 occurs
+		SMOV.M2		R15, R35
+.L35:
+	[R0]	SBR		.L36
+	|	SADD.M2		R43,R19,R43
+		SNOP		6
+	;; condjump to .L36 occurs
+		SFSPDP32T.M2		R35, R43:R42
+	|	SMOVIL		-1717986918, R44
+		SMOVIL		1068079513, R45
+		SMOVIH		-1717986918, R44
+		SMOVIH		1068079513, R45
+		SFCMPGD.M2		R43:R42, R45:R44, R1
+		SNOP		1
+	[!R1]	SBR		.L37
+	|	SMOVIL		2139095039, R44
+		SMOVIH		2139095039, R44
+		SNOP		5
+	;; condjump to .L37 occurs
+		SFCMPLS32.M2		R35, R44, R2
+	[R2]	SBR		.L58
+		SNOP		6
+	;; condjump to .L58 occurs
+.L37:
+		SMOVIL.L		.LC1, R42
+		SMOVIH.L		.LC1, R42
+		SBR		printf
+	|	SMOVIH4.L		.LC1, R43
+		SSTDW		R43:R42, *+AR15[1]
+	|	SMOVIL		.L79, R62
+		SMOVIH		.L79, R62
+		SMOVIH4.L		.L79, R63
+	;; call to printf occurs, with return value
+		SNOP		3
+.L79:
+		SBR		vfree
+	|	SMVAAGL.M2		AR8, R11:R10
+		SMOVIL		.L80, R62
+		SMVAAGH.M2		AR8, R11:R10
+	|	SMOVIH		.L80, R62
+		SMOVIH4.L		.L80, R63
+	;; call to vfree occurs, with return value
+		SNOP		3
+.L80:
+		SBR		vfree
+	|	SMVAAGL.M2		OR8, R11:R10
+		SMOVIL		.L81, R62
+		SMVAAGH.M2		OR8, R11:R10
+	|	SMOVIH		.L81, R62
+		SMOVIH4.L		.L81, R63
+	;; call to vfree occurs, with return value
+		SNOP		3
+.L81:
+		SMOVIL.L		.LC2, R42
+	|	SSUB.M2		R34, R40, R45
+	|	SSUB.M1		R34, R39, R20
+	|	SSTW		R38, *+AR15[5]
+		SMOVIH.L		.LC2, R42
+	|	SSTW		R36, *+AR15[4]
+	|	SADD.M2		4,R38,R38
+		SMOVIH4.L		.LC2, R43
+		SNOP		1
+		SBR		printf
+	|	SSTDW		R43:R42, *+AR15[1]
+		SSTW		R45, *+AR15[6]
+	|	SMOVIL		.L82, R62
+		SMOVIH		.L82, R62
+		SMOVIH4.L		.L82, R63
+		SSTW		R20, *+AR15[7]
+	;; call to printf occurs, with return value
+		SNOP		2
+.L82:
+		SMOVIL		20, R21
+	|	SADDU.M2		32,R32,R42
+		SEQ		R21, R38, R0
+	[!R0]	SBR		.L41
+	|	SLTU		R42, R32, R22
+	|	SMOV.M2		R42, R32
+		SADD.M2		R33,R22,R33
+		SNOP		5
+	;; condjump to .L41 occurs
+.L59:
+		SADD.M2		8,R36,R36
+	|	SMOVIL		136, R31
+		SEQ		R31, R36, R1
+	[!R1]	SBR		.L29
+		SNOP		6
+	;; condjump to .L29 occurs
+		SMOVIL		810, R6
+		SMOVIL		0, R7
+		SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		811, R6
+		SMOVIL		0, R7
+		SLDDW		*+AR15[OR15], R31:R30
+	|	SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		812, R6
+		SMOVIL		0, R7
+		SLDDW		*+AR15[OR15], R33:R32
+	|	SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		813, R6
+		SMOVIL		0, R7
+		SLDDW		*+AR15[OR15], R35:R34
+	|	SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		814, R6
+		SMOVIL		0, R7
+		SLDDW		*+AR15[OR15], R37:R36
+	|	SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		815, R6
+		SMOVIL		0, R7
+		SLDDW		*+AR15[OR15], R39:R38
+	|	SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		816, R6
+		SMOVIL		0, R7
+		SLDDW		*+AR15[OR15], R41:R40
+	|	SMVAGA36.M2		R7:R6, OR15
+		SNOP		1
+		SLDDW		*+AR15[OR15], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, AR8
+	|	SMOVIL		817, R6
+		SMOVIL		0, R7
+		SMVAGA36.M2		R7:R6, OR15
+		SNOP		1
+		SLDDW		*+AR15[OR15], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, AR9
+	|	SMOVIL		818, R6
+		SMOVIL		0, R7
+		SMVAGA36.M2		R7:R6, OR15
+		SNOP		1
+		SLDDW		*+AR15[OR15], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, OR8
+	|	SMOVIL		819, R6
+		SMOVIL		0, R7
+		SMVAGA36.M2		R7:R6, OR15
+		SNOP		1
+		SLDDW		*+AR15[OR15], R7:R6
+		SNOP		5
+		SMVAGA36.M2		R7:R6, OR9
+	|	SMOVIL		820, R6
+		SMOVIL		0, R7
+		SMVAGA36.M2		R7:R6, OR15
+	|	SMOVIL		821, R6
+		SMOVIL		0, R7
+		SLDDW		*+AR15[OR15], R63:R62
+	|	SMVAGA36.M2		R7:R6, OR15
+		SNOP		1
+		SLDDW		*+AR15[OR15], R7:R6
+		SNOP		3
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+	|	SMVAGA36.M2		R7:R6, AR14
+	|	SMOVIL		6576, R6
+		SMOVIL		0, R7
+		SADDA.M2		R7:R6,AR15,AR15
+		SNOP		4
+	;; return occurs
+.L58:
+		SSTDW		R43:R42, *+AR15[2]
+	|	SMOVIL.L		.LC0, R42
+		SMOVIH.L		.LC0, R42
+		SBR		printf
+	|	SMOVIH4.L		.LC0, R43
+		SSTDW		R43:R42, *+AR15[1]
+	|	SMOVIL		.L83, R62
+		SMOVIH		.L83, R62
+		SMOVIH4.L		.L83, R63
+	;; call to printf occurs, with return value
+		SNOP		3
+.L83:
+		SBR		vfree
+	|	SMVAAGL.M2		AR8, R11:R10
+		SMOVIL		.L84, R62
+		SMVAAGH.M2		AR8, R11:R10
+	|	SMOVIH		.L84, R62
+		SMOVIH4.L		.L84, R63
+	;; call to vfree occurs, with return value
+		SNOP		3
+.L84:
+		SBR		vfree
+	|	SMVAAGL.M2		OR8, R11:R10
+		SMOVIL		.L85, R62
+		SMVAAGH.M2		OR8, R11:R10
+	|	SMOVIH		.L85, R62
+		SMOVIH4.L		.L85, R63
+	;; call to vfree occurs, with return value
+		SNOP		3
+.L85:
+		SMOVIL.L		.LC2, R42
+	|	SSUB.M2		R34, R40, R45
+	|	SSUB.M1		R34, R39, R20
+	|	SSTW		R38, *+AR15[5]
+		SMOVIH.L		.LC2, R42
+	|	SSTW		R36, *+AR15[4]
+	|	SADD.M2		4,R38,R38
+		SMOVIH4.L		.LC2, R43
+		SNOP		1
+		SBR		printf
+	|	SSTDW		R43:R42, *+AR15[1]
+		SSTW		R45, *+AR15[6]
+	|	SMOVIL		.L86, R62
+		SMOVIH		.L86, R62
+		SMOVIH4.L		.L86, R63
+		SSTW		R20, *+AR15[7]
+	;; call to printf occurs, with return value
+		SNOP		2
+.L86:
+		SMOVIL		20, R21
+	|	SADDU.M2		32,R32,R42
+		SEQ		R21, R38, R0
+	[!R0]	SBR		.L41
+	|	SLTU		R42, R32, R22
+	|	SMOV.M2		R42, R32
+		SADD.M2		R33,R22,R33
+		SNOP		5
+	;; condjump to .L41 occurs
+		SBR		.L59
+		SNOP		6
+	;; jump to .L59 occurs
+	.size	main, .-main

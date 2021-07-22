@@ -1,0 +1,52 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=dspf_sp_fir_cplx
+ProjectDir="E:/project/function  demo/asm/dspf_sp_fir_cplx"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="dspf_sp_fir_cplx.lds"
+Source="dspf_sp_fir_cplx.pjt"
+Source="dspf_sp_fir_cplx.pst"
+Source="dspf_sp_fir_cplx_asm.asm"
+Source="DSPF_sp_fir_cplx_cn.c"
+Source="main.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/dspf_sp_fir_cplx.map"
+Source="Debug/dspf_sp_fir_cplx.out"
+Source="Debug/dspf_sp_fir_cplx_asm.o"
+Source="Debug/DSPF_sp_fir_cplx_cn.o"
+Source="Debug/DSPF_sp_fir_cplx_cn.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/dspf_sp_fir_cplx.out" --gc-sections -T"dspf_sp_fir_cplx.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/dspf_sp_fir_cplx.out" --gc-sections -T"dspf_sp_fir_cplx.lds" 
+[Opened files]
+OpenedSource="Timer.c",line=1
+OpenedSource="dspf_sp_fir_cplx_asm.asm",line=1
+OpenedSource="DSPF_sp_fir_cplx_cn.c",line=1
+OpenedSource="main.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]
