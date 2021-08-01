@@ -1,0 +1,779 @@
+
+C:/Users/zhou hang/OneDrive/桌面/DSP_fir_/DSP_fir_r8_h8/Release/DSP_fir_r8_h8.out:     file format elf36-matrix-elf-le
+
+SYMBOL TABLE:
+40010000 l    d  .Vheap	00000000 .Vheap
+800000000 l    d  .userInt	00000000 .userInt
+800002000 l    d  .userExc	00000000 .userExc
+800002500 l    d  .text	00000000 .text
+800028ce0 l    d  .neardata	00000000 .neardata
+800028d38 l    d  .fardata	00000000 .fardata
+800029070 l    d  .bss	00000000 .bss
+80002beb0 l    d  .const	00000000 .const
+80002cb28 l    d  .cio	00000000 .cio
+800030b30 l    d  .heap	00000000 .heap
+800040b40 l    d  .svheap	00000000 .svheap
+800040c28 l    d  .stack	00000000 .stack
+00000000 l    d  .matrixabi.attributes	00000000 .matrixabi.attributes
+00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
+00000000 l    d  .debug_loc	00000000 .debug_loc
+00000000 l    d  .debug_aranges	00000000 .debug_aranges
+00000000 l    d  .debug_ranges	00000000 .debug_ranges
+00000000 l    d  .debug_line	00000000 .debug_line
+00000000 l    d  .debug_str	00000000 .debug_str
+00000000 l    d  .debug_frame	00000000 .debug_frame
+80000266e l       .text	00000000 .L3
+800002698 l       .text	00000000 .L5
+00000000 l    df *ABS*	00000000 main.c
+800002702 l       .text	00000000 .L2
+800002734 l       .text	00000000 .L3
+80000274a l       .text	00000000 .L4
+800002802 l       .text	00000000 .L6
+800002834 l       .text	00000000 .L7
+80000284a l       .text	00000000 .L8
+80000298c l       .text	00000000 .L21
+8000029c4 l       .text	00000000 .L22
+80002bec7 l       .const	00000000 .LC1
+8000029f0 l       .text	00000000 .L23
+800002a0a l       .text	00000000 .L24
+80002bee1 l       .const	00000000 .LC2
+800002a42 l       .text	00000000 .L25
+800002a8a l       .text	00000000 .L26
+800002ac2 l       .text	00000000 .L27
+800002aea l       .text	00000000 .L28
+800002b10 l       .text	00000000 .L29
+800002b3e l       .text	00000000 .L30
+800002b62 l       .text	00000000 .L31
+800002b8e l       .text	00000000 .L32
+800002bc6 l       .text	00000000 .L33
+800002bf2 l       .text	00000000 .L34
+800002c22 l       .text	00000000 .L35
+80002beb0 l       .const	00000000 .LC0
+800002c4e l       .text	00000000 .L36
+800002c7e l       .text	00000000 .L37
+800002c98 l       .text	00000000 .L38
+800002cb2 l       .text	00000000 .L39
+800002d56 l       .text	00000000 .L40
+800002d86 l       .text	00000000 .L41
+800002da0 l       .text	00000000 .L42
+800002dba l       .text	00000000 .L43
+00000000 l    df *ABS*	00000000 DSP_fir_r8_h8_cn.c
+00000000 l    df *ABS*	00000000 ConfRegOp.c
+00000000 l    df *ABS*	00000000 datatransfer.c
+00000000 l    df *ABS*	00000000 Timer.c
+80000329e l       .text	00000000 LOOP_J
+00000000 l    df *ABS*	00000000 vmalloc.c
+800003400 l     F .text	0000015e vmremove
+800028cf0 l     O .neardata	00000008 sys_vfree
+8000035d8 l       .text	00000000 .L59
+800003670 l       .text	00000000 .L60
+800003702 l       .text	00000000 .L61
+8000037fe l       .text	00000000 .L62
+800003888 l       .text	00000000 .L63
+8000038da l       .text	00000000 .L64
+800003926 l       .text	00000000 .L65
+80000398c l       .text	00000000 .L98
+800003b1c l       .text	00000000 .L99
+800003bd0 l       .text	00000000 .L100
+800003bf2 l       .text	00000000 .L101
+800003c76 l       .text	00000000 .L102
+00000000 l    df *ABS*	00000000 multi_core.c
+800028d38 l     O .fardata	00000008 lock
+00000000 l    df *ABS*	00000000 args_main.c
+00000000 l    df *ABS*	00000000 printf.c
+800003ea2 l       .text	00000000 .L2
+00000000 l    df *ABS*	00000000 _stdio.c
+800028d98 l     O .fardata	000000c0 _stdio_streams
+800029dc8 l     O .bss	00002000 _fixed_buffers
+800003fa0 l       .text	00000000 .L14
+00000000 l    df *ABS*	00000000 _wcommit.c
+800004056 l       .text	00000000 .L7
+00000000 l    df *ABS*	00000000 vfprintf.c
+800004106 l       .text	00000000 .L11
+800004150 l       .text	00000000 .L12
+800004194 l       .text	00000000 .L13
+8000041ba l       .text	00000000 .L14
+80000421e l       .text	00000000 .L15
+00000000 l    df *ABS*	00000000 _vfprintf_internal.c
+800004260 l     F .text	00000108 _charpad
+800004380 l     F .text	00000274 _fp_out_narrow
+80002c0c8 l     O .const	00000007 spec_base.4305
+80002c0d0 l     O .const	0000000c prefix.4306
+8000042f2 l       .text	00000000 .L10
+800004416 l       .text	00000000 .L27
+800004480 l       .text	00000000 .L28
+800004548 l       .text	00000000 .L29
+8000046c2 l       .text	00000000 .L194
+800004708 l       .text	00000000 .L195
+8000047f8 l       .text	00000000 .L196
+80000488a l       .text	00000000 .L197
+8000048b4 l       .text	00000000 .L198
+800004a9c l       .text	00000000 .L199
+800004ada l       .text	00000000 .L200
+800004cba l       .text	00000000 .L201
+800004cfa l       .text	00000000 .L202
+800004db0 l       .text	00000000 .L203
+800004e3e l       .text	00000000 .L204
+800005010 l       .text	00000000 .L205
+8000050aa l       .text	00000000 .L206
+800005140 l       .text	00000000 .L207
+800005254 l       .text	00000000 .L208
+800005486 l       .text	00000000 .L209
+8000054f0 l       .text	00000000 .L210
+80000553a l       .text	00000000 .L211
+8000055f0 l       .text	00000000 .L212
+800005690 l       .text	00000000 .L213
+8000056f8 l       .text	00000000 .L214
+8000057ee l       .text	00000000 .L215
+800005910 l       .text	00000000 .L216
+00000000 l    df *ABS*	00000000 _ppfs_init.c
+8000059ea l       .text	00000000 .L16
+800005afe l       .text	00000000 .L17
+00000000 l    df *ABS*	00000000 _ppfs_prepargs.c
+800005bd0 l       .text	00000000 .L5
+00000000 l    df *ABS*	00000000 _ppfs_setargs.c
+00000000 l    df *ABS*	00000000 _ppfs_parsespec.c
+80002c100 l     O .const	00000014 qual_chars.4311
+80002c0e8 l     O .const	00000015 spec_chars.4307
+80002c148 l     O .const	00000018 type_codes
+80002c160 l     O .const	0000000c type_sizes
+80002c0e0 l     O .const	00000008 spec_flags.4306
+80002c118 l     O .const	00000009 spec_ranges.4308
+80002c128 l     O .const	00000010 spec_or_mask.4309
+80002c138 l     O .const	00000010 spec_and_mask.4310
+800007078 l       .text	00000000 .L107
+00000000 l    df *ABS*	00000000 fputs_unlocked.c
+8000070f8 l       .text	00000000 .L6
+800007142 l       .text	00000000 .L7
+00000000 l    df *ABS*	00000000 fwrite_unlocked.c
+80000725c l       .text	00000000 .L15
+8000072bc l       .text	00000000 .L16
+800007380 l       .text	00000000 .L17
+80000739e l       .text	00000000 .L18
+00000000 l    df *ABS*	00000000 memcmp.c
+00000000 l    df *ABS*	00000000 memcpy.c
+00000000 l    df *ABS*	00000000 memset.c
+00000000 l    df *ABS*	00000000 strlen.c
+00000000 l    df *ABS*	00000000 strnlen.c
+00000000 l    df *ABS*	00000000 calloc.c
+800007640 l     F .text	00000190 minsert
+800028d20 l     O .neardata	00000008 sys_free
+8000077e0 l     F .text	000000e6 mremove
+800028d18 l     O .neardata	00000004 need_mem_init
+80000793a l       .text	00000000 .L77
+8000079da l       .text	00000000 .L78
+800007a2e l       .text	00000000 .L79
+800007a90 l       .text	00000000 .L80
+800007b1a l       .text	00000000 .L81
+800007b52 l       .text	00000000 .L82
+800007bd8 l       .text	00000000 .L130
+800007dfa l       .text	00000000 .L131
+800007e74 l       .text	00000000 .L132
+800007f0e l       .text	00000000 .L133
+800007f8a l       .text	00000000 .L134
+800008006 l       .text	00000000 .L135
+800008028 l       .text	00000000 .L136
+8000080c0 l       .text	00000000 .L137
+800008138 l       .text	00000000 .L138
+00000000 l    df *ABS*	00000000 exit.c
+8000081ba l       .text	00000000 .L12
+8000081f4 l       .text	00000000 .L13
+80000821a l       .text	00000000 .L14
+00000000 l    df *ABS*	00000000 _exit.c
+00000000 l    df *ABS*	00000000 wcrtomb.c
+8000082f8 l       .text	00000000 .L9
+8000083a2 l       .text	00000000 .L10
+00000000 l    df *ABS*	00000000 wcsrtombs.c
+00000000 l    df *ABS*	00000000 wcsnrtombs.c
+00000000 l    df *ABS*	00000000 _WRITE.c
+80000873c l       .text	00000000 .L30
+00000000 l    df *ABS*	00000000 _fwrite.c
+800008a1a l       .text	00000000 .L34
+800008ab2 l       .text	00000000 .L35
+800008b1e l       .text	00000000 .L36
+800008b56 l       .text	00000000 .L37
+800008bce l       .text	00000000 .L38
+800008d3c l       .text	00000000 .L39
+00000000 l    df *ABS*	00000000 _trans2w.c
+00000000 l    df *ABS*	00000000 _load_inttype.c
+00000000 l    df *ABS*	00000000 _store_inttype.c
+00000000 l    df *ABS*	00000000 _uintmaxtostr.c
+800009038 l       .text	00000000 .L21
+80000905a l       .text	00000000 .L22
+800009098 l       .text	00000000 .L23
+8000090c6 l       .text	00000000 .L24
+8000091ba l       .text	00000000 .L25
+8000091dc l       .text	00000000 .L26
+80000920a l       .text	00000000 .L27
+800009240 l       .text	00000000 .L28
+80000926e l       .text	00000000 .L29
+80000929c l       .text	00000000 .L30
+8000092cc l       .text	00000000 .L31
+8000092fa l       .text	00000000 .L32
+00000000 l    df *ABS*	00000000 _fpmaxtostr.c
+80002c470 l     O .const	00000014 fmt
+80002c488 l     O .const	00000048 exp10_table
+8000095e4 l       .text	00000000 .L134
+800009654 l       .text	00000000 .L135
+80000a1c8 l       .text	00000000 .L136
+00000000 l    df *ABS*	00000000 memchr.c
+00000000 l    df *ABS*	00000000 memrchr.c
+00000000 l    df *ABS*	00000000 cio.c
+800028f30 l     O .fardata	00000140 _stream
+800028e58 l     O .fardata	000000d8 _device
+80000a540 l     F .text	000000f0 readmsg.constprop.1
+80002bdc8 l     O .bss	00000008 parmbuf
+80000a640 l     F .text	000000f0 writemsg.constprop.2
+80000a740 l     F .text	00000146 HOSTopen
+80000a8a0 l     F .text	000000f2 HOSTunlink
+80000a9a0 l     F .text	000001ca HOSTrename
+80000ab80 l     F .text	00000112 HOSTlseek
+80000aca0 l     F .text	00000116 HOSTwrite
+80000adc0 l     F .text	00000132 HOSTread
+80000af00 l     F .text	000000d8 HOSTclose
+80000a7c2 l       .text	00000000 .L79
+80000a7f4 l       .text	00000000 .L80
+80000a81e l       .text	00000000 .L81
+80000a8e0 l       .text	00000000 .L83
+80000a912 l       .text	00000000 .L84
+80000a93c l       .text	00000000 .L85
+80000aa14 l       .text	00000000 .L87
+80000aa40 l       .text	00000000 .L88
+80000aa7e l       .text	00000000 .L89
+80000aaa0 l       .text	00000000 .L90
+80000aad6 l       .text	00000000 .L91
+80000ab00 l       .text	00000000 .L92
+80000ac0e l       .text	00000000 .L94
+80000ac38 l       .text	00000000 .L95
+80000ad46 l       .text	00000000 .L103
+80000ad70 l       .text	00000000 .L104
+80000ae78 l       .text	00000000 .L112
+80000aea2 l       .text	00000000 .L113
+80000af68 l       .text	00000000 .L115
+80000af92 l       .text	00000000 .L116
+00000000 l    df *ABS*	00000000 strcpy.c
+00000000 l    df *ABS*	00000000 libgcc2.c
+80000b5f6 l       .text	00000000 .L49
+80000b672 l       .text	00000000 .L50
+80000bae8 l       .text	00000000 .L51
+80000bb7c l       .text	00000000 .L52
+80000c0be l       .text	00000000 .L53
+80000c5da l       .text	00000000 .L54
+80000c686 l       .text	00000000 .L55
+80000cb3a l       .text	00000000 .L56
+80000cbe6 l       .text	00000000 .L57
+80000d1c2 l       .text	00000000 .L58
+80000d256 l       .text	00000000 .L59
+80000d6fc l       .text	00000000 .L60
+80000d7a8 l       .text	00000000 .L61
+80000e62c l       .text	00000000 .L62
+80000e6d8 l       .text	00000000 .L63
+80000eb8c l       .text	00000000 .L64
+80000ec38 l       .text	00000000 .L65
+80000fe02 l       .text	00000000 .L66
+00000000 l    df *ABS*	00000000 libsi.c
+800010092 l       .text	00000000 .L15
+80001016a l       .text	00000000 .L24
+80001020a l       .text	00000000 .L27
+00000000 l    df *ABS*	00000000 unwind-dw2.c
+800010240 l     F .text	00000148 size_of_encoded_value
+8000103a0 l     F .text	00000204 base_of_encoded_value
+8000105c0 l     F .text	000001ae read_uleb128
+800010780 l     F .text	00000290 read_sleb128
+800010a20 l     F .text	000009ac read_encoded_value_with_base
+8000113e0 l     F .text	00000102 read_encoded_value
+800011500 l     F .text	000000c6 get_cie
+8000115e0 l     F .text	000000aa next_fde
+8000116a0 l     F .text	00000056 _Unwind_Get_Unwind_Word
+800011700 l     F .text	0000005c _Unwind_Get_Unwind_Context_Reg_Val
+80002bdd0 l     O .bss	000000b7 dwarf_reg_size_table
+800011760 l     F .text	00000146 read_pointer
+8000118c0 l     F .text	00000062 read_1u
+800011940 l     F .text	00000062 read_1s
+8000119c0 l     F .text	00000090 read_2u
+800011a60 l     F .text	00000098 read_2s
+800011b00 l     F .text	000000c0 read_4u
+800011bc0 l     F .text	000000c0 read_4s
+800011c80 l     F .text	00000134 read_8u
+800011dc0 l     F .text	00000134 read_8s
+800011f00 l     F .text	00000086 _Unwind_IsSignalFrame
+800011fa0 l     F .text	0000013a _Unwind_SetSignalFrame
+8000120e0 l     F .text	0000009e _Unwind_IsExtendedContext
+800012440 l     F .text	000000b0 _Unwind_GetPtr
+8000125a0 l     F .text	00000222 _Unwind_GetGRPtr
+8000127e0 l     F .text	00000186 _Unwind_SetGRPtr
+800012980 l     F .text	00000246 _Unwind_SetGRValue
+800012be0 l     F .text	000000ae _Unwind_GRByValue
+800012e80 l     F .text	00000ab0 extract_cie_info
+800013940 l     F .text	00004178 execute_stack_op
+800017ac0 l     F .text	000041c0 execute_cfa_program
+80001bc80 l     F .text	000007f2 uw_frame_state_for
+80001c480 l     F .text	00000170 _Unwind_SetSpColumn
+80001c600 l     F .text	00001b92 uw_update_context_1
+80001e1a0 l     F .text	00000226 uw_update_context
+80001e3e0 l     F .text	00000080 uw_advance_context
+80001e460 l     F .text	000012ae init_dwarf_reg_size_table
+80001f720 l     F .text	0000060e uw_init_context_1
+80001fd40 l     F .text	00000048 _Unwind_DebugHook
+80001fda0 l     F .text	000009fa uw_install_context_1
+8000207a0 l     F .text	000000e4 uw_identify_context
+8000208a0 l     F .text	000004f6 _Unwind_RaiseException_Phase2
+800020da0 l     F .text	000005c6 _Unwind_ForcedUnwind_Phase2
+800010362 l       .text	00000000 .L10
+8000104de l       .text	00000000 .L20
+800010514 l       .text	00000000 .L21
+80001054a l       .text	00000000 .L22
+80001057a l       .text	00000000 .L23
+80002c4d0 l       .const	00000000 .L50
+800010d7a l       .text	00000000 .L55
+800010dfa l       .text	00000000 .L56
+800011286 l       .text	00000000 .L57
+800011452 l       .text	00000000 .L60
+80001149c l       .text	00000000 .L61
+8000121ee l       .text	00000000 .L103
+8000122ec l       .text	00000000 .L104
+80001238e l       .text	00000000 .L105
+800012402 l       .text	00000000 .L106
+8000124a2 l       .text	00000000 .L109
+800012604 l       .text	00000000 .L125
+800012844 l       .text	00000000 .L128
+8000129f2 l       .text	00000000 .L132
+800012a72 l       .text	00000000 .L133
+800012afa l       .text	00000000 .L134
+800012efe l       .text	00000000 .L182
+800012fe8 l       .text	00000000 .L183
+8000131a0 l       .text	00000000 .L184
+80001324a l       .text	00000000 .L185
+800013386 l       .text	00000000 .L186
+80001348a l       .text	00000000 .L187
+800013754 l       .text	00000000 .L188
+8000138fc l       .text	00000000 .L189
+80002c504 l       .const	00000000 .L221
+800013d00 l       .text	00000000 .L281
+800013ee2 l       .text	00000000 .L282
+800013fc8 l       .text	00000000 .L283
+8000140b8 l       .text	00000000 .L284
+8000141a8 l       .text	00000000 .L285
+800014298 l       .text	00000000 .L286
+800014388 l       .text	00000000 .L287
+800014478 l       .text	00000000 .L288
+800014568 l       .text	00000000 .L289
+800014658 l       .text	00000000 .L290
+800014782 l       .text	00000000 .L291
+8000148a2 l       .text	00000000 .L292
+8000149ac l       .text	00000000 .L293
+800014a58 l       .text	00000000 .L294
+800014b2e l       .text	00000000 .L295
+800014bda l       .text	00000000 .L296
+800014c98 l       .text	00000000 .L297
+800014d80 l       .text	00000000 .L298
+800014e54 l       .text	00000000 .L299
+800014f2a l       .text	00000000 .L300
+800014fc2 l       .text	00000000 .L301
+8000150ba l       .text	00000000 .L302
+8000152de l       .text	00000000 .L303
+800015486 l       .text	00000000 .L304
+800015586 l       .text	00000000 .L305
+8000158f6 l       .text	00000000 .L306
+800016068 l       .text	00000000 .L307
+800016300 l       .text	00000000 .L308
+8000164b8 l       .text	00000000 .L309
+8000164fc l       .text	00000000 .L310
+800016540 l       .text	00000000 .L311
+800016584 l       .text	00000000 .L312
+8000165c2 l       .text	00000000 .L313
+80001670e l       .text	00000000 .L314
+8000167d8 l       .text	00000000 .L315
+800016828 l       .text	00000000 .L316
+80002c8c0 l       .const	00000000 .L267
+800016c64 l       .text	00000000 .L317
+800016d12 l       .text	00000000 .L318
+80001710e l       .text	00000000 .L319
+80001716a l       .text	00000000 .L320
+80001735a l       .text	00000000 .L321
+8000173da l       .text	00000000 .L322
+8000176e6 l       .text	00000000 .L323
+80001772e l       .text	00000000 .L324
+80001794c l       .text	00000000 .L325
+800017a6e l       .text	00000000 .L326
+800017f54 l       .text	00000000 .L370
+80002c914 l       .const	00000000 .L360
+8000184c8 l       .text	00000000 .L371
+8000185c8 l       .text	00000000 .L372
+800018762 l       .text	00000000 .L373
+8000188fc l       .text	00000000 .L374
+800018a8a l       .text	00000000 .L375
+800018b1e l       .text	00000000 .L376
+800018d84 l       .text	00000000 .L377
+800018e98 l       .text	00000000 .L378
+800018fac l       .text	00000000 .L379
+800019146 l       .text	00000000 .L380
+8000191da l       .text	00000000 .L381
+8000195d6 l       .text	00000000 .L382
+8000196cc l       .text	00000000 .L383
+800019782 l       .text	00000000 .L384
+80001986c l       .text	00000000 .L385
+80001999e l       .text	00000000 .L386
+800019ad0 l       .text	00000000 .L387
+800019c54 l       .text	00000000 .L388
+800019d40 l       .text	00000000 .L389
+800019fa0 l       .text	00000000 .L390
+80001a08c l       .text	00000000 .L391
+80001a120 l       .text	00000000 .L392
+80001a464 l       .text	00000000 .L393
+80001a54e l       .text	00000000 .L394
+80001a744 l       .text	00000000 .L395
+80001a8f8 l       .text	00000000 .L396
+80001a98c l       .text	00000000 .L397
+80001ac78 l       .text	00000000 .L398
+80001ad0c l       .text	00000000 .L399
+80001b050 l       .text	00000000 .L400
+80001b2b0 l       .text	00000000 .L401
+80001b62a l       .text	00000000 .L402
+80001b71a l       .text	00000000 .L403
+80001b7ae l       .text	00000000 .L404
+80001ba54 l       .text	00000000 .L405
+80001bb5c l       .text	00000000 .L406
+80001bc1c l       .text	00000000 .L407
+80001bcfc l       .text	00000000 .L419
+80001be12 l       .text	00000000 .L420
+80001beb8 l       .text	00000000 .L421
+80001bf76 l       .text	00000000 .L422
+80001bfc0 l       .text	00000000 .L423
+80001c01c l       .text	00000000 .L424
+80001c06c l       .text	00000000 .L425
+80001c0e6 l       .text	00000000 .L426
+80001c1d2 l       .text	00000000 .L427
+80001c2fa l       .text	00000000 .L428
+80001c394 l       .text	00000000 .L429
+80001c3e4 l       .text	00000000 .L430
+80001c434 l       .text	00000000 .L431
+80001c576 l       .text	00000000 .L454
+80001c5ce l       .text	00000000 .L455
+80001c74e l       .text	00000000 .L485
+80001c7b6 l       .text	00000000 .L486
+80001c8de l       .text	00000000 .L487
+80001c948 l       .text	00000000 .L488
+80001ca96 l       .text	00000000 .L489
+80001cc36 l       .text	00000000 .L490
+80001cd16 l       .text	00000000 .L491
+80001cd94 l       .text	00000000 .L492
+80002c9d4 l       .const	00000000 .L470
+80001d1e6 l       .text	00000000 .L493
+80001d34c l       .text	00000000 .L494
+80001d4ba l       .text	00000000 .L495
+80001d530 l       .text	00000000 .L496
+80001d696 l       .text	00000000 .L497
+80001d724 l       .text	00000000 .L498
+80001d88c l       .text	00000000 .L499
+80001d97e l       .text	00000000 .L500
+80001da2c l       .text	00000000 .L501
+80001dc58 l       .text	00000000 .L502
+80001de16 l       .text	00000000 .L503
+80001df08 l       .text	00000000 .L504
+80001dfb6 l       .text	00000000 .L505
+80001e0d0 l       .text	00000000 .L506
+80001e14c l       .text	00000000 .L507
+80001e206 l       .text	00000000 .L511
+80001e344 l       .text	00000000 .L512
+80001e43e l       .text	00000000 .L514
+80001f844 l       .text	00000000 .L522
+80001f97e l       .text	00000000 .L523
+80001f9b8 l       .text	00000000 .L524
+80001fa04 l       .text	00000000 .L525
+80001fab0 l       .text	00000000 .L526
+80001fc1e l       .text	00000000 .L527
+80001fcfe l       .text	00000000 .L528
+80001fe42 l       .text	00000000 .L545
+80001ff24 l       .text	00000000 .L546
+800020158 l       .text	00000000 .L547
+80002030e l       .text	00000000 .L548
+8000203e4 l       .text	00000000 .L549
+800020460 l       .text	00000000 .L550
+80002058a l       .text	00000000 .L551
+800020618 l       .text	00000000 .L552
+800020676 l       .text	00000000 .L553
+800020800 l       .text	00000000 .L556
+800020830 l       .text	00000000 .L557
+8000209bc l       .text	00000000 .L571
+800020a12 l       .text	00000000 .L572
+800020c02 l       .text	00000000 .L573
+800020c76 l       .text	00000000 .L574
+800020cf6 l       .text	00000000 .L575
+800020d4e l       .text	00000000 .L576
+800020f56 l       .text	00000000 .L616
+800021082 l       .text	00000000 .L617
+800021218 l       .text	00000000 .L618
+8000212da l       .text	00000000 .L619
+800021332 l       .text	00000000 .L620
+80002156a l       .text	00000000 .L643
+800021608 l       .text	00000000 .L644
+8000216e2 l       .text	00000000 .L645
+80002178e l       .text	00000000 .L646
+8000217ec l       .text	00000000 .L647
+800021882 l       .text	00000000 .L648
+80002197e l       .text	00000000 .L649
+800021a08 l       .text	00000000 .L650
+00000000 l    df *ABS*	00000000 unwind-dw2-fde.c
+800021b40 l     F .text	00000148 size_of_encoded_value
+800021ca0 l     F .text	000001ae read_uleb128
+800021e60 l     F .text	00000290 read_sleb128
+800022100 l     F .text	000009ac read_encoded_value_with_base
+800022ac0 l     F .text	000000c6 get_cie
+800022ba0 l     F .text	000000aa next_fde
+800022c60 l     F .text	0000006e last_fde
+800022ce0 l     F .text	0000004c __gthread_mutex_lock
+800022d40 l     F .text	0000004c __gthread_mutex_unlock
+80002be88 l     O .bss	00000008 unseen_objects
+80002be90 l     O .bss	00000008 seen_objects
+80002be98 l     O .bss	00000004 object_mutex
+800022da0 l     F .text	0000018a base_from_object
+800022f40 l     F .text	000005c6 get_cie_encoding
+800023520 l     F .text	000000c4 get_fde_encoding
+800023600 l     F .text	000000f0 fde_unencoded_compare
+800023700 l     F .text	000002dc fde_single_encoding_compare
+8000239e0 l     F .text	000002e4 fde_mixed_encoding_compare
+800023ce0 l     F .text	00000200 start_fde_sort
+800023ee0 l     F .text	0000014e fde_insert
+800024040 l     F .text	0000090a fde_split
+80002bea8 l     O .bss	00000008 marker.5523
+800024960 l     F .text	000008b0 frame_downheap
+800025220 l     F .text	000002da frame_heapsort
+800025500 l     F .text	0000050e fde_merge
+800025a20 l     F .text	00000424 end_fde_sort
+800025e60 l     F .text	0000063a classify_object_over_fdes
+8000264a0 l     F .text	00000580 add_fdes
+800026a20 l     F .text	000006a0 init_object
+80002bea0 l     O .bss	00000008 terminator.5629
+8000270c0 l     F .text	000006a8 linear_search_fdes
+800027780 l     F .text	00000288 binary_search_unencoded_fdes
+800027a20 l     F .text	0000042e binary_search_single_encoding_fdes
+800027e60 l     F .text	0000044a binary_search_mixed_encoding_fdes
+8000282c0 l     F .text	00000442 search_object
+800021c62 l       .text	00000000 .L10
+80002c9f0 l       .const	00000000 .L37
+80002245a l       .text	00000000 .L42
+8000224da l       .text	00000000 .L43
+800022966 l       .text	00000000 .L44
+800022f00 l       .text	00000000 .L112
+800022fb6 l       .text	00000000 .L127
+80002314e l       .text	00000000 .L128
+8000231be l       .text	00000000 .L129
+80002327c l       .text	00000000 .L130
+800023308 l       .text	00000000 .L131
+80002343e l       .text	00000000 .L132
+800023574 l       .text	00000000 .L135
+8000235ba l       .text	00000000 .L136
+8000237a2 l       .text	00000000 .L147
+800023874 l       .text	00000000 .L148
+800023942 l       .text	00000000 .L149
+800023a40 l       .text	00000000 .L155
+800023a84 l       .text	00000000 .L156
+800023b1e l       .text	00000000 .L157
+800023b46 l       .text	00000000 .L158
+800023b8a l       .text	00000000 .L159
+800023c24 l       .text	00000000 .L160
+800023db8 l       .text	00000000 .L166
+800023e46 l       .text	00000000 .L167
+8000243d0 l       .text	00000000 .L180
+800024c5e l       .text	00000000 .L188
+800024e20 l       .text	00000000 .L189
+800025300 l       .text	00000000 .L195
+8000254a6 l       .text	00000000 .L196
+8000258c4 l       .text	00000000 .L203
+800025ad0 l       .text	00000000 .L212
+800025c26 l       .text	00000000 .L213
+800025cbc l       .text	00000000 .L214
+800025d0e l       .text	00000000 .L215
+800025d84 l       .text	00000000 .L216
+800025dca l       .text	00000000 .L217
+800025e22 l       .text	00000000 .L218
+800025f0e l       .text	00000000 .L237
+800025f78 l       .text	00000000 .L238
+800025fd8 l       .text	00000000 .L239
+8000261c2 l       .text	00000000 .L240
+8000261ee l       .text	00000000 .L241
+80002640c l       .text	00000000 .L242
+800026450 l       .text	00000000 .L243
+8000265a4 l       .text	00000000 .L259
+80002663a l       .text	00000000 .L260
+8000266a4 l       .text	00000000 .L261
+8000266de l       .text	00000000 .L262
+8000267c2 l       .text	00000000 .L263
+8000267ee l       .text	00000000 .L264
+800026970 l       .text	00000000 .L265
+8000269a0 l       .text	00000000 .L266
+8000269e4 l       .text	00000000 .L267
+800026b3a l       .text	00000000 .L285
+800026c22 l       .text	00000000 .L286
+800026dce l       .text	00000000 .L287
+800026eb6 l       .text	00000000 .L288
+800026f7c l       .text	00000000 .L289
+800026fdc l       .text	00000000 .L290
+800027098 l       .text	00000000 .L291
+8000271d2 l       .text	00000000 .L309
+800027268 l       .text	00000000 .L310
+8000272d2 l       .text	00000000 .L311
+80002730c l       .text	00000000 .L312
+800027428 l       .text	00000000 .L313
+8000274b2 l       .text	00000000 .L314
+8000274de l       .text	00000000 .L315
+8000276ce l       .text	00000000 .L316
+800027712 l       .text	00000000 .L317
+800027ae6 l       .text	00000000 .L332
+800027c8c l       .text	00000000 .L333
+800027d16 l       .text	00000000 .L334
+800027fc6 l       .text	00000000 .L342
+800028034 l       .text	00000000 .L343
+8000280d4 l       .text	00000000 .L344
+80002816c l       .text	00000000 .L345
+800028358 l       .text	00000000 .L356
+80002844e l       .text	00000000 .L357
+8000284d8 l       .text	00000000 .L358
+80002851e l       .text	00000000 .L359
+8000285e4 l       .text	00000000 .L360
+8000286bc l       .text	00000000 .L361
+80002878e l       .text	00000000 .L381
+800028818 l       .text	00000000 .L382
+8000288d6 l       .text	00000000 .L383
+800028a5c l       .text	00000000 .L384
+800028b6a l       .text	00000000 .L385
+800028bae l       .text	00000000 .L386
+800028c4e l       .text	00000000 .L387
+00000000 l    df *ABS*	00000000 abort.c
+00000000 l    df *ABS*	00000000 __C_ctype_b.c
+80002c170 l     O .const	00000300 __C_ctype_b_data
+00000000 l    df *ABS*	00000000 libgcc2.c
+800030b30 g       .cio	00000000 _ecio
+80000b0a0 g     F .text	00000034 strcpy
+800028720 g     F .text	00000584 _Unwind_Find_FDE
+00010000 g       *ABS*	00000000 __HEAP_SIZE
+8000026a0 g     F .text	000000ea get_time_cn
+800003e40 g     F .text	0000007e printf
+800028d08 g     O .neardata	00000008 stdout
+80002cb28 g       .cio	00000000 __cio
+00000500 g       *ABS*	00000000 __INE_SIZE
+80000a480 g     F .text	000000a6 memrchr
+80002bf68 g     O .const	00000150 x
+800008fa0 g     F .text	00000364 _uintmaxtostr
+800028ce0 g       .text	00000000 __etext
+80000a70e g       .text	00000000 C$$IO$$
+800028d28 g     O .neardata	00000008 __ctype_b
+800012ca0 g     F .text	00000086 _Unwind_GetRegionStart
+800028ce8 g     O .neardata	00000008 xAddr_DDR
+800029084 g     O .bss	00000004 errno
+80002beb0 g       .bss	00000000 _sbss
+4007ffc0 g       .Vheap	00000000 __vstack
+800012500 g     F .text	00000082 _Unwind_GetCFA
+800030b30 g     O .heap	00000010 _sys_memory
+800007480 g     F .text	00000046 memcpy
+800060c28 g       .stack	00000000 __estack
+800005980 g     F .text	000001d4 _ppfs_init
+8000078e0 g     F .text	0000028c malloc
+800010100 g     F .text	00000094 __udivsi3
+800040c24 g       .svheap	00000000 __esvheap
+00005000 g       *ABS*	00000000 __VHEAP_SIZE
+800029088 g     O .bss	00000140 rAddr_DDR_cn
+800040b40 g     O .svheap	00000018 _sys_vmemory
+00001000 g       *ABS*	00000000 __VSTACK_SIZE
+800060c20 g       .stack	00000000 __stack1
+800008220  w    F .text	00000050 _Exit
+800008420 g     F .text	00000232 wcsnrtombs
+80000b0e0 g     F .text	00004d52 __udivdi3
+800028d40 g     O .fardata	00000058 __c_args__
+800028cc0 g     F .text	00000006 abort
+800002de0 g     F .text	00000132 DSP_fir_r8_h8_cn
+40015000 g       .Vheap	00000000 __eVheap
+8000075a0 g     F .text	00000092 strnlen
+800029080 g     O .bss	00000004 h_errno
+800029078 g     O .bss	00000008 __exit_cleanup
+80000afe0 g     F .text	000000b8 write
+8000070a0 g     F .text	0000011c fputs_unlocked
+800000000 g       .userInt	00000000 __userInt
+8000101a0 g     F .text	00000094 __umodsi3
+800028cf8 g     O .neardata	00000008 _stdio_openlist
+800040b40 g       .heap	00000000 __eheap
+800021380 g     F .text	000007b8 _Unwind_Resume
+00000000  w      *UND*	00000000 _ITM_registerTMCloneTable
+80000a3c0 g     F .text	000000ae memchr
+00010000 g       *ABS*	00000000 __STACK_SIZE
+800028d10 g     O .neardata	00000008 stdin
+80000fe40 g     F .text	0000014a udivmodsi4
+800002600 g     F .text	00000098 _start
+800028ce0 g       .neardata	00000000 __edata
+8000083c0 g     F .text	00000052 wcsrtombs
+80002beb0 g       .bss	00000000 __ebss
+40010000 g       .Vheap	00000000 __Vheap
+8000073e0 g     F .text	00000084 memcmp
+80002beb0 g       .bss	00000000 __erodata
+800004600 g     F .text	0000137e _vfprintf_internal
+80002beb0 g       .bss	00000000 __rodata
+800008f40 g     F .text	00000050 _store_inttype
+00000000  w      *UND*	00000000 _ITM_deregisterTMCloneTable
+8000074e0 g     F .text	00000038 memset
+800002f60 g     F .text	00000136 M7002_datatrans
+8000028a0 g     F .text	0000053e main
+800003240 g       .text	000001ba DSP_fir_r8_h8_asm
+8000031c0 g     F .text	0000007e SetTimerPeriod
+800008940 g     F .text	00000458 __stdio_fwrite
+80002cb28 g     O .cio	00000001 _CIOBUF_
+8000291c8 g     O .bss	00000800 rAddr_DDR_vc
+800028ce0 g       .neardata	00000000 __data
+800003ca0 g     F .text	0000008e syn_lock
+800002f20 g     F .text	00000014 GetConfReg
+80000ffa0 g     F .text	00000144 __divsi3
+800002500 g       .text	00000000 __text
+800000000 g       *ABS*	00000000 __Top_Adress
+800029070 g       .bss	00000000 __bss
+80002ca28 g     O .const	00000100 __clz_tab
+4007ffc0 g       .Vheap	00000000 __evstack
+800003ec0 g     F .text	000000fc _stdio_term
+800012de0 g     F .text	00000086 _Unwind_GetTextRelBase
+800028d00 g     O .neardata	00000008 stderr
+800003940 g     F .text	00000356 vfree
+8000030a0 g     F .text	00000086 TimerStart
+00004000 g       *ABS*	00000000 __CIO_SIZE
+800028d30 g     O .neardata	00000008 __C_ctype_b
+80002bf18 g     O .const	00000050 h
+800005c00 g     F .text	00000618 _ppfs_setargs
+800028ce0 g     O .neardata	00000008 hAddr_DDR
+80002cb28 g       .const	00000000 __econst
+800002f40 g     F .text	00000016 SetConfReg
+800003fc0 g     F .text	000000d4 __stdio_wcommit
+800003140 g     F .text	0000007e GetTimerCount
+8000071c0 g     F .text	0000021a fwrite_unlocked
+8000027a0 g     F .text	000000ea get_time_vc
+8000071c0 g     F .text	0000021a fwrite
+80002beb0 g       .const	00000000 __const
+800002000 g       .userExc	00000000 __userExc
+800003d40 g     F .text	00000062 syn_unlock
+800000500 g       .userInt	00000000 __euserInt
+800005b60 g     F .text	00000098 _ppfs_prepargs
+8000299c8 g     O .bss	00000400 argvalue
+800009320 g     F .text	0000109a _fpmaxtostr
+800030b30 g       .heap	00000000 __heap
+800003dc0 g     F .text	0000006a _args_main
+800008160 g     F .text	000000ba exit
+800008660 g     F .text	000002cc __stdio_WRITE
+80002beb0 g       .bss	00000000 _esbss
+800002500 g       .userExc	00000000 __euserExc
+800008220 g     F .text	00000050 _exit
+800029070 g     O .bss	00000004 MULTI_CORE_P
+800012180 g     F .text	000002c0 _Unwind_GetGR
+800007520 g     F .text	00000068 strlen
+800006220 g     F .text	00000e78 _ppfs_parsespec
+800008da0 g     F .text	000000b2 __stdio_trans2w_o
+800050c20 g       .stack	00000000 __stack0
+800003560 g     F .text	000003d4 vmalloc
+8000070a0 g     F .text	0000011c fputs
+800012d40 g     F .text	00000086 _Unwind_GetDataRelBase
+00000000  w      *UND*	00000000 _Jv_RegisterClasses
+800002500 g     F .text	000000e2 vector
+800008280 g     F .text	00000132 wcrtomb
+8000040a0 g     F .text	000001bc vfprintf
+800008e60 g     F .text	000000da _load_inttype
+800007b80 g     F .text	000005d8 free
+800040b40 g       .svheap	00000000 __svheap
+
+

@@ -1,0 +1,70 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_fir_r8_h8
+ProjectDir="C:/Users/zhou hang/OneDrive/桌面/DSP_fir_/DSP_fir_r8_h8"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="main.c"
+Source="readme.txt"
+Source="DSP_fir_r8_h8.lds"
+Source="DSP_fir_r8_h8_cn.c"
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="Release/ConfRegOp.o"
+Source="Release/ConfRegOp.s"
+Source="Release/datatransfer.o"
+Source="Release/datatransfer.s"
+Source="Release/DSP_fir_r8_h8.map"
+Source="Release/DSP_fir_r8_h8.out"
+Source="Release/DSP_fir_R8_h8_asm2.o"
+Source="Release/DSP_fir_r8_h8_cn.o"
+Source="Release/DSP_fir_r8_h8_cn.s"
+Source="Release/DSP_fir_r8_h8_vc1.s"
+Source="Release/main.o"
+Source="Release/main.s"
+Source="Release/Timer.o"
+Source="Release/Timer.s"
+Source="DSP_fir_r8_h8_vc1.c"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSP_fir_r8_h8.map"
+Source="Debug/DSP_fir_r8_h8.out"
+Source="Debug/DSP_fir_R8_h8_asm.o"
+Source="Debug/DSP_fir_R8_h8_asm2.o"
+Source="Debug/DSP_fir_r8_h8_cn.o"
+Source="Debug/DSP_fir_r8_h8_cn.s"
+Source="Debug/DSP_fir_r8_h8_sa.o"
+Source="Debug/DSP_fir_r8_h8_vc1.o"
+Source="Debug/DSP_fir_r8_h8_vc1.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/test.o"
+Source="Debug/test.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -g -ffunction-sections -flax-vector-conversions 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSP_fir_r8_h8.out" --gc-sections -T"DSP_fir_r8_h8.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSP_fir_r8_h8.out" --gc-sections -T"DSP_fir_r8_h8.lds" 
+[Opened files]
+OpenedSource="Debug/datatransfer.s",line=1
+OpenedSource="main.c",line=98
+OpenedSource="DSP_fir_r8_h8_vc1.c",line=34
+[Builders]
+m7002.builder
+[Debug Configurations]

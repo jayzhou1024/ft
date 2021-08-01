@@ -1,0 +1,52 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_fir_r8_h24
+ProjectDir="C:/Users/zhou hang/OneDrive/桌面/DSP_fir_/DSP_fir_r8_h24"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="main.c"
+Source="readme.txt"
+Source="DSP_fir_r8_h24.lds"
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="DSP_fir_r8_h24_cn.c"
+Source="DSP_fir_r8_h24_vc1 -.c"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSP_fir_r8_h24.map"
+Source="Debug/DSP_fir_r8_h24.out"
+Source="Debug/DSP_fir_r8_h24_asm.o"
+Source="Debug/DSP_fir_R8_h24_asm1.o"
+Source="Debug/DSP_fir_r8_h24_cn.o"
+Source="Debug/DSP_fir_r8_h24_cn.s"
+Source="Debug/DSP_fir_r8_h24_sa.o"
+Source="Debug/DSP_fir_r8_h24_vc1 -.o"
+Source="Debug/DSP_fir_r8_h24_vc1 -.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -ffunction-sections -flax-vector-conversions -g 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSP_fir_r8_h24.out" --gc-sections -T"DSP_fir_r8_h24.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSP_fir_r8_h24.out" --gc-sections -T"DSP_fir_r8_h24.lds" 
+[Opened files]
+OpenedSource="main.c",line=76
+[Builders]
+m7002.builder
+[Debug Configurations]

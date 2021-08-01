@@ -1,0 +1,146 @@
+.global DSP_fir_r8_hM16_rM8A8X8_asm
+;参数声明
+.input  input_x1:input_x0,input_h1:input_h0,input_r1:input_r0,nh,nr  ;输入参数
+.gen_var i,j,k,vr_len,loop_i,loop_j,loop_store  ;循环变量与循环条件判断
+.gen_var shuff_add1:shuff_add0,shuff_mid0,shuff_mid1    ;混洗配置参数
+.gen_var shuff_ld_1_16,shuff_ld_3_18        ;混洗后的取数配置
+.gen_var sh0,sh1,sh2,sh3,sh4,sh5,sh6,sh7,vh0,vh1,vh2,vh3,vh4,vh5,vh6,vh7    ;标量、向量h
+.gen_var x_ld_add1:x_ld_add0,r_ld_add1:r_ld_add0,x_ld_add_compute,x_ld_i
+.gen_var x_0_31,x_4_35,x_0_15,x_1_16,x_2_17,x_3_18,x_4_19,x_5_20,x_6_21,x_7_22,x_0_31_shuff,x_4_35_shuff,r_0_15
+.gen_var mula_1,mula_2  ;乘加中间结果
+.gen_var r_m2ld_1:r_m2ld_0
+.add_var x_ld,h,r_ld,r_store,shuff_add,OR_16
+;函数开始
+;初始化
+SMOVIL      0,i                     ;初始化i
+SMOVIH      0,i
+SMVAGA36    input_h1:input_h0,h
+SADD        0,i,shuff_add1          ;混洗地址
+SADD        0,i,x_ld_add1
+SADD        15,nr,vr_len
+VMOVIL      528,shuff_ld_1_16
+VMOVIH      528,shuff_ld_1_16
+VMOVIL      16,shuff_ld_3_18
+VMOVIH      16,shuff_ld_3_18
+SSHFLR      4,vr_len,vr_len
+SADDU       1,vr_len,vr_len         ;vr_len = (nr+15)/16)+1
+SSHFLR      1,vr_len,vr_len
+SMVCGC      i,SMR   ;混洗模式配置
+;混洗配置
+SMOVIL      0,shuff_add0
+SMOVIH      0x40160000,shuff_add0   ;shuff_add0 = 0x40160000
+SMVAGA36    shuff_add1:shuff_add0,shuff_add ;混洗地址
+SMOVIL      0x02020202,shuff_mid0
+SMOVIH      0x02020202,shuff_mid0
+SMOVIL      0x04020301,shuff_mid1               ;0x04020301
+SMOVIH      0x04020301,shuff_mid1
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1    ;0x06040503
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1    ;0x08060705
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1    ;0x0a080907
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1    ;0x0c0a0b09
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1    ;0x0e0c0d0b
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1    ;0x100e0f0d
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1    ;0x1210110f
+SSTW        shuff_mid1,*shuff_add++[1]
+SMOVIL      16,shuff_add0
+SMOVIH      0,shuff_add0
+SMVAGA36    shuff_add1:shuff_add0,OR_16
+
+.loop_i: .loop
+SLDH        *h++[1],sh0  ;h0
+SVBCAST     sh0,vh0
+SLDH        *h++[1],sh1  ;h1
+SVBCAST     sh1,vh1
+SLDH        *h++[1],sh2  ;h2
+SVBCAST     sh2,vh2
+SLDH        *h++[1],sh3  ;h3
+SVBCAST     sh3,vh3
+SLDH        *h++[1],sh4  ;h4
+SVBCAST     sh4,vh4
+SLDH        *h++[1],sh5  ;h5
+SVBCAST     sh5,vh5
+SLDH        *h++[1],sh6  ;h6
+SVBCAST     sh6,vh6
+SLDH        *h++[1],sh7  ;h7
+SVBCAST     sh7,vh7
+
+SSHFLL      1,i,x_ld_add0
+SADD        x_ld_add0,input_x0,x_ld_i  ;*x + i*2
+SMOVIL      0,j
+SMOVIH      0,j     ;j = 0
+SADD        0,j,k   ;k = 0
+SADD        0,j,r_ld_add1
+
+.loop_j: .loop
+SSHFLL      6,k,r_ld_add0
+SSHFLL      1,j,x_ld_add_compute
+SADD        x_ld_i,x_ld_add_compute,x_ld_add0
+SMVAGA36    x_ld_add1:x_ld_add0,x_ld
+SADD        r_ld_add0,input_r0,r_ld_add0
+SMVAGA36    r_ld_add1:r_ld_add0,r_ld
+
+VMOVIL      0,mula_1
+VMOVIH      0,mula_1
+VADD        0,mula_1,mula_2
+
+;取数
+VLDW        *x_ld,x_0_31
+VLDW        *+x_ld[2],x_4_35
+VLDH        *x_ld,x_0_15
+VLDH        *+x_ld[2],x_2_17
+VLDH        *+x_ld[4],x_4_19
+VLDH        *+x_ld[6],x_6_21
+VLDW        *r_ld,r_0_15
+
+VSHUFH      x_0_31,x_0_31,x_0_31_shuff  ;混洗
+VSHUFH      x_4_35,x_4_35,x_4_35_shuff  ;混洗
+VMULAS16T   x_0_15,vh0,mula_1,mula_1
+VMULAS16T   x_2_17,vh2,r_0_15,r_0_15
+VMULAS16T   x_4_19,vh4,mula_1,mula_1
+VMULAS16T   x_6_21,vh6,r_0_15,r_0_15
+VBEXT       shuff_ld_1_16,x_0_31_shuff,x_1_16
+VBEXT       shuff_ld_3_18,x_0_31_shuff,x_3_18
+VBEXT       shuff_ld_1_16,x_4_35_shuff,x_5_20
+VBEXT       shuff_ld_3_18,x_4_35_shuff,x_7_22
+VMULAS16T   x_1_16,vh1,mula_1,mula_1
+VMULAS16T   x_3_18,vh3,r_0_15,r_0_15
+VMULAS16T   x_5_20,vh5,mula_1,mula_1
+VMULAS16T   x_7_22,vh7,r_0_15,r_0_15
+VADD        mula_1,r_0_15,r_0_15
+VSTW        r_0_15,*r_ld
+
+SADD        1,k,k
+SADD        16,j,j
+SLT         j,nr,loop_j
+[loop_j]SBR .loop_j
+.endloop
+
+SADD        8,i,i
+SLT         i,nh,loop_i
+[loop_i]SBR .loop_i
+.endloop
+
+SMOVIL      0,i
+SMOVIH      0,i
+SMVAGA36    input_r1:input_r0,r_ld
+SMVAGA36    input_r1:input_r0,r_store
+
+.update_store: .loop
+SADD        1,i,i
+VLDDWM2     *r_ld++[OR_16],r_m2ld_1:r_m2ld_0
+SLT         i,vr_len,loop_store
+VSHFAR      15,r_m2ld_1,r_m2ld_1
+VSHFAR      15,r_m2ld_0,r_m2ld_0
+VBALE2      r_m2ld_0,r_m2ld_1,r_m2ld_0
+VSTW        r_m2ld_0,*r_store++[OR_16]
+[loop_store]SBR .update_store
+.endloop
+
+.size DSP_fir_r8_hM16_rM8A8X8_asm,-DSP_fir_r8_hM16_rM8A8X8_asm

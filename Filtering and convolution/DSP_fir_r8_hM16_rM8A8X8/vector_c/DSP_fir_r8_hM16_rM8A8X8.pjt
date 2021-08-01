@@ -1,0 +1,65 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_fir_r8_hM16_rM8A8X8
+ProjectDir="C:/Users/zhou hang/OneDrive/桌面/DSP_fir_/DSP_fir_r8_hM16_rM8A8X8"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="DSP_fir_r8_hM16_rM8A8X8.lds"
+Source="DSP_fir_r8_hM16_rM8A8X8.pjt"
+Source="DSP_fir_r8_hM16_rM8A8X8.pst"
+Source="DSP_fir_r8_hM16_rM8A8X8_cn.c"
+Source="main.c"
+Source="readme.txt"
+Source="Timer.c"
+Source="Timer.h"
+Source=""
+Source="DSP_fir_r8_hM16_rM8A8X8_vc1.c"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSP_fir_r8_h8.c"
+Source="Debug/DSP_fir_r8_h8_cn.o"
+Source="Debug/DSP_fir_r8_h8_cn.s"
+Source="Debug/DSP_fir_r8_h8_vc1.o"
+Source="Debug/DSP_fir_r8_h8_vc1.s"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8.map"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8.out"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8_asm.o"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8_cn.o"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8_cn.s"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8_vc.o"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8_vc.s"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8_vc1.o"
+Source="Debug/DSP_fir_r8_hM16_rM8A8X8_vc1.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/test.o"
+Source="Debug/test.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-g -ffunction-sections -flax-vector-conversions -O2 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSP_fir_r8_hM16_rM8A8X8.out" --gc-sections -T"DSP_fir_r8_hM16_rM8A8X8.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSP_fir_r8_hM16_rM8A8X8.out" --gc-sections -T"DSP_fir_r8_hM16_rM8A8X8.lds" 
+[Opened files]
+OpenedSource="main.c",line=60
+OpenedSource="DSP_fir_r8_hM16_rM8A8X8_cn.c",line=1
+OpenedSource="ConfRegOp.h",line=1
+OpenedSource="ConfRegOp.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]
