@@ -1,0 +1,51 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_fir_r8
+ProjectDir="C:/MyProject/DONE/DSP_fir_r8"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="DSP_fir_r8.lds"
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="DSP_fir_r8_cn.c"
+Source="DSP_fir_r8_vc1.c"
+Source="main.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSP_fir_r8.map"
+Source="Debug/DSP_fir_r8.out"
+Source="Debug/DSP_fir_r8_cn.o"
+Source="Debug/DSP_fir_r8_cn.s"
+Source="Debug/DSP_fir_r8_sa.o"
+Source="Debug/DSP_fir_r8_vc1.o"
+Source="Debug/DSP_fir_r8_vc1.s"
+Source="Debug/DSP_fir_r8_vc2.o"
+Source="Debug/DSP_fir_r8_vc2.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -ffunction-sections -flax-vector-conversions 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSP_fir_r8.out" --gc-sections -T"DSP_fir_r8.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSP_fir_r8.out" --gc-sections -T"DSP_fir_r8.lds" 
+[Opened files]
+OpenedSource="main.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]
