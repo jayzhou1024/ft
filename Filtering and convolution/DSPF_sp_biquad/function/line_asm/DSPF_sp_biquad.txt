@@ -1,0 +1,262 @@
+.global DSPF_sp_biquad
+.input   input_x1:input_x0,input_b1:input_b0,input_a1:input_a0,input_delay1:input_delay0,input_y1:input_y0,nx
+.gen_var LOOP_1,LOOP_2
+.gen_var a1,a2,b1,b0,b2,delay1,delay0;需要取出来的初始值
+.gen_var x0,x1,y0,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15,y_0,y_1;用于计算中间变量（标量）
+.gen_var center,center_0,center_1,tmp_1,tmp_2,tmp;一些需要用到的中间过渡值
+.gen_var temp1,temp2,temp3,temp4,temp5,temp6,temp7,temp8,temp_v_y,temp_x,temp_y;主要用于乘累加等计算中
+.gen_var Number0:Number16
+.add_var Xaddress,Baddress,Aaddress,Deaddress,Yaddress,Yaddress_2,Xaddress_1,Yaddress_1,Xaddress_0,Yaddress_0;相关地址变量
+.add_var offset16,offset16_0
+
+SMVAGA36    input_x1:input_x0,Xaddress
+SMVAGA36    input_x1:input_x0,Xaddress_0
+SMVAGA36    input_x1:input_x0,Xaddress_1
+SMVAGA36    input_b1:input_b0,Baddress
+SMVAGA36    input_a1:input_a0,Aaddress
+SMVAGA36    input_delay1:input_delay0,Deaddress
+SMVAGA36    input_y1:input_y0,Yaddress
+SMVAGA36    input_y1:input_y0,Yaddress_0
+SMVAGA36    input_y1:input_y0,Yaddress_1
+SMVAGA36    input_y1:input_y0,Yaddress_2
+
+SLDW        *+Baddress[0],b0
+SLDW        *+Baddress[1],b1
+SLDW        *+Baddress[2],b2
+SLDW        *+Aaddress[1],a1
+SLDW        *+Aaddress[2],a2
+SLDW        *+Deaddress[0],delay0
+SLDW        *+Deaddress[1],delay1
+
+SMOV        nx,LOOP_1
+SMOV        nx,LOOP_2
+
+SVBCAST     b2,temp1
+SVBCAST     b1,temp2
+SVBCAST     b0,temp3
+
+SMOVIL      0,Number0
+SMOVIH      0,Number0
+SMOVIL      16,Number16
+SMOVIH      0,Number16
+
+SMVAGA36    Number0:Number16,offset16
+VLDW        *Yaddress++[2],temp_v_y
+
+SMOVIL      0,tmp
+SMOVIH      0,tmp
+
+.FIRST_LOOP: .loop
+VLDW        *+Yaddress[0],temp_v_y
+
+VLDW        *+Xaddress[0],temp4
+VFMULAS32   temp4,temp1,temp_v_y,temp_v_y
+
+VLDW        *+Xaddress[1],temp5
+VFMULAS32   temp5,temp2,temp_v_y,temp_v_y
+
+VLDW        *+Xaddress[2],temp6
+VFMULAS32   temp6,temp3,temp_v_y,temp_v_y
+
+VLDW        *Xaddress++[offset16],temp_x
+
+VSTW        temp_v_y,*Yaddress++[offset16]
+
+SSUB        16,LOOP_1,LOOP_1
+
+SLT	LOOP_1,tmp,tmp_1
+[!tmp_1] SBR  .FIRST_LOOP
+.endloop
+
+
+VLDW        *+Xaddress_0[0],temp_x
+VMVCGC      temp_x,SVR
+SMVCCG      SVR0,x0
+SMVCCG      SVR1,x1
+
+VLDW        *+Yaddress_0[0],temp_y
+VMVCGC      temp_y,SVR
+SMVCCG      SVR0,y_0
+SMVCCG      SVR1,y_1
+
+SFMULS32      b0,x0,y_0
+SFADDS32      delay0,y_0,y_0
+
+SFMULS32      b0,x1,y_1
+SFADDS32      delay1,y_1,y_1
+SFMULS32      b1,x0,center_0
+SFADDS32      center_0,y_1,y_1
+SFMULS32      a1,y_0,center_1
+SFSUBS32       center_1,y_1,y_1
+
+SMVCGC      y_0,SVR0
+SMVCGC      y_1,SVR1
+
+VMVCCG      SVR,temp_y
+VSTW        temp_y,*+Yaddress_0[0]
+
+VLDW        *Yaddress_2++[2],temp_v_y
+SSUB         2,LOOP_2,LOOP_2
+
+.SECOND_LOOP: .loop
+VLDW        *+Yaddress_2[0],temp_v_y
+VMVCGC      temp_v_y,SVR
+SMVCCG      SVR0,y0
+SMVCCG      SVR1,y1
+SMVCCG      SVR2,y2
+SMVCCG      SVR3,y3
+SMVCCG      SVR4,y4
+SMVCCG      SVR5,y5
+SMVCCG      SVR6,y6
+SMVCCG      SVR7,y7
+SMVCCG      SVR8,y8
+SMVCCG      SVR9,y9
+SMVCCG      SVR10,y10
+SMVCCG      SVR11,y11
+SMVCCG      SVR12,y12
+SMVCCG      SVR13,y13
+SMVCCG      SVR14,y14
+SMVCCG      SVR15,y15
+
+SFMULS32      a1,y_1,center_1
+SFSUBS32        center_1,y0,y0
+SFMULS32      a2,y_0,center_0
+SFSUBS32       center_0,y0,y0
+
+SFMULS32      a1,y0,center_1
+SFSUBS32      center_1,y1,y1
+SFMULS32     a2,y_1,center_0
+SFSUBS32      center_0,y1,y1
+
+SFMULS32      a1,y1,center_1
+SFSUBS32        center_1,y2,y2
+SFMULS32      a2,y0,center_0
+SFSUBS32       center_0,y2,y2
+
+SFMULS32      a1,y2,center_1
+SFSUBS32        center_1,y3,y3
+SFMULS32      a2,y1,center_0
+SFSUBS32        center_0,y3,y3
+
+SFMULS32      a1,y3,center_1
+SFSUBS32        center_1,y4,y4
+SFMULS32      a2,y2,center_0
+SFSUBS32        center_0,y4,y4
+
+SFMULS32       a1,y4,center_1
+SFSUBS32        center_1,y5,y5
+SFMULS32       a2,y3,center_0
+SFSUBS32       center_0,y5,y5
+
+SFMULS32       a1,y5,center_1
+SFSUBS32        center_1,y6,y6
+SFMULS32       a2,y4,center_0
+SFSUBS32        center_0,y6,y6
+
+SFMULS32      a1,y6,center_1
+SFSUBS32        center_1,y7,y7
+SFMULS32      a2,y5,center_0
+SFSUBS32        center_0,y7,y7
+
+SFMULS32       a1,y7,center_1
+SFSUBS32        center_1,y8,y8
+SFMULS32       a2,y6,center_0
+SFSUBS32        center_0,y8,y8
+
+SFMULS32     a1,y8,center_1
+SFSUBS32        center_1,y9,y9
+SFMULS32      a2,y7,center_0
+SFSUBS32        center_0,y9,y9
+
+SFMULS32      a1,y9,center_1
+SFSUBS32        center_1,y10,y10
+SFMULS32      a2,y8,center_0
+SFSUBS32        center_0,y10,y10
+
+SFMULS32       a1,y10,center_1
+SFSUBS32        center_1,y11,y11
+SFMULS32       a2,y9,center_0
+SFSUBS32        center_0,y11,y11
+
+SFMULS32      a1,y11,center_1
+SFSUBS32        center_1,y12,y12
+SFMULS32      a2,y10,center_0
+SFSUBS32        center_0,y12,y12
+
+SFMULS32      a1,y12,center_1
+SFSUBS32        center_1,y13,y13
+SFMULS32       a2,y11,center_0
+SFSUBS32        center_0,y13,y13
+
+SFMULS32       a1,y13,center_1
+SFSUBS32        center_1,y14,y14
+SFMULS32       a2,y12,center_0
+SFSUBS32        center_0,y14,y14
+
+SFMULS32       a1,y14,center_1
+SFSUBS32        center_1,y15,y15
+SFMULS32       a2,y13,center_0
+SFSUBS32        center_0,y15,y15
+
+SMOV        y14,y_0
+SMOV        y15,y_1
+
+SMVCGC      y0,SVR0
+SMVCGC      y1,SVR1
+SMVCGC      y2,SVR2
+SMVCGC      y3,SVR3
+SMVCGC      y4,SVR4
+SMVCGC      y5,SVR5
+SMVCGC      y6,SVR6
+SMVCGC      y7,SVR7
+SMVCGC      y8,SVR8
+SMVCGC      y9,SVR9
+SMVCGC      y10,SVR10
+SMVCGC      y11,SVR11
+SMVCGC      y12,SVR12
+SMVCGC      y13,SVR13
+SMVCGC      y14,SVR14
+SMVCGC      y15,SVR15
+
+VMVCCG      SVR,temp_v_y
+VSTW        temp_v_y,*Yaddress_2++[offset16]
+
+SSUB        16,LOOP_2,LOOP_2
+
+SLT	LOOP_2,tmp,tmp_2
+
+[!tmp_2] SBR  .SECOND_LOOP
+.endloop
+
+
+SMOVIL      0,Number0
+SMOVIH      0,Number0
+SMOV        nx,Number16
+SMVAGA36    Number0:Number16,offset16_0
+SSUBA	  2,offset16_0,offset16_0
+
+VLDW        *+Xaddress_1[offset16_0],temp7
+VMVCGC      temp7,SVR
+SMVCCG      SVR0,x0
+SMVCCG      SVR1,x1
+
+VLDW        *+Yaddress_1[offset16_0],temp8
+VMVCGC      temp8,SVR
+SMVCCG      SVR0,y0
+SMVCCG      SVR1,y1
+
+SFMULS32       b1,x1,delay0
+SFMULAS32   b2,x0,delay0,delay0
+SFMULS32       a2,y0,center_0
+SFMULS32       a1,y1,center_1
+SFSUBS32        center_0,delay0,delay0
+SFSUBS32        center_1,delay0,delay0
+
+SFMULS32       b2,x1,delay1
+SFMULS32       a2,y1,center
+SFSUBS32        center,delay1,delay1
+
+SSTW        delay0,*+Deaddress[0]
+SSTW        delay1,*+Deaddress[1]
+
+.size DSPF_sp_biquad,.-DSPF_sp_biquad

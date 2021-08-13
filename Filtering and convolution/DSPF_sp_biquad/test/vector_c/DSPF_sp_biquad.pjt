@@ -1,0 +1,59 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSPF_sp_biquad
+ProjectDir="E:/something/newtext/DSPF_sp_biquad/DSPF_sp_biquad"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="main.c"
+Source="readme.txt"
+Source="DSPF_sp_biquad.lds"
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="DSPF_sp_biquad_cn.c"
+Source="DSPF_sp_biquad_vc.c"
+Source="datatransfer.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="DSPF_sp_biquad_asm.asm"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSPF_sp_biquad.map"
+Source="Debug/DSPF_sp_biquad.o"
+Source="Debug/DSPF_sp_biquad.out"
+Source="Debug/DSPF_sp_biquad_asm.o"
+Source="Debug/DSPF_sp_biquad_cn.o"
+Source="Debug/DSPF_sp_biquad_cn.s"
+Source="Debug/DSPF_sp_biquad_vc.o"
+Source="Debug/DSPF_sp_biquad_vc.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-ffunction-sections -O2 -flax-vector-conversions -g 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSPF_sp_biquad.out" --gc-sections -T"DSPF_sp_biquad.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSPF_sp_biquad.out" --gc-sections -T"DSPF_sp_biquad.lds" 
+[Opened files]
+OpenedSource="DSPF_sp_biquad.lds",line=1
+OpenedSource="ConfRegOp.c",line=1
+OpenedSource="ConfRegOp.h",line=1
+OpenedSource="DSPF_sp_biquad_cn.c",line=1
+OpenedSource="DSPF_sp_biquad_vc.c",line=7
+OpenedSource="datatransfer.c",line=1
+OpenedSource="main.c",line=1
+OpenedSource="DSPF_sp_biquad_asm.asm",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]
