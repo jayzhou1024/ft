@@ -95,6 +95,7 @@ void main()
     /* --------------------------------------------------------------------- */
     /* Compute the overhead of calling clock twice to get timing info        */
     /* --------------------------------------------------------------------- */
+    
     unsigned long time1, time2, cholesky_solver_t_cn, cholesky_solver_t;
     //定时器初始化
     SetTimerPeriod(0, 0xffffffff);
