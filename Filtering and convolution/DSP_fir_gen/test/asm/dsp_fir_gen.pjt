@@ -1,0 +1,66 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=dsp_fir_gen
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSP_fir_gen/test/asm"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="dsp_fir_gen.lds"
+Source="dsp_fir_gen.pjt"
+Source="dsp_fir_gen.pst"
+Source="DSP_fir_gen_asm.asm",NeedCompile=false
+Source="DSP_fir_gen_cn.c"
+Source="main.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="Release/ConfRegOp.o"
+Source="Release/ConfRegOp.s"
+Source="Release/datatransfer.o"
+Source="Release/datatransfer.s"
+Source="Release/DSP_fir_gen_cn.o"
+Source="Release/DSP_fir_gen_cn.s"
+Source="Release/main.o"
+Source="Release/main.s"
+Source="Release/Timer.o"
+Source="Release/Timer.s"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSP_fir_cplx_cn.o"
+Source="Debug/DSP_fir_cplx_cn.s"
+Source="Debug/dsp_fir_gen.map"
+Source="Debug/dsp_fir_gen.out"
+Source="Debug/DSP_fir_gen_asm.o"
+Source="Debug/DSP_fir_gen_cn.o"
+Source="Debug/DSP_fir_gen_cn.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-g -ffunction-sections -O2 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/dsp_fir_gen.out" --gc-sections -T"dsp_fir_gen.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/dsp_fir_gen.out" --gc-sections -T"dsp_fir_gen.lds" 
+[Opened files]
+OpenedSource="DSP_fir_gen_asm.asm",line=142
+OpenedSource="main.c",line=55
+OpenedSource="Debug/dsp_fir_gen.map",line=1
+OpenedSource="Debug/datatransfer.s",line=1
+OpenedSource="Debug/DSP_fir_gen_cn.s",line=1
+OpenedSource="Timer.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

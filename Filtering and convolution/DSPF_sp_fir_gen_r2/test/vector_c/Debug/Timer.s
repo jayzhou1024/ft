@@ -1,6 +1,7 @@
 	.file	"Timer.c"
 .text;
 .Ltext0:
+	.cfi_sections	.debug_frame
 	.section	.text.TimerStart,"ax",@progbits
 	.align	2
 	.global	TimerStart
@@ -9,6 +10,7 @@ TimerStart:
 .LFB0:
 	.file 1 "../Timer.c"
 	.loc 1 5 0
+	.cfi_startproc
 .LVL0:
 	.loc 1 7 0
 		SMOVIL		1, R42
@@ -20,11 +22,13 @@ TimerStart:
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
 .LCFI0:
+	.cfi_def_cfa_offset 16
 	.loc 1 9 0
 		SMOVIL		16, R6
 	.loc 1 5 0
 		SSTDW		R63:R62, *+AR15[1]
-.LCFI1:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 9 0
 		SMOVIL		0, R7
 	;; condjump to .L6 occurs
@@ -42,19 +46,19 @@ TimerStart:
 		SNOP		6
 	;; return occurs
 .L6:
-	.loc 1 7 0
+	.loc 1 7 0 discriminator 1
 		SBR		SetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 9 0
+	.loc 1 9 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		3, R12
-	.loc 1 6 0
+	.loc 1 6 0 discriminator 1
 		SMOVIL		1075576832, R10
 .LVL1:
 		SMOVIH		1075576832, R10
-	.loc 1 7 0
+	.loc 1 7 0 discriminator 1
 	;; sibcall to SetConfReg occurs
 		SNOP		2
 .LVL2:
@@ -62,16 +66,17 @@ TimerStart:
 		SBR		SetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 9 0
+	.loc 1 9 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		3, R12
-	.loc 1 7 0
+	.loc 1 7 0 discriminator 1
 		SMOVIL		1075642368, R10
 		SMOVIH		1075642368, R10
 	;; sibcall to SetConfReg occurs
 		SNOP		2
 .LVL3:
+	.cfi_endproc
 .LFE0:
 	.size	TimerStart, .-TimerStart
 	.section	.text.TimerHold,"ax",@progbits
@@ -81,6 +86,7 @@ TimerStart:
 TimerHold:
 .LFB1:
 	.loc 1 13 0
+	.cfi_startproc
 .LVL4:
 	.loc 1 15 0
 		SMOVIL		1, R42
@@ -91,12 +97,14 @@ TimerHold:
 		SMOVIL		-16, R6
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI2:
+.LCFI1:
+	.cfi_def_cfa_offset 16
 	.loc 1 17 0
 		SMOVIL		16, R6
 	.loc 1 13 0
 		SSTDW		R63:R62, *+AR15[1]
-.LCFI3:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 17 0
 		SMOVIL		0, R7
 	;; condjump to .L14 occurs
@@ -114,19 +122,19 @@ TimerHold:
 		SNOP		6
 	;; return occurs
 .L14:
-	.loc 1 15 0
+	.loc 1 15 0 discriminator 1
 		SBR		SetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 17 0
+	.loc 1 17 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		1, R12
-	.loc 1 14 0
+	.loc 1 14 0 discriminator 1
 		SMOVIL		1075576832, R10
 .LVL5:
 		SMOVIH		1075576832, R10
-	.loc 1 15 0
+	.loc 1 15 0 discriminator 1
 	;; sibcall to SetConfReg occurs
 		SNOP		2
 .LVL6:
@@ -134,16 +142,17 @@ TimerHold:
 		SBR		SetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 17 0
+	.loc 1 17 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		1, R12
-	.loc 1 15 0
+	.loc 1 15 0 discriminator 1
 		SMOVIL		1075642368, R10
 		SMOVIH		1075642368, R10
 	;; sibcall to SetConfReg occurs
 		SNOP		2
 .LVL7:
+	.cfi_endproc
 .LFE1:
 	.size	TimerHold, .-TimerHold
 	.section	.text.TimerResume,"ax",@progbits
@@ -153,6 +162,7 @@ TimerHold:
 TimerResume:
 .LFB2:
 	.loc 1 21 0
+	.cfi_startproc
 .LVL8:
 	.loc 1 23 0
 		SMOVIL		1, R42
@@ -163,12 +173,14 @@ TimerResume:
 		SMOVIL		-16, R6
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI4:
+.LCFI2:
+	.cfi_def_cfa_offset 16
 	.loc 1 25 0
 		SMOVIL		16, R6
 	.loc 1 21 0
 		SSTDW		R63:R62, *+AR15[1]
-.LCFI5:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 25 0
 		SMOVIL		0, R7
 	;; condjump to .L22 occurs
@@ -186,19 +198,19 @@ TimerResume:
 		SNOP		6
 	;; return occurs
 .L22:
-	.loc 1 23 0
+	.loc 1 23 0 discriminator 1
 		SBR		SetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 25 0
+	.loc 1 25 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		2, R12
-	.loc 1 22 0
+	.loc 1 22 0 discriminator 1
 		SMOVIL		1075576832, R10
 .LVL9:
 		SMOVIH		1075576832, R10
-	.loc 1 23 0
+	.loc 1 23 0 discriminator 1
 	;; sibcall to SetConfReg occurs
 		SNOP		2
 .LVL10:
@@ -206,16 +218,17 @@ TimerResume:
 		SBR		SetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 25 0
+	.loc 1 25 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		2, R12
-	.loc 1 23 0
+	.loc 1 23 0 discriminator 1
 		SMOVIL		1075642368, R10
 		SMOVIH		1075642368, R10
 	;; sibcall to SetConfReg occurs
 		SNOP		2
 .LVL11:
+	.cfi_endproc
 .LFE2:
 	.size	TimerResume, .-TimerResume
 	.section	.text.GetTimerCount,"ax",@progbits
@@ -225,6 +238,7 @@ TimerResume:
 GetTimerCount:
 .LFB3:
 	.loc 1 29 0
+	.cfi_startproc
 .LVL12:
 	.loc 1 31 0
 		SMOVIL		1, R42
@@ -236,12 +250,14 @@ GetTimerCount:
 		SMOVIL		-16, R6
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI6:
+.LCFI3:
+	.cfi_def_cfa_offset 16
 	.loc 1 32 0
 		SMOVIL		16, R6
 	.loc 1 29 0
 		SSTDW		R63:R62, *+AR15[1]
-.LCFI7:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 32 0
 		SMOVIL		0, R7
 	;; condjump to .L30 occurs
@@ -259,17 +275,17 @@ GetTimerCount:
 		SNOP		6
 	;; return occurs
 .L30:
-	.loc 1 31 0
+	.loc 1 31 0 discriminator 1
 		SBR		GetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 32 0
+	.loc 1 32 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		1075576840, R10
-	.loc 1 30 0
+	.loc 1 30 0 discriminator 1
 		SMOVIH		1075576840, R10
-	.loc 1 31 0
+	.loc 1 31 0 discriminator 1
 	;; sibcall to GetConfReg occurs
 		SNOP		3
 .LVL14:
@@ -277,15 +293,16 @@ GetTimerCount:
 		SBR		GetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 32 0
+	.loc 1 32 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		1075642376, R10
-	.loc 1 31 0
+	.loc 1 31 0 discriminator 1
 		SMOVIH		1075642376, R10
 	;; sibcall to GetConfReg occurs
 		SNOP		3
 .LVL15:
+	.cfi_endproc
 .LFE3:
 	.size	GetTimerCount, .-GetTimerCount
 	.section	.text.GetTimerPeriod,"ax",@progbits
@@ -295,6 +312,7 @@ GetTimerCount:
 GetTimerPeriod:
 .LFB4:
 	.loc 1 36 0
+	.cfi_startproc
 .LVL16:
 	.loc 1 38 0
 		SMOVIL		1, R42
@@ -306,12 +324,14 @@ GetTimerPeriod:
 		SMOVIL		-16, R6
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI8:
+.LCFI4:
+	.cfi_def_cfa_offset 16
 	.loc 1 39 0
 		SMOVIL		16, R6
 	.loc 1 36 0
 		SSTDW		R63:R62, *+AR15[1]
-.LCFI9:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 39 0
 		SMOVIL		0, R7
 	;; condjump to .L38 occurs
@@ -329,17 +349,17 @@ GetTimerPeriod:
 		SNOP		6
 	;; return occurs
 .L38:
-	.loc 1 38 0
+	.loc 1 38 0 discriminator 1
 		SBR		GetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 39 0
+	.loc 1 39 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		1075576836, R10
-	.loc 1 37 0
+	.loc 1 37 0 discriminator 1
 		SMOVIH		1075576836, R10
-	.loc 1 38 0
+	.loc 1 38 0 discriminator 1
 	;; sibcall to GetConfReg occurs
 		SNOP		3
 .LVL18:
@@ -347,15 +367,16 @@ GetTimerPeriod:
 		SBR		GetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 39 0
+	.loc 1 39 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		1075642372, R10
-	.loc 1 38 0
+	.loc 1 38 0 discriminator 1
 		SMOVIH		1075642372, R10
 	;; sibcall to GetConfReg occurs
 		SNOP		3
 .LVL19:
+	.cfi_endproc
 .LFE4:
 	.size	GetTimerPeriod, .-GetTimerPeriod
 	.section	.text.SetTimerPeriod,"ax",@progbits
@@ -365,6 +386,7 @@ GetTimerPeriod:
 SetTimerPeriod:
 .LFB5:
 	.loc 1 43 0
+	.cfi_startproc
 .LVL20:
 	.loc 1 45 0
 		SMOVIL		1, R42
@@ -375,12 +397,14 @@ SetTimerPeriod:
 		SMOVIL		-16, R6
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI10:
+.LCFI5:
+	.cfi_def_cfa_offset 16
 	.loc 1 47 0
 		SMOVIL		16, R6
 	.loc 1 43 0
 		SSTDW		R63:R62, *+AR15[1]
-.LCFI11:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 47 0
 		SMOVIL		0, R7
 	;; condjump to .L46 occurs
@@ -398,18 +422,18 @@ SetTimerPeriod:
 		SNOP		6
 	;; return occurs
 .L46:
-	.loc 1 45 0
+	.loc 1 45 0 discriminator 1
 		SBR		SetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 47 0
+	.loc 1 47 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		1075576836, R10
 .LVL21:
-	.loc 1 44 0
+	.loc 1 44 0 discriminator 1
 		SMOVIH		1075576836, R10
-	.loc 1 45 0
+	.loc 1 45 0 discriminator 1
 	;; sibcall to SetConfReg occurs
 		SNOP		3
 .LVL22:
@@ -417,15 +441,16 @@ SetTimerPeriod:
 		SBR		SetConfReg
 	|	SMOVIL		16, R6
 	|	SLDDW		*+AR15[1], R63:R62
-	.loc 1 47 0
+	.loc 1 47 0 discriminator 1
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 	|	SMOVIL		1075642372, R10
-	.loc 1 45 0
+	.loc 1 45 0 discriminator 1
 		SMOVIH		1075642372, R10
 	;; sibcall to SetConfReg occurs
 		SNOP		3
 .LVL23:
+	.cfi_endproc
 .LFE5:
 	.size	SetTimerPeriod, .-SetTimerPeriod
 	.section	.text.GetSpareReg,"ax",@progbits
@@ -435,6 +460,7 @@ SetTimerPeriod:
 GetSpareReg:
 .LFB6:
 	.loc 1 51 0
+	.cfi_startproc
 .LVL24:
 	.loc 1 52 0
 		SMOVIL		7, R42
@@ -444,11 +470,13 @@ GetSpareReg:
 	.loc 1 51 0
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI12:
+.LCFI6:
+	.cfi_def_cfa_offset 16
 		SNOP		1
 		SSTDW		R63:R62, *+AR15[1]
 		SNOP		2
-.LCFI13:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 52 0
 	;; condjump to .L62 occurs
 	.loc 1 79 0
@@ -620,6 +648,7 @@ GetSpareReg:
 	;; sibcall to GetConfReg occurs
 		SNOP		3
 .LVL42:
+	.cfi_endproc
 .LFE6:
 	.size	GetSpareReg, .-GetSpareReg
 	.section	.text.SetSpareReg,"ax",@progbits
@@ -629,6 +658,7 @@ GetSpareReg:
 SetSpareReg:
 .LFB7:
 	.loc 1 83 0
+	.cfi_startproc
 .LVL43:
 	.loc 1 84 0
 		SMOVIL		7, R42
@@ -638,11 +668,13 @@ SetSpareReg:
 	.loc 1 83 0
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI14:
+.LCFI7:
+	.cfi_def_cfa_offset 16
 		SNOP		1
 		SSTDW		R63:R62, *+AR15[1]
 		SNOP		2
-.LCFI15:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 84 0
 	;; condjump to .L77 occurs
 	.loc 1 111 0
@@ -811,6 +843,7 @@ SetSpareReg:
 	;; sibcall to SetConfReg occurs
 		SNOP		3
 .LVL59:
+	.cfi_endproc
 .LFE7:
 	.size	SetSpareReg, .-SetSpareReg
 	.section	.text.DisableVectorClk,"ax",@progbits
@@ -820,15 +853,18 @@ SetSpareReg:
 DisableVectorClk:
 .LFB8:
 	.loc 1 115 0
+	.cfi_startproc
 		SMOVIL		-16, R6
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI16:
+.LCFI8:
+	.cfi_def_cfa_offset 16
 	.loc 1 117 0
 		SMOVIL		16, R6
 	.loc 1 115 0
 		SSTDW		R63:R62, *+AR15[1]
-.LCFI17:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 117 0
 		SMOVIL		0, R7
 	.loc 1 116 0
@@ -843,6 +879,7 @@ DisableVectorClk:
 	;; sibcall to SetConfReg occurs
 		SNOP		4
 .LVL60:
+	.cfi_endproc
 .LFE8:
 	.size	DisableVectorClk, .-DisableVectorClk
 	.section	.text.EnableVectorClk,"ax",@progbits
@@ -852,15 +889,18 @@ DisableVectorClk:
 EnableVectorClk:
 .LFB9:
 	.loc 1 121 0
+	.cfi_startproc
 		SMOVIL		-16, R6
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
-.LCFI18:
+.LCFI9:
+	.cfi_def_cfa_offset 16
 	.loc 1 123 0
 		SMOVIL		16, R6
 	.loc 1 121 0
 		SSTDW		R63:R62, *+AR15[1]
-.LCFI19:
+	.cfi_offset 78, -8
+	.cfi_offset 79, -4
 	.loc 1 123 0
 		SMOVIL		0, R7
 	.loc 1 122 0
@@ -875,243 +915,29 @@ EnableVectorClk:
 	;; sibcall to SetConfReg occurs
 		SNOP		4
 .LVL61:
+	.cfi_endproc
 .LFE9:
 	.size	EnableVectorClk, .-EnableVectorClk
-	.section	.debug_frame,"",@progbits
-.Lframe0:
-	.4byte	.LECIE0-.LSCIE0
-.LSCIE0:
-	.4byte	0xffffffff
-	.byte	0x1
-	.string	""
-	.byte	0x1
-	.byte	0x7c
-	.byte	0x4e
-	.byte	0xc
-	.byte	0xf
-	.byte	0
-	.align	3
-.LECIE0:
-.LSFDE0:
-	.4byte	.LEFDE0-.LASFDE0
-.LASFDE0:
-	.4byte	.Lframe0
-	.llong	.LFB0
-	.llong	.LFE0-.LFB0
-	.byte	0x4
-	.4byte	.LCFI0-.LFB0
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI1-.LCFI0
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE0:
-.LSFDE2:
-	.4byte	.LEFDE2-.LASFDE2
-.LASFDE2:
-	.4byte	.Lframe0
-	.llong	.LFB1
-	.llong	.LFE1-.LFB1
-	.byte	0x4
-	.4byte	.LCFI2-.LFB1
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI3-.LCFI2
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE2:
-.LSFDE4:
-	.4byte	.LEFDE4-.LASFDE4
-.LASFDE4:
-	.4byte	.Lframe0
-	.llong	.LFB2
-	.llong	.LFE2-.LFB2
-	.byte	0x4
-	.4byte	.LCFI4-.LFB2
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI5-.LCFI4
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE4:
-.LSFDE6:
-	.4byte	.LEFDE6-.LASFDE6
-.LASFDE6:
-	.4byte	.Lframe0
-	.llong	.LFB3
-	.llong	.LFE3-.LFB3
-	.byte	0x4
-	.4byte	.LCFI6-.LFB3
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI7-.LCFI6
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE6:
-.LSFDE8:
-	.4byte	.LEFDE8-.LASFDE8
-.LASFDE8:
-	.4byte	.Lframe0
-	.llong	.LFB4
-	.llong	.LFE4-.LFB4
-	.byte	0x4
-	.4byte	.LCFI8-.LFB4
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI9-.LCFI8
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE8:
-.LSFDE10:
-	.4byte	.LEFDE10-.LASFDE10
-.LASFDE10:
-	.4byte	.Lframe0
-	.llong	.LFB5
-	.llong	.LFE5-.LFB5
-	.byte	0x4
-	.4byte	.LCFI10-.LFB5
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI11-.LCFI10
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE10:
-.LSFDE12:
-	.4byte	.LEFDE12-.LASFDE12
-.LASFDE12:
-	.4byte	.Lframe0
-	.llong	.LFB6
-	.llong	.LFE6-.LFB6
-	.byte	0x4
-	.4byte	.LCFI12-.LFB6
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI13-.LCFI12
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE12:
-.LSFDE14:
-	.4byte	.LEFDE14-.LASFDE14
-.LASFDE14:
-	.4byte	.Lframe0
-	.llong	.LFB7
-	.llong	.LFE7-.LFB7
-	.byte	0x4
-	.4byte	.LCFI14-.LFB7
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI15-.LCFI14
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE14:
-.LSFDE16:
-	.4byte	.LEFDE16-.LASFDE16
-.LASFDE16:
-	.4byte	.Lframe0
-	.llong	.LFB8
-	.llong	.LFE8-.LFB8
-	.byte	0x4
-	.4byte	.LCFI16-.LFB8
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI17-.LCFI16
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE16:
-.LSFDE18:
-	.4byte	.LEFDE18-.LASFDE18
-.LASFDE18:
-	.4byte	.Lframe0
-	.llong	.LFB9
-	.llong	.LFE9-.LFB9
-	.byte	0x4
-	.4byte	.LCFI18-.LFB9
-	.byte	0xe
-	.byte	0x10
-	.byte	0x4
-	.4byte	.LCFI19-.LCFI18
-	.byte	0x5
-	.byte	0x4e
-	.byte	0x2
-	.byte	0x5
-	.byte	0x4f
-	.byte	0x1
-	.align	3
-.LEFDE18:
 .text;
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.4byte	0x5b6
+	.4byte	0x4ff
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x8
+	.uleb128 0x1
+	.4byte	.LASF12
 	.byte	0x1
-	.string	"GNU C 4.7.0"
-	.byte	0x1
-	.string	"../Timer.c"
-	.string	"/cygdrive/e/project/function  demo/function/DSPF_sp_fir_r2/Debug"
+	.4byte	.LASF13
+	.4byte	.LASF14
 	.4byte	.Ldebug_ranges0+0
 	.llong	0
 	.llong	0
 	.4byte	.Ldebug_line0
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x1
-	.string	"TimerStart"
+	.4byte	.LASF0
 	.byte	0x1
 	.byte	0x4
 	.byte	0x1
@@ -1119,38 +945,38 @@ EnableVectorClk:
 	.llong	.LFE0
 	.4byte	.LLST0
 	.byte	0x1
-	.4byte	0xec
-	.byte	0x3
-	.4byte	.LASF0
+	.4byte	0x99
+	.uleb128 0x3
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x4
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST1
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL2
 	.byte	0x1
-	.4byte	0xd2
-	.byte	0x5
+	.4byte	0x7f
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6c
 	.byte	0x1
 	.byte	0x33
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0000
 	.byte	0
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL3
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6c
 	.byte	0x1
 	.byte	0x33
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1158,13 +984,13 @@ EnableVectorClk:
 	.4byte	0x401d0000
 	.byte	0
 	.byte	0
-	.byte	0x7
+	.uleb128 0x7
 	.byte	0x4
 	.byte	0x7
-	.string	"unsigned int"
-	.byte	0x2
+	.4byte	.LASF15
+	.uleb128 0x2
 	.byte	0x1
-	.string	"TimerHold"
+	.4byte	.LASF1
 	.byte	0x1
 	.byte	0xc
 	.byte	0x1
@@ -1172,38 +998,38 @@ EnableVectorClk:
 	.llong	.LFE1
 	.4byte	.LLST2
 	.byte	0x1
-	.4byte	0x16a
-	.byte	0x3
-	.4byte	.LASF0
+	.4byte	0x108
+	.uleb128 0x3
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0xc
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST3
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL6
 	.byte	0x1
-	.4byte	0x150
-	.byte	0x5
+	.4byte	0xee
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6c
 	.byte	0x1
 	.byte	0x31
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0000
 	.byte	0
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL7
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6c
 	.byte	0x1
 	.byte	0x31
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1211,9 +1037,9 @@ EnableVectorClk:
 	.4byte	0x401d0000
 	.byte	0
 	.byte	0
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x1
-	.string	"TimerResume"
+	.4byte	.LASF3
 	.byte	0x1
 	.byte	0x14
 	.byte	0x1
@@ -1221,38 +1047,38 @@ EnableVectorClk:
 	.llong	.LFE2
 	.4byte	.LLST4
 	.byte	0x1
-	.4byte	0x1da
-	.byte	0x3
-	.4byte	.LASF0
+	.4byte	0x170
+	.uleb128 0x3
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x14
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST5
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL10
 	.byte	0x1
-	.4byte	0x1c0
-	.byte	0x5
+	.4byte	0x156
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6c
 	.byte	0x1
 	.byte	0x32
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0000
 	.byte	0
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL11
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6c
 	.byte	0x1
 	.byte	0x32
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1260,39 +1086,39 @@ EnableVectorClk:
 	.4byte	0x401d0000
 	.byte	0
 	.byte	0
-	.byte	0x8
+	.uleb128 0x8
 	.byte	0x1
-	.string	"GetTimerCount"
+	.4byte	.LASF4
 	.byte	0x1
 	.byte	0x1c
 	.byte	0x1
-	.4byte	0xec
+	.4byte	0x99
 	.llong	.LFB3
 	.llong	.LFE3
 	.4byte	.LLST6
 	.byte	0x1
-	.4byte	0x246
-	.byte	0x3
-	.4byte	.LASF0
+	.4byte	0x1d2
+	.uleb128 0x3
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x1c
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST7
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL14
 	.byte	0x1
-	.4byte	0x231
-	.byte	0x5
+	.4byte	0x1bd
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0008
 	.byte	0
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL15
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1300,39 +1126,39 @@ EnableVectorClk:
 	.4byte	0x401d0008
 	.byte	0
 	.byte	0
-	.byte	0x8
+	.uleb128 0x8
 	.byte	0x1
-	.string	"GetTimerPeriod"
+	.4byte	.LASF5
 	.byte	0x1
 	.byte	0x23
 	.byte	0x1
-	.4byte	0xec
+	.4byte	0x99
 	.llong	.LFB4
 	.llong	.LFE4
 	.4byte	.LLST8
 	.byte	0x1
-	.4byte	0x2b3
-	.byte	0x3
-	.4byte	.LASF0
+	.4byte	0x234
+	.uleb128 0x3
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x23
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST9
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL18
 	.byte	0x1
-	.4byte	0x29e
-	.byte	0x5
+	.4byte	0x21f
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0004
 	.byte	0
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL19
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1340,9 +1166,9 @@ EnableVectorClk:
 	.4byte	0x401d0004
 	.byte	0
 	.byte	0
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x1
-	.string	"SetTimerPeriod"
+	.4byte	.LASF6
 	.byte	0x1
 	.byte	0x2a
 	.byte	0x1
@@ -1350,34 +1176,34 @@ EnableVectorClk:
 	.llong	.LFE5
 	.4byte	.LLST10
 	.byte	0x1
-	.4byte	0x32e
-	.byte	0x3
-	.4byte	.LASF0
+	.4byte	0x2a1
+	.uleb128 0x3
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x2a
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST11
-	.byte	0x9
-	.string	"Period"
+	.uleb128 0x3
+	.4byte	.LASF7
 	.byte	0x1
 	.byte	0x2a
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST12
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL22
 	.byte	0x1
-	.4byte	0x319
-	.byte	0x5
+	.4byte	0x28c
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0004
 	.byte	0
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL23
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1385,105 +1211,105 @@ EnableVectorClk:
 	.4byte	0x401d0004
 	.byte	0
 	.byte	0
-	.byte	0x8
+	.uleb128 0x8
 	.byte	0x1
-	.string	"GetSpareReg"
+	.4byte	.LASF8
 	.byte	0x1
 	.byte	0x32
 	.byte	0x1
-	.4byte	0xec
+	.4byte	0x99
 	.llong	.LFB6
 	.llong	.LFE6
 	.4byte	.LLST13
 	.byte	0x1
-	.4byte	0x428
-	.byte	0x3
-	.4byte	.LASF1
+	.4byte	0x393
+	.uleb128 0x3
+	.4byte	.LASF9
 	.byte	0x1
 	.byte	0x32
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST14
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL28
 	.byte	0x1
-	.4byte	0x383
-	.byte	0x5
+	.4byte	0x2ee
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401d0018
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL30
 	.byte	0x1
-	.4byte	0x39b
-	.byte	0x5
+	.4byte	0x306
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401d001c
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL32
 	.byte	0x1
-	.4byte	0x3b3
-	.byte	0x5
+	.4byte	0x31e
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0010
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL34
 	.byte	0x1
-	.4byte	0x3cb
-	.byte	0x5
+	.4byte	0x336
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0014
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL36
 	.byte	0x1
-	.4byte	0x3e3
-	.byte	0x5
+	.4byte	0x34e
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0018
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL38
 	.byte	0x1
-	.4byte	0x3fb
-	.byte	0x5
+	.4byte	0x366
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c001c
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL40
 	.byte	0x1
-	.4byte	0x413
-	.byte	0x5
+	.4byte	0x37e
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401d0010
 	.byte	0
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL42
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1491,9 +1317,9 @@ EnableVectorClk:
 	.4byte	0x401d0014
 	.byte	0
 	.byte	0
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x1
-	.string	"SetSpareReg"
+	.4byte	.LASF10
 	.byte	0x1
 	.byte	0x52
 	.byte	0x1
@@ -1501,100 +1327,100 @@ EnableVectorClk:
 	.llong	.LFE7
 	.4byte	.LLST15
 	.byte	0x1
-	.4byte	0x52e
-	.byte	0x3
-	.4byte	.LASF1
+	.4byte	0x490
+	.uleb128 0x3
+	.4byte	.LASF9
 	.byte	0x1
 	.byte	0x52
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST16
-	.byte	0x9
-	.string	"Data"
+	.uleb128 0x3
+	.4byte	.LASF11
 	.byte	0x1
 	.byte	0x52
-	.4byte	0xec
+	.4byte	0x99
 	.4byte	.LLST17
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL45
 	.byte	0x1
-	.4byte	0x489
-	.byte	0x5
+	.4byte	0x3eb
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401d0018
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL47
 	.byte	0x1
-	.4byte	0x4a1
-	.byte	0x5
+	.4byte	0x403
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401d001c
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL49
 	.byte	0x1
-	.4byte	0x4b9
-	.byte	0x5
+	.4byte	0x41b
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0010
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL51
 	.byte	0x1
-	.4byte	0x4d1
-	.byte	0x5
+	.4byte	0x433
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0014
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL53
 	.byte	0x1
-	.4byte	0x4e9
-	.byte	0x5
+	.4byte	0x44b
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c0018
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL55
 	.byte	0x1
-	.4byte	0x501
-	.byte	0x5
+	.4byte	0x463
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401c001c
 	.byte	0
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL57
 	.byte	0x1
-	.4byte	0x519
-	.byte	0x5
+	.4byte	0x47b
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
 	.byte	0xc
 	.4byte	0x401d0010
 	.byte	0
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL59
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1602,25 +1428,25 @@ EnableVectorClk:
 	.4byte	0x401d0014
 	.byte	0
 	.byte	0
-	.byte	0xa
+	.uleb128 0x9
 	.byte	0x1
-	.string	"DisableVectorClk"
+	.4byte	.LASF16
 	.byte	0x1
 	.byte	0x72
 	.llong	.LFB8
 	.llong	.LFE8
 	.4byte	.LLST18
 	.byte	0x1
-	.4byte	0x576
-	.byte	0x6
+	.4byte	0x4cb
+	.uleb128 0x6
 	.llong	.LVL60
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6c
 	.byte	0x1
 	.byte	0x30
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1628,24 +1454,24 @@ EnableVectorClk:
 	.4byte	0x401c0030
 	.byte	0
 	.byte	0
-	.byte	0xb
+	.uleb128 0xa
 	.byte	0x1
-	.string	"EnableVectorClk"
+	.4byte	.LASF17
 	.byte	0x1
 	.byte	0x78
 	.llong	.LFB9
 	.llong	.LFE9
 	.4byte	.LLST19
 	.byte	0x1
-	.byte	0x6
+	.uleb128 0x6
 	.llong	.LVL61
 	.byte	0x1
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6c
 	.byte	0x1
 	.byte	0x31
-	.byte	0x5
+	.uleb128 0x5
 	.byte	0x1
 	.byte	0x6a
 	.byte	0x5
@@ -1656,191 +1482,176 @@ EnableVectorClk:
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
+	.uleb128 0x1
+	.uleb128 0x11
 	.byte	0x1
-	.byte	0x11
-	.byte	0x1
-	.byte	0x25
-	.byte	0x8
-	.byte	0x13
-	.byte	0xb
-	.byte	0x3
-	.byte	0x8
-	.byte	0x1b
-	.byte	0x8
-	.byte	0x55
-	.byte	0x6
-	.byte	0x11
-	.byte	0x1
-	.byte	0x52
-	.byte	0x1
-	.byte	0x10
-	.byte	0x6
+	.uleb128 0x25
+	.uleb128 0xe
+	.uleb128 0x13
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x1b
+	.uleb128 0xe
+	.uleb128 0x55
+	.uleb128 0x6
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x52
+	.uleb128 0x1
+	.uleb128 0x10
+	.uleb128 0x6
 	.byte	0
 	.byte	0
-	.byte	0x2
-	.byte	0x2e
+	.uleb128 0x2
+	.uleb128 0x2e
 	.byte	0x1
-	.byte	0x3f
-	.byte	0xc
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x27
-	.byte	0xc
-	.byte	0x11
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.uleb128 0x2117
+	.uleb128 0xc
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0x4
+	.uleb128 0x4109
 	.byte	0x1
-	.byte	0x12
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x2115
+	.uleb128 0xc
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x5
+	.uleb128 0x410a
+	.byte	0
+	.uleb128 0x2
+	.uleb128 0xa
+	.uleb128 0x2111
+	.uleb128 0xa
+	.byte	0
+	.byte	0
+	.uleb128 0x6
+	.uleb128 0x4109
 	.byte	0x1
-	.byte	0x40
-	.byte	0x6
-	.byte	0x97,0x42
-	.byte	0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x2115
+	.uleb128 0xc
+	.byte	0
+	.byte	0
+	.uleb128 0x7
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.byte	0
+	.byte	0
+	.uleb128 0x8
+	.uleb128 0x2e
 	.byte	0x1
-	.byte	0x13
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.uleb128 0x2117
+	.uleb128 0xc
+	.uleb128 0x1
+	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.byte	0x3
-	.byte	0x5
-	.byte	0
-	.byte	0x3
-	.byte	0xe
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0x6
-	.byte	0
-	.byte	0
-	.byte	0x4
-	.byte	0x89,0x82,0x1
+	.uleb128 0x9
+	.uleb128 0x2e
 	.byte	0x1
-	.byte	0x11
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.uleb128 0x2117
+	.uleb128 0xc
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0xa
+	.uleb128 0x2e
 	.byte	0x1
-	.byte	0x95,0x42
-	.byte	0xc
-	.byte	0x1
-	.byte	0x13
-	.byte	0
-	.byte	0
-	.byte	0x5
-	.byte	0x8a,0x82,0x1
-	.byte	0
-	.byte	0x2
-	.byte	0xa
-	.byte	0x91,0x42
-	.byte	0xa
-	.byte	0
-	.byte	0
-	.byte	0x6
-	.byte	0x89,0x82,0x1
-	.byte	0x1
-	.byte	0x11
-	.byte	0x1
-	.byte	0x95,0x42
-	.byte	0xc
-	.byte	0
-	.byte	0
-	.byte	0x7
-	.byte	0x24
-	.byte	0
-	.byte	0xb
-	.byte	0xb
-	.byte	0x3e
-	.byte	0xb
-	.byte	0x3
-	.byte	0x8
-	.byte	0
-	.byte	0
-	.byte	0x8
-	.byte	0x2e
-	.byte	0x1
-	.byte	0x3f
-	.byte	0xc
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x27
-	.byte	0xc
-	.byte	0x49
-	.byte	0x13
-	.byte	0x11
-	.byte	0x1
-	.byte	0x12
-	.byte	0x1
-	.byte	0x40
-	.byte	0x6
-	.byte	0x97,0x42
-	.byte	0xc
-	.byte	0x1
-	.byte	0x13
-	.byte	0
-	.byte	0
-	.byte	0x9
-	.byte	0x5
-	.byte	0
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0x6
-	.byte	0
-	.byte	0
-	.byte	0xa
-	.byte	0x2e
-	.byte	0x1
-	.byte	0x3f
-	.byte	0xc
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x11
-	.byte	0x1
-	.byte	0x12
-	.byte	0x1
-	.byte	0x40
-	.byte	0x6
-	.byte	0x97,0x42
-	.byte	0xc
-	.byte	0x1
-	.byte	0x13
-	.byte	0
-	.byte	0
-	.byte	0xb
-	.byte	0x2e
-	.byte	0x1
-	.byte	0x3f
-	.byte	0xc
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x11
-	.byte	0x1
-	.byte	0x12
-	.byte	0x1
-	.byte	0x40
-	.byte	0x6
-	.byte	0x97,0x42
-	.byte	0xc
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.uleb128 0x2117
+	.uleb128 0xc
 	.byte	0
 	.byte	0
 	.byte	0
@@ -1851,12 +1662,12 @@ EnableVectorClk:
 	.llong	.LCFI0
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
+	.sleb128 0
 	.llong	.LCFI0
 	.llong	.LFE0
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST1:
@@ -1872,7 +1683,7 @@ EnableVectorClk:
 	.llong	.LVL2
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL2
@@ -1883,22 +1694,22 @@ EnableVectorClk:
 	.llong	.LFE0
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	0
 	.llong	0
 .LLST2:
 	.llong	.LFB1
-	.llong	.LCFI2
+	.llong	.LCFI1
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI2
+	.sleb128 0
+	.llong	.LCFI1
 	.llong	.LFE1
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST3:
@@ -1914,7 +1725,7 @@ EnableVectorClk:
 	.llong	.LVL6
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL6
@@ -1925,22 +1736,22 @@ EnableVectorClk:
 	.llong	.LFE1
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	0
 	.llong	0
 .LLST4:
 	.llong	.LFB2
-	.llong	.LCFI4
+	.llong	.LCFI2
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI4
+	.sleb128 0
+	.llong	.LCFI2
 	.llong	.LFE2
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST5:
@@ -1956,7 +1767,7 @@ EnableVectorClk:
 	.llong	.LVL10
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL10
@@ -1967,22 +1778,22 @@ EnableVectorClk:
 	.llong	.LFE2
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	0
 	.llong	0
 .LLST6:
 	.llong	.LFB3
-	.llong	.LCFI6
+	.llong	.LCFI3
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI6
+	.sleb128 0
+	.llong	.LCFI3
 	.llong	.LFE3
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST7:
@@ -1998,7 +1809,7 @@ EnableVectorClk:
 	.llong	.LVL14
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL14
@@ -2009,22 +1820,22 @@ EnableVectorClk:
 	.llong	.LFE3
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	0
 	.llong	0
 .LLST8:
 	.llong	.LFB4
-	.llong	.LCFI8
+	.llong	.LCFI4
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI8
+	.sleb128 0
+	.llong	.LCFI4
 	.llong	.LFE4
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST9:
@@ -2040,7 +1851,7 @@ EnableVectorClk:
 	.llong	.LVL18
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL18
@@ -2051,22 +1862,22 @@ EnableVectorClk:
 	.llong	.LFE4
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	0
 	.llong	0
 .LLST10:
 	.llong	.LFB5
-	.llong	.LCFI10
+	.llong	.LCFI5
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI10
+	.sleb128 0
+	.llong	.LCFI5
 	.llong	.LFE5
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST11:
@@ -2082,7 +1893,7 @@ EnableVectorClk:
 	.llong	.LVL22
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL22
@@ -2093,7 +1904,7 @@ EnableVectorClk:
 	.llong	.LFE5
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	0
@@ -2107,7 +1918,7 @@ EnableVectorClk:
 	.llong	.LVL22
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	.LVL22
@@ -2118,22 +1929,22 @@ EnableVectorClk:
 	.llong	.LFE5
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	0
 	.llong	0
 .LLST13:
 	.llong	.LFB6
-	.llong	.LCFI12
+	.llong	.LCFI6
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI12
+	.sleb128 0
+	.llong	.LCFI6
 	.llong	.LFE6
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST14:
@@ -2145,7 +1956,7 @@ EnableVectorClk:
 	.llong	.LVL26
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL26
@@ -2156,7 +1967,7 @@ EnableVectorClk:
 	.llong	.LVL28
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL28
@@ -2167,7 +1978,7 @@ EnableVectorClk:
 	.llong	.LVL30
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL30
@@ -2178,7 +1989,7 @@ EnableVectorClk:
 	.llong	.LVL32
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL32
@@ -2189,7 +2000,7 @@ EnableVectorClk:
 	.llong	.LVL34
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL34
@@ -2200,7 +2011,7 @@ EnableVectorClk:
 	.llong	.LVL36
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL36
@@ -2211,7 +2022,7 @@ EnableVectorClk:
 	.llong	.LVL38
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL38
@@ -2222,7 +2033,7 @@ EnableVectorClk:
 	.llong	.LVL40
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL40
@@ -2233,22 +2044,22 @@ EnableVectorClk:
 	.llong	.LFE6
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	0
 	.llong	0
 .LLST15:
 	.llong	.LFB7
-	.llong	.LCFI14
+	.llong	.LCFI7
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI14
+	.sleb128 0
+	.llong	.LCFI7
 	.llong	.LFE7
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST16:
@@ -2260,7 +2071,7 @@ EnableVectorClk:
 	.llong	.LVL45
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL45
@@ -2271,7 +2082,7 @@ EnableVectorClk:
 	.llong	.LVL47
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL47
@@ -2282,7 +2093,7 @@ EnableVectorClk:
 	.llong	.LVL49
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL49
@@ -2293,7 +2104,7 @@ EnableVectorClk:
 	.llong	.LVL51
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL51
@@ -2304,7 +2115,7 @@ EnableVectorClk:
 	.llong	.LVL53
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL53
@@ -2315,7 +2126,7 @@ EnableVectorClk:
 	.llong	.LVL55
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL55
@@ -2326,7 +2137,7 @@ EnableVectorClk:
 	.llong	.LVL57
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	.LVL57
@@ -2337,7 +2148,7 @@ EnableVectorClk:
 	.llong	.LFE7
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6a
 	.byte	0x9f
 	.llong	0
@@ -2351,7 +2162,7 @@ EnableVectorClk:
 	.llong	.LVL45
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	.LVL45
@@ -2362,7 +2173,7 @@ EnableVectorClk:
 	.llong	.LVL47
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	.LVL47
@@ -2373,7 +2184,7 @@ EnableVectorClk:
 	.llong	.LVL49
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	.LVL49
@@ -2384,7 +2195,7 @@ EnableVectorClk:
 	.llong	.LVL51
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	.LVL51
@@ -2395,7 +2206,7 @@ EnableVectorClk:
 	.llong	.LVL53
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	.LVL53
@@ -2406,7 +2217,7 @@ EnableVectorClk:
 	.llong	.LVL55
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	.LVL55
@@ -2417,7 +2228,7 @@ EnableVectorClk:
 	.llong	.LVL57
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	.LVL57
@@ -2428,35 +2239,35 @@ EnableVectorClk:
 	.llong	.LFE7
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6c
 	.byte	0x9f
 	.llong	0
 	.llong	0
 .LLST18:
 	.llong	.LFB8
-	.llong	.LCFI16
+	.llong	.LCFI8
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI16
+	.sleb128 0
+	.llong	.LCFI8
 	.llong	.LFE8
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 .LLST19:
 	.llong	.LFB9
-	.llong	.LCFI18
+	.llong	.LCFI9
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0
-	.llong	.LCFI18
+	.sleb128 0
+	.llong	.LCFI9
 	.llong	.LFE9
 	.2byte	0x2
 	.byte	0x7f
-	.byte	0x10
+	.sleb128 16
 	.llong	0
 	.llong	0
 	.section	.debug_aranges,"",@progbits
@@ -2515,8 +2326,40 @@ EnableVectorClk:
 	.llong	0
 	.section	.debug_line,"",@progbits
 .Ldebug_line0:
-	.section	.debug_str,"",@progbits
-.LASF1:
+	.section	.debug_str,"MS",@progbits,1
+.LASF15:
+	.string	"unsigned int"
+.LASF16:
+	.string	"DisableVectorClk"
+.LASF9:
 	.string	"SpareRegNO"
-.LASF0:
+.LASF12:
+	.string	"GNU C 4.7.0"
+.LASF3:
+	.string	"TimerResume"
+.LASF17:
+	.string	"EnableVectorClk"
+.LASF5:
+	.string	"GetTimerPeriod"
+.LASF4:
+	.string	"GetTimerCount"
+.LASF6:
+	.string	"SetTimerPeriod"
+.LASF8:
+	.string	"GetSpareReg"
+.LASF13:
+	.string	"../Timer.c"
+.LASF7:
+	.string	"Period"
+.LASF11:
+	.string	"Data"
+.LASF1:
+	.string	"TimerHold"
+.LASF2:
 	.string	"TimerNO"
+.LASF10:
+	.string	"SetSpareReg"
+.LASF0:
+	.string	"TimerStart"
+.LASF14:
+	.string	"/cygdrive/e/project/\351\241\271\347\233\256/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fir_gen_r2/test/vector_c/Debug"

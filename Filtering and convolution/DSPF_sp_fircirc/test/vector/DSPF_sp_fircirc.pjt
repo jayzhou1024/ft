@@ -1,0 +1,50 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSPF_sp_fircirc
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fircirc/test/vector"
+ProjectType=Executable
+Config=Release
+[Source Files]
+Source="Debug/DSPF_sp_fircirc.out"
+Source="DSPF_sp_fircirc.lds"
+Source="DSPF_sp_fircirc.pjt"
+Source="DSPF_sp_fircirc.pst"
+Source="DSPF_sp_fircirc_cn.c"
+Source="DSPF_sp_fircirc_vc.c"
+Source="main.c"
+Source="Release/DSPF_sp_fircirc.map"
+Source="Release/DSPF_sp_fircirc.out"
+Source="Release/DSPF_sp_fircirc_cn.o"
+Source="Release/DSPF_sp_fircirc_cn.s"
+Source="Release/DSPF_sp_fircirc_vc.o"
+Source="Release/DSPF_sp_fircirc_vc.s"
+Source="Release/DSPF_sp_fircirc_vc2.o"
+Source="Release/DSPF_sp_fircirc_vc2.s"
+Source="Release/DSPF_sp_fircirc_vc3.o"
+Source="Release/DSPF_sp_fircirc_vc3.s"
+Source="Release/DSPF_sp_fircirc_vc4.o"
+Source="Release/DSPF_sp_fircirc_vc4.s"
+Source="Release/main.o"
+Source="Release/main.s"
+["Compiler" Settings: "Debug"]
+Options=-O0 -g -ffunction-sections -flax-vector-conversions 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSPF_sp_fircirc.out" --gc-sections -T"DSPF_sp_fircirc.lds" 
+["Compiler" Settings: "Release"]
+Options=-ffunction-sections -g -flax-vector-conversions -O2 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSPF_sp_fircirc.out" --gc-sections -T"DSPF_sp_fircirc.lds" 
+[Opened files]
+OpenedSource="DSPF_sp_fircirc_vc.c",line=1
+OpenedSource="main.c",line=33
+OpenedSource="DSPF_sp_fircirc_cn.c",line=1
+OpenedSource="DSPF_sp_fircirc.lds",line=1
+OpenedSource="DSPF_sp_fircirc.pjt",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

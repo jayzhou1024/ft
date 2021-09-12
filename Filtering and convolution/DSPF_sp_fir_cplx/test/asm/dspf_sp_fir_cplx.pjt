@@ -2,7 +2,7 @@
 
 [Project Settings]
 ProjectName=dspf_sp_fir_cplx
-ProjectDir="E:/project/function  demo/asm/dspf_sp_fir_cplx"
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fir_cplx/test/asm"
 ProjectType=Executable
 Config=Debug
 [Source Files]

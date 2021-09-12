@@ -1,0 +1,51 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_firlms2
+ProjectDir="E:/project/function  demo/asm/DSP_firlms2"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="DSP_firlms2.lds"
+Source="DSP_firlms2.pjt"
+Source="DSP_firlms2.pst"
+Source="DSP_firlms2_asm.sa"
+Source="DSP_firlms2_cn.c"
+Source="DSP_firlms2_vc.c"
+Source="main.c"
+Source="readme.txt"
+Source="test.asm"
+Source="test.sa"
+Source="Debug/DSP_firlms2.map"
+Source="Debug/DSP_firlms2.out"
+Source="Debug/DSP_firlms2_cn.o"
+Source="Debug/DSP_firlms2_cn.s"
+Source="Debug/DSP_firlms2_vc.o"
+Source="Debug/DSP_firlms2_vc.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/test.o"
+["Compiler" Settings: "Debug"]
+Options=-O0 -g -ffunction-sections -flax-vector-conversions 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSP_firlms2.out" --gc-sections -T"DSP_firlms2.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSP_firlms2.out" --gc-sections -T"DSP_firlms2.lds" 
+[Opened files]
+OpenedSource="DSP_firlms2_vc.c",line=50
+OpenedSource="main.c",line=121
+OpenedSource="DSP_firlms2_cn.c",line=1
+OpenedSource="DSP_firlms2_asm.sa",line=1
+OpenedSource="test.sa",line=1
+OpenedSource="test.asm",line=58
+OpenedSource="DSP_firlms2.pjt",line=1
+OpenedSource="Debug/DSP_firlms2_vc.s",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

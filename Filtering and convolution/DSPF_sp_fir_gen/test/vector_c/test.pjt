@@ -57,7 +57,7 @@ Options=-o"Release/test.out" --gc-sections -T"test.lds"
 [Opened files]
 OpenedSource="DSPF_sp_fir_gen_cn.c",line=1
 OpenedSource="DSPF_sp_fir_gen_vc.c",line=1
-OpenedSource="main.c",line=32
+OpenedSource="main.c",line=4
 [Builders]
 m7002.builder
 [Debug Configurations]

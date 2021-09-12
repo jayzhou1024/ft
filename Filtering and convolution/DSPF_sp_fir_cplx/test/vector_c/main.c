@@ -58,7 +58,7 @@ void main(){
     /* 测试*/
   for(ny = 32; ny <= NY; ny += 8) {
       for(nh = 4; nh <= NH; nh += 4) {
-            int vecx_len = (nh+ny-1+15)/16+1;    /*测试样例中x向量化后的向量长度(商向上取整) 这里加1防止越界读*/
+            int vecx_len = (nh+ny-1+15)/16;    /*测试样例中x向量化后的向量长度(商向上取整) 这里加1防止越界读*/
             int vecr_len = (ny+15)/16;           /*测试样例中r向量化后的向量长度(商向上取整) */
 
             /* 初始化xAddr_DDR和hAddr_DDR*/
@@ -108,7 +108,7 @@ void main(){
            }
             vfree(xAddr);
             vfree(rAddr);
-            printf("\tNR = %d\t  NH = %d\t cn_time:%d\t  vc_cycle:%d\t\n", ny, nh,time_cn,time_vc);
+            printf("\tNX = %-3d\t  NH = %-2d\t cn_cycle:%-4d\t  vc_cycle:%-4d\t \n", ny, nh,time_cn-c_time,time_vc-c_time);
       }
   }
 }

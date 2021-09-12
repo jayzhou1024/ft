@@ -1,6 +1,7 @@
 	.file	"DSP_fir_gen_cn.c"
 .text;
 .Ltext0:
+	.cfi_sections	.debug_frame
 	.section	.text.DSP_fir_gen_cn,"ax",@progbits
 	.align	2
 	.global	DSP_fir_gen_cn
@@ -9,6 +10,7 @@ DSP_fir_gen_cn:
 .LFB3:
 	.file 1 "../DSP_fir_gen_cn.c"
 	.loc 1 15 0
+	.cfi_startproc
 .LVL0:
 	.loc 1 17 0
 		SMOVIL		0, R42
@@ -68,23 +70,23 @@ DSP_fir_gen_cn:
 		SADD.M2		R45,R24,R45
 	|	SLDH		*AR12, R25
 	|	SADD.M1		2,R42,R26
-	.loc 1 8 0
+	.loc 1 8 0 discriminator 2
 		SMVAGA36.M2		R45:R44, AR10
 	|	SLTU		R26, R42, R53
 	|	SMOV.M1		R26, R42
 		SADD.M1		R43,R53,R43
 	|	SEQ		R26, R54, R0
-	.loc 1 20 0
+	.loc 1 20 0 discriminator 2
 		SLDH		*AR10, R28
 	|[R0]	SEQ		R43, R55, R0
-	.loc 1 19 0
+	.loc 1 19 0 discriminator 2
 		SNOP		2
-	.loc 1 20 0
+	.loc 1 20 0 discriminator 2
 		SSHFLL		16, R25, R27
 		SSHFAR		16, R27, R60
-	.loc 1 19 0
+	.loc 1 19 0 discriminator 2
 	[!R0]	SBR		.L4
-	.loc 1 20 0
+	.loc 1 20 0 discriminator 2
 		SSHFLL		16, R28, R29
 		SSHFAR		16, R29, R59
 		SMULIS.M2		R60,R59,R61
@@ -144,99 +146,77 @@ DSP_fir_gen_cn:
 		SBR		R62
 		SNOP		6
 	;; return occurs
+	.cfi_endproc
 .LFE3:
 	.size	DSP_fir_gen_cn, .-DSP_fir_gen_cn
-	.section	.debug_frame,"",@progbits
-.Lframe0:
-	.4byte	.LECIE0-.LSCIE0
-.LSCIE0:
-	.4byte	0xffffffff
-	.byte	0x1
-	.string	""
-	.byte	0x1
-	.byte	0x7c
-	.byte	0x4e
-	.byte	0xc
-	.byte	0xf
-	.byte	0
-	.align	3
-.LECIE0:
-.LSFDE0:
-	.4byte	.LEFDE0-.LASFDE0
-.LASFDE0:
-	.4byte	.Lframe0
-	.llong	.LFB3
-	.llong	.LFE3-.LFB3
-	.align	3
-.LEFDE0:
 .text;
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.4byte	0x1e7
+	.4byte	0x124
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x8
+	.uleb128 0x1
+	.4byte	.LASF11
 	.byte	0x1
-	.string	"GNU C 4.7.0"
-	.byte	0x1
-	.string	"../DSP_fir_gen_cn.c"
-	.string	"/cygdrive/e/project/function  demo/function/DSP_fir_gen/Debug"
+	.4byte	.LASF12
+	.4byte	.LASF13
 	.4byte	.Ldebug_ranges0+0
 	.llong	0
 	.llong	0
 	.4byte	.Ldebug_line0
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x8
 	.byte	0x7
-	.string	"long long unsigned int"
-	.byte	0x2
+	.4byte	.LASF0
+	.uleb128 0x2
 	.byte	0x1
 	.byte	0x8
-	.string	"unsigned char"
-	.byte	0x2
+	.4byte	.LASF1
+	.uleb128 0x2
 	.byte	0x2
 	.byte	0x7
-	.string	"short unsigned int"
-	.byte	0x2
+	.4byte	.LASF2
+	.uleb128 0x2
 	.byte	0x4
 	.byte	0x7
-	.string	"unsigned int"
-	.byte	0x2
+	.4byte	.LASF3
+	.uleb128 0x2
 	.byte	0x4
 	.byte	0x7
-	.string	"long unsigned int"
-	.byte	0x2
+	.4byte	.LASF4
+	.uleb128 0x2
 	.byte	0x1
 	.byte	0x6
-	.string	"signed char"
-	.byte	0x2
+	.4byte	.LASF5
+	.uleb128 0x2
 	.byte	0x2
 	.byte	0x5
-	.string	"short int"
-	.byte	0x2
+	.4byte	.LASF6
+	.uleb128 0x3
 	.byte	0x4
 	.byte	0x5
 	.string	"int"
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x8
 	.byte	0x5
-	.string	"long long int"
-	.byte	0x2
+	.4byte	.LASF7
+	.uleb128 0x2
 	.byte	0x4
 	.byte	0x5
-	.string	"long int"
-	.byte	0x2
+	.4byte	.LASF8
+	.uleb128 0x2
 	.byte	0x8
 	.byte	0x7
-	.string	"sizetype"
-	.byte	0x2
+	.4byte	.LASF9
+	.uleb128 0x2
 	.byte	0x1
 	.byte	0x6
-	.string	"char"
-	.byte	0x3
+	.4byte	.LASF10
+	.uleb128 0x4
 	.byte	0x1
-	.string	"DSP_fir_gen_cn"
+	.4byte	.LASF14
 	.byte	0x1
 	.byte	0x8
 	.byte	0x1
@@ -244,191 +224,202 @@ DSP_fir_gen_cn:
 	.llong	.LFE3
 	.byte	0x2
 	.byte	0x7f
-	.byte	0
+	.sleb128 0
 	.byte	0x1
-	.4byte	0x1d9
-	.byte	0x4
+	.4byte	0x116
+	.uleb128 0x5
 	.string	"x"
 	.byte	0x1
 	.byte	0x9
-	.4byte	0x1d9
+	.4byte	0x116
 	.4byte	.LLST0
-	.byte	0x5
+	.uleb128 0x6
 	.string	"h"
 	.byte	0x1
 	.byte	0xa
-	.4byte	0x1d9
+	.4byte	0x116
 	.byte	0x6
 	.byte	0x6c
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6d
 	.byte	0x93
-	.byte	0x4
-	.byte	0x4
+	.uleb128 0x4
+	.uleb128 0x5
 	.string	"r"
 	.byte	0x1
 	.byte	0xb
-	.4byte	0x1e4
+	.4byte	0x121
 	.4byte	.LLST1
-	.byte	0x4
+	.uleb128 0x5
 	.string	"nh"
 	.byte	0x1
 	.byte	0xc
-	.4byte	0x105
+	.4byte	0x62
 	.4byte	.LLST2
-	.byte	0x4
+	.uleb128 0x5
 	.string	"nr"
 	.byte	0x1
 	.byte	0xd
-	.4byte	0x105
+	.4byte	0x62
 	.4byte	.LLST3
-	.byte	0x6
+	.uleb128 0x7
 	.string	"i"
 	.byte	0x1
 	.byte	0x10
-	.4byte	0x105
+	.4byte	0x62
 	.4byte	.LLST4
-	.byte	0x6
+	.uleb128 0x7
 	.string	"j"
 	.byte	0x1
 	.byte	0x10
-	.4byte	0x105
+	.4byte	0x62
 	.4byte	.LLST5
-	.byte	0x6
+	.uleb128 0x7
 	.string	"sum"
 	.byte	0x1
 	.byte	0x10
-	.4byte	0x105
+	.4byte	0x62
 	.4byte	.LLST6
 	.byte	0
-	.byte	0x7
+	.uleb128 0x8
 	.byte	0x8
-	.4byte	0x1df
+	.4byte	0x11c
+	.uleb128 0x9
+	.4byte	0x5b
+	.uleb128 0x8
 	.byte	0x8
-	.4byte	0xf8
-	.byte	0x7
-	.byte	0x8
-	.4byte	0xf8
+	.4byte	0x5b
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
+	.uleb128 0x1
+	.uleb128 0x11
 	.byte	0x1
-	.byte	0x11
+	.uleb128 0x25
+	.uleb128 0xe
+	.uleb128 0x13
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x1b
+	.uleb128 0xe
+	.uleb128 0x55
+	.uleb128 0x6
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x52
+	.uleb128 0x1
+	.uleb128 0x10
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0x2
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.byte	0
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0x8
+	.byte	0
+	.byte	0
+	.uleb128 0x4
+	.uleb128 0x2e
 	.byte	0x1
-	.byte	0x25
-	.byte	0x8
-	.byte	0x13
-	.byte	0xb
-	.byte	0x3
-	.byte	0x8
-	.byte	0x1b
-	.byte	0x8
-	.byte	0x55
-	.byte	0x6
-	.byte	0x11
-	.byte	0x1
-	.byte	0x52
-	.byte	0x1
-	.byte	0x10
-	.byte	0x6
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0xa
+	.uleb128 0x2117
+	.uleb128 0xc
+	.uleb128 0x1
+	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.byte	0x2
-	.byte	0x24
+	.uleb128 0x5
+	.uleb128 0x5
 	.byte	0
-	.byte	0xb
-	.byte	0xb
-	.byte	0x3e
-	.byte	0xb
-	.byte	0x3
-	.byte	0x8
-	.byte	0
-	.byte	0
-	.byte	0x3
-	.byte	0x2e
-	.byte	0x1
-	.byte	0x3f
-	.byte	0xc
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x27
-	.byte	0xc
-	.byte	0x11
-	.byte	0x1
-	.byte	0x12
-	.byte	0x1
-	.byte	0x40
-	.byte	0xa
-	.byte	0x97,0x42
-	.byte	0xc
-	.byte	0x1
-	.byte	0x13
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x6
 	.byte	0
 	.byte	0
-	.byte	0x4
-	.byte	0x5
+	.uleb128 0x6
+	.uleb128 0x5
 	.byte	0
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0x6
-	.byte	0
-	.byte	0
-	.byte	0x5
-	.byte	0x5
-	.byte	0
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0xa
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
 	.byte	0
 	.byte	0
-	.byte	0x6
-	.byte	0x34
+	.uleb128 0x7
+	.uleb128 0x34
 	.byte	0
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0x6
-	.byte	0
-	.byte	0
-	.byte	0x7
-	.byte	0xf
-	.byte	0
-	.byte	0xb
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x6
 	.byte	0
 	.byte	0
-	.byte	0x8
-	.byte	0x26
+	.uleb128 0x8
+	.uleb128 0xf
 	.byte	0
-	.byte	0x49
-	.byte	0x13
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x9
+	.uleb128 0x26
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
 	.byte	0
 	.byte	0
 	.byte	0
@@ -440,15 +431,15 @@ DSP_fir_gen_cn:
 	.2byte	0x6
 	.byte	0x6a
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6b
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL2
 	.llong	.LFE3
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x50
+	.uleb128 0x50
 	.llong	0
 	.llong	0
 .LLST1:
@@ -457,17 +448,17 @@ DSP_fir_gen_cn:
 	.2byte	0x6
 	.byte	0x6e
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6f
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.llong	.LVL5
 	.llong	.LFE3
 	.2byte	0x5
 	.byte	0xf3
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x8e
-	.byte	0
+	.sleb128 0
 	.byte	0x9f
 	.llong	0
 	.llong	0
@@ -476,12 +467,12 @@ DSP_fir_gen_cn:
 	.llong	.LVL3
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x20
+	.uleb128 0x20
 	.llong	.LVL3
 	.llong	.LFE3
 	.2byte	0x3
 	.byte	0x83
-	.byte	0x1
+	.sleb128 1
 	.byte	0x9f
 	.llong	0
 	.llong	0
@@ -490,13 +481,13 @@ DSP_fir_gen_cn:
 	.llong	.LVL1
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x22
+	.uleb128 0x22
 	.llong	.LVL1
 	.llong	.LFE3
 	.2byte	0x4
 	.byte	0x92
-	.byte	0x22
-	.byte	0x1
+	.uleb128 0x22
+	.sleb128 1
 	.byte	0x9f
 	.llong	0
 	.llong	0
@@ -558,3 +549,34 @@ DSP_fir_gen_cn:
 	.llong	0
 	.section	.debug_line,"",@progbits
 .Ldebug_line0:
+	.section	.debug_str,"MS",@progbits,1
+.LASF7:
+	.string	"long long int"
+.LASF3:
+	.string	"unsigned int"
+.LASF11:
+	.string	"GNU C 4.7.0"
+.LASF4:
+	.string	"long unsigned int"
+.LASF0:
+	.string	"long long unsigned int"
+.LASF12:
+	.string	"../DSP_fir_gen_cn.c"
+.LASF14:
+	.string	"DSP_fir_gen_cn"
+.LASF10:
+	.string	"char"
+.LASF13:
+	.string	"/cygdrive/e/project/\351\241\271\347\233\256/ft-m7002-function-base/Filtering and convolution/DSP_fir_gen/test/vector_c/Debug"
+.LASF1:
+	.string	"unsigned char"
+.LASF8:
+	.string	"long int"
+.LASF2:
+	.string	"short unsigned int"
+.LASF5:
+	.string	"signed char"
+.LASF6:
+	.string	"short int"
+.LASF9:
+	.string	"sizetype"

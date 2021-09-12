@@ -1,0 +1,55 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=dsp_fir_sym
+ProjectDir="E:/project/function  demo/asm/dsp_fir_sym"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="dsp_fir_sym.lds"
+Source="dsp_fir_sym.pjt"
+Source="dsp_fir_sym.pst"
+Source="dsp_fir_sym_asm.asm",NeedCompile=false
+Source="dsp_fir_sym_cn.c"
+Source="main.c",Options=-ffunction-sections -O0 -g -flax-vector-conversions 
+Source="readme.txt"
+Source="Release/dsp_fir_sym.out"
+Source="Timer.c"
+Source="Timer.h"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/dsp_fir_sym.map"
+Source="Debug/dsp_fir_sym.out"
+Source="Debug/dsp_fir_sym_asm.o"
+Source="Debug/dsp_fir_sym_cn.o"
+Source="Debug/dsp_fir_sym_cn.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-ffunction-sections -O0 -flax-vector-conversions 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/dsp_fir_sym.out" --gc-sections -T"dsp_fir_sym.lds" -L"${PROJECT_LOC}" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/dsp_fir_sym.out" --gc-sections -T"dsp_fir_sym.lds" 
+[Opened files]
+OpenedSource="dsp_fir_sym_asm.asm",line=1
+OpenedSource="main.c",line=1
+OpenedSource="dsp_fir_sym.lds",line=1
+OpenedSource="dsp_fir_sym_cn.c",line=1
+OpenedSource="Timer.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

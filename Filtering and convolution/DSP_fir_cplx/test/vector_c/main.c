@@ -11,10 +11,10 @@
 #define NH  (24)    /* NH 为数组h中复数元素个数 */
 #define NR  (100)   /* Nr 为数组r中复数元素个数 */
 
-void DSP_fir_cplx_cn (const short  *x,const short * h, short * r, int nh,int nr);
-void DSP_fir_cplx_vc (vector signed short *x,signed short *h,vector signed short  *r,int nh,int nr);
-unsigned long get_time_vc(vector signed short *x,signed short *h,vector signed short *r,int nh,int nr);
-unsigned long get_time_cn(const short  *x,const short * h,short* r,int nh,int nr);
+void DSP_fir_cplx_cn (const short *x, const short * h, short * r, int nh, int nr);
+void DSP_fir_cplx_vc (vector signed short *x, signed short *h, vector signed short *r, int nh, int nr);
+unsigned long get_time_vc(vector signed short *x, signed short *h, vector signed short *r, int nh, int nr);
+unsigned long get_time_cn(const short *x, const short * h, short* r, int nh, int nr);
 /* 测试数据x */
 const short xAddr_DDR[NX] =
 {
@@ -62,38 +62,38 @@ const short hAddr_DDR[2*NH] =
     0x027B, 0x0CBF, 0x0D4C, 0x0CA5, 0x0D3A, 0x0DD5, 0x0EF7, 0x0866,
 };
 
-void main(){
-	int  *cache=0x040140004;   /*将SM配置成SRAM存储模式*/
-    int  *cache1=0x040140000;
+void main() {
+	int  *cache = 0x040140004;   /*将SM配置成SRAM存储模式*/
+    int  *cache1 = 0x040140000;
 	volatile int cache_ok;
-	*cache=0x1;
-	*cache1=0x1;
+	*cache = 0x1;
+	*cache1 = 0x1;
     cache_ok = *cache1 ;
-    while( cache_ok !=0 )
+    while ( cache_ok !=0 )
     cache_ok = *cache1 ;
     /*测试样例变量声明*/
-	short rAddr_DDR_cn[2*NR];
-	short rAddr_DDR_vc[2*NR];
+	short rAddr_DDR_cn[2 * NR];
+	short rAddr_DDR_vc[2 * NR];
 	vector signed short* xAddr,*rAddr;
     /* 计时器初始化 */
     SetTimerPeriod(0, 0xffffffff);
 	TimerStart(0);
     /*计算访问寄存器用时*/
-    unsigned long time_cn,time_vc; 
-	unsigned long c_time=GetTimerCount(0)-GetTimerCount(0);
-	int i,j,nh,nr;
+    unsigned long time_cn, time_vc; 
+	unsigned long c_time = GetTimerCount(0) - GetTimerCount(0);
+	int i, j, nh, nr;
     /* 精度测试临时变量 */
     short diff, diff_max;
     /* 测试 */
-    for(nr = 8; nr <= NR; nr += 4) {
-        for(nh = 4; nh <= NH; nh += 2) {
+    for (nr = 8; nr <= NR; nr += 4) {
+        for (nh = 4; nh <= NH; nh += 2) {
             /*计算所需向量长度，r需要16字对齐，防止r越界写*/
-			int vecx_len =((2*(nh+nr-1)+15)/16+1);   /* nr,nh实际为复数元素个数，而不是数据长度 */
-            int vecr_len =2*((nr+15)/16); 
+			int vecx_len =((2 * (nh + nr - 1) + 15) >> 4 + 1);   /* nr,nh实际为复数元素个数，而不是数据长度 */
+            int vecr_len =2 * ((nr + 15) >> 4); 
             /* 在AM中申请存放xAddr的内存空间 */
-			xAddr = (vector signed short*)vmalloc(vecx_len*sizeof(vector signed short));
+			xAddr = (vector signed short*)vmalloc(vecx_len * sizeof(vector signed short));
             /* 在AM中申请存放rAddr的内存空间,所需空间为实际存储空间的两倍，在计算过程中需要临时保存vector int 的中间结果*/
-            rAddr = (vector signed short*)vmalloc(2*vecr_len*sizeof(vector signed short));
+            rAddr = (vector signed short*)vmalloc(2*vecr_len * sizeof(vector signed short));
 			/* 初始化rAddr*/
             short *hAddr = (short *)0x040100000;
             /* 初始化r */
@@ -104,21 +104,21 @@ void main(){
                 搬移时，x起始地址为xAddr_DDR+2*(NH-nh)，只在本测试中有效
                 原因：未优化版本的C语言函数中，x[0]为xAddr_DDR+2*(NH-1), x[1-nh]为实际需要计算的首元，对应搬移起址为xAddr_DDR+2*(NH-nh)
             */
-			M7002_datatrans(xAddr_DDR+2*(NH-nh), xAddr, vecx_len*sizeof(vector signed short));
-            M7002_datatrans(rAddr_DDR_vc, rAddr, vecr_len*sizeof(vector signed short));
-            M7002_datatrans(hAddr_DDR, hAddr, NH*4); /*复数nh占用size nh*2*sizeof(short)*/
+			M7002_datatrans(xAddr_DDR + 2 * (NH - nh), xAddr, vecx_len * sizeof(vector signed short));
+            M7002_datatrans(rAddr_DDR_vc, rAddr, vecr_len * sizeof(vector signed short));
+            M7002_datatrans(hAddr_DDR, hAddr, NH * 4); /*复数nh占用size nh*2*sizeof(short)*/
             /*
                  实际 x+2*(NH-1)才算实际数据，前面NH-1个数为卷积填充，
                  当h长为nh时，需要填充2*(nh-1)
             */
            /* 测量函数执行时间 */
-			time_cn=get_time_cn(xAddr_DDR+2*(NH-1),hAddr_DDR,rAddr_DDR_cn,nh,nr);
-			time_vc=get_time_vc(xAddr,hAddr,rAddr,nh,nr);
+			time_cn=get_time_cn(xAddr_DDR + 2 * (NH - 1), hAddr_DDR, rAddr_DDR_cn, nh, nr);
+			time_vc=get_time_vc(xAddr, hAddr, rAddr, nh, nr);
             /* 通过DMA方式将有效计算结果从AM中搬移到DDR空间中，这里有效结果size为4*nr */
-            M7002_datatrans(rAddr, rAddr_DDR_vc,nr*4);
+            M7002_datatrans(rAddr, rAddr_DDR_vc, nr*4);
             /* 精度测试 */
-			diff_max = 0;int k;
-            for (k = 0; k < 2*nr; k++) {
+			diff_max = 0; int k;
+            for (k = 0; k < 2 * nr; k++) {
                 diff = rAddr_DDR_cn[k] - rAddr_DDR_vc[k];
                 if (diff < 0)
                     diff = -diff;
@@ -147,11 +147,11 @@ unsigned long get_time_cn(
     int nh,                     
     int nr                     
 ){
-    unsigned long time1,time2;
+    unsigned long time1, time2;
     time1 = GetTimerCount(0);
-	DSP_fir_cplx_cn(x,h,r,nh,nr);
+	DSP_fir_cplx_cn(x, h, r, nh, nr);
     time2 = GetTimerCount(0);
-    return time2-time1;
+    return time2 - time1;
 }
 /*测量向量C版本函数执行时间 */
 unsigned long get_time_vc(vector signed short *x,   
@@ -160,9 +160,9 @@ unsigned long get_time_vc(vector signed short *x,
     int nh,
     int nr
 	){
-        unsigned long time1,time2;
+        unsigned long time1, time2;
         time1 = GetTimerCount(0);
-        DSP_fir_cplx_vc1(x,h,r,nh,nr);
+        DSP_fir_cplx_vc1(x, h, r, nh, nr);
         time2 = GetTimerCount(0);
-        return time2-time1;
+        return time2 - time1;
 }

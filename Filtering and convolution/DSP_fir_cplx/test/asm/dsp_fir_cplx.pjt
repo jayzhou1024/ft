@@ -1,0 +1,51 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=dsp_fir_cplx
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSP_fir_cplx/test/asm"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="dsp_fir_cplx.lds"
+Source="dsp_fir_cplx.pjt"
+Source="dsp_fir_cplx.pst"
+Source="dsp_fir_cplx_asm.asm"
+Source="DSP_fir_cplx_cn.c"
+Source="main.c"
+Source="readme.txt"
+Source="Timer.c"
+Source="Timer.h"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/dsp_fir_cplx.map"
+Source="Debug/dsp_fir_cplx.out"
+Source="Debug/dsp_fir_cplx_asm.o"
+Source="Debug/DSP_fir_cplx_cn.o"
+Source="Debug/DSP_fir_cplx_cn.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -ffunction-sections -flax-vector-conversions -g 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/dsp_fir_cplx.out" --gc-sections -T"dsp_fir_cplx.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/dsp_fir_cplx.out" --gc-sections -T"dsp_fir_cplx.lds" 
+[Opened files]
+OpenedSource="dsp_fir_cplx_asm.asm",line=42
+OpenedSource="main.c",line=34
+[Builders]
+m7002.builder
+[Debug Configurations]

@@ -1,0 +1,63 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_fir_sym
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/dsp_fir_sym/test/vector_c"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="dsp_fir_sym.lds"
+Source="dsp_fir_sym.pjt"
+Source="dsp_fir_sym.pst"
+Source="dsp_fir_sym_vc.c"
+Source="main.c"
+Source="readme.txt"
+Source="Timer.c"
+Source="Timer.h"
+Source="DSP_fir_sym_cn.c"
+Source="Release/ConfRegOp.o"
+Source="Release/ConfRegOp.s"
+Source="Release/datatransfer.o"
+Source="Release/datatransfer.s"
+Source="Release/DSP_fir_sym_cn.o"
+Source="Release/DSP_fir_sym_cn.s"
+Source="Release/dsp_fir_sym_vc.s"
+Source="Release/main.o"
+Source="Release/main.s"
+Source="Release/Timer.o"
+Source="Release/Timer.s"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/dsp_fir_sym.map"
+Source="Debug/dsp_fir_sym.out"
+Source="Debug/DSP_fir_sym_cn.o"
+Source="Debug/DSP_fir_sym_cn.s"
+Source="Debug/dsp_fir_sym_vc.o"
+Source="Debug/dsp_fir_sym_vc.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -ffunction-sections -g -flax-vector-conversions 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/dsp_fir_sym.out" --gc-sections -T"dsp_fir_sym.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/dsp_fir_sym.out" --gc-sections -T"dsp_fir_sym.lds" 
+[Opened files]
+OpenedSource="dsp_fir_sym_vc.c",line=131
+OpenedSource="main.c",line=90
+[Builders]
+m7002.builder
+[Debug Configurations]

@@ -2,7 +2,7 @@
 
 [Project Settings]
 ProjectName=DSPF_sp_fir_r2
-ProjectDir="E:/project/function  demo/function/DSPF_sp_fir_r2"
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fir_gen_r2/test/vector_c"
 ProjectType=Executable
 Config=Debug
 [Source Files]
@@ -46,8 +46,8 @@ Options=-O2 -ffunction-sections
 Options=-o"Release/DSPF_sp_fir_r2.out" --gc-sections -T"DSPF_sp_fir_r2.lds" 
 [Opened files]
 OpenedSource="DSPF_sp_fir_r2_cn.c",line=1
-OpenedSource="DSPF_sp_fir_r2_vc.c",line=12
-OpenedSource="main.c",line=49
+OpenedSource="DSPF_sp_fir_r2_vc.c",line=1
+OpenedSource="main.c",line=37
 [Builders]
 m7002.builder
 [Debug Configurations]

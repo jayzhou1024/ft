@@ -1,6 +1,7 @@
 	.file	"datatransfer.c"
 .text;
 .Ltext0:
+	.cfi_sections	.debug_frame
 	.section	.text.M7002_datatrans,"ax",@progbits
 	.align	2
 	.global	M7002_datatrans
@@ -9,6 +10,7 @@ M7002_datatrans:
 .LFB0:
 	.file 1 "../datatransfer.c"
 	.loc 1 4 0
+	.cfi_startproc
 .LVL0:
 	.loc 1 10 0
 		SMOVIL		251658240, R0
@@ -122,7 +124,7 @@ M7002_datatrans:
 		SSTW		R16, *AR12
 .LVL14:
 .L3:
-	.loc 1 67 0
+	.loc 1 67 0 discriminator 1
 		SLDW		*AR10, R18
 		SNOP		5
 		SAND		1, R18, R1
@@ -135,6 +137,7 @@ M7002_datatrans:
 		SBR		R62
 		SNOP		6
 	;; return occurs
+	.cfi_endproc
 .LFE0:
 	.size	M7002_datatrans, .-M7002_datatrans
 	.section	.text.M7002_mat_transpose,"ax",@progbits
@@ -144,6 +147,7 @@ M7002_datatrans:
 M7002_mat_transpose:
 .LFB1:
 	.loc 1 75 0
+	.cfi_startproc
 .LVL15:
 	.loc 1 81 0
 		SMOVIL		251658240, R0
@@ -263,7 +267,7 @@ M7002_mat_transpose:
 		SSTW		R27, *AR12
 .LVL26:
 .L14:
-	.loc 1 143 0
+	.loc 1 143 0 discriminator 1
 		SLDW		*AR10, R28
 		SNOP		5
 		SAND		1, R28, R1
@@ -370,6 +374,7 @@ M7002_mat_transpose:
 		SNOP		1
 		SSTW		R27, *AR12
 	;; jump to .L14 occurs
+	.cfi_endproc
 .LFE1:
 	.size	M7002_mat_transpose, .-M7002_mat_transpose
 	.section	.text.M7002_datatrans_index,"ax",@progbits
@@ -379,6 +384,7 @@ M7002_mat_transpose:
 M7002_datatrans_index:
 .LFB2:
 	.loc 1 150 0
+	.cfi_startproc
 .LVL34:
 	.loc 1 163 0
 		SMOVIL		1075576784, R42
@@ -483,7 +489,7 @@ M7002_datatrans_index:
 		SSTW		R42, *AR12
 .LVL44:
 .L23:
-	.loc 1 207 0
+	.loc 1 207 0 discriminator 1
 		SLDW		*AR10, R17
 		SNOP		5
 		SAND		1, R17, R0
@@ -496,67 +502,29 @@ M7002_datatrans_index:
 		SBR		R62
 		SNOP		6
 	;; return occurs
+	.cfi_endproc
 .LFE2:
 	.size	M7002_datatrans_index, .-M7002_datatrans_index
-	.section	.debug_frame,"",@progbits
-.Lframe0:
-	.4byte	.LECIE0-.LSCIE0
-.LSCIE0:
-	.4byte	0xffffffff
-	.byte	0x1
-	.string	""
-	.byte	0x1
-	.byte	0x7c
-	.byte	0x4e
-	.byte	0xc
-	.byte	0xf
-	.byte	0
-	.align	3
-.LECIE0:
-.LSFDE0:
-	.4byte	.LEFDE0-.LASFDE0
-.LASFDE0:
-	.4byte	.Lframe0
-	.llong	.LFB0
-	.llong	.LFE0-.LFB0
-	.align	3
-.LEFDE0:
-.LSFDE2:
-	.4byte	.LEFDE2-.LASFDE2
-.LASFDE2:
-	.4byte	.Lframe0
-	.llong	.LFB1
-	.llong	.LFE1-.LFB1
-	.align	3
-.LEFDE2:
-.LSFDE4:
-	.4byte	.LEFDE4-.LASFDE4
-.LASFDE4:
-	.4byte	.Lframe0
-	.llong	.LFB2
-	.llong	.LFE2-.LFB2
-	.align	3
-.LEFDE4:
 .text;
 .Letext0:
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.4byte	0x2cb
+	.4byte	0x224
 	.2byte	0x2
 	.4byte	.Ldebug_abbrev0
 	.byte	0x8
+	.uleb128 0x1
+	.4byte	.LASF14
 	.byte	0x1
-	.string	"GNU C 4.7.0"
-	.byte	0x1
-	.string	"../datatransfer.c"
-	.string	"/cygdrive/e/project/function  demo/function/DSPF_sp_fir_r2/Debug"
+	.4byte	.LASF15
+	.4byte	.LASF16
 	.4byte	.Ldebug_ranges0+0
 	.llong	0
 	.llong	0
 	.4byte	.Ldebug_line0
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x1
-	.string	"M7002_datatrans"
+	.4byte	.LASF6
 	.byte	0x1
 	.byte	0x3
 	.byte	0x1
@@ -564,82 +532,82 @@ M7002_datatrans_index:
 	.llong	.LFE0
 	.byte	0x2
 	.byte	0x7f
-	.byte	0
+	.sleb128 0
 	.byte	0x1
-	.4byte	0x12a
-	.byte	0x3
+	.4byte	0xc2
+	.uleb128 0x3
 	.string	"src"
 	.byte	0x1
 	.byte	0x3
-	.4byte	0x12a
+	.4byte	0xc2
 	.byte	0x6
 	.byte	0x6a
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6b
 	.byte	0x93
-	.byte	0x4
-	.byte	0x3
+	.uleb128 0x4
+	.uleb128 0x3
 	.string	"dst"
 	.byte	0x1
 	.byte	0x3
-	.4byte	0x12a
+	.4byte	0xc2
 	.byte	0x6
 	.byte	0x6c
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6d
 	.byte	0x93
-	.byte	0x4
-	.byte	0x4
-	.string	"bytes"
-	.byte	0x1
-	.byte	0x3
-	.4byte	0x12c
-	.4byte	.LLST0
-	.byte	0x5
+	.uleb128 0x4
+	.uleb128 0x4
 	.4byte	.LASF0
 	.byte	0x1
+	.byte	0x3
+	.4byte	0xc4
+	.4byte	.LLST0
+	.uleb128 0x5
+	.4byte	.LASF1
+	.byte	0x1
 	.byte	0x5
-	.4byte	0x141
+	.4byte	0xcb
 	.4byte	.LLST1
-	.byte	0x6
-	.string	"word0"
+	.uleb128 0x5
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x6
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST2
-	.byte	0x6
-	.string	"word_n"
+	.uleb128 0x5
+	.4byte	.LASF3
 	.byte	0x1
 	.byte	0x7
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST3
-	.byte	0x6
-	.string	"byte1"
+	.uleb128 0x5
+	.4byte	.LASF4
 	.byte	0x1
 	.byte	0x8
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST4
 	.byte	0
-	.byte	0x7
+	.uleb128 0x6
 	.byte	0x8
-	.byte	0x8
+	.uleb128 0x7
 	.byte	0x4
 	.byte	0x7
-	.string	"long unsigned int"
-	.byte	0x9
+	.4byte	.LASF5
+	.uleb128 0x8
 	.byte	0x8
-	.4byte	0x147
-	.byte	0xa
-	.4byte	0x14c
-	.byte	0x8
+	.4byte	0xd1
+	.uleb128 0x9
+	.4byte	0xd6
+	.uleb128 0xa
 	.byte	0x4
 	.byte	0x5
 	.string	"int"
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x1
-	.string	"M7002_mat_transpose"
+	.4byte	.LASF7
 	.byte	0x1
 	.byte	0x4a
 	.byte	0x1
@@ -647,79 +615,79 @@ M7002_datatrans_index:
 	.llong	.LFE1
 	.byte	0x2
 	.byte	0x7f
-	.byte	0
+	.sleb128 0
 	.byte	0x1
-	.4byte	0x219
-	.byte	0x3
+	.4byte	0x18c
+	.uleb128 0x3
 	.string	"src"
 	.byte	0x1
 	.byte	0x4a
-	.4byte	0x12a
+	.4byte	0xc2
 	.byte	0x6
 	.byte	0x6a
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6b
 	.byte	0x93
-	.byte	0x4
-	.byte	0x3
+	.uleb128 0x4
+	.uleb128 0x3
 	.string	"dst"
 	.byte	0x1
 	.byte	0x4a
-	.4byte	0x12a
+	.4byte	0xc2
 	.byte	0x6
 	.byte	0x6c
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6d
 	.byte	0x93
-	.byte	0x4
-	.byte	0x4
+	.uleb128 0x4
+	.uleb128 0xb
 	.string	"row"
 	.byte	0x1
 	.byte	0x4a
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST5
-	.byte	0x4
+	.uleb128 0xb
 	.string	"col"
 	.byte	0x1
 	.byte	0x4a
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST6
-	.byte	0x4
-	.string	"flag"
+	.uleb128 0x4
+	.4byte	.LASF8
 	.byte	0x1
 	.byte	0x4a
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST7
-	.byte	0x5
-	.4byte	.LASF0
+	.uleb128 0x5
+	.4byte	.LASF1
 	.byte	0x1
 	.byte	0x4c
-	.4byte	0x141
+	.4byte	0xcb
 	.4byte	.LLST8
-	.byte	0x6
-	.string	"word0"
+	.uleb128 0x5
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x4d
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST9
-	.byte	0x6
-	.string	"byte0"
+	.uleb128 0x5
+	.4byte	.LASF9
 	.byte	0x1
 	.byte	0x4e
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST10
-	.byte	0x6
-	.string	"byte1"
+	.uleb128 0x5
+	.4byte	.LASF4
 	.byte	0x1
 	.byte	0x4f
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST11
 	.byte	0
-	.byte	0xb
+	.uleb128 0xc
 	.byte	0x1
-	.string	"M7002_datatrans_index"
+	.4byte	.LASF17
 	.byte	0x1
 	.byte	0x95
 	.byte	0x1
@@ -727,235 +695,261 @@ M7002_datatrans_index:
 	.llong	.LFE2
 	.byte	0x2
 	.byte	0x7f
-	.byte	0
+	.sleb128 0
 	.byte	0x1
-	.byte	0x3
+	.uleb128 0x3
 	.string	"src"
 	.byte	0x1
 	.byte	0x95
-	.4byte	0x12a
+	.4byte	0xc2
 	.byte	0x6
 	.byte	0x6a
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6b
 	.byte	0x93
-	.byte	0x4
-	.byte	0x3
+	.uleb128 0x4
+	.uleb128 0x3
 	.string	"dst"
 	.byte	0x1
 	.byte	0x95
-	.4byte	0x12a
+	.4byte	0xc2
 	.byte	0x6
 	.byte	0x6c
 	.byte	0x93
-	.byte	0x4
+	.uleb128 0x4
 	.byte	0x6d
 	.byte	0x93
-	.byte	0x4
-	.byte	0x4
-	.string	"frame"
+	.uleb128 0x4
+	.uleb128 0x4
+	.4byte	.LASF10
 	.byte	0x1
 	.byte	0x95
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST12
-	.byte	0x4
-	.string	"elem"
+	.uleb128 0x4
+	.4byte	.LASF11
 	.byte	0x1
 	.byte	0x95
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST13
-	.byte	0x3
-	.string	"index"
+	.uleb128 0xd
+	.4byte	.LASF12
 	.byte	0x1
 	.byte	0x95
-	.4byte	0x14c
+	.4byte	0xd6
 	.byte	0x2
 	.byte	0x90
-	.byte	0x22
-	.byte	0x5
-	.4byte	.LASF0
+	.uleb128 0x22
+	.uleb128 0x5
+	.4byte	.LASF1
 	.byte	0x1
 	.byte	0x97
-	.4byte	0x141
+	.4byte	0xcb
 	.4byte	.LLST14
-	.byte	0x6
-	.string	"word0"
+	.uleb128 0x5
+	.4byte	.LASF2
 	.byte	0x1
 	.byte	0x98
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST15
-	.byte	0x6
-	.string	"byte"
+	.uleb128 0x5
+	.4byte	.LASF13
 	.byte	0x1
 	.byte	0x9c
-	.4byte	0x14c
+	.4byte	0xd6
 	.4byte	.LLST16
 	.byte	0
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
+	.uleb128 0x1
+	.uleb128 0x11
 	.byte	0x1
-	.byte	0x11
+	.uleb128 0x25
+	.uleb128 0xe
+	.uleb128 0x13
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x1b
+	.uleb128 0xe
+	.uleb128 0x55
+	.uleb128 0x6
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x52
+	.uleb128 0x1
+	.uleb128 0x10
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0x2
+	.uleb128 0x2e
 	.byte	0x1
-	.byte	0x25
-	.byte	0x8
-	.byte	0x13
-	.byte	0xb
-	.byte	0x3
-	.byte	0x8
-	.byte	0x1b
-	.byte	0x8
-	.byte	0x55
-	.byte	0x6
-	.byte	0x11
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0xa
+	.uleb128 0x2117
+	.uleb128 0xc
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
+	.byte	0
+	.byte	0
+	.uleb128 0x4
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0x5
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0x6
+	.uleb128 0xf
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x7
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0xe
+	.byte	0
+	.byte	0
+	.uleb128 0x8
+	.uleb128 0xf
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0x9
+	.uleb128 0x35
+	.byte	0
+	.uleb128 0x49
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0xa
+	.uleb128 0x24
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0xb
+	.uleb128 0x3e
+	.uleb128 0xb
+	.uleb128 0x3
+	.uleb128 0x8
+	.byte	0
+	.byte	0
+	.uleb128 0xb
+	.uleb128 0x5
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0x8
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0xc
+	.uleb128 0x2e
 	.byte	0x1
-	.byte	0x52
-	.byte	0x1
-	.byte	0x10
-	.byte	0x6
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0xa
+	.uleb128 0x2117
+	.uleb128 0xc
 	.byte	0
 	.byte	0
-	.byte	0x2
-	.byte	0x2e
-	.byte	0x1
-	.byte	0x3f
-	.byte	0xc
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x27
-	.byte	0xc
-	.byte	0x11
-	.byte	0x1
-	.byte	0x12
-	.byte	0x1
-	.byte	0x40
-	.byte	0xa
-	.byte	0x97,0x42
-	.byte	0xc
-	.byte	0x1
-	.byte	0x13
+	.uleb128 0xd
+	.uleb128 0x5
 	.byte	0
-	.byte	0
-	.byte	0x3
-	.byte	0x5
-	.byte	0
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0xa
-	.byte	0
-	.byte	0
-	.byte	0x4
-	.byte	0x5
-	.byte	0
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0x6
-	.byte	0
-	.byte	0
-	.byte	0x5
-	.byte	0x34
-	.byte	0
-	.byte	0x3
-	.byte	0xe
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0x6
-	.byte	0
-	.byte	0
-	.byte	0x6
-	.byte	0x34
-	.byte	0
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0x2
-	.byte	0x6
-	.byte	0
-	.byte	0
-	.byte	0x7
-	.byte	0xf
-	.byte	0
-	.byte	0xb
-	.byte	0xb
-	.byte	0
-	.byte	0
-	.byte	0x8
-	.byte	0x24
-	.byte	0
-	.byte	0xb
-	.byte	0xb
-	.byte	0x3e
-	.byte	0xb
-	.byte	0x3
-	.byte	0x8
-	.byte	0
-	.byte	0
-	.byte	0x9
-	.byte	0xf
-	.byte	0
-	.byte	0xb
-	.byte	0xb
-	.byte	0x49
-	.byte	0x13
-	.byte	0
-	.byte	0
-	.byte	0xa
-	.byte	0x35
-	.byte	0
-	.byte	0x49
-	.byte	0x13
-	.byte	0
-	.byte	0
-	.byte	0xb
-	.byte	0x2e
-	.byte	0x1
-	.byte	0x3f
-	.byte	0xc
-	.byte	0x3
-	.byte	0x8
-	.byte	0x3a
-	.byte	0xb
-	.byte	0x3b
-	.byte	0xb
-	.byte	0x27
-	.byte	0xc
-	.byte	0x11
-	.byte	0x1
-	.byte	0x12
-	.byte	0x1
-	.byte	0x40
-	.byte	0xa
-	.byte	0x97,0x42
-	.byte	0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0xa
 	.byte	0
 	.byte	0
 	.byte	0
@@ -970,7 +964,7 @@ M7002_datatrans_index:
 	.llong	.LFE0
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6e
 	.byte	0x9f
 	.llong	0
@@ -1049,7 +1043,7 @@ M7002_datatrans_index:
 	.llong	.LVL1
 	.2byte	0x13
 	.byte	0x8c
-	.byte	0
+	.sleb128 0
 	.byte	0x38
 	.byte	0x26
 	.byte	0x4e
@@ -1057,7 +1051,7 @@ M7002_datatrans_index:
 	.byte	0x24
 	.byte	0x1a
 	.byte	0x8a
-	.byte	0
+	.sleb128 0
 	.byte	0x34
 	.byte	0x26
 	.byte	0x40
@@ -1087,7 +1081,7 @@ M7002_datatrans_index:
 	.llong	.LFE0
 	.2byte	0x6
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6e
 	.byte	0x32
 	.byte	0x25
@@ -1104,7 +1098,7 @@ M7002_datatrans_index:
 	.llong	.LVL4
 	.2byte	0x5
 	.byte	0x11
-	.byte	0x80,0x80,0x7c
+	.sleb128 -65536
 	.byte	0x9f
 	.llong	.LVL4
 	.llong	.LFE0
@@ -1121,7 +1115,7 @@ M7002_datatrans_index:
 	.llong	.LVL27
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6e
 	.byte	0x9f
 	.llong	.LVL27
@@ -1135,20 +1129,20 @@ M7002_datatrans_index:
 	.llong	.LVL21
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x20
+	.uleb128 0x20
 	.llong	.LVL21
 	.llong	.LVL27
 	.2byte	0x5
 	.byte	0xf3
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x90
-	.byte	0x20
+	.uleb128 0x20
 	.byte	0x9f
 	.llong	.LVL27
 	.llong	.LFE1
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x20
+	.uleb128 0x20
 	.llong	0
 	.llong	0
 .LLST7:
@@ -1156,27 +1150,27 @@ M7002_datatrans_index:
 	.llong	.LVL20
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x22
+	.uleb128 0x22
 	.llong	.LVL20
 	.llong	.LVL27
 	.2byte	0x5
 	.byte	0xf3
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x90
-	.byte	0x22
+	.uleb128 0x22
 	.byte	0x9f
 	.llong	.LVL27
 	.llong	.LVL28
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x22
+	.uleb128 0x22
 	.llong	.LVL28
 	.llong	.LFE1
 	.2byte	0x5
 	.byte	0xf3
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x90
-	.byte	0x22
+	.uleb128 0x22
 	.byte	0x9f
 	.llong	0
 	.llong	0
@@ -1242,7 +1236,7 @@ M7002_datatrans_index:
 	.llong	.LVL16
 	.2byte	0x13
 	.byte	0x8c
-	.byte	0
+	.sleb128 0
 	.byte	0x38
 	.byte	0x26
 	.byte	0x4e
@@ -1250,7 +1244,7 @@ M7002_datatrans_index:
 	.byte	0x24
 	.byte	0x1a
 	.byte	0x8a
-	.byte	0
+	.sleb128 0
 	.byte	0x34
 	.byte	0x26
 	.byte	0x40
@@ -1292,7 +1286,7 @@ M7002_datatrans_index:
 	.llong	.LVL22
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x20
+	.uleb128 0x20
 	.llong	.LVL22
 	.llong	.LVL27
 	.2byte	0x1
@@ -1306,7 +1300,7 @@ M7002_datatrans_index:
 	.llong	.LVL30
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x26
+	.uleb128 0x26
 	.llong	.LVL30
 	.llong	.LFE1
 	.2byte	0x1
@@ -1322,7 +1316,7 @@ M7002_datatrans_index:
 	.llong	.LFE2
 	.2byte	0x4
 	.byte	0xf3
-	.byte	0x1
+	.uleb128 0x1
 	.byte	0x6e
 	.byte	0x9f
 	.llong	0
@@ -1332,14 +1326,14 @@ M7002_datatrans_index:
 	.llong	.LVL37
 	.2byte	0x2
 	.byte	0x90
-	.byte	0x20
+	.uleb128 0x20
 	.llong	.LVL37
 	.llong	.LFE2
 	.2byte	0x5
 	.byte	0xf3
-	.byte	0x2
+	.uleb128 0x2
 	.byte	0x90
-	.byte	0x20
+	.uleb128 0x20
 	.byte	0x9f
 	.llong	0
 	.llong	0
@@ -1393,7 +1387,7 @@ M7002_datatrans_index:
 	.llong	.LVL35
 	.2byte	0x13
 	.byte	0x8c
-	.byte	0
+	.sleb128 0
 	.byte	0x38
 	.byte	0x26
 	.byte	0x4e
@@ -1401,7 +1395,7 @@ M7002_datatrans_index:
 	.byte	0x24
 	.byte	0x1a
 	.byte	0x8a
-	.byte	0
+	.sleb128 0
 	.byte	0x34
 	.byte	0x26
 	.byte	0x40
@@ -1461,6 +1455,40 @@ M7002_datatrans_index:
 	.llong	0
 	.section	.debug_line,"",@progbits
 .Ldebug_line0:
-	.section	.debug_str,"",@progbits
+	.section	.debug_str,"MS",@progbits,1
+.LASF7:
+	.string	"M7002_mat_transpose"
+.LASF5:
+	.string	"long unsigned int"
+.LASF6:
+	.string	"M7002_datatrans"
+.LASF17:
+	.string	"M7002_datatrans_index"
+.LASF2:
+	.string	"word0"
+.LASF14:
+	.string	"GNU C 4.7.0"
+.LASF15:
+	.string	"../datatransfer.c"
+.LASF10:
+	.string	"frame"
 .LASF0:
+	.string	"bytes"
+.LASF12:
+	.string	"index"
+.LASF11:
+	.string	"elem"
+.LASF1:
 	.string	"address"
+.LASF9:
+	.string	"byte0"
+.LASF8:
+	.string	"flag"
+.LASF4:
+	.string	"byte1"
+.LASF13:
+	.string	"byte"
+.LASF3:
+	.string	"word_n"
+.LASF16:
+	.string	"/cygdrive/e/project/\351\241\271\347\233\256/ft-m7002-function-base/Filtering and convolution/DSPF_sp_fir_gen_r2/test/vector_c/Debug"

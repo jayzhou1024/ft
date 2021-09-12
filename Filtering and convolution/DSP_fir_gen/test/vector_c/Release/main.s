@@ -117,7 +117,7 @@ get_time_vc:
 	;; call to GetTimerCount occurs, with return value
 		SSTDW		R7:R6, *+AR15[3]
 .L6:
-		SBR		DSP_fir_gen_vc4
+		SBR		DSP_fir_gen_vc
 	|	SMOV.M2		R32, R16
 	|	SMOV.M1		R31, R18
 		SMOV.M1		R10, R30
@@ -130,7 +130,7 @@ get_time_vc:
 	|	SMOVIH4.L		.L7, R63
 		SMVAAGH.M1		OR8, R11:R10
 	|	SMVAAGH.M2		AR8, R15:R14
-	;; call to DSP_fir_gen_vc4 occurs, with return value
+	;; call to DSP_fir_gen_vc occurs
 		SNOP		2
 .L7:
 		SBR		GetTimerCount
@@ -165,7 +165,7 @@ get_time_vc:
 		SNOP		1
 	;; return occurs
 	.size	get_time_vc, .-get_time_vc
-	.section	.const,"a",@progbits
+	.section	.const.str1.1,"aMS",@progbits,1
 .LC0:
 	.string	"Result Failure (r_i)  "
 .LC1:
@@ -177,53 +177,53 @@ get_time_vc:
 	.global	main
 	.type	main, @function
 main:
-		SMOVIL		-160, R6
+		SMOVIL		-136, R6
 		SMOVIL		-1, R7
 		SADDA.M2		R7:R6,AR15,AR15
 		SMVAAGL.M1		AR14, R7:R6
 	|	SMOVIL		1075052548, R46
 		SMOVIH		1075052548, R46
-	|	SSTDW		R63:R62, *+AR15[18]
+	|	SSTDW		R63:R62, *+AR15[15]
 		SMVAAGH.M2		AR14, R7:R6
 	|	SMOVIL		0, R47
-	|	SSTDW		R41:R40, *+AR15[13]
+	|	SSTDW		R41:R40, *+AR15[10]
 		SMVAGA36.M1		R47:R46, AR10
 	|	SMOVIL		1075052544, R42
 		SMOVIL		1, R44
-		SSTDW		R7:R6, *+AR15[19]
+		SSTDW		R7:R6, *+AR15[16]
 		SMVAAGL.M2		OR9, R7:R6
-	|	SSTDW		R39:R38, *+AR15[12]
+	|	SSTDW		R39:R38, *+AR15[9]
 		SMOVIH		1075052544, R42
 		SMVAAGH.M2		OR9, R7:R6
 	|	SMOVIL		0, R43
-		SSTDW		R37:R36, *+AR15[11]
-		SSTDW		R7:R6, *+AR15[17]
+		SSTDW		R37:R36, *+AR15[8]
+		SSTDW		R7:R6, *+AR15[14]
 		SMVAAGL.M2		OR8, R7:R6
 		SNOP		1
 		SMVAAGH.M2		OR8, R7:R6
-	|	SSTDW		R35:R34, *+AR15[10]
-		SSTDW		R33:R32, *+AR15[9]
+	|	SSTDW		R35:R34, *+AR15[7]
+		SSTDW		R33:R32, *+AR15[6]
 		SNOP		2
-		SSTDW		R7:R6, *+AR15[16]
+		SSTDW		R7:R6, *+AR15[13]
 		SMVAAGL.M2		AR9, R7:R6
-	|	SSTDW		R31:R30, *+AR15[8]
+	|	SSTDW		R31:R30, *+AR15[5]
 		SNOP		1
 		SMVAAGH.M2		AR9, R7:R6
 		SNOP		1
-		SSTDW		R7:R6, *+AR15[15]
+		SSTDW		R7:R6, *+AR15[12]
 		SMVAAGL.M2		AR8, R7:R6
 		SNOP		1
 		SMVAAGH.M2		AR8, R7:R6
 		SNOP		1
-		SSTDW		R7:R6, *+AR15[14]
+		SSTDW		R7:R6, *+AR15[11]
 		SSTW		R44, *AR10
 	|	SMVAGA36.M2		R43:R42, AR10
 		SNOP		2
 		SSTW		R44, *AR10
 	|	SMVAGA36.M2		R43:R42, AR10
-		SSTW		R44, *+AR15[15]
+		SSTW		R44, *+AR15[9]
 		SNOP		2
-		SLDW		*+AR15[15], R0
+		SLDW		*+AR15[9], R0
 		SNOP		5
 	[!R0]	SBR		.L12
 		SNOP		6
@@ -231,9 +231,9 @@ main:
 .L17:
 		SLDW		*AR10, R42
 		SNOP		5
-		SSTW		R42, *+AR15[15]
+		SSTW		R42, *+AR15[9]
 		SNOP		2
-		SLDW		*+AR15[15], R1
+		SLDW		*+AR15[9], R1
 		SNOP		5
 	[R1]	SBR		.L17
 		SNOP		6
@@ -245,107 +245,88 @@ main:
 		SMOVIH		.L23, R62
 		SMOVIH4.L		.L23, R63
 		SMOVIL		0, R10
-		SMOVIL.L		hAddr_DDR, R36
+		SMOVIL.L		.LC2, R32
 	;; call to SetTimerPeriod occurs, with return value
-		SMOVIL		8, R34
+		SMOVIL		8, R30
 .L23:
 		SMOVIL.L		xAddr_DDR, R42
+		SMOVIL.L		hAddr_DDR, R46
+		SMOVIH.L		hAddr_DDR, R46
+		SMOVIH4.L		hAddr_DDR, R47
 		SBR		TimerStart
 	|	SMOVIH.L		xAddr_DDR, R42
+	|	SMVAGA36.M2		R47:R46, AR14
 		SMOVIL		.L24, R62
 		SMOVIH		.L24, R62
 		SMOVIH4.L		.L24, R63
 		SMOVIH4.L		xAddr_DDR, R43
-		SMVAGA36.M2		R43:R42, OR9
+		SMVAGA36.M2		R43:R42, AR9
 	|	SMOVIL		0, R10
 	;; call to TimerStart occurs, with return value
-		SMOVIL		0, R35
+		SMOVIL		0, R31
 .L24:
-		SMOVIL.L		time_cn, R44
-		SMOVIL.L		time_vc, R46
-		SMOVIH.L		time_cn, R44
-		SMOVIH4.L		time_cn, R45
+		SMOVIH4.L		.LC0, R43
+		SMOVIL.L		.LC0, R42
 		SBR		GetTimerCount
-	|	SMOVIH.L		time_vc, R46
-	|	SMVAGA36.M2		R45:R44, AR9
-		SMOVIL		.L25, R62
+	|	SMOVIH.L		.LC0, R42
+		SMVAGA36.M2		R43:R42, OR9
+	|	SMOVIL		.L25, R62
 		SMOVIH		.L25, R62
 		SMOVIH4.L		.L25, R63
-		SMOVIH4.L		time_vc, R47
-		SMVAGA36.M2		R47:R46, AR14
-	|	SMOVIL		0, R10
+		SMOVIL		0, R10
+		SMOVIL		4, R35
 	;; call to GetTimerCount occurs, with return value
-		SMOVIL		4, R39
+		SMOVIH.L		.LC2, R32
 .L25:
 		SBR		GetTimerCount
 	|	SMOVIL		0, R10
 		SMOVIL		.L26, R62
 		SMOVIH		.L26, R62
 		SMOVIH4.L		.L26, R63
-		SMOVIH.L		hAddr_DDR, R36
-		SMOVIH4.L		hAddr_DDR, R37
+		SMOVIH4.L		.LC2, R33
 	;; call to GetTimerCount occurs, with return value
-		SNOP		1
+		SNOP		2
 .L26:
 .L11:
-		SADD.M2		15,R39,R2
-	|	SADD.M1		14,R39,R3
-	|	SMOVIL		4, R38
-		SSHFAR		4, R2, R8
-	|	SSTW		R3, *+AR15[13]
-		SSHFAR		31, R2, R9
-		SSHFLR		27, R8, R45
-		SSHFLL		5, R9, R12
-		SSHFLL		2, R8, R43
-		SOR		R12, R45, R13
-		SSHFLL		5, R8, R14
-	|	SSTW		R13, *+AR15[11]
-		SSHFAR		31, R43, R40
-	|	SSTW		R14, *+AR15[12]
-		SSHFLR		27, R43, R10
-		SSHFLL		5, R40, R11
-		SOR		R11, R10, R40
-		SSHFLL		7, R8, R41
+		SADD.M2		15,R35,R36
+	|	SSHFLL		1, R35, R41
+	|	SADD.M1		14,R35,R40
+		SSHFAR		4, R36, R2
+		SSHFLL		1, R2, R3
+		SSHFAR		31, R3, R39
+		SSHFLR		27, R3, R8
+		SSHFLL		5, R39, R9
+		SOR		R9, R8, R39
+		SSHFLL		6, R2, R36
+		SMOVIL		4, R34
 .L15:
-		SLDW		*+AR15[13], R47
-		SNOP		5
-		SADD.M2		R38,R47,R15
-		SSHFAR		4, R15, R16
-		SADD.M2		1,R16,R17
-		SSHFAR		31, R17, R18
-		SSHFLL		5, R18, R20
+		SADD.M2		R34,R40,R43
+		SSHFAR		4, R43, R10
+		SSHFAR		31, R43, R11
+		SSHFLL		5, R11, R13
 		SBR		vmalloc
-	|	SSHFLR		27, R17, R19
+	|	SSHFLR		27, R10, R12
 		SMOVIL		.L27, R62
 		SMOVIH		.L27, R62
 		SMOVIH4.L		.L27, R63
-		SOR		R20, R19, R21
-		SSHFLL		5, R17, R22
-	|	SMOV.M2		R21, R11
-	|	SSTW		R21, *+AR15[9]
+		SOR		R13, R12, R11
+		SSHFLL		5, R10, R37
 	;; call to vmalloc occurs, with return value
-		SMOV.M2		R22, R10
-	|	SSTW		R22, *+AR15[10]
+		SMOV.M2		R37, R10
 .L27:
 		SBR		vmalloc
-	|	SMOV.M2		R10, R23
-	|	SMOV.M1		R40, R11
-		SMOV.M2		R23, R30
-	|	SMOV.M1		R41, R10
+	|	SMVAGA36.M2		R11:R10, AR8
+	|	SMOV.M1		R36, R10
+		SMOV.M1		R39, R11
 	|	SMOVIL		.L28, R62
 		SMOVIH		.L28, R62
 		SMOVIH4.L		.L28, R63
-		SSHFAR		31, R23, R31
-		SMVAGA36.M2		R31:R30, AR8
 	;; call to vmalloc occurs, with return value
-		SNOP		1
+		SNOP		3
 .L28:
-		SMOV.M2		R10, R24
+		SMVAGA36.M2		R11:R10, OR8
 	|	SMOVIL.L		rAddr_DDR_cn, R10
-		SMOV.M2		R24, R32
-	|	SSHFAR		31, R24, R33
 		SMOVIL		0, R12
-	|	SMVAGA36.M2		R33:R32, OR8
 		SBR		memset
 	|	SMOVIL		192, R14
 		SMOVIL		.L29, R62
@@ -356,10 +337,10 @@ main:
 	;; call to memset occurs, with return value
 		SMOVIH4.L		rAddr_DDR_cn, R11
 .L29:
-		SMOVIL		1024, R14
+		SMOVIL		0, R15
 		SMOVIL.L		rAddr_DDR_vc, R10
 		SBR		memset
-	|	SMOVIL		0, R15
+	|	SMOVIL		1024, R14
 		SMOVIL		.L30, R62
 		SMOVIH		.L30, R62
 		SMOVIH4.L		.L30, R63
@@ -368,99 +349,89 @@ main:
 	;; call to memset occurs, with return value
 		SMOVIH4.L		rAddr_DDR_vc, R11
 .L30:
-		SLDW		*+AR15[10], R25
-	|	SMVAAA.M1		OR9, AR10
+		SBR		M7002_datatrans
+	|	SLDDW		*AR9, R11:R10
+	|	SMOV.M1		R37, R14
 	|	SMVAAGL.M2		AR8, R13:R12
-		SLDW		*+AR15[9], R26
-	|	SBR		M7002_datatrans
-		SLDDW		*AR10, R11:R10
-	|	SMVAAGH.M2		AR8, R13:R12
-	|	SMOVIL		.L31, R62
-		SMOVIH		.L31, R62
+		SMOVIL		.L31, R62
+		SMVAAGH.M2		AR8, R13:R12
+	|	SMOVIH		.L31, R62
 		SMOVIH4.L		.L31, R63
-		SNOP		1
-		SMOV.M2		R25, R14
-	;; call to M7002_datatrans occurs, with return value
-		SMOV.M2		R26, R15
+	;; call to M7002_datatrans occurs
+		SNOP		3
 .L31:
 		SBR		M7002_datatrans
-	|	SMOV.M2		R40, R15
-	|	SMOV.M1		R41, R14
+	|	SMOV.M1		R36, R14
 	|	SMOVIH4.L		rAddr_DDR_vc+32, R11
-		SMVAAGL.M2		OR8, R13:R12
-	|	SMOVIL		.L32, R62
-		SMOVIH		.L32, R62
+	|	SMVAAGL.M2		OR8, R13:R12
+		SMOVIL		.L32, R62
 		SMVAAGH.M2		OR8, R13:R12
-	|	SMOVIH4.L		.L32, R63
+	|	SMOVIH		.L32, R62
+		SMOVIH4.L		.L32, R63
 		SMOVIL.L		rAddr_DDR_vc+32, R10
 		SMOVIH.L		rAddr_DDR_vc+32, R10
-	;; call to M7002_datatrans occurs, with return value
+	;; call to M7002_datatrans occurs
 		SNOP		1
 .L32:
-		SMVAGA36.M2		R37:R36, AR10
-	|	SMOVIL		1074790400, R12
 		SBR		M7002_datatrans
-	|	SMOVIH		1074790400, R12
-		SLDDW		*AR10, R11:R10
-	|	SMOVIL		.L33, R62
+	|	SLDDW		*AR14, R11:R10
+	|	SMOVIL		0, R13
+		SMOVIL		.L33, R62
 		SMOVIH		.L33, R62
 		SMOVIH4.L		.L33, R63
-		SMOVIL		0, R13
 		SMOVIL		32, R14
-	;; call to M7002_datatrans occurs, with return value
-		SNOP		1
+		SMOVIL		1074790400, R12
+	;; call to M7002_datatrans occurs
+		SMOVIH		1074790400, R12
 .L33:
-		SMVAAA.M2		OR9, AR10
-	|	SMOVIL.L		rAddr_DDR_cn+32, R14
-	|	SMOV.M1		R38, R16
-		SMOV.M1		R39, R18
-	|	SMOVIH.L		rAddr_DDR_cn+32, R14
-		SLDDW		*AR10, R11:R10
-	|	SMVAGA36.M2		R37:R36, AR10
-	|	SMOVIH4.L		rAddr_DDR_cn+32, R15
 		SBR		get_time_cn
-		SLDDW		*AR10, R13:R12
+	|	SLDDW		*AR9, R11:R10
+	|	SMOV.M2		R34, R16
+	|	SMOV.M1		R35, R18
+	|	SMOVIH4.L		rAddr_DDR_cn+32, R15
+		SLDDW		*AR14, R13:R12
 	|	SMOVIL		.L34, R62
 		SMOVIH		.L34, R62
 		SMOVIH4.L		.L34, R63
+		SMOVIL.L		rAddr_DDR_cn+32, R14
+		SMOVIH.L		rAddr_DDR_cn+32, R14
 	;; call to get_time_cn occurs, with return value
-		SNOP		3
+		SNOP		1
 .L34:
 		SBR		get_time_vc
-	|	SSTW		R10, *AR9
-	|	SMOV.M2		R38, R16
-	|	SMOV.M1		R39, R18
+	|	SMOV.M2		R34, R16
+	|	SMOV.M1		R35, R18
 	|	SMOVIL		0, R13
-		SMVAAGL.M1		OR8, R15:R14
-	|	SMVAAGL.M2		AR8, R11:R10
+		SMOV.M1		R10, R38
+	|	SMVAAGL.M2		OR8, R15:R14
 	|	SMOVIL		.L35, R62
-		SMOVIH		.L35, R62
+		SMVAAGL.M1		AR8, R11:R10
+	|	SMOVIH		.L35, R62
 		SMVAAGH.M1		OR8, R15:R14
-	|	SMVAAGH.M2		AR8, R11:R10
 	|	SMOVIH4.L		.L35, R63
-		SMOVIL		1074790400, R12
+		SMVAAGH.M1		AR8, R11:R10
+	|	SMOVIL		1074790400, R12
 		SMOVIH		1074790400, R12
 	;; call to get_time_vc occurs, with return value
 		SNOP		1
 .L35:
 		SBR		M7002_datatrans
-	|	SLDW		*+AR15[12], R14
+	|	SMOV.M2		R41, R14
 	|	SMOVIH4.L		rAddr_DDR_vc+32, R13
-		SLDW		*+AR15[11], R15
+	|	SMOV.M1		R10, R37
+		SMVAAGL.M2		OR8, R11:R10
 	|	SMOVIL		.L36, R62
-		SSTW		R10, *AR14
-	|	SMVAAGL.M2		OR8, R11:R10
-	|	SMOVIH		.L36, R62
-		SMOVIH4.L		.L36, R63
+		SMOVIH		.L36, R62
 		SMVAAGH.M2		OR8, R11:R10
-	|	SMOVIL.L		rAddr_DDR_vc+32, R12
+	|	SMOVIH4.L		.L36, R63
+		SMOVIL.L		rAddr_DDR_vc+32, R12
 		SMOVIH.L		rAddr_DDR_vc+32, R12
-	;; call to M7002_datatrans occurs, with return value
+	;; call to M7002_datatrans occurs
 		SNOP		1
 .L36:
 		SMOVIL.L		rAddr_DDR_cn+32, R12
-	|	SMOV.M2		R34, R14
-	|	SMOV.M1		R35, R15
+	|	SMOV.M2		R30, R14
+	|	SMOV.M1		R31, R15
 		SMOVIL.L		rAddr_DDR_vc+32, R10
 		SBR		memcmp
 	|	SMOVIH.L		rAddr_DDR_cn+32, R12
@@ -476,33 +447,27 @@ main:
 	[!R0]	SBR		.L13
 		SNOP		6
 	;; condjump to .L13 occurs
-		SMOVIL.L		.LC0, R42
-		SMOVIH.L		.LC0, R42
 		SBR		printf
-	|	SMOVIH4.L		.LC0, R43
-		SSTDW		R43:R42, *+AR15[1]
-	|	SMOVIL		.L38, R62
-		SMOVIH		.L38, R62
+	|	SMVAAGL.M2		OR9, R15:R14
+		SMOVIL		.L38, R62
+		SMVAAGH.M2		OR9, R15:R14
+	|	SMOVIH		.L38, R62
 		SMOVIH4.L		.L38, R63
+		SSTDW		R15:R14, *+AR15[1]
 	;; call to printf occurs, with return value
-		SNOP		3
+		SNOP		2
 .L38:
-		SLDW		*AR9, R27
-	|	SMOVIL.L		.LC2, R46
-		SLDW		*AR14, R28
-	|	SMOVIH.L		.LC2, R46
-		SMOVIH4.L		.LC2, R47
-	|	SSTW		R38, *+AR15[5]
-	|	SADD.M2		4,R38,R38
-		SNOP		4
-		SSTDW		R47:R46, *+AR15[1]
+		SSTW		R34, *+AR15[5]
+	|	SADD.M2		4,R34,R34
+		SSTDW		R33:R32, *+AR15[1]
+		SNOP		2
 		SBR		printf
-	|	SSTW		R27, *+AR15[6]
-		SMOVIL		.L39, R62
+	|	SSTW		R35, *+AR15[4]
+		SSTW		R38, *+AR15[6]
+	|	SMOVIL		.L39, R62
 		SMOVIH		.L39, R62
-		SSTW		R28, *+AR15[7]
-	|	SMOVIH4.L		.L39, R63
-		SSTW		R39, *+AR15[4]
+		SMOVIH4.L		.L39, R63
+		SSTW		R37, *+AR15[7]
 	;; call to printf occurs, with return value
 		SNOP		2
 .L39:
@@ -512,7 +477,7 @@ main:
 		SMVAAGH.M2		AR8, R11:R10
 	|	SMOVIH		.L40, R62
 		SMOVIH4.L		.L40, R63
-	;; call to vfree occurs, with return value
+	;; call to vfree occurs
 		SNOP		3
 .L40:
 		SBR		vfree
@@ -521,85 +486,80 @@ main:
 		SMVAAGH.M2		OR8, R11:R10
 	|	SMOVIH		.L41, R62
 		SMOVIH4.L		.L41, R63
-	;; call to vfree occurs, with return value
+	;; call to vfree occurs
 		SNOP		3
 .L41:
-		SMOVIL		20, R29
-		SEQ		R29, R38, R1
+		SMOVIL		20, R47
+		SEQ		R47, R34, R1
 	[!R1]	SBR		.L15
 		SNOP		6
 	;; condjump to .L15 occurs
 .L21:
-		SADD.M2		4,R39,R39
-	|	SMOVIL		68, R33
-	|	SADD.M1		8,R34,R30
-		SEQ		R33, R39, R2
+		SADD.M2		4,R35,R35
+	|	SMOVIL		68, R18
+	|	SADD.M1		8,R30,R15
+		SEQ		R18, R35, R2
 	[!R2]	SBR		.L11
-	|	SLTU		R30, R34, R31
-	|	SMOV.M2		R30, R34
-		SADD.M2		R35,R31,R35
+	|	SLTU		R15, R30, R16
+	|	SMOV.M2		R15, R30
+		SADD.M2		R31,R16,R31
 		SNOP		5
 	;; condjump to .L11 occurs
-		SLDDW		*+AR15[14], R7:R6
-		SLDDW		*+AR15[18], R63:R62
-		SLDDW		*+AR15[8], R31:R30
-		SLDDW		*+AR15[9], R33:R32
-		SLDDW		*+AR15[10], R35:R34
+		SLDDW		*+AR15[11], R7:R6
+		SLDDW		*+AR15[15], R63:R62
+		SLDDW		*+AR15[5], R31:R30
+		SLDDW		*+AR15[6], R33:R32
+		SLDDW		*+AR15[7], R35:R34
 		SNOP		1
 		SMVAGA36.M2		R7:R6, AR8
 		SMVCGC.L		R63, BRReg
 		SNOP		2
-		SLDDW		*+AR15[15], R7:R6
-		SLDDW		*+AR15[11], R37:R36
-		SLDDW		*+AR15[12], R39:R38
-		SLDDW		*+AR15[13], R41:R40
+		SLDDW		*+AR15[12], R7:R6
+		SLDDW		*+AR15[8], R37:R36
+		SLDDW		*+AR15[9], R39:R38
+		SLDDW		*+AR15[10], R41:R40
 		SNOP		2
 		SMVAGA36.M2		R7:R6, AR9
 		SNOP		2
-		SLDDW		*+AR15[16], R7:R6
+		SLDDW		*+AR15[13], R7:R6
 		SNOP		5
 		SMVAGA36.M2		R7:R6, OR8
-	|	SLDDW		*+AR15[17], R7:R6
+	|	SLDDW		*+AR15[14], R7:R6
 		SNOP		5
 		SMVAGA36.M2		R7:R6, OR9
-	|	SLDDW		*+AR15[19], R7:R6
+	|	SLDDW		*+AR15[16], R7:R6
 		SNOP		2
 		SBR		R62
 		SNOP		2
 		SMVAGA36.M2		R7:R6, AR14
-	|	SMOVIL		160, R6
+	|	SMOVIL		136, R6
 		SMOVIL		0, R7
 		SADDA.M2		R7:R6,AR15,AR15
 		SNOP		1
 	;; return occurs
 .L13:
-		SMOVIL.L		.LC1, R44
-		SMOVIH.L		.LC1, R44
+		SMOVIL.L		.LC1, R46
+		SMOVIH4.L		.LC1, R47
 		SBR		printf
-	|	SMOVIH4.L		.LC1, R45
-		SSTDW		R45:R44, *+AR15[1]
+	|	SMOVIH.L		.LC1, R46
+		SSTDW		R47:R46, *+AR15[1]
 	|	SMOVIL		.L42, R62
 		SMOVIH		.L42, R62
 		SMOVIH4.L		.L42, R63
 	;; call to printf occurs, with return value
 		SNOP		3
 .L42:
-		SLDW		*AR9, R27
-	|	SMOVIL.L		.LC2, R46
-		SLDW		*AR14, R28
-	|	SMOVIH.L		.LC2, R46
-		SMOVIH4.L		.LC2, R47
-	|	SSTW		R38, *+AR15[5]
-	|	SADD.M2		4,R38,R38
-		SNOP		4
-		SSTDW		R47:R46, *+AR15[1]
+		SSTW		R34, *+AR15[5]
+	|	SADD.M2		4,R34,R34
+		SSTDW		R33:R32, *+AR15[1]
+		SNOP		2
 		SBR		printf
-	|	SSTW		R27, *+AR15[6]
-		SMOVIL		.L43, R62
+	|	SSTW		R35, *+AR15[4]
+		SSTW		R38, *+AR15[6]
+	|	SMOVIL		.L43, R62
 		SMOVIH		.L43, R62
-		SSTW		R28, *+AR15[7]
-	|	SMOVIH4.L		.L43, R63
-		SSTW		R39, *+AR15[4]
+		SMOVIH4.L		.L43, R63
+		SSTW		R37, *+AR15[7]
 	;; call to printf occurs, with return value
 		SNOP		2
 .L43:
@@ -609,7 +569,7 @@ main:
 		SMVAAGH.M2		AR8, R11:R10
 	|	SMOVIH		.L44, R62
 		SMOVIH4.L		.L44, R63
-	;; call to vfree occurs, with return value
+	;; call to vfree occurs
 		SNOP		3
 .L44:
 		SBR		vfree
@@ -618,11 +578,11 @@ main:
 		SMVAAGH.M2		OR8, R11:R10
 	|	SMOVIH		.L45, R62
 		SMOVIH4.L		.L45, R63
-	;; call to vfree occurs, with return value
+	;; call to vfree occurs
 		SNOP		3
 .L45:
-		SMOVIL		20, R29
-		SEQ		R29, R38, R1
+		SMOVIL		20, R47
+		SEQ		R47, R34, R1
 	[!R1]	SBR		.L15
 		SNOP		6
 	;; condjump to .L15 occurs
@@ -630,8 +590,6 @@ main:
 		SNOP		6
 	;; jump to .L21 occurs
 	.size	main, .-main
-	.common	time_vc,4,4
-	.common	time_cn,4,4
 	.global	ptr_r_vc
 	.section	.rodata,"a",@progbits
 	.align	3

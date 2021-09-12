@@ -5,33 +5,15 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <string.h>
-
 #define NH  (16)
 #define NR  (64)
 #define NX  (80)  /* NX = NH + NR */
 #define PAD (16)
-void DSP_fir_gen_cn (const short  *x,const short * h,short* r, int nh,int nr);
-void DSP_fir_gen_vc (
-    hvector signed short *x,   
-    signed short *h,    
-    hvector signed short  *r,
-    int nh,
-    int nr
-);
-unsigned long get_time_vc(hvector signed short *x,   
-    signed short *h,    
-    hvector signed short *r,
-    int nh,
-    int nr
-	);
-unsigned long get_time_cn(
-    const short  *x,
-    const short * h,    
-    short       * r,    
-    int nh,                     
-    int nr                     
-);
-const short x[NX + 2*PAD] =
+void DSP_fir_gen_cn (const short  *x, const short * h, short* r, int nh, int nr);
+void DSP_fir_gen_vc (hvector signed short *x, signed short *h, hvector signed short *r, int nh, int nr);
+unsigned long get_time_vc(hvector signed short *x, signed short *h, hvector signed short *r, int nh, int nr );
+unsigned long get_time_cn(const short *x, const short *h, short *r, int nh, int nr);
+const short x[NX + 2 * PAD] =
 {
      0x032C, -0x544D, -0x6A9D,  0x09C4,  0x5226,  0x6A85,  0x6EDE,  0x1463,     // Beginning
     -0x158A,  0x75BC,  0x7407,  0x160B, -0x0E16, -0x3F82,  0x5F6D, -0x567B,     // PAD
@@ -50,7 +32,7 @@ const short x[NX + 2*PAD] =
     -0x01CC, -0x1F8D, -0x35A1,  0x432A, -0x35C6, -0x0E0F, -0x7FEF,  0x3D0B,     // Ending
      0x3D0B,  0x2B67, -0x7BC7,  0x48D5, -0x1FE3,  0x0ADA,  0x4F02, -0x69DF      // PAD
 };
-const short h[NH + 2*PAD] =
+const short h[NH + 2 * PAD] =
 {
     -0x6226,  0x4E99,  0x52AC, -0x322F, -0x4CF2,  0x34FE, -0x26B0,  0x512C,     // Beginning
     -0x7CE4,  0x59F0, -0x4137, -0x7CBE, -0x7F4B, -0x5471, -0x1A85, -0x0F38,     // PAD
@@ -61,85 +43,83 @@ const short h[NH + 2*PAD] =
     -0x0063, -0x0009, -0x0016,  0x524B, -0x71B5,  0x5C6E,  0x4C92,  0x6100,     // Ending
      0x4ED3,  0x7244, -0x5594, -0x12C8, -0x6F88,  0x6EDB,  0x3284, -0x36A5      // PAD
 };
-volatile short rAddr_DDR_cn[NR + 2*PAD];
-volatile short rAddr_DDR_vc[NR*8];
+short rAddr_DDR_cn[NR + 2 * PAD];
+short rAddr_DDR_vc[NR * 8];
 
 const short * xAddr_DDR = x + PAD;
 const short * hAddr_DDR = h + PAD ;
 short *const ptr_r_cn = rAddr_DDR_cn + PAD;
 short *const ptr_r_vc = rAddr_DDR_vc + PAD;
 void main(){
-    int  *cache=0x040140004;   /*将SM配置成SRAM存储模式*/
-    int  *cache1=0x040140000;
+    int *cache = 0x040140004;   /* 将SM配置成SRAM存储模式 */
+    int *cache1 = 0x040140000;
 	volatile int cache_ok;
-	*cache=0x1;
-	*cache1=0x1;
+	*cache = 0x1;
+	*cache1 = 0x1;
     cache_ok = *cache1 ;
-    while( cache_ok !=0 )
+    while( cache_ok != 0 )
     cache_ok = *cache1 ;
-	/*测试样例变量声明*/
+	/* 测试样例变量声明 */
 	hvector signed short* xAddr,*rAddr;
     /* 计时器初始化 */
     SetTimerPeriod(0, 0xffffffff);
 	TimerStart(0);
-    /*计算访问寄存器用时*/
-    unsigned long time_cn,time_vc; 
-    unsigned long c_time=GetTimerCount(0)-GetTimerCount(0);
+    /* 计算访问寄存器用时 */
+    unsigned long time_cn, time_vc; 
+    unsigned long c_time = GetTimerCount(0) - GetTimerCount(0);
     int i, j, nh, nr;
      /* 测试 */
-	for(nr = 16; nr <= NR; nr += 4) {
-        for(nh = 4; nh <= NH; nh+=4) {
-            int vecx_len = (nh+nr-1+15)/16;  /*申请Addr空间时，保证16字对齐 这里会有越界读(再加1就不会出现)*/
-            int vecr_len = (nr+15)/16;
-            /* 初始化 xAddr、hAddr和rAddr */
-            xAddr = (hvector signed short*)vmalloc(vecx_len*sizeof(hvector signed short));
+	for (nr = 4; nr <= NR; nr += 4) {
+        for (nh = 4; nh <= NH; nh += 4) {
+            int vecx_len = (nh + nr - 1 + 15) >> 4;  /*申请Addr空间时，保证16字对�?这里会有越界�?再加1就不会出�?*/
+            int vecr_len = (nr + 15) >> 4;
+            /* 初始化xAddr、hAddr和rAddr */
+            xAddr = (hvector signed short*)vmalloc(vecx_len * sizeof(hvector signed short));
             /*
                 由于short*short得到的结果为int,若不在计算函数内额外申请内存时，
-                需在计算前在AM内额外申请一倍的内存空间
+                计算前在AM内额外申请一倍的内存空间
             */
-            rAddr = (hvector signed short*)vmalloc(2*vecr_len*sizeof(hvector signed short));
+            rAddr = (hvector signed short*)vmalloc(2 * vecr_len * sizeof(hvector signed short));
             short *hAddr = (short *)0x040100000;
-            /* 初始化r，计算过程都是乘累加，需要保证r初值为0 */
+            /* 初始化r */
 			memset(rAddr_DDR_cn, 0x0000, sizeof(rAddr_DDR_cn));
             memset(rAddr_DDR_vc, 0x0000, sizeof(rAddr_DDR_vc));
             /* 通过DMA方式将源数据从DDR中搬移到AM空间中，调用M7002_datatrans函数实现DMA数据搬移 */ 
-            M7002_datatrans(xAddr_DDR, xAddr, vecx_len*sizeof(hvector signed short));
-            M7002_datatrans(ptr_r_vc, rAddr, 2*vecr_len*sizeof(hvector signed short));
-            M7002_datatrans(hAddr_DDR, hAddr, NH*2);
+            M7002_datatrans(xAddr_DDR, xAddr, vecx_len * sizeof(hvector signed short));
+            M7002_datatrans(ptr_r_vc, rAddr, 2 * vecr_len * sizeof(hvector signed short));
+            M7002_datatrans(hAddr_DDR, hAddr, NH * 2);
             /* 函数时间测量 */
-			time_cn=get_time_cn(xAddr_DDR,hAddr_DDR,ptr_r_cn,nh,nr);
-			time_vc=get_time_vc(xAddr,hAddr,rAddr,nh,nr);
-		    /* 通过DMA方式将rAddr数据从AM中搬移到DDR空间中 */
-            M7002_datatrans(rAddr, ptr_r_vc,nr*2);
+			time_cn = get_time_cn(xAddr_DDR, hAddr_DDR, ptr_r_cn, nh, nr);
+			time_vc = get_time_vc(xAddr, hAddr, rAddr, nh, nr);
+		    /* 通过DMA方式将rAddr数据从AM中搬移到DDR空间 */
+            M7002_datatrans(rAddr, ptr_r_vc,nr * 2);
             /* 精度测试 */
-            int k;
-//            for( k = 0 ;k < nr ; k++){
-//            	printf("%x   %x",ptr_r_vc[k],ptr_r_cn[k]);
-//            }
-            if (memcmp(ptr_r_vc, ptr_r_cn, nr*2)){
+            if (memcmp(ptr_r_vc, ptr_r_cn, nr * 2)) {
                 printf("Result Failure (r_i)  ");
             }     
             else
                 printf("Result Successful (r_i)  ");
-            printf("\tNR = %d\t  NH = %d\t cn_time:%d\t  vc_cycle:%d\t\n", nr, nh,time_cn,time_vc);
+            printf("\tNR = %d\t  NH = %d\t cn_time:%d\t  vc_cycle:%d\t\n", nr, nh, time_cn, time_vc);
             vfree(xAddr);
             vfree(rAddr);
 		}
 	}
 }
-/*测量未优化C语言版本函数 */
-unsigned long get_time_cn(const short* x,const short* h,short* r, int nh,int nr){
-    unsigned long time1,time2;
+/* 测量未优化C语言版本函数 */
+unsigned long get_time_cn(const short* x, const short* h, short* r, int nh,int nr)
+{
+    unsigned long time1, time2;
     time1 = GetTimerCount(0);
-	DSP_fir_gen_cn(x,h,r,nh,nr);
+	DSP_fir_gen_cn(x, h, r, nh, nr);
     time2 = GetTimerCount(0);
-    return time2-time1;
+    return time2 - time1;
 }
-/*测量向量C版本函数 */
-unsigned long get_time_vc(hvector signed short *x,signed short *h,hvector signed short  *r,int nh, int nr){
-        unsigned long time1,time2;
+/* 测量向量C版本函数 */
+unsigned long get_time_vc(hvector signed short *x, signed short *h, hvector signed short *r, int nh, int nr)
+{
+        unsigned long time1, time2;
         time1 = GetTimerCount(0);
-        DSP_fir_gen_vc1(x,h,r,nh,nr);
+        DSP_fir_gen_vc(x, h, r, nh, nr);
         time2 = GetTimerCount(0);
-        return time2-time1;
+        return time2 - time1;
 }

@@ -1,0 +1,846 @@
+	.file	"Timer.c"
+	.section	.text.TimerStart,"ax",@progbits
+	.align	2
+	.global	TimerStart
+	.type	TimerStart, @function
+TimerStart:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-16, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[2]
+		SSTW		R10, *-AR14[5]
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOV.M1		R42, R0
+	[R0]	SBR		.L2
+		SNOP		6
+		SMOVIL		1075576832, R10
+		SMOVIH		1075576832, R10
+		SMOVIL		3, R12
+		SBR		SetConfReg
+		SMOVIL		.L6, R62
+		SMOVIH		.L6, R62
+		SMOVIH4.L		.L6, R63
+		SNOP		4
+.L6:
+.L2:
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOVIL		1, R43
+		SEQ		R43, R42, R42
+		SMOV.M1		R42, R0
+	[!R0]	SBR		.L5
+		SNOP		6
+		SMOVIL		1075642368, R10
+		SMOVIH		1075642368, R10
+		SMOVIL		3, R12
+		SBR		SetConfReg
+		SMOVIL		.L7, R62
+		SMOVIH		.L7, R62
+		SMOVIH4.L		.L7, R63
+		SNOP		4
+.L7:
+.L5:
+		SNOP		1
+.L1:
+		SLDDW		*+AR15[2], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	TimerStart, .-TimerStart
+	.section	.text.TimerHold,"ax",@progbits
+	.align	2
+	.global	TimerHold
+	.type	TimerHold, @function
+TimerHold:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-16, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[2]
+		SSTW		R10, *-AR14[5]
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOV.M1		R42, R0
+	[R0]	SBR		.L9
+		SNOP		6
+		SMOVIL		1075576832, R10
+		SMOVIH		1075576832, R10
+		SMOVIL		1, R12
+		SBR		SetConfReg
+		SMOVIL		.L13, R62
+		SMOVIH		.L13, R62
+		SMOVIH4.L		.L13, R63
+		SNOP		4
+.L13:
+.L9:
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOVIL		1, R43
+		SEQ		R43, R42, R42
+		SMOV.M1		R42, R0
+	[!R0]	SBR		.L12
+		SNOP		6
+		SMOVIL		1075642368, R10
+		SMOVIH		1075642368, R10
+		SMOVIL		1, R12
+		SBR		SetConfReg
+		SMOVIL		.L14, R62
+		SMOVIH		.L14, R62
+		SMOVIH4.L		.L14, R63
+		SNOP		4
+.L14:
+.L12:
+		SNOP		1
+.L8:
+		SLDDW		*+AR15[2], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	TimerHold, .-TimerHold
+	.section	.text.TimerResume,"ax",@progbits
+	.align	2
+	.global	TimerResume
+	.type	TimerResume, @function
+TimerResume:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-16, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[2]
+		SSTW		R10, *-AR14[5]
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOV.M1		R42, R0
+	[R0]	SBR		.L16
+		SNOP		6
+		SMOVIL		1075576832, R10
+		SMOVIH		1075576832, R10
+		SMOVIL		2, R12
+		SBR		SetConfReg
+		SMOVIL		.L20, R62
+		SMOVIH		.L20, R62
+		SMOVIH4.L		.L20, R63
+		SNOP		4
+.L20:
+.L16:
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOVIL		1, R43
+		SEQ		R43, R42, R42
+		SMOV.M1		R42, R0
+	[!R0]	SBR		.L19
+		SNOP		6
+		SMOVIL		1075642368, R10
+		SMOVIH		1075642368, R10
+		SMOVIL		2, R12
+		SBR		SetConfReg
+		SMOVIL		.L21, R62
+		SMOVIH		.L21, R62
+		SMOVIH4.L		.L21, R63
+		SNOP		4
+.L21:
+.L19:
+		SNOP		1
+.L15:
+		SLDDW		*+AR15[2], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	TimerResume, .-TimerResume
+	.section	.text.GetTimerCount,"ax",@progbits
+	.align	2
+	.global	GetTimerCount
+	.type	GetTimerCount, @function
+GetTimerCount:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-16, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[2]
+		SSTW		R10, *-AR14[5]
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOV.M1		R42, R0
+	[R0]	SBR		.L23
+		SNOP		6
+		SMOVIL		1075576840, R10
+		SMOVIH		1075576840, R10
+		SBR		GetConfReg
+		SMOVIL		.L26, R62
+		SMOVIH		.L26, R62
+		SMOVIH4.L		.L26, R63
+		SNOP		4
+.L26:
+		SMOV.M1		R10, R42
+		SBR		.L24
+		SNOP		6
+.L23:
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOVIL		1, R43
+		SEQ		R43, R42, R42
+		SMOV.M1		R42, R0
+	[!R0]	SBR		.L25
+		SNOP		6
+		SMOVIL		1075642376, R10
+		SMOVIH		1075642376, R10
+		SBR		GetConfReg
+		SMOVIL		.L27, R62
+		SMOVIH		.L27, R62
+		SMOVIH4.L		.L27, R63
+		SNOP		4
+.L27:
+		SMOV.M1		R10, R42
+		SBR		.L24
+		SNOP		6
+.L25:
+		SBR		.L22
+		SNOP		6
+.L24:
+.L22:
+		SMOV.M1		R42, R10
+		SLDDW		*+AR15[2], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	GetTimerCount, .-GetTimerCount
+	.section	.text.GetTimerPeriod,"ax",@progbits
+	.align	2
+	.global	GetTimerPeriod
+	.type	GetTimerPeriod, @function
+GetTimerPeriod:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-16, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[2]
+		SSTW		R10, *-AR14[5]
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOV.M1		R42, R0
+	[R0]	SBR		.L29
+		SNOP		6
+		SMOVIL		1075576836, R10
+		SMOVIH		1075576836, R10
+		SBR		GetConfReg
+		SMOVIL		.L32, R62
+		SMOVIH		.L32, R62
+		SMOVIH4.L		.L32, R63
+		SNOP		4
+.L32:
+		SMOV.M1		R10, R42
+		SBR		.L30
+		SNOP		6
+.L29:
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOVIL		1, R43
+		SEQ		R43, R42, R42
+		SMOV.M1		R42, R0
+	[!R0]	SBR		.L31
+		SNOP		6
+		SMOVIL		1075642372, R10
+		SMOVIH		1075642372, R10
+		SBR		GetConfReg
+		SMOVIL		.L33, R62
+		SMOVIH		.L33, R62
+		SMOVIH4.L		.L33, R63
+		SNOP		4
+.L33:
+		SMOV.M1		R10, R42
+		SBR		.L30
+		SNOP		6
+.L31:
+		SBR		.L28
+		SNOP		6
+.L30:
+.L28:
+		SMOV.M1		R42, R10
+		SLDDW		*+AR15[2], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	GetTimerPeriod, .-GetTimerPeriod
+	.section	.text.SetTimerPeriod,"ax",@progbits
+	.align	2
+	.global	SetTimerPeriod
+	.type	SetTimerPeriod, @function
+SetTimerPeriod:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-16, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[2]
+		SSTW		R10, *-AR14[5]
+		SSTW		R12, *-AR14[6]
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOV.M1		R42, R0
+	[R0]	SBR		.L35
+		SNOP		6
+		SMOVIL		1075576836, R10
+		SMOVIH		1075576836, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L39, R62
+		SMOVIH		.L39, R62
+		SMOVIH4.L		.L39, R63
+		SNOP		4
+.L39:
+.L35:
+		SLDW		*-AR14[5], R42
+		SNOP		5
+		SMOVIL		1, R43
+		SEQ		R43, R42, R42
+		SMOV.M1		R42, R0
+	[!R0]	SBR		.L38
+		SNOP		6
+		SMOVIL		1075642372, R10
+		SMOVIH		1075642372, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L40, R62
+		SMOVIH		.L40, R62
+		SMOVIH4.L		.L40, R63
+		SNOP		4
+.L40:
+.L38:
+		SNOP		1
+.L34:
+		SLDDW		*+AR15[2], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	SetTimerPeriod, .-SetTimerPeriod
+	.section	.text.GetSpareReg,"ax",@progbits
+	.align	2
+	.global	GetSpareReg
+	.type	GetSpareReg, @function
+GetSpareReg:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-16, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[2]
+		SSTW		R10, *-AR14[5]
+		SLDW		*-AR14[5], R46
+		SNOP		5
+		SMOVIL		7, R0
+		SLTU		R0, R46, R46
+		SMOV.M1		R46, R0
+	[R0]	SBR		.L42
+		SNOP		6
+		SLDW		*-AR14[5], R44
+		SNOP		5
+		SMOVIL		0, R45
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SSHFLR		30, R44, R46
+		SSHFLL		2, R45, R43
+		SOR		R43, R46, R43
+		SSHFLL		2, R44, R42
+		SMOVIL.L		.L51, R44
+		SMOVIH.L		.L51, R44
+		SMOVIH4.L		.L51, R45
+		SMVAGA36.M1		R43:R42, OR11
+		SNOP		1
+		SADDA.M1		R45:R44,OR11,OR11
+		SNOP		1
+		SMVAAGL.M1		OR11, R43:R42
+		SNOP		1
+		SMVAAGH.M1		OR11, R43:R42
+		SNOP		1
+		SMVAGA36.M1		R43:R42, AR10
+		SNOP		1
+		SLDW		*AR10, R42
+		SNOP		5
+		SBR		R42
+		SNOP		6
+	.section	.const,"a",@progbits
+	.align	2
+	.align	2
+.L51:
+	.long	.L43
+	.long	.L44
+	.long	.L45
+	.long	.L46
+	.long	.L47
+	.long	.L48
+	.long	.L49
+	.long	.L50
+	.section	.text.GetSpareReg
+.L43:
+		SMOVIL		1075576848, R10
+		SMOVIH		1075576848, R10
+		SBR		GetConfReg
+		SMOVIL		.L53, R62
+		SMOVIH		.L53, R62
+		SMOVIH4.L		.L53, R63
+		SNOP		4
+.L53:
+		SMOV.M1		R10, R42
+		SBR		.L52
+		SNOP		6
+.L44:
+		SMOVIL		1075576852, R10
+		SMOVIH		1075576852, R10
+		SBR		GetConfReg
+		SMOVIL		.L54, R62
+		SMOVIH		.L54, R62
+		SMOVIH4.L		.L54, R63
+		SNOP		4
+.L54:
+		SMOV.M1		R10, R42
+		SBR		.L52
+		SNOP		6
+.L45:
+		SMOVIL		1075576856, R10
+		SMOVIH		1075576856, R10
+		SBR		GetConfReg
+		SMOVIL		.L55, R62
+		SMOVIH		.L55, R62
+		SMOVIH4.L		.L55, R63
+		SNOP		4
+.L55:
+		SMOV.M1		R10, R42
+		SBR		.L52
+		SNOP		6
+.L46:
+		SMOVIL		1075576860, R10
+		SMOVIH		1075576860, R10
+		SBR		GetConfReg
+		SMOVIL		.L56, R62
+		SMOVIH		.L56, R62
+		SMOVIH4.L		.L56, R63
+		SNOP		4
+.L56:
+		SMOV.M1		R10, R42
+		SBR		.L52
+		SNOP		6
+.L47:
+		SMOVIL		1075642384, R10
+		SMOVIH		1075642384, R10
+		SBR		GetConfReg
+		SMOVIL		.L57, R62
+		SMOVIH		.L57, R62
+		SMOVIH4.L		.L57, R63
+		SNOP		4
+.L57:
+		SMOV.M1		R10, R42
+		SBR		.L52
+		SNOP		6
+.L48:
+		SMOVIL		1075642388, R10
+		SMOVIH		1075642388, R10
+		SBR		GetConfReg
+		SMOVIL		.L58, R62
+		SMOVIH		.L58, R62
+		SMOVIH4.L		.L58, R63
+		SNOP		4
+.L58:
+		SMOV.M1		R10, R42
+		SBR		.L52
+		SNOP		6
+.L49:
+		SMOVIL		1075642392, R10
+		SMOVIH		1075642392, R10
+		SBR		GetConfReg
+		SMOVIL		.L59, R62
+		SMOVIH		.L59, R62
+		SMOVIH4.L		.L59, R63
+		SNOP		4
+.L59:
+		SMOV.M1		R10, R42
+		SBR		.L52
+		SNOP		6
+.L50:
+		SMOVIL		1075642396, R10
+		SMOVIH		1075642396, R10
+		SBR		GetConfReg
+		SMOVIL		.L60, R62
+		SMOVIH		.L60, R62
+		SMOVIH4.L		.L60, R63
+		SNOP		4
+.L60:
+		SMOV.M1		R10, R42
+		SBR		.L52
+		SNOP		6
+.L42:
+		SMOVIL		0, R42
+.L52:
+		SMOV.M1		R42, R10
+		SLDDW		*+AR15[2], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	GetSpareReg, .-GetSpareReg
+	.section	.text.SetSpareReg,"ax",@progbits
+	.align	2
+	.global	SetSpareReg
+	.type	SetSpareReg, @function
+SetSpareReg:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-16, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[2]
+		SSTW		R10, *-AR14[5]
+		SSTW		R12, *-AR14[6]
+		SLDW		*-AR14[5], R46
+		SNOP		5
+		SMOVIL		7, R0
+		SLTU		R0, R46, R46
+		SMOV.M1		R46, R0
+	[R0]	SBR		.L73
+		SNOP		6
+		SLDW		*-AR14[5], R44
+		SNOP		5
+		SMOVIL		0, R45
+	;no-op trunc di R45:R44 to pdi R45:R44
+		SSHFLR		30, R44, R46
+		SSHFLL		2, R45, R43
+		SOR		R43, R46, R43
+		SSHFLL		2, R44, R42
+		SMOVIL.L		.L71, R44
+		SMOVIH.L		.L71, R44
+		SMOVIH4.L		.L71, R45
+		SMVAGA36.M1		R43:R42, OR11
+		SNOP		1
+		SADDA.M1		R45:R44,OR11,OR11
+		SNOP		1
+		SMVAAGL.M1		OR11, R43:R42
+		SNOP		1
+		SMVAAGH.M1		OR11, R43:R42
+		SNOP		1
+		SMVAGA36.M1		R43:R42, AR10
+		SNOP		1
+		SLDW		*AR10, R42
+		SNOP		5
+		SBR		R42
+		SNOP		6
+	.section	.const,"a",@progbits
+	.align	2
+	.align	2
+.L71:
+	.long	.L63
+	.long	.L64
+	.long	.L65
+	.long	.L66
+	.long	.L67
+	.long	.L68
+	.long	.L69
+	.long	.L70
+	.section	.text.SetSpareReg
+.L63:
+		SMOVIL		1075576848, R10
+		SMOVIH		1075576848, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L74, R62
+		SMOVIH		.L74, R62
+		SMOVIH4.L		.L74, R63
+		SNOP		4
+.L74:
+		SBR		.L61
+		SNOP		6
+.L64:
+		SMOVIL		1075576852, R10
+		SMOVIH		1075576852, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L75, R62
+		SMOVIH		.L75, R62
+		SMOVIH4.L		.L75, R63
+		SNOP		4
+.L75:
+		SBR		.L61
+		SNOP		6
+.L65:
+		SMOVIL		1075576856, R10
+		SMOVIH		1075576856, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L76, R62
+		SMOVIH		.L76, R62
+		SMOVIH4.L		.L76, R63
+		SNOP		4
+.L76:
+		SBR		.L61
+		SNOP		6
+.L66:
+		SMOVIL		1075576860, R10
+		SMOVIH		1075576860, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L77, R62
+		SMOVIH		.L77, R62
+		SMOVIH4.L		.L77, R63
+		SNOP		4
+.L77:
+		SBR		.L61
+		SNOP		6
+.L67:
+		SMOVIL		1075642384, R10
+		SMOVIH		1075642384, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L78, R62
+		SMOVIH		.L78, R62
+		SMOVIH4.L		.L78, R63
+		SNOP		4
+.L78:
+		SBR		.L61
+		SNOP		6
+.L68:
+		SMOVIL		1075642388, R10
+		SMOVIH		1075642388, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L79, R62
+		SMOVIH		.L79, R62
+		SMOVIH4.L		.L79, R63
+		SNOP		4
+.L79:
+		SBR		.L61
+		SNOP		6
+.L69:
+		SMOVIL		1075642392, R10
+		SMOVIH		1075642392, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L80, R62
+		SMOVIH		.L80, R62
+		SMOVIH4.L		.L80, R63
+		SNOP		4
+.L80:
+		SBR		.L61
+		SNOP		6
+.L70:
+		SMOVIL		1075642396, R10
+		SMOVIH		1075642396, R10
+		SLDW		*-AR14[6], R12
+		SNOP		5
+		SBR		SetConfReg
+		SMOVIL		.L81, R62
+		SMOVIH		.L81, R62
+		SMOVIH4.L		.L81, R63
+		SNOP		4
+.L81:
+		SBR		.L61
+		SNOP		6
+.L73:
+		SNOP		1
+.L61:
+		SLDDW		*+AR15[2], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	SetSpareReg, .-SetSpareReg
+	.section	.text.DisableVectorClk,"ax",@progbits
+	.align	2
+	.global	DisableVectorClk
+	.type	DisableVectorClk, @function
+DisableVectorClk:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-8, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[1]
+		SMOVIL		1075576880, R10
+		SMOVIH		1075576880, R10
+		SMOVIL		0, R12
+		SBR		SetConfReg
+		SMOVIL		.L83, R62
+		SMOVIH		.L83, R62
+		SMOVIH4.L		.L83, R63
+		SNOP		4
+.L83:
+		SLDDW		*+AR15[1], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	DisableVectorClk, .-DisableVectorClk
+	.section	.text.EnableVectorClk,"ax",@progbits
+	.align	2
+	.global	EnableVectorClk
+	.type	EnableVectorClk, @function
+EnableVectorClk:
+		SMVAAGL.M1		AR14, R7:R6
+		SNOP		1
+		SMVAAGH.M1		AR14, R7:R6
+		SNOP		1
+		SSTDW		R7:R6, *AR15--[2]
+		SADDA.M1		16,AR15,AR14
+		SNOP		1
+		SMOVIL		-8, R6
+		SMOVIL		-1, R7
+		SADDA.M1		R7:R6,AR15,AR15
+		SNOP		1
+		SSTDW		R63:R62, *+AR15[1]
+		SMOVIL		1075576880, R10
+		SMOVIH		1075576880, R10
+		SMOVIL		1, R12
+		SBR		SetConfReg
+		SMOVIL		.L85, R62
+		SMOVIH		.L85, R62
+		SMOVIH4.L		.L85, R63
+		SNOP		4
+.L85:
+		SLDDW		*+AR15[1], R63:R62
+		SNOP		5
+		SADDA.M1		-16,AR14,AR15
+		SNOP		1
+		SLDDW		*++AR15[2], R7:R6
+		SNOP		5
+		SMVAGA36.M1		R7:R6, AR14
+		SNOP		1
+		SMVCGC.L		R63, BRReg
+		SNOP		1
+		SBR		R62
+		SNOP		6
+	.size	EnableVectorClk, .-EnableVectorClk

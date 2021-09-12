@@ -1,0 +1,133 @@
+.global DSP_firlms2_asm
+
+.input input_h1:input_h0, input_x1:input_x0, sb, nh
+.output r
+
+.gen_var x_0_15, x_1_16, h_0_15, xb, x_0_31, Vxb, loop_br
+
+.gen_var vb, int_v0, int_tmp0
+
+.gen_var  i, r, diff, i_r4, vh_len, ih, flag
+
+.gen_var  svr_0, svr_1, svr_2, svr_3, sum1, sum2, sum3, r_temp
+.add_var addr_h, addr_x, OR_16, shuff_add
+;混洗配置相关
+.gen_var shuff_add1:shuff_add0, shuff_mid0, shuff_mid1, shuff_1_16
+
+SMOVIL      0,i                     ;初始化i
+SMOVIH      0,i
+SMOVIL      0,r                    ;初始化i
+SMOVIH      0,r
+SADD        0,r,shuff_add1   
+SMVAGA36    input_h1:input_h0, addr_h
+SMVAGA36    input_x1:input_x0, addr_x
+;混洗
+SMOVIL      0,shuff_add0
+SMOVIH      0x40160000,shuff_add0 
+SMVAGA36    shuff_add1:shuff_add0,shuff_add ;混洗地址
+SMOVIL      0x00020002,shuff_mid0
+SMOVIH      0x00020002,shuff_mid0
+SMOVIL      0x80028001,shuff_mid1   
+SMOVIH      0x80028001,shuff_mid1
+
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1   
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1   
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1  
+SSTW        shuff_mid1,*shuff_add++[1] 
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1   
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1   
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1   
+SSTW        shuff_mid1,*shuff_add++[1]
+SADDU       shuff_mid0,shuff_mid1,shuff_mid1   
+SSTW        shuff_mid1,*shuff_add++[1]
+
+SMOVIL      16,shuff_add0
+SMOVIH      0,shuff_add0
+SMVAGA36    shuff_add1:shuff_add0,OR_16
+SVBCAST     sb, vb
+SVBCAST     i, int_v0
+
+SADD        15, nh, vh_len
+SSHFAR      4, vh_len, vh_len
+SSUB        1, vh_len, vh_len
+
+.sloop: .loop
+SMOVIL      0,r_temp                   
+SMOVIH      0,r_temp
+
+VLDW        *addr_x, x_0_31
+VLDH        *addr_h++[OR_16], h_0_15
+VLDH        *addr_x++[OR_16], x_0_15
+
+VSHUFH      x_0_31, x_0_31, shuff_1_16 
+VMOV        int_v0, x_1_16
+VMULAS16T   1, shuff_1_16, x_1_16, x_1_16
+VMOV        int_v0, int_tmp0
+VMULAS16T   vb, x_0_15, int_v0, int_v0
+VSHFAR      15, int_v0, xb
+VMOV        int_tmp0, int_v0
+VMULAS16T   x_1_16, xb, int_v0, int_v0
+VMULAS16T   x_1_16, h_0_15, int_v0, int_v0
+VMOV		int_v0,xb
+
+
+SAND        15, nh, diff
+SLT         0,diff,flag
+SSHFAR      4, i, i_r4
+SEQ         i_r4, vh_len, ih
+
+SAND        ih, flag, ih
+VREDUC16    xb, 0, 0, Vxb
+VMVCGC      Vxb, SVR
+SMVCCG      SVR0, sum1
+[!ih]SADD   sum1, r_temp, r_temp
+[!ih]SBR    .loop_ra
+VMVCGC      int_v0, SVR
+
+SMVCCG      SVR0, svr_0
+SMVCCG      SVR1, svr_1
+SADD        svr_0, svr_1, svr_0
+SMVCCG      SVR2, svr_2
+SMVCCG      SVR3, svr_3
+SADD        svr_2, svr_3, svr_2
+SADD        svr_0, svr_2, sum1
+
+SADD        r_temp, sum1, r_temp
+
+SMVCCG      SVR4, svr_0
+SMVCCG      SVR5, svr_1
+SADD        svr_0, svr_1, svr_0
+SMVCCG      SVR6, svr_2
+SMVCCG      SVR7, svr_3
+SADD        svr_2, svr_3, svr_2
+SADD        svr_0, svr_2, sum2
+SAND        15, nh, diff
+SSHFAR      3, diff, flag
+[flag]SADD  r_temp, sum2, r_temp
+
+SMVCCG      SVR8, svr_0
+SMVCCG      SVR9, svr_1
+SADD        svr_0, svr_1, svr_0
+SMVCCG      SVR10, svr_2
+SMVCCG      SVR11, svr_3
+
+SADD        svr_2, svr_3, svr_2
+SADD        svr_0, svr_2, sum3
+SEQ        12, diff, flag
+[flag]SADD  r_temp, sum3, r_temp
+
+.loop_ra: 
+    VMOV        int_tmp0, int_v0
+    SADD        r_temp, r, r
+    SADD        16,i,i
+    SLT         i,nh, loop_br
+    [loop_br]SBR .sloop
+.endloop
+
+
+.size DSP_firlms2_asm,-DSP_firlms2_asm

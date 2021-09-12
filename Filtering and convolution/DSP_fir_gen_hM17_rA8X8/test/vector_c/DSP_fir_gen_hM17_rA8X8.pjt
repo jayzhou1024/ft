@@ -1,0 +1,56 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_fir_gen_hM17_rA8X8
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSP_fir_gen_hM17_rA8X8/test/vector_c"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="DSP_fir_gen_hM17_rA8X8.lds"
+Source="DSP_fir_gen_hM17_rA8X8.pjt"
+Source="DSP_fir_gen_hM17_rA8X8.pst"
+Source="DSP_fir_gen_hM17_rA8X8_cn.c"
+Source="DSP_fir_gen_hM17_rA8X8_vc.c"
+Source="main.c"
+Source="readme.txt"
+Source="Timer.c"
+Source="Timer.h"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSP_fir_gen_hM17_rA8X8.map"
+Source="Debug/DSP_fir_gen_hM17_rA8X8.out"
+Source="Debug/DSP_fir_gen_hM17_rA8X8_cn.o"
+Source="Debug/DSP_fir_gen_hM17_rA8X8_cn.s"
+Source="Debug/DSP_fir_gen_hM17_rA8X8_vc.o"
+Source="Debug/DSP_fir_gen_hM17_rA8X8_vc.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -g -ffunction-sections -flax-vector-conversions 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSP_fir_gen_hM17_rA8X8.out" --gc-sections -T"DSP_fir_gen_hM17_rA8X8.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSP_fir_gen_hM17_rA8X8.out" --gc-sections -T"DSP_fir_gen_hM17_rA8X8.lds" 
+[Opened files]
+OpenedSource="main.c",line=59
+OpenedSource="Timer.c",line=26
+OpenedSource="DSP_fir_gen_hM17_rA8X8.lds",line=1
+OpenedSource="DSP_fir_gen_hM17_rA8X8_vc.c",line=98
+OpenedSource="Debug/Timer.s",line=1
+OpenedSource="Debug/main.s",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

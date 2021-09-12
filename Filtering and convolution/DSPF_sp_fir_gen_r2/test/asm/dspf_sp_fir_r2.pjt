@@ -44,8 +44,8 @@ Options=-O2 -ffunction-sections
 ["Linker" Settings: "Release"]
 Options=-o"Release/dspf_sp_fir_r2.out" --gc-sections -T"dspf_sp_fir_r2.lds" 
 [Opened files]
-OpenedSource="DSPF_sp_fir_r2_asm.asm",line=13
-OpenedSource="main.c",line=84
+OpenedSource="DSPF_sp_fir_r2_asm.asm",line=1
+OpenedSource="main.c",line=51
 OpenedSource="DSPF_sp_fir_r2_cn.c",line=1
 [Builders]
 m7002.builder

@@ -1,0 +1,57 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSP_fir_cplx_hM4X4
+ProjectDir="E:/project/项目/ft-m7002-function-base/Filtering and convolution/DSP_fir_cplx_hM4X4/test/asm"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="DSP_fir_cplx_hM4X4.lds"
+Source="DSP_fir_cplx_hM4X4.pjt"
+Source="DSP_fir_cplx_hM4X4.pst"
+Source="DSP_fir_cplx_hM4X4_cn.c"
+Source="DSP_fir_cplx_hM4X4_vc.c"
+Source="main.c"
+Source="readme.txt"
+Source="Timer.c"
+Source="Timer.h"
+Source="DSP_fir_cplx_hM4X4_asm.asm"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSP_fir_cplx_hM4X4.map"
+Source="Debug/DSP_fir_cplx_hM4X4.out"
+Source="Debug/DSP_fir_cplx_hM4X4_asm.o"
+Source="Debug/DSP_fir_cplx_hM4X4_cn.o"
+Source="Debug/DSP_fir_cplx_hM4X4_cn.s"
+Source="Debug/DSP_fir_cplx_hM4X4_vc.o"
+Source="Debug/DSP_fir_cplx_hM4X4_vc.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -ffunction-sections -flax-vector-conversions -g 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSP_fir_cplx_hM4X4.out" --gc-sections -T"DSP_fir_cplx_hM4X4.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSP_fir_cplx_hM4X4.out" --gc-sections -T"DSP_fir_cplx_hM4X4.lds" 
+[Opened files]
+OpenedSource="main.c",line=62
+OpenedSource="Debug/DSP_fir_cplx_hM4X4_cn.s",line=48
+OpenedSource="DSP_fir_cplx_hM4X4_vc.c",line=1
+OpenedSource="DSP_fir_cplx_hM4X4_asm.asm",line=1
+OpenedSource="Timer.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

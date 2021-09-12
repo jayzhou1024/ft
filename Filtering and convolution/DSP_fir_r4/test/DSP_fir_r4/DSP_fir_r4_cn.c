@@ -10,8 +10,6 @@ void DSP_fir_r4_cn (
 )
 {
     int i, j, sum;
-
-
     for (j = 0; j < nr; j++) {
         sum = 0;
         for (i = 0; i < nh; i++)
