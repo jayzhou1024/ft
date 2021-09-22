@@ -118,7 +118,6 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
             {
                 VPE_Setting = 0xFFFF;
                 VPE_Setting = VPE_Setting >> (VPE_NUM - Nrows % VPE_NUM);
-                //printf("VPE_Setting = %x\n", VPE_Setting);
                 mov_to_vlr(VPE_Setting); 
                 vf_temp1_r = vec_add(vf_temp1_r, vf_temp4_r);
                 vf_temp1_i = vec_add(vf_temp1_i, vf_temp4_i);
@@ -169,23 +168,17 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         Li_i_i = mov_from_svr1();
         Li_r = *((float *)&Li_r_i);
         Li_i = *((float *)&Li_i_i);
-        //printf("Li_r = %f, Li_i = %f\n", Li_r, Li_i);
         mov_to_svr_v16sf(*OFF_FLOAT_PTR(b, i * 2));
         bi_r_i = mov_from_svr0();
         bi_i_i = mov_from_svr1();
         bi_r = *((float *)&bi_r_i);
         bi_i = *((float *)&bi_i_i);
-        //printf("bi_r = %f, bi_i = %f\n", bi_r, bi_i);
-        //printf("sum_r = %f, sum_i = %f\n", sum_r, sum_i);
         bi_r -= sum_r;
         bi_i -= sum_i;
-        //printf("bi_r = %f, bi_i = %f\n", bi_r, bi_i);
         yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
         yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
         yi_r_i = *((int *)&yi_r);
         yi_i_i = *((int *)&yi_i);
-        //printf("yi_r = %f, yi_i = %f\n", yi_r, yi_i);
-        //mov_to_svr_v16sf(*(OFF_FLOAT_PTR(y, 2 * i)));
         mov_to_svr0(yi_r_i);
         mov_to_svr1(yi_i_i);
         mov_to_svr2(0);
@@ -224,7 +217,6 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         buf_r[7 - k] = (yi_r * Li_r + yi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
         buf_i[7 - k] = (yi_i * Li_r - yi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
         //complex_sp_div_cn(yi_r, yi_i, Li_r, Li_i, &buf_r[7 - k], &buf_i[7 - k]);
-        //printf("buf_r[%d] = %f, buf_i[%d] = %f\n", 7 - k, buf_r[7 - k], i, buf_i[7 - k]);
         vf_temp3_r = vec_svbcast(buf_r[7 - k]);
         vf_temp3_i = vec_svbcast(buf_i[7 - k]);
         k++;
@@ -325,10 +317,6 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
             buf_r[j] = buf_r[8];
             buf_i[j] = buf_i[8];
         }
-        //for (i = 0; i < 8; i++)
-        //{
-        //    printf("buf_r[%d] = %f, buf_i[%d] = %f\n", i, buf_r[i], i, buf_i[i]);
-        //}
 
         mov_to_svr0(*(int *)buf_r);
         mov_to_svr1(*(int *)buf_i);
@@ -346,7 +334,6 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         mov_to_svr13(*(int *)(buf_i + 6));
         mov_to_svr14(*(int *)(buf_r + 7));
         mov_to_svr15(*(int *)(buf_i + 7));
-        //*(vector float *)x = mov_from_svr_v16sf();
         *(OFF_FLOAT_PTR(x, 0)) = mov_from_svr_v16sf();
     }
     

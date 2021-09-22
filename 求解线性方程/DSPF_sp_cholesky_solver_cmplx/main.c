@@ -220,16 +220,7 @@ void main()
         /* solve for x using natural C code                                    */
         /* ------------------------------------------------------------------- */
 
-        //time1 = GetTimerCount(0);
-        //status = DSPF_sp_cholesky_solver_cmplx_cn(Nrows, L, y, b, x);
-        //time2 = GetTimerCount(0);
-        //cholesky_solver_t_cn = time2 - time1;
-        //printf("natual c use %ld cycle\n", cholesky_solver_t_cn);
-
-        /* ------------------------------------------------------------------- */
-        /* solve for x using optimized C code                                  */
-        /* ------------------------------------------------------------------- */
-        
+        //初始化矩阵与向量
         memset(y, 0.0, 2 * MAX_MATRIX_NROWS * sizeof(float));
         memset(x, 0.0, 2 * MAX_MATRIX_NROWS * sizeof(float));
         lvector double *L_AM = (lvector double *)0x040000000;
@@ -237,14 +228,21 @@ void main()
         lvector double *b_AM = (lvector double *)(0x040000000 + MAX_A_MATRIX_SIZE * sizeof(float) + 2 * MAX_MATRIX_NROWS * sizeof(float));
         lvector double *x_AM = (lvector double *)(0x040000000 + MAX_A_MATRIX_SIZE * sizeof(float) + 4 * MAX_MATRIX_NROWS * sizeof(float));
         M7002_datatrans(L, L_AM, MAX_A_MATRIX_SIZE * sizeof(float));
-        //for (i = 0; i < 3; i++)
-        //{
-        //    printf("A[%d] real = %f, A[%d] imag = %f\n", i, A[2 * i], i, A[2 * i + 1]);
-        //    printf("b[%d] real = %f, b[%d] imag = %f\n", i, b[2 * i], i, b[2 * i + 1]);
-        //}
         M7002_datatrans(b, b_AM, 2 * MAX_MATRIX_NROWS * sizeof(float));
         M7002_datatrans(y, y_AM, 2 * MAX_MATRIX_NROWS * sizeof(float));
         M7002_datatrans(x, x_AM, 2 * MAX_MATRIX_NROWS * sizeof(float));
+
+        time1 = GetTimerCount(0);
+        status = DSPF_sp_cholesky_solver_cmplx_cn(Nrows, L, y, b, x);
+        time2 = GetTimerCount(0);
+        cholesky_solver_t_cn = time2 - time1;
+        printf("natual c use %ld cycle\n", cholesky_solver_t_cn);
+
+        /* ------------------------------------------------------------------- */
+        /* solve for x using optimized C code                                  */
+        /* ------------------------------------------------------------------- */
+        
+        
         time1 = GetTimerCount(0);
         status = DSPF_sp_cholesky_solver_cmplx(Nrows, L_AM, y_AM, b_AM, x_AM);
         time2 = GetTimerCount(0);
@@ -259,11 +257,6 @@ void main()
 
         max_solver_error = 0;
         Ncols = 2 * Nrows;
-        //for (j = 0; j < Nrows; j++)
-        //{
-        //    printf("x[%d] real = %f\n", j, x[2 * j]);
-        //    printf("x[%d] imag = %f\n", j, x[2 * j + 1]);
-        //}
         for (i = 0; i < Nrows; i++)
         {
             b_calc_real = 0;
