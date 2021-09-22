@@ -73,7 +73,14 @@ float b[2 * MAX_MATRIX_NROWS];
 /* ======================================================================= */
 void main()
 {
-
+    int *cache = 0x040140004; /*将SM 配置成L1DCache/SRAM 存储模式*/
+    int *cache1 = 0x040140000;
+    volatile int cache_ok;
+    *cache = 0x1;
+    *cache1 = 0x1;
+    cache_ok = *cache1;
+    while (cache_ok != 0)
+        cache_ok = *cache1;
     unsigned short Nrows, pass;
     float xreal, ximag, yreal, yimag, zreal, zimag;
     float sum_real, sum_imag;
@@ -91,11 +98,10 @@ void main()
     float tolerance = 0.00004;
     float tolerance_solver = 0.003;
 
-
     /* --------------------------------------------------------------------- */
     /* Compute the overhead of calling clock twice to get timing info        */
     /* --------------------------------------------------------------------- */
-    
+
     unsigned long time1, time2, cholesky_solver_t_cn, cholesky_solver_t;
     //定时器初始化
     SetTimerPeriod(0, 0xffffffff);
@@ -109,7 +115,7 @@ void main()
     for (test = 1; test <= 3; test++)
     {
 
-        printf("DSPF_sp_cholesky_cmplx\tIter#: %d\t", test);
+        printf("DSPF_sp_cholesky_cmplx  Iter#: %d\n", test);
 
         switch (test)
         {
@@ -214,30 +220,38 @@ void main()
         /* solve for x using natural C code                                    */
         /* ------------------------------------------------------------------- */
 
-        time1 = GetTimerCount(0);
-        status = DSPF_sp_cholesky_solver_cmplx_cn(Nrows, L, y, b, x);
-        time2 = GetTimerCount(0);
-        cholesky_solver_t_cn = time2 - time1;
-        printf("natual c use %ld cycle\n", cholesky_solver_t_cn);
+        //time1 = GetTimerCount(0);
+        //status = DSPF_sp_cholesky_solver_cmplx_cn(Nrows, L, y, b, x);
+        //time2 = GetTimerCount(0);
+        //cholesky_solver_t_cn = time2 - time1;
+        //printf("natual c use %ld cycle\n", cholesky_solver_t_cn);
 
         /* ------------------------------------------------------------------- */
         /* solve for x using optimized C code                                  */
         /* ------------------------------------------------------------------- */
         
-        lvector double *L_AM = (vector float *)0x040000000;
-        lvector double *y_AM = (vector float *)(0x040000000 + MAX_A_MATRIX_SIZE * sizeof(float));
-        lvector double *b_AM = (vector float *)(0x040000000 + MAX_A_MATRIX_SIZE * sizeof(float) + 2 * MAX_MATRIX_NROWS * sizeof(float));
-        lvector double *x_AM = (vector float *)(0x040000000 + MAX_A_MATRIX_SIZE * sizeof(float) + 4 * MAX_MATRIX_NROWS * sizeof(float));
+        memset(y, 0.0, 2 * MAX_MATRIX_NROWS * sizeof(float));
+        memset(x, 0.0, 2 * MAX_MATRIX_NROWS * sizeof(float));
+        lvector double *L_AM = (lvector double *)0x040000000;
+        lvector double *y_AM = (lvector double *)(0x040000000 + MAX_A_MATRIX_SIZE * sizeof(float));
+        lvector double *b_AM = (lvector double *)(0x040000000 + MAX_A_MATRIX_SIZE * sizeof(float) + 2 * MAX_MATRIX_NROWS * sizeof(float));
+        lvector double *x_AM = (lvector double *)(0x040000000 + MAX_A_MATRIX_SIZE * sizeof(float) + 4 * MAX_MATRIX_NROWS * sizeof(float));
         M7002_datatrans(L, L_AM, MAX_A_MATRIX_SIZE * sizeof(float));
+        //for (i = 0; i < 3; i++)
+        //{
+        //    printf("A[%d] real = %f, A[%d] imag = %f\n", i, A[2 * i], i, A[2 * i + 1]);
+        //    printf("b[%d] real = %f, b[%d] imag = %f\n", i, b[2 * i], i, b[2 * i + 1]);
+        //}
         M7002_datatrans(b, b_AM, 2 * MAX_MATRIX_NROWS * sizeof(float));
-        memset(y_AM, NULL, 2 * Nrows); //初始化y_AM
+        M7002_datatrans(y, y_AM, 2 * MAX_MATRIX_NROWS * sizeof(float));
+        M7002_datatrans(x, x_AM, 2 * MAX_MATRIX_NROWS * sizeof(float));
         time1 = GetTimerCount(0);
         status = DSPF_sp_cholesky_solver_cmplx(Nrows, L_AM, y_AM, b_AM, x_AM);
         time2 = GetTimerCount(0);
         M7002_datatrans(x_AM, x, 2 * MAX_MATRIX_NROWS * sizeof(float));
         cholesky_solver_t = time2 - time1;
         printf("vector c use %ld cycle\n", cholesky_solver_t);
-
+        
 
         /* ------------------------------------------------------------------- */
         /* check A*x=b                                                         */
@@ -245,6 +259,11 @@ void main()
 
         max_solver_error = 0;
         Ncols = 2 * Nrows;
+        //for (j = 0; j < Nrows; j++)
+        //{
+        //    printf("x[%d] real = %f\n", j, x[2 * j]);
+        //    printf("x[%d] imag = %f\n", j, x[2 * j + 1]);
+        //}
         for (i = 0; i < Nrows; i++)
         {
             b_calc_real = 0;
@@ -255,6 +274,7 @@ void main()
                 ximag = A[i * Ncols + 2 * j + 1];
                 yreal = x[2 * j];
                 yimag = x[2 * j + 1];
+
                 b_calc_real += xreal * yreal - ximag * yimag;
                 b_calc_imag += xreal * yimag + ximag * yreal;
             }
@@ -275,14 +295,14 @@ void main()
                 pass = 0;
             }
         }
-        
+
         /* ------------------------------------------------------------------- */
         /* print error and timing results                                      */
         /* ------------------------------------------------------------------- */
         if (pass)
         {
             printf("Result Successful");
-            printf("    order=%d   natC: %lld  optC: %lld\n", Nrows, cholesky_solver_t, cholesky_solver_t_cn);
+            printf("    order=%d   natC: %d  optC: %d\n", Nrows, cholesky_solver_t, cholesky_solver_t_cn);
         }
         else
         {

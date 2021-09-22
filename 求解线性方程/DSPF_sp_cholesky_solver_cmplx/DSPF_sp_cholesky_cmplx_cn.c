@@ -42,6 +42,7 @@
 
 static void complex_sp_sqrt_cn(float x_real, float x_imag, float *z_real, float *z_imag);
 static void complex_sp_div_cn(float x_real, float x_imag, float y_real, float y_imag, float *z_real, float *z_imag);
+void complex_sp_div_cn1(float x_real, float x_imag, float y_real, float y_imag, float *z_real, float *z_imag);
 
 int DSPF_sp_cholesky_cmplx_cn(int enable_test, const int Nrows, float *A, float *L)
 {
@@ -315,6 +316,12 @@ void complex_sp_div_cn(float x_real, float x_imag, float y_real, float y_imag, f
 	/* results */
 	*z_real = cos(z_angle) * z_mag;
 	*z_imag = sin(z_angle) * z_mag;
+}
+
+void complex_sp_div_cn1(float x_real, float x_imag, float y_real, float y_imag, float *z_real, float *z_imag)
+{
+	*z_real = (x_real * y_real + x_imag * y_imag) / (y_real * y_real + y_imag * y_imag);
+	*z_imag = (x_imag * y_real - x_real * y_imag) / (y_real * y_real + y_imag * y_imag);
 }
 
 /* ======================================================================= */
