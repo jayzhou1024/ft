@@ -1,0 +1,148 @@
+.global DSPF_sp_fir_cplx_la
+;参数定义
+.input input_x1:input_x0,input_h1:input_h0,input_r1:input_r0,nh,nr
+.gen_var i,j
+.gen_var AR_h_cfg1:AR_h_cfg0,OR_16_cfg1:OR_16_cfg0,c_32
+.gen_var h1:h0,h3:h2,h5:h4,h7:h6,vh1:vh0,vh3:vh2,vh5:vh4,vh7:vh6,h_cfg
+.gen_var con1,con2,con3,vcon2,con1_compute,con2_compute
+.gen_var AR_x_compute,AR_x_compute_1,AR_x_cfg1:AR_x_cfg0
+.gen_var temp_r_real_1:temp_r_real_0,temp_r_real_3:temp_r_real_2,temp_r_real_5:temp_r_real_4,temp_r_real_7:temp_r_real_6
+.gen_var temp_r_imag_1:temp_r_imag_0,temp_r_imag_3:temp_r_imag_2,temp_r_imag_5:temp_r_imag_4,temp_r_imag_7:temp_r_imag_6
+.gen_var result2:result1
+.gen_var temp0,temp1,temp2,temp3,temp4,temp5,temp6,temp7,temp8,temp9,temp10,temp11,temp12,temp13,temp14,temp15
+.gen_var vr_len
+.add_var AR_h,OR_16,AR_x_0,AR_x_1,AR_r
+
+;函数开始
+SMOVIL          0,i
+SADD            0,i,AR_h_cfg1
+SADD            0,i,OR_16_cfg1
+
+SSUB            1,nh,AR_h_cfg0
+SSHFLL          3,AR_h_cfg0,AR_h_cfg0
+SADD            AR_h_cfg0,input_h0,AR_h_cfg0
+SMVAGA36        AR_h_cfg1:AR_h_cfg0,AR_h    ;h基址保存到AR10中(倒序)
+
+SMOVIL          16,OR_16_cfg0
+SMOVIH          16,OR_16_cfg0   ;16
+SMVAGA36        OR_16_cfg1:OR_16_cfg0,OR_16
+SADD            OR_16_cfg0,OR_16_cfg0,c_32  ;32
+
+;外循环
+.LOOP_I: .loop
+SMOVIL          0,j
+SMVAGA36        input_r1:input_r0,AR_r  ;在外循环取r
+
+SLDDW           *AR_h--,h1:h0   ;取h0~h7
+SLDDW           *AR_h--,h3:h2
+SLDDW           *AR_h--,h5:h4
+SLDDW           *AR_h--,h7:h6
+
+SSUB            i,nh,con1_compute
+SLT             2,con1_compute,con1
+
+SMOVIL          0,h_cfg
+[con1]SADD      0,h_cfg,h4
+[con1]SADD      0,h_cfg,h5
+SVBCAST2        h1:h0,vh1:vh0
+SVBCAST2        h3:h2,vh3:vh2
+SVBCAST2        h5:h4,vh5:vh4
+SVBCAST2        h7:h6,vh7:vh6
+
+SSHFLL          3,i,AR_x_compute
+SADD            AR_x_compute,input_x0,AR_x_compute
+
+SEQ             0,i,con1
+
+;内循环
+.LOOP_J: .loop
+SSHFLL          3,j,AR_x_compute_1
+SADD            AR_x_compute_1,AR_x_compute,AR_x_cfg0
+SMOVIL          0,AR_x_cfg1
+SMVAGA36        AR_x_cfg1:AR_x_cfg0,AR_x_0
+SADD            c_32,AR_x_cfg0,AR_x_cfg0  ;+32
+SMVAGA36        AR_x_cfg1:AR_x_cfg0,AR_x_1
+
+SSUB            j,nr,con2_compute        ;NR - J
+SLT             16,con2_compute,con2
+SVBCAST         con2,vcon2
+
+VLDDW           *AR_r,result2:result1
+
+VLDDWM2         *AR_x_0++,temp_r_real_1:temp_r_real_0
+VLDDWM2         *AR_x_1++,temp_r_imag_1:temp_r_imag_0
+VLDDWM2         *AR_x_0++,temp_r_real_3:temp_r_real_2
+VLDDWM2         *AR_x_1++,temp_r_imag_3:temp_r_imag_2
+VLDDWM2         *AR_x_0++,temp_r_real_5:temp_r_real_4
+VLDDWM2         *AR_x_1++,temp_r_imag_5:temp_r_imag_4
+VLDDWM2         *AR_x_0++,temp_r_real_7:temp_r_real_6
+VLDDWM2         *AR_x_1++,temp_r_imag_7:temp_r_imag_6
+
+[con1]SVBCAST   i,result1   ;初始化
+[con1]SVBCAST   i,result2
+
+VFCREAL32       vh1:vh0,temp_r_real_1:temp_r_real_0,temp0
+VFCIMAG32       vh1:vh0,temp_r_real_1:temp_r_real_0,temp1
+[vcon2]VFCREAL32 vh1:vh0,temp_r_imag_1:temp_r_imag_0,temp2
+[vcon2]VFCIMAG32 vh1:vh0,temp_r_imag_1:temp_r_imag_0,temp3
+VFCREAL32       vh3:vh2,temp_r_real_3:temp_r_real_2,temp4
+VFCIMAG32       vh3:vh2,temp_r_real_3:temp_r_real_2,temp5
+[vcon2]VFCREAL32 vh3:vh2,temp_r_imag_3:temp_r_imag_2,temp6
+[vcon2]VFCIMAG32 vh3:vh2,temp_r_imag_3:temp_r_imag_2,temp7
+VFCREAL32       vh5:vh4,temp_r_real_5:temp_r_real_4,temp8
+VFCIMAG32       vh5:vh4,temp_r_real_5:temp_r_real_4,temp9
+[vcon2]VFCREAL32 vh5:vh4,temp_r_imag_5:temp_r_imag_4,temp10
+[vcon2]VFCIMAG32 vh5:vh4,temp_r_imag_5:temp_r_imag_4,temp11
+VFCREAL32       vh7:vh6,temp_r_real_7:temp_r_real_6,temp12
+VFCIMAG32       vh7:vh6,temp_r_real_7:temp_r_real_6,temp13
+[vcon2]VFCREAL32 vh7:vh6,temp_r_imag_7:temp_r_imag_6,temp14
+[vcon2]VFCIMAG32 vh7:vh6,temp_r_imag_7:temp_r_imag_6,temp15
+SNOP            1
+VFADDS32        temp0,temp2,temp0
+VFADDS32        temp1,temp3,temp1
+VFADDS32        temp4,temp6,temp4
+VFADDS32        temp5,temp7,temp5
+VFADDS32        temp8,temp10,temp8
+VFADDS32        temp9,temp11,temp9
+VFADDS32        temp0,temp4,temp0
+VFADDS32        temp1,temp5,temp1
+
+VFADDS32        temp12,temp14,temp12
+VFADDS32        temp13,temp15,temp13
+VFADDS32        temp0,temp8,temp0
+VFADDS32        temp1,temp9,temp1
+VFADDS32        result1,temp12,result1
+VFADDS32        result2,temp13,result2
+VFADDS32        result1,temp0,result1
+VFADDS32        result2,temp1,result2
+
+VSTDW           result2:result1,*AR_r
+
+SADD            c_32,j,j    ;j += 32
+SLT             j,nr,con3
+
+[con3]SBR       .LOOP_J
+.endloop
+
+SADD            4,i,i
+SLT             i,nh,con2
+
+[con2]SBR       .LOOP_I
+.endloop
+
+SADD            15,nr,vr_len
+SSHFLR          4,vr_len,vr_len
+SMOVIL          0,i
+SMVAGA36        input_r1:input_r0,AR_r
+
+
+.UPDATE_STORE: .loop
+SADD            1,i,i
+SLT             i,vr_len,con2
+VLDDW           *AR_r,result2:result1
+
+VSTDWM16        result2:result1,*AR_r++[OR_16]
+[con2]SBR       .UPDATE_STORE
+.endloop
+
+.size DSPF_sp_fir_cplx_la, .-DSPF_sp_fir_cplx_la
