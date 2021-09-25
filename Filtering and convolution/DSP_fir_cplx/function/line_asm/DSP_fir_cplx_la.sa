@@ -1,0 +1,152 @@
+.global DSP_fir_cplx_la
+;参数说明
+.input  input_x1:input_x0,input_h1:input_h0,input_r1:input_r0,nh,nr  ;输入参数
+.gen_var temp_vh_0,temp_vh_1,temp_vh_2,temp_vh_3    ;h[nh-1] ~ h[nh-4] 向量化
+
+.gen_var i,j,k  ;循环变量
+.gen_var i_eq_0,vec_i_eq_0
+.gen_var loop_j_judge,loop_i_judge
+.gen_var vr_len
+.gen_var SCR_cfg    ;饱和配置
+.gen_var OR_16_cfg1:OR_16_cfg0
+.gen_var h_rev1:h_rev0  ;倒序h地址的计算中间结果
+.gen_var sh0,sh1,sh2,sh3    ;标量h
+.gen_var sh23_exist,sh_remain
+.gen_var vh23_exist
+
+.gen_var x_add1:x_add0,x_add_comput1,x_add_comput2
+.gen_var temp_vx_0_15,temp_vx_1_16,temp_vx_2_17,temp_vx_3_18
+.gen_var r_add1:r_add0
+.gen_var temp_vr_0_15_real:temp_vr_0_15_imag
+.gen_var temp_vr_0,temp_vr_1
+
+.gen_var temp_compute_real_0:temp_compute_imag0
+.gen_var temp_compute_real_1:temp_compute_imag1
+.gen_var temp_compute_real_2:temp_compute_imag2
+.gen_var temp_compute_real_3:temp_compute_imag3
+
+.add_var h_rev_add  ;倒序的h首地址
+.add_var OR_16
+.add_var temp_x_offset_addr
+.add_var temp_vr_0_15
+
+.add_var temp_vr_add_0
+.add_var temp_vr_add_1
+
+;函数开始
+SMOVIL      0,i     ;初始化i
+SMOVIH      0,i
+
+SADD        0,i,h_rev1  ;计算倒序h的地址
+SSHFLL      2,nh,h_rev0
+SSUB        4,h_rev0,h_rev0
+SADD        h_rev0,input_h0,h_rev0
+SMVAGA36    h_rev1:h_rev0,h_rev_add
+
+SMOVIL      3,SCR_cfg   ;饱和配置
+SMVCGC      SCR_cfg,SCR
+
+SMOVIL      16,OR_16_cfg0   ;配置OR_16=16
+SMOVIH      0,OR_16_cfg0
+SADD        0,i,OR_16_cfg1
+SMVAGA36    OR_16_cfg1:OR_16_cfg0,OR_16
+
+SMOVIL		0, r_add1
+SMOVIH      0, r_add1
+SADD        0,i,x_add1
+
+;外循环
+.loop_i: .loop
+SLDW        *h_rev_add--[1],sh0     ;取h0
+SLDW        *h_rev_add--[1],sh1     ;取h1
+
+SSUB        i,nh,sh_remain  ;判断sh2、sh3是否存在
+SLT         2,sh_remain,sh23_exist
+[sh23_exist]SLDW    *h_rev_add--[1],sh2 ;取h2
+[sh23_exist]SLDW    *h_rev_add--[1],sh3 ;取h3
+
+SVBCAST     sh0,temp_vh_0 ;广播h
+SVBCAST     sh1,temp_vh_1
+[sh23_exist]SVBCAST     sh2,temp_vh_2
+[sh23_exist]SVBCAST     sh3,temp_vh_3
+
+SMOVIL      0,j     ;初始化j、k
+SMOVIH      0,j
+SADD        0,j,k
+
+SEQ         0,i,i_eq_0  ;i==0时初始化r
+SVBCAST     i_eq_0,vec_i_eq_0
+
+SSHFLL      2,i,x_add_comput2
+SADD        x_add_comput2,input_x0,x_add_comput2
+
+SVBCAST     sh23_exist,vh23_exist
+
+;内循环
+.loop_j: .loop
+SSHFLL      2,j,x_add_comput1
+SADD        x_add_comput1,x_add_comput2,x_add0
+SMVAGA36    x_add1:x_add0,temp_x_offset_addr  ;(AR3)
+
+VLDW        *temp_x_offset_addr++,temp_vx_0_15
+VLDW        *temp_x_offset_addr++,temp_vx_1_16
+VLDW        *temp_x_offset_addr++,temp_vx_2_17
+VLDW        *temp_x_offset_addr++,temp_vx_3_18
+
+SSHFLL      7,k,r_add0
+SADD        input_r0,r_add0,r_add0
+SMVAGA36    r_add1:r_add0,temp_vr_0_15  ;(AR4)
+VLDDW       *temp_vr_0_15,temp_vr_0_15_real:temp_vr_0_15_imag
+SNOP        1
+
+VCMUL16T    temp_vh_0,temp_vx_0_15,temp_compute_real_0:temp_compute_imag0
+VCMUL16T    temp_vh_1,temp_vx_1_16,temp_compute_real_1:temp_compute_imag1
+[vh23_exist]VCMUL16T    temp_vh_2,temp_vx_2_17,temp_compute_real_2:temp_compute_imag2
+[vh23_exist]VCMUL16T    temp_vh_3,temp_vx_3_18,temp_compute_real_3:temp_compute_imag3
+
+[i_eq_0]SVBCAST     i,temp_vr_0_15_real
+[i_eq_0]SVBCAST     i,temp_vr_0_15_imag
+
+VADD        temp_vr_0_15_imag,temp_compute_imag0,temp_vr_0_15_imag
+VADD        temp_vr_0_15_real,temp_compute_real_0,temp_vr_0_15_real
+VADD        temp_vr_0_15_imag,temp_compute_imag1,temp_vr_0_15_imag
+VADD        temp_vr_0_15_real,temp_compute_real_1,temp_vr_0_15_real
+[vh23_exist]VADD        temp_vr_0_15_imag,temp_compute_imag2,temp_vr_0_15_imag
+[vh23_exist]VADD        temp_vr_0_15_real,temp_compute_real_2,temp_vr_0_15_real
+[vh23_exist]VADD        temp_vr_0_15_imag,temp_compute_imag3,temp_vr_0_15_imag
+[vh23_exist]VADD        temp_vr_0_15_real,temp_compute_real_3,temp_vr_0_15_real
+VSTDW       temp_vr_0_15_real:temp_vr_0_15_imag,*temp_vr_0_15
+
+SADD        1,k,k
+SADD        16,j,j
+SLT         j,nr,loop_j_judge
+[loop_j_judge]SBR       .loop_j
+.endloop
+
+SADD        4,i,i
+SLT         i,nh,loop_i_judge
+[loop_i_judge]SBR       .loop_i
+.endloop
+
+SADD        15,nr,vr_len
+SSHFLR      4,vr_len,vr_len
+SMOVIL      0,i
+SMOVIH      0,i
+SMVAGA36    input_r1:input_r0,temp_vr_add_0
+SMVAGA36    input_r1:input_r0,temp_vr_add_1
+
+
+.update_store: .loop
+SADD        1,i,i
+SLT         i,vr_len,loop_i_judge
+VLDDW       *temp_vr_add_0++[OR_16],temp_vr_0_15_real:temp_vr_0_15_imag
+
+VSHFAR      15,temp_vr_0_15_imag,temp_vr_0_15_imag
+VSHFAR      15,temp_vr_0_15_real,temp_vr_0_15_real
+VBALE2      temp_vr_0_15_imag,temp_vr_0_15_real,temp_vr_0_15_imag
+VSTW        temp_vr_0_15_imag,*temp_vr_add_1++[OR_16]
+
+[loop_i_judge]SBR     .update_store
+.endloop
+
+.size DSP_fir_cplx_la,-DSP_fir_cplx_la
