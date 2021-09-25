@@ -57,38 +57,18 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
     Li_i_i = mov_from_svr1();
     Li_r = *((float *)&Li_r_i);
     Li_i = *((float *)&Li_i_i);
-    //printf("Li_r = %f\n", Li_r);
-    //printf("Li_i = %f\n", Li_i);
     mov_to_svr_v16sf(*(vector float *)b);
     bi_r_i = mov_from_svr0();
     bi_i_i = mov_from_svr1();
     bi_r = *((float *)&bi_r_i);
     bi_i = *((float *)&bi_i_i);
-    //printf("bi_r = %f\n", bi_r);
-    //printf("bi_i = %f\n", bi_i);
     yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
     yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
     //complex_sp_div_cn(bi_r, bi_i, Li_r, Li_i, &yi_r, &yi_i);
-    //printf("yi_r = %f, yi_i = %f\n", yi_r, yi_i);
-    //mov_to_svr_v16sf(*(vector float *)y);
+    mov_to_svr_v16sf(*(vector float *)y);
     mov_to_svr0(*((int *)&yi_r));
     mov_to_svr1(*((int *)&yi_i));
-    mov_to_svr2(0);
-    mov_to_svr3(0);
-    mov_to_svr4(0);
-    mov_to_svr5(0);
-    mov_to_svr6(0);
-    mov_to_svr7(0);
-    mov_to_svr8(0);
-    mov_to_svr9(0);
-    mov_to_svr10(0);
-    mov_to_svr11(0);
-    mov_to_svr12(0);
-    mov_to_svr13(0);
-    mov_to_svr14(0);
-    mov_to_svr15(0);
-    //*(vector float *)y = mov_from_svr_v16sf();
-    *(OFF_FLOAT_PTR(y, 0)) = mov_from_svr_v16sf();
+    *(vector float *)y = mov_from_svr_v16sf();
 
     //求解L * y = b中的y向量，y向量为中间向量
     for (i = 1; i < Nrows; i++)
@@ -179,22 +159,9 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
         yi_r_i = *((int *)&yi_r);
         yi_i_i = *((int *)&yi_i);
+        mov_to_svr_v16sf(*(vector float *)y);
         mov_to_svr0(yi_r_i);
         mov_to_svr1(yi_i_i);
-        mov_to_svr2(0);
-        mov_to_svr3(0);
-        mov_to_svr4(0);
-        mov_to_svr5(0);
-        mov_to_svr6(0);
-        mov_to_svr7(0);
-        mov_to_svr8(0);
-        mov_to_svr9(0);
-        mov_to_svr10(0);
-        mov_to_svr11(0);
-        mov_to_svr12(0);
-        mov_to_svr13(0);
-        mov_to_svr14(0);
-        mov_to_svr15(0);
         *(OFF_FLOAT_PTR(y, 2 * i)) = mov_from_svr_v16sf();
     }
 
