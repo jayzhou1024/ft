@@ -1,0 +1,169 @@
+.global dspf_sp_fir_r2_la   ;全局符号声明，可以在其他C或汇编文件中调用
+;参数声明
+.input input_x1:input_x0,input_h1:input_h0,input_r1:input_r0,nh,nr
+.gen_var i,j,t,c_32,c_64
+.gen_var OR_16_cfg1:OR_16_cfg0
+.gen_var SCR_cfg
+.gen_var h1,h2,h3,h4,h5,h6,h7,h8,htemp1,htemp2,htemp3,htemp4,htemp5,htemp6,htemp7,htemp8
+.gen_var xtemp1,xtemp2,xtemp3,xtemp4,xtemp5,xtemp6,xtemp7,xtemp8,xtemp9,xtemp10,xtemp11,xtemp12,xtemp13,xtemp14,xtemp15,xtemp16
+.gen_var rtemp1,rtemp2
+.gen_var h47_term_compute,h47_term,h47_term1,h47_term2,loop1_term,loop2_term
+.gen_var AR_x_compute,AR_x_compute1,AR_x_cfg1:AR_x_cfg0
+.gen_var result1,result2,result3,result4,result5,result6,result7,result8,result9,result10,result11,result12,result13,result14
+.gen_var t_cfg,vc_t
+.add_var OR_16
+.add_var AR_h,AR_r,AR_x,AR_x_1
+
+;函数开始
+SMOVIL          0,i     ;初始化i
+
+SMOVIL          16,OR_16_cfg0       ;16
+SMOVIH          0,OR_16_cfg0
+SADD            0,i,OR_16_cfg1
+SMVAGA36        OR_16_cfg1:OR_16_cfg0,OR_16
+SADD            OR_16_cfg0,OR_16_cfg0,c_32
+SADD            c_32,c_32,c_64  ;64
+
+SMOVIL          3,SCR_cfg       ;饱和配置
+SMVCGC          SCR_cfg,SCR
+
+SMVAGA36        input_h1:input_h0,AR_h  ;保存h基地址
+SMOVIL          0,AR_x_cfg1
+
+;外循环
+.dspf_sp_fir_gen_LOOP1:  .loop
+SMOVIL          0,j     ;j 置 0
+
+SLDW            *AR_h++[1],h1   ;将存放在SM中的h取到寄存器中
+SLDW            *AR_h++[1],h2
+SLDW            *AR_h++[1],h3
+SLDW            *AR_h++[1],h4
+SLDW            *AR_h++[1],h5
+SLDW            *AR_h++[1],h6
+SLDW            *AR_h++[1],h7
+SLDW            *AR_h++[1],h8
+
+
+SSUB            i,nh,h47_term_compute  ;计算h_4 ~ h_7的条件
+
+SMVAGA36        input_r1:input_r0,AR_r  ;在外循环取r
+
+SSHFLL          2,i,AR_x_compute
+SADD            AR_x_compute,input_x0,AR_x_compute  ;(Xaddr)+i*4
+
+SLT             2,h47_term_compute,h47_term
+SLT             4,h47_term_compute,h47_term1
+SLT             6,h47_term_compute,h47_term2
+[!h47_term]SADD 0,j,h3
+[!h47_term]SADD 0,j,h4
+[!h47_term1]SADD 0,j,h5
+[!h47_term1]SADD 0,j,h6
+[!h47_term2]SADD 0,j,h7
+[!h47_term2]SADD 0,j,h8
+SVBCAST         h1,htemp1       ;h取数结束，将其广播到向量寄存器中
+SVBCAST         h2,htemp2
+SVBCAST         h3,htemp3
+SVBCAST         h4,htemp4
+SVBCAST         h5,htemp5
+SVBCAST         h6,htemp6
+SVBCAST         h7,htemp7
+SVBCAST         h8,htemp8
+
+SEQ             0,i,h47_term
+
+;内循环
+.dspf_sp_fir_gen_LOOP2:  .loop
+SSHFLL         2,j,AR_x_compute1   ;j<<2
+SADD           AR_x_compute1,AR_x_compute,AR_x_cfg0    ;x+i+j	
+SMVAGA36       AR_x_cfg1:AR_x_cfg0,AR_x    ;x+i+j基址
+SADD            c_64,AR_x_cfg0,AR_x_cfg0
+SMVAGA36       AR_x_cfg1:AR_x_cfg0,AR_x_1  ;x+i+j基址
+VLDW            *AR_x++[1],xtemp1
+VLDW            *AR_x_1++[1],xtemp9
+VLDW            *AR_x++[1],xtemp2
+VLDW            *AR_x_1++[1],xtemp10
+VLDW            *AR_x++[1],xtemp3
+VLDW            *AR_x_1++[1],xtemp11
+VLDW            *AR_x++[1],xtemp4
+VLDW            *AR_x_1++[1],xtemp12
+VLDW            *AR_x++[1],xtemp5
+VLDW            *AR_x_1++[1],xtemp13
+VLDW            *AR_x++[1],xtemp6
+VLDW            *AR_x_1++[1],xtemp14
+VLDW            *AR_x++[1],xtemp7
+VLDW            *AR_x_1++[1],xtemp15
+VLDW            *AR_x++[1],xtemp8
+VLDW            *AR_x_1++[1],xtemp16
+
+VLDW            *AR_r,rtemp1    ;从AM空间内取r_0_15
+VLDW            *+AR_r[OR_16],rtemp2 ;从AM空间内取r_0_15
+
+SSUB            j,nr,t_cfg  ;NR - J
+SLT             16,t_cfg,t  ;nr - j >16
+SVBCAST         t,vc_t
+SNOP            1
+VMOVIL          0,result1   ;确保初始化
+VMOVIH          0,result1
+[h47_term]SVBCAST   i,rtemp1
+[h47_term]SVBCAST   i,rtemp2
+VMOV            result1,result1
+VMOV            result1,result2
+VMOV            result1,result3
+VMOV            result1,result4
+VMOV            result1,result5
+VMOV            result1,result6
+VMOV            result1,result7
+VMOV            result1,result8
+VMOV            result1,result9
+VMOV            result1,result10
+VMOV            result10,result11
+VMOV            result10,result12
+VMOV            result10,result13
+VMOV            result10,result14
+
+VFMULAS32       htemp1,xtemp1,rtemp1,rtemp1 ; r_0_15 = x_0_15 * vh_0 + r_0_15
+[vc_t]VFMULAS32 htemp1,xtemp9,rtemp2,rtemp2
+VFMULAS32       htemp2,xtemp2,result1,result1
+[vc_t]VFMULAS32 htemp2,xtemp10,result2,result2
+VFMULAS32       htemp3,xtemp3,result3,result3
+[vc_t]VFMULAS32 htemp3,xtemp11,result4,result4
+VFMULAS32       htemp4,xtemp4,result5,result5
+[vc_t]VFMULAS32 htemp4,xtemp12,result6,result6
+VFMULAS32       htemp5,xtemp5,result7,result7
+[vc_t]VFMULAS32 htemp5,xtemp13,result8,result8
+VFMULAS32       htemp6,xtemp6,result9,result9
+[vc_t]VFMULAS32 htemp6,xtemp14,result10,result10
+VFMULAS32       htemp7,xtemp7,result11,result11
+[vc_t]VFMULAS32 htemp7,xtemp15,result12,result12
+VFMULAS32       htemp8,xtemp8,result13,result13
+[vc_t]VFMULAS32 htemp8,xtemp16,result14,result14
+
+VFADDS32        rtemp1,result1,rtemp1
+VFADDS32        rtemp2,result2,rtemp2
+VFADDS32        rtemp1,result3,rtemp1
+VFADDS32        rtemp2,result4,rtemp2
+VFADDS32        result5,result7,result5
+VFADDS32        result6,result8,result6
+VFADDS32        rtemp1,result9,rtemp1
+VFADDS32        rtemp2,result10,rtemp2
+VFADDS32        result5,result11,result5
+VFADDS32        result6,result12,result6
+VFADDS32        rtemp1,result13,rtemp1
+VFADDS32        rtemp2,result14,rtemp2
+VFADDS32        rtemp1,result5,rtemp1
+VFADDS32        rtemp2,result6,rtemp2
+
+VSTW            rtemp1,*AR_r++[OR_16]   ;r_0_15 写回内存
+VSTW            rtemp2,*AR_r++[OR_16]
+
+SADD            c_32,j,j    ;j += 32
+SLT             j,nr,loop2_term
+[loop2_term]SBR .dspf_sp_fir_gen_LOOP2
+.endloop
+
+SADD            8,i,i   ;SMAC1  i += 8
+SLT             i,nh,loop1_term
+[loop1_term]SBR .dspf_sp_fir_gen_LOOP1
+.endloop
+
+.size dspf_sp_fir_r2_la, .-dspf_sp_fir_r2_la
