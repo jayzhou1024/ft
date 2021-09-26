@@ -1,0 +1,57 @@
+; FT M7000 IDE(JAVA), Version 1.0
+
+[Project Settings]
+ProjectName=DSPF_sp_lms
+ProjectDir="C:/Users/Hiccup the Toothful/Desktop/NEW Porject/DSPF_sp_lms"
+ProjectType=Executable
+Config=Debug
+[Source Files]
+Source="DSPF_sp_lms.lds"
+Source="ConfRegOp.c"
+Source="ConfRegOp.h"
+Source="datatransfer.c"
+Source="DSPF_sp_lms_cn.c"
+Source="Timer.c"
+Source="Timer.h"
+Source="main.c"
+Source="DSPF_sp_lms_vc1.c"
+Source="DSPF_sp_lms_la.asm"
+Source="DSPF_sp_lms_asm.asm"
+Source="Debug/ConfRegOp.o"
+Source="Debug/ConfRegOp.s"
+Source="Debug/datatransfer.o"
+Source="Debug/datatransfer.s"
+Source="Debug/DSPF_fir_lms_vc1.o"
+Source="Debug/DSPF_fir_lms_vc1.s"
+Source="Debug/DSPF_sp_lms.map"
+Source="Debug/DSPF_sp_lms.out"
+Source="Debug/DSPF_sp_lms_asm.o"
+Source="Debug/DSPF_sp_lms_cn.o"
+Source="Debug/DSPF_sp_lms_cn.s"
+Source="Debug/DSPF_sp_lms_la.o"
+Source="Debug/DSPF_sp_lms_vc1.o"
+Source="Debug/DSPF_sp_lms_vc1.s"
+Source="Debug/main.o"
+Source="Debug/main.s"
+Source="Debug/Timer.o"
+Source="Debug/Timer.s"
+["Compiler" Settings: "Debug"]
+Options=-O2 -g -ffunction-sections -flax-vector-conversions 
+["Assembler" Settings: "Debug"]
+
+["Linker" Settings: "Debug"]
+Options=-o"Debug/DSPF_sp_lms.out" --gc-sections -T"DSPF_sp_lms.lds" 
+["Compiler" Settings: "Release"]
+Options=-O2 -ffunction-sections 
+["Assembler" Settings: "Release"]
+
+["Linker" Settings: "Release"]
+Options=-o"Release/DSPF_sp_lms.out" --gc-sections -T"DSPF_sp_lms.lds" 
+[Opened files]
+OpenedSource="main.c",line=104
+OpenedSource="DSPF_sp_lms_cn.c",line=1
+OpenedSource="DSPF_sp_lms_asm.asm",line=1
+OpenedSource="DSPF_sp_lms_vc1.c",line=1
+[Builders]
+m7002.builder
+[Debug Configurations]

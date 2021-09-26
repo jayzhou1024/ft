@@ -1,0 +1,87 @@
+.global DSPF_sp_lms_la
+;变量声明
+.input input_x1:input_x0,input_h1:input_h0,input_y_i1:input_y_i0,input_y_o1:input_y_o0,ar,error,nh,nx
+.gen_var i,j,VLR_cfg,cond0,cond1,cond2,vcond0,vcon1,vcond2
+.gen_var vec_ar,vec_error,vec_error_ar,vec_sum,sum,y_i
+.gen_var x_offset_cfg1:x_offset_cfg0,AR_x_cfg1:AR_x_cfg0
+.gen_var vec_h0,vec_h1,vec_h2,vec_h3,vec_x0,vec_x1,vec_x2,vec_x3,vec_x0_1,vec_x1_1,vec_x2_1,vec_x3_1
+.gen_var sum_list0,sum_list1,sum_list2,sum_list3
+.gen_var addr_offset_cfg1:addr_offset_cfg0
+.gen_var SCR_cfg
+.gen_var nh_remain
+
+.add_var temp_x_offset,temp_x_offset_1,AR_x,AR_h,AR_h_1,AR_y_o,AR_y_i
+.add_var addr_offset
+.output error
+
+
+
+;函数开始
+SMOVIL          0xf,VLR_cfg
+SMVCGC          VLR_cfg,VLR     ;关闭VPE4~15
+SVBCAST         ar,vec_ar
+SMOVIL          0,i     ;初始化i
+SADD            0,i,x_offset_cfg1
+SADD            0,i,addr_offset_cfg1
+SMVAGA36        input_y_i1:input_y_i0,AR_y_i
+SMVAGA36        input_y_o1:input_y_o0,AR_y_o
+;SMOVIL          3,SCR_cfg
+;SMVCGC          SCR_cfg,SCR
+
+
+;外循环
+.loop_i: .loop
+SVBCAST         error,vec_error
+VFMULS32        vec_error,vec_ar,vec_error_ar
+SSHFLL          2,i,x_offset_cfg0
+SADD            x_offset_cfg0,input_x0,x_offset_cfg0
+SMVAGA36        x_offset_cfg1:x_offset_cfg0,temp_x_offset
+SADDA           4,temp_x_offset,temp_x_offset_1
+SMVAGA36        input_h1:input_h0,AR_h
+SMVAGA36        input_h1:input_h0,AR_h_1
+
+SMOVIL          0,j  ;初始化j
+
+;内循环
+.loop_j: .loop
+SEQ             0,j,cond0
+[cond0]SVBCAST  j,vec_sum
+
+SADD            0,j,addr_offset_cfg0
+SMVAGA36        addr_offset_cfg1:addr_offset_cfg0,addr_offset
+VLDW            *AR_h++[4],vec_h0
+VLDW            *+temp_x_offset[addr_offset],vec_x0
+VFMULAS32       vec_error_ar,vec_x0,vec_h0,vec_h0
+VSTW            vec_h0,*AR_h_1++[4]
+VLDW            *+temp_x_offset_1[addr_offset],vec_x0_1
+VFMULAS32       vec_h0,vec_x0_1,vec_sum,vec_sum
+
+SADD            4,j,j
+SLT             j,nh,cond0
+[cond0]SBR      .loop_j
+.endloop
+
+VMVCGC          vec_sum,SVR     ;vec_sum搬移至SVR中
+SMVCCG          SVR0,sum_list0
+SMVCCG          SVR1,sum_list1
+SMVCCG          SVR2,sum_list2
+SMVCCG          SVR3,sum_list3
+
+SFADDS32        sum_list0,sum_list1,sum
+SFADDS32        sum,sum_list2,sum
+SFADDS32        sum,sum_list3,sum
+
+SSTW            sum,*AR_y_o++[1]
+SLDW            *AR_y_i++[1],y_i
+SFSUBS32        sum,y_i,error
+
+SADD            1,i,i
+SLT             i,nx,cond1
+[cond1]SBR      .loop_i
+.endloop
+
+SMOVIL          0xffff,VLR_cfg
+SMVCGC          VLR_cfg,VLR     ;开启VPE4~15
+
+
+.size DSPF_sp_lms_la,-DSPF_sp_lms_la
