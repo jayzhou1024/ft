@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 #include <time.h>
 
@@ -295,7 +296,7 @@ void main()
         if (pass)
         {
             printf("Result Successful");
-            printf("    order=%d   natC: %d  optC: %d\n", Nrows, cholesky_solver_t, cholesky_solver_t_cn);
+            printf("    order=%d   natC: %d  optC: %d\n", Nrows, cholesky_solver_t_cn, cholesky_solver_t);
         }
         else
         {
