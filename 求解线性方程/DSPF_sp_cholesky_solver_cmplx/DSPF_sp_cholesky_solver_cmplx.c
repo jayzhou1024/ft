@@ -271,7 +271,7 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
                 mov_to_vlr(0xFFFF);
 
                 shuff_mode(2);
-                *OFF_FLOAT_PTR(&y[j / VPE_NUM], 0) = vec_shufw(2, vf_temp4_r, vf_temp4_i);
+                *(vector float *)(&y[j / VPE_NUM]) = vec_shufw(2, vf_temp4_r, vf_temp4_i);
                 shuff_mode(3);
                 *OFF_FLOAT_PTR(&y[j / VPE_NUM], VPE_NUM) = vec_shufw(3, vf_temp4_r, vf_temp4_i);
                 break;
