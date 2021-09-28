@@ -15,6 +15,8 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
     float Li_r, Li_i, bi_r, bi_i, yi_r, yi_i;
     float buf_r[16], buf_i[16];
     int VPE_Setting;
+    float x_mag, y_mag, z_mag;
+    float x_angle, y_angle, z_angle;
 
     int cols16 = (Nrows + 15) / VPE_NUM;
 
@@ -57,18 +59,31 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
     Li_i_i = mov_from_svr1();
     Li_r = *((float *)&Li_r_i);
     Li_i = *((float *)&Li_i_i);
+    //printf("Li_r = %f\n", Li_r);
+    //printf("Li_i = %f\n", Li_i);
     mov_to_svr_v16sf(*(vector float *)b);
     bi_r_i = mov_from_svr0();
     bi_i_i = mov_from_svr1();
     bi_r = *((float *)&bi_r_i);
     bi_i = *((float *)&bi_i_i);
-    yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
-    yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
-    //complex_sp_div_cn(bi_r, bi_i, Li_r, Li_i, &yi_r, &yi_i);
+    //printf("bi_r = %f\n", bi_r);
+    //printf("bi_i = %f\n", bi_i);
+    //yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+    //yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+    x_mag = sqrt(bi_r * bi_r + bi_i * bi_i);
+    y_mag = sqrt(Li_r * Li_r + Li_i * Li_i);
+    z_mag = x_mag / y_mag;
+    x_angle = atan2(bi_i, bi_r);
+    y_angle = atan2(Li_i, Li_r);
+    z_angle = x_angle - y_angle;
+    yi_r = cos(z_angle) * z_mag;
+    yi_i = sin(z_angle) * z_mag;
+    //printf("yi_r = %f, yi_i = %f\n", yi_r, yi_i);
     mov_to_svr_v16sf(*(vector float *)y);
     mov_to_svr0(*((int *)&yi_r));
     mov_to_svr1(*((int *)&yi_i));
     *(vector float *)y = mov_from_svr_v16sf();
+    //*(OFF_FLOAT_PTR(y, 0)) = mov_from_svr_v16sf();
 
     //求解L * y = b中的y向量，y向量为中间向量
     for (i = 1; i < Nrows; i++)
@@ -78,8 +93,13 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         //初始化vf_temp1, buf
         vf_temp1_r = vec_svbcast(0.0f);
         vf_temp1_i = vec_svbcast(0.0f);
-        memset(buf_r, 0.0, VPE_NUM * sizeof(float));
-        memset(buf_i, 0.0, VPE_NUM * sizeof(float));
+        //memset(buf_r, 0.0, VPE_NUM * sizeof(float));
+        //memset(buf_i, 0.0, VPE_NUM * sizeof(float));
+        for (j = 0; j < VPE_NUM; j++)
+        {
+            buf_r[j] = 0;
+            buf_i[j] = 0;
+        }
 
         //计算yi
         for (j = 0; j < cols16; j++)
@@ -98,7 +118,8 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
             {
                 VPE_Setting = 0xFFFF;
                 VPE_Setting = VPE_Setting >> (VPE_NUM - Nrows % VPE_NUM);
-                mov_to_vlr(VPE_Setting); 
+                //printf("VPE_Setting = %x\n", VPE_Setting);
+                mov_to_vlr(VPE_Setting);
                 vf_temp1_r = vec_add(vf_temp1_r, vf_temp4_r);
                 vf_temp1_i = vec_add(vf_temp1_i, vf_temp4_i);
                 mov_to_vlr(0xFFFF);
@@ -148,18 +169,23 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         Li_i_i = mov_from_svr1();
         Li_r = *((float *)&Li_r_i);
         Li_i = *((float *)&Li_i_i);
+        //printf("Li_r = %f, Li_i = %f\n", Li_r, Li_i);
         mov_to_svr_v16sf(*OFF_FLOAT_PTR(b, i * 2));
         bi_r_i = mov_from_svr0();
         bi_i_i = mov_from_svr1();
         bi_r = *((float *)&bi_r_i);
         bi_i = *((float *)&bi_i_i);
+        //printf("bi_r = %f, bi_i = %f\n", bi_r, bi_i);
+        //printf("sum_r = %f, sum_i = %f\n", sum_r, sum_i);
         bi_r -= sum_r;
         bi_i -= sum_i;
+        //printf("bi_r = %f, bi_i = %f\n", bi_r, bi_i);
         yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
         yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
         yi_r_i = *((int *)&yi_r);
         yi_i_i = *((int *)&yi_i);
-        mov_to_svr_v16sf(*(vector float *)y);
+        //printf("yi_r = %f, yi_i = %f\n", yi_r, yi_i);
+        mov_to_svr_v16sf(*(OFF_FLOAT_PTR(y, 2 * i)));
         mov_to_svr0(yi_r_i);
         mov_to_svr1(yi_i_i);
         *(OFF_FLOAT_PTR(y, 2 * i)) = mov_from_svr_v16sf();
@@ -181,9 +207,18 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         yi_i_i = mov_from_svr1();
         yi_r = *((float *)&yi_r_i);
         yi_i = *((float *)&yi_i_i);
-        buf_r[7 - k] = (yi_r * Li_r + yi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
-        buf_i[7 - k] = (yi_i * Li_r - yi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
-        //complex_sp_div_cn(yi_r, yi_i, Li_r, Li_i, &buf_r[7 - k], &buf_i[7 - k]);
+        //buf_r[7 - k] = (yi_r * Li_r + yi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+        //buf_i[7 - k] = (yi_i * Li_r - yi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+        x_mag = sqrt(yi_r * yi_r + yi_i * yi_i);
+        y_mag = sqrt(Li_r * Li_r + Li_i * Li_i);
+        z_mag = x_mag / y_mag;
+        x_angle = atan2(yi_i, yi_r);
+        y_angle = atan2(Li_i, Li_r);
+        z_angle = x_angle - y_angle;
+        buf_r[7 - k] = cos(z_angle) * z_mag;
+        buf_i[7 - k] = sin(z_angle) * z_mag;
+
+        //printf("buf_r[%d] = %f, buf_i[%d] = %f\n", 7 - k, buf_r[7 - k], i, buf_i[7 - k]);
         vf_temp3_r = vec_svbcast(buf_r[7 - k]);
         vf_temp3_i = vec_svbcast(buf_i[7 - k]);
         k++;
@@ -212,22 +247,21 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
 
         //更新y
         startOfRow = (lvector double *)OFF_FLOAT_PTR(L, 2 * i * Nrows);
-        for (j = 0; j < i; j += VPE_NUM_HALF)
+        for (j = 0; j < i; j += VPE_NUM)
         {
             shuff_mode(0);
-            vf_temp2_r = vec_shufw(0, *(vector float *)(&startOfRow[j / VPE_NUM_HALF]), *OFF_FLOAT_PTR(&startOfRow[j / VPE_NUM_HALF], VPE_NUM));
-            vf_temp4_r = vec_shufw(0, *(vector float *)(&y[j / VPE_NUM_HALF]), *OFF_FLOAT_PTR(&y[j / VPE_NUM_HALF], VPE_NUM));
+            vf_temp2_r = vec_shufw(0, *(vector float *)(&startOfRow[j / VPE_NUM]), *OFF_FLOAT_PTR(&startOfRow[j / VPE_NUM], VPE_NUM));
+            vf_temp4_r = vec_shufw(0, *(vector float *)(&y[j / VPE_NUM]), *OFF_FLOAT_PTR(&y[j / VPE_NUM], VPE_NUM));
             shuff_mode(1);
-            vf_temp2_i = vec_shufw(1, *(vector float *)(&startOfRow[j / VPE_NUM_HALF]), *OFF_FLOAT_PTR(&startOfRow[j / VPE_NUM_HALF], VPE_NUM));
+            vf_temp2_i = vec_shufw(1, *(vector float *)(&startOfRow[j / VPE_NUM]), *OFF_FLOAT_PTR(&startOfRow[j / VPE_NUM], VPE_NUM));
             vf_temp2_i = vec_neg(vf_temp2_i);
-            vf_temp4_i = vec_shufw(1, *(vector float *)(&y[j / VPE_NUM_HALF]), *OFF_FLOAT_PTR(&y[j / VPE_NUM_HALF], VPE_NUM));
+            vf_temp4_i = vec_shufw(1, *(vector float *)(&y[j / VPE_NUM]), *OFF_FLOAT_PTR(&y[j / VPE_NUM], VPE_NUM));
 
-            if ((j > i - VPE_NUM_HALF) && ((i + 1) % VPE_NUM_HALF))
+            if ((j > i - VPE_NUM) && ((i + 1) % VPE_NUM))
             {
                 VPE_Setting = 0xFFFF;
-                VPE_Setting >> (VPE_NUM - (i + 1) % VPE_NUM_HALF);
+                VPE_Setting >> (VPE_NUM - (i + 1) % VPE_NUM);
                 mov_to_vlr(VPE_Setting);
-                j += VPE_NUM_HALF;
                 vf_temp1_r = vec_sub(vec_muli(vf_temp2_i, vf_temp3_i), vec_muli(vf_temp2_r, vf_temp3_r));
                 vf_temp1_i = vec_add(vec_muli(vf_temp2_r, vf_temp3_i), vec_muli(vf_temp2_i, vf_temp3_r));
 
@@ -237,9 +271,9 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
                 mov_to_vlr(0xFFFF);
 
                 shuff_mode(2);
-                *OFF_FLOAT_PTR(&y[j / VPE_NUM_HALF - 1], 0) = vec_shufw(2, vf_temp4_r, vf_temp4_i);
+                *OFF_FLOAT_PTR(&y[j / VPE_NUM], 0) = vec_shufw(2, vf_temp4_r, vf_temp4_i);
                 shuff_mode(3);
-                *OFF_FLOAT_PTR(&y[j / VPE_NUM_HALF - 1], VPE_NUM) = vec_shufw(3, vf_temp4_r, vf_temp4_i);
+                *OFF_FLOAT_PTR(&y[j / VPE_NUM], VPE_NUM) = vec_shufw(3, vf_temp4_r, vf_temp4_i);
                 break;
             }
 
@@ -250,9 +284,9 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
             vf_temp4_i = vec_sub(vf_temp1_i, vf_temp4_i);
 
             shuff_mode(2);
-            *(vector float *)(&y[j / VPE_NUM_HALF]) = vec_shufw(2, vf_temp4_r, vf_temp4_i);
+            *(vector float *)(&y[j / VPE_NUM]) = vec_shufw(2, vf_temp4_r, vf_temp4_i);
             shuff_mode(3);
-            *OFF_FLOAT_PTR(&y[j / VPE_NUM_HALF], VPE_NUM) = vec_shufw(3, vf_temp4_r, vf_temp4_i);
+            *OFF_FLOAT_PTR(&y[j / VPE_NUM], VPE_NUM) = vec_shufw(3, vf_temp4_r, vf_temp4_i);
         }
     }
     if (k)
@@ -284,6 +318,10 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
             buf_r[j] = buf_r[8];
             buf_i[j] = buf_i[8];
         }
+        //for (i = 0; i < 8; i++)
+        //{
+        //    printf("buf_r[%d] = %f, buf_i[%d] = %f\n", i, buf_r[i], i, buf_i[i]);
+        //}
 
         mov_to_svr0(*(int *)buf_r);
         mov_to_svr1(*(int *)buf_i);
@@ -301,29 +339,9 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         mov_to_svr13(*(int *)(buf_i + 6));
         mov_to_svr14(*(int *)(buf_r + 7));
         mov_to_svr15(*(int *)(buf_i + 7));
+        //*(vector float *)x = mov_from_svr_v16sf();
         *(OFF_FLOAT_PTR(x, 0)) = mov_from_svr_v16sf();
     }
-    
+
     return 0;
-}
-
-void complex_sp_div_cn(float x_real, float x_imag, float y_real, float y_imag, float *z_real, float *z_imag)
-{
-
-	float x_mag, y_mag, z_mag;
-	float x_angle, y_angle, z_angle;
-
-	/* magnitude */
-	x_mag = sqrt(x_real * x_real + x_imag * x_imag);
-	y_mag = sqrt(y_real * y_real + y_imag * y_imag);
-	z_mag = x_mag / y_mag;
-
-	/* angle */
-	x_angle = atan2(x_imag, x_real);
-	y_angle = atan2(y_imag, y_real);
-	z_angle = x_angle - y_angle;
-
-	/* results */
-	*z_real = cos(z_angle) * z_mag;
-	*z_imag = sin(z_angle) * z_mag;
 }
