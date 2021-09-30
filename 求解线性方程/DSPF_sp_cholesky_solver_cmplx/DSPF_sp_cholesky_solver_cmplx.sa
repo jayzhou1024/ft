@@ -1,0 +1,529 @@
+.global DSPF_sp_cholesky_solver_cmplx
+
+.input  input_Nrows, input_L, input_y, input_b, input_x
+
+.gen_var    i, i_1, j, j_1, k, l, m, zero
+.gen_var    sum_r, sum_i
+.gen_var    Li_r, Li_i, bi_r, bi_i, yi_r, yi_i, buf, x_r, x_i
+.gen_var    VPE_Setting
+.gen_var    vf_temp1_r, vf_temp1_i, vf_temp2_r, vf_temp2_i, vf_temp3_r, vf_temp3_i, vf_temp4_r, vf_temp4_i
+.gen_var    vf_temp5, vf_temp6
+.gen_var    temp0, temp1
+.gen_var    div_temp0, div_temp1, div_temp2, div_temp3, div_temp4, div_temp5, div_temp6, div_temp7, div_temp8, div_temp9, div_temp10
+.gen_var    bool0
+.add_var    Nrows, L, y, b, x, shuf_addr
+.gen_var    vf_L, vf_y0, vf_y1, vf_b, vf_startOfRow0, vf_startOfRow1, vf_x
+.gen_var    shuf_temp, shuf_mode
+.add_var    shuf_mode_addr
+.gen_var    cmplx_temp0, cmplx_temp1, cmplx_temp2, cmplx_temp3, cmplx_temp4
+.gen_var    i_LoopBool0, i_LoopBool1, j_LoopBool0, j_LoopBool1
+.add_var    add_offset0, add_offset1, add_offset2
+.add_var    off_0, off_1, off_2, off_3, off_4, off_5, off_6, off_7
+
+SMOV    input_Nrows, Nrows
+SMVAGA32    input_L, L
+SMVAGA32    input_y, y
+SMVAGA32    input_b, b
+SMVAGA32    input_x, x
+
+SMOVIL  0x0000, shuf_addr
+SMOVIH  0x4016, shuf_addr
+
+;混洗mode0:提取奇数项
+SMOVIL  0x0200, shuf_temp
+SMOVIH  0x0604, shuf_temp
+SSTW    shuf_temp, *shuf_mode_addr
+SMOVIL  0x0a08, shuf_temp
+SMOVIH  0x0e0c, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[1]
+SMOVIL  0x1210, shuf_temp
+SMOVIH  0x1614, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[2]
+SMOVIL  0x1a18, shuf_temp
+SMOVIH  0x1e1c, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[3]
+
+;混洗mode1:提取偶数项
+SMOVIL  0x0301, shuf_temp
+SMOVIH  0x0705, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[4]
+SMOVIL  0x0b09, shuf_temp
+SMOVIH  0x0f0d, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[5]
+SMOVIL  0x1311, shuf_temp
+SMOVIH  0x1715, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[6]
+SMOVIL  0x1b19, shuf_temp
+SMOVIH  0x1f1d, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[7]
+
+;混洗mode2:取对应float型变量组成单精度复数1
+SMOVIL  0x1000, shuf_temp
+SMOVIH  0x1101, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[8]
+SMOVIL  0x1202, shuf_temp
+SMOVIH  0x1303, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[9]
+SMOVIL  0x1404, shuf_temp
+SMOVIH  0x1505, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[10]
+SMOVIL  0x1606, shuf_temp
+SMOVIH  0x1707, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[11]
+
+;mode3:取对应float型变量组成单精度复数2
+SMOVIL  0x1808, shuf_temp
+SMOVIH  0x1909, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[12]
+SMOVIL  0x1a0a, shuf_temp
+SMOVIH  0x1b0b, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[13]
+SMOVIL  0x1c0c, shuf_temp
+SMOVIH  0x1d0d, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[14]
+SMOVIL  0x1e0e, shuf_temp
+SMOVIH  0x1f0f, shuf_temp
+SSTW    shuf_temp, *+shuf_mode_addr[15]
+
+;计算y0
+VLDW    *+L[0], vf_L
+VMVCGC  vf_L, SVR
+SMVCCG  SVR0, Li_r
+SMVCCG  SVR1, Li_i
+VLDW    *+b[0], vf_b
+VMVCGC  vf_b, SVR
+SMVCCG  SVR0, bi_r
+SMVCCG  SVR1, bi_i
+
+;yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+;yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+SFMULS32    bi_r, Li_r, cmplx_temp0
+SFMULS32    bi_i, Li_i, cmplx_temp1
+
+SADD    cmplx_temp0, cmplx_temp1, cmplx_temp0
+SFMULS32    Li_r, Li_r, cmplx_temp2
+SFMULS32    Li_i, Li_i, cmplx_temp3
+
+SADD    cmplx_temp2, cmplx_temp3, cmplx_temp4
+SFMULS32    bi_i, Li_r, cmplx_temp2
+SFMULS32    bi_r, Li_i, cmplx_temp3
+SADD    cmplx_temp2, cmplx_temp3, cmplx_temp2
+
+SMOV    cmplx_temp0, div_temp0
+SMOVIL  0x0000, div_temp1
+SMOVIL  0x4000, div_temp1
+SMOV    cmplx_temp4, div_temp2
+SFRCPS32    div_temp2, div_temp3
+SFMULS32    div_temp2, div_temp3, div_temp4
+SFSUBS32    div_temp4, div_temp1, div_temp5
+SFMULS32    div_temp5, div_temp3, div_temp6
+SFMULS32    div_temp2, div_temp6, div_temp7
+SFSUBS32    div_temp7, div_temp1, div_temp8
+SFMULS32    div_temp8, div_temp6, div_temp9
+SFMULS32    div_temp0, div_temp9, div_temp10
+SMOV    div_temp8, yi_r
+
+SMOV    cmplx_temp2, div_temp0
+SMOVIL  0x0000, div_temp1
+SMOVIL  0x4000, div_temp1
+SMOV    cmplx_temp4, div_temp2
+SFRCPS32    div_temp2, div_temp3
+SFMULS32    div_temp2, div_temp3, div_temp4
+SFSUBS32    div_temp4, div_temp1, div_temp5
+SFMULS32    div_temp5, div_temp3, div_temp6
+SFMULS32    div_temp2, div_temp6, div_temp7
+SFSUBS32    div_temp7, div_temp1, div_temp8
+SFMULS32    div_temp8, div_temp6, div_temp9
+SFMULS32    div_temp0, div_temp9, div_temp10
+SMOV    div_temp8, yi_i
+
+VLDW    *+y[0], vf_y0
+VMVCGC  vf_y0, SVR
+SMVCGC  yi_r, SVR0
+SMVCGC  yi_i, SVR1
+VMVCCG  SVR, vf_y0
+VSTW    vf_y0, *+y[0]
+
+;求解L * y = b中的y向量，y向量为中间向量
+SMOVIL  0x0001, i
+SMOVIH  0x0000, i
+SMOVIL 0x0000, zero
+SMOVIH 0x0000, zero
+SMOVIL  0x0040, temp1
+SMOVIH  0x0000, temp1
+.i_loop0:   .loop
+    SVBCAST zero, vf_temp1_r
+    SVBCAST zero, vf_temp1_i
+    SMOVIL  0x0000, bi_r
+    SMOVIH  0x0000, bi_r
+    SMOVIL  0x0000, bi_i
+    SMOVIH  0x0000, bi_i
+    SMULIU  i, Nrows, add_offset0
+    SMULIU  8, add_offset0, add_offset2
+    SMOVIL  0x0000, j
+    SMOVIH  0x0000, j
+    SADD    16, j, j_1
+    .j_loop0:   .loop
+        ;混洗
+        SMULIU  8, j, add_offset0
+        SADD    temp1, add_offset0, add_offset1
+        SADD    add_offset0, add_offset2, add_offset0
+        SADD    add_offset1, add_offset2, add_offset1
+        SMVAGA32    add_offset0, off_0
+        SMVAGA32    add_offset1, off_1
+        VLDW    *+L[off_0], vf_startOfRow0
+        VLDW    *+L[off_1], vf_startOfRow1
+        VLDW    *+y[off_0], vf_y0
+        VLDW    *+y[off_1], vf_y1
+        SMOVIL  0x0000, shuf_mode
+        SMOVIH  0x0000, shuf_mode
+        SMVCGC  shuf_mode, SMR
+        VSHUFW  vf_y0, vf_y1, vf_temp2_r
+        VSHUFW  vf_startOfRow0, vf_startOfRow1, vf_temp3_r
+        SMOVIL  0x0001, shuf_mode
+        SMOVIH  0x0000, shuf_mode
+        SMVCGC  shuf_mode, SMR
+        VSHUFW  vf_y0, vf_y1, vf_temp2_i
+        VSHUFW  vf_startOfRow0, vf_startOfRow1, vf_temp3_i
+        
+        VFMULS32    vf_temp2_i, vf_temp3_i, vf_temp5
+        VFMULS32    vf_temp2_r, vf_temp3_r, vf_temp6
+        VSUB    vf_temp5, vf_temp6, vf_temp4_r
+        VFMULS32    vf_temp2_r, vf_temp3_i, vf_temp5
+        VFMULS32    vf_temp3_r, vf_temp2_i, vf_temp6
+        VSUB    vf_temp5, vf_temp6, vf_temp4_i
+        
+        SLT j_1, Nrows, bool0
+        [bool0] SBR .full_vpe_y
+        SFCMPES32   j_1, Nrows, bool0
+        [bool0] SBR .full_vpe_y
+        SMOVIL  0xFFFF, VPE_Setting
+        SMOVIH  0x0000, VPE_Setting
+        SSUB    Nrows, j_1, temp0
+        SSHFAR16    temp0, VPE_Setting, VPE_Setting
+        SMVCGC  VPE_Setting, VLR
+        VADD    vf_temp1_r, vf_temp4_r, vf_temp1_r
+        VADD    vf_temp1_i, vf_temp4_i, vf_temp1_i
+        SMOVIL  0xFFFF, VPE_Setting
+        SMOVIH  0x0000, VPE_Setting
+        SMVCGC  VPE_Setting, VLR
+        SBR .j_endloop0
+
+        .full_vpe_y:
+        VADD    vf_temp1_r, vf_temp4_r, vf_temp1_r
+        VADD    vf_temp1_i, vf_temp4_i, vf_temp1_i
+        SADD    16, j, j
+        SADD    16, j_1, j_1
+        SLT j, Nrows, j_LoopBool0
+        [j_LoopBool0]    SBR .j_loop0
+        
+    .j_endloop0:
+    .endloop
+
+    SMOVIL  0x0000, sum_r
+    SMOVIH  0x0000, sum_r
+    VMVCGC  vf_temp1_r, SVR
+    SMVCCG  SVR0, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR1, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR2, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR3, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR4, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR5, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR6, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR7, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR8, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR9, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR10, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR11, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR12, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR13, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR14, buf
+    SADD    buf, sum_r, sum_r
+    SMVCCG  SVR15, buf
+    SADD    buf, sum_r, sum_r
+    SMOVIL  0x0000, sum_i
+    SMOVIH  0x0000, sum_i
+    VMVCGC  vf_temp1_i, SVR
+    SMVCCG  SVR0, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR1, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR2, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR3, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR4, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR5, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR6, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR7, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR8, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR9, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR10, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR11, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR12, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR13, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR14, buf
+    SADD    buf, sum_i, sum_i
+    SMVCCG  SVR15, buf
+    SADD    buf, sum_i, sum_i
+
+    SMULIU  i, Nrows, i_1
+    SADD    i_1, i, add_offset0
+    SMULIU  8, add_offset0, add_offset0
+    SMVAGA32    add_offset0, off_2
+    VLDW    *+L[off_2], vf_L
+    VMVCGC  vf_L, SVR
+    SMVCCG  SVR0, Li_r
+    SMVCCG  SVR1, Li_i
+
+    SMULIU  8, i, add_offset0
+    SMVAGA32    add_offset0, off_3
+    VLDW    *+b[off_3], vf_b
+    VMVCGC  vf_b, SVR
+    SMVCCG  SVR0, bi_r
+    SMVCCG  SVR1, bi_i
+    SSUB    sum_r, bi_r, bi_r
+    SSUB    sum_i, bi_i, bi_i
+
+    SFMULS32    bi_r, Li_r, cmplx_temp0
+    SFMULS32    bi_i, Li_i, cmplx_temp1
+
+    SADD    cmplx_temp0, cmplx_temp1, cmplx_temp0
+    SFMULS32    Li_r, Li_r, cmplx_temp2
+    SFMULS32    Li_i, Li_i, cmplx_temp3
+
+    SADD    cmplx_temp2, cmplx_temp3, cmplx_temp4
+    SFMULS32    bi_i, Li_r, cmplx_temp2
+    SFMULS32    bi_r, Li_i, cmplx_temp3
+    SADD    cmplx_temp2, cmplx_temp3, cmplx_temp2
+
+    SMOV    cmplx_temp0, div_temp0
+    SMOVIL  0x0000, div_temp1
+    SMOVIL  0x4000, div_temp1
+    SMOV    cmplx_temp4, div_temp2
+    SFRCPS32    div_temp2, div_temp3
+    SFMULS32    div_temp2, div_temp3, div_temp4
+    SFSUBS32    div_temp4, div_temp1, div_temp5
+    SFMULS32    div_temp5, div_temp3, div_temp6
+    SFMULS32    div_temp2, div_temp6, div_temp7
+    SFSUBS32    div_temp7, div_temp1, div_temp8
+    SFMULS32    div_temp8, div_temp6, div_temp9
+    SFMULS32    div_temp0, div_temp9, div_temp10
+    SMOV    div_temp8, yi_r
+
+    SMOV    cmplx_temp2, div_temp0
+    SMOVIL  0x0000, div_temp1
+    SMOVIL  0x4000, div_temp1
+    SMOV    cmplx_temp4, div_temp2
+    SFRCPS32    div_temp2, div_temp3
+    SFMULS32    div_temp2, div_temp3, div_temp4
+    SFSUBS32    div_temp4, div_temp1, div_temp5
+    SFMULS32    div_temp5, div_temp3, div_temp6
+    SFMULS32    div_temp2, div_temp6, div_temp7
+    SFSUBS32    div_temp7, div_temp1, div_temp8
+    SFMULS32    div_temp8, div_temp6, div_temp9
+    SFMULS32    div_temp0, div_temp9, div_temp10
+    SMOV    div_temp8, yi_i
+
+    VLDW    *+y[off_3], vf_y0
+    VMVCGC  vf_y0, SVR
+    SMVCGC  yi_r, SVR0
+    SMVCGC  yi_i, SVR1
+    VSTW    vf_y0, *+y[off_3]
+
+    SADD    1, i, i
+    SLT i, Nrows, i_LoopBool0
+    [i_LoopBool0]    SBR .i_loop0
+.endloop
+
+;求解U * x = y中的x向量，x向量即为解向量
+SMOVIL  0x0000, k
+SMOVIH  0x0000, k
+SMOVIL  0x0001, l
+SMOVIH  0x0000, l
+SMOVIL  0x0000, m
+SMOVIH  0x0000, m
+SSUB    1, Nrows, i
+.i_loop1:   .loop
+    ;求解xi
+    SMULIU  i, Nrows, i_1
+    SADD    i_1, i, add_offset0
+    SMULIU  8, add_offset0, add_offset0
+    SMVAGA32    add_offset0, off_4
+    VLDW    *+L[off_4], vf_L
+    VMVCGC  vf_L, SVR
+    SMVCCG  SVR0, Li_r
+    SMVCCG  SVR1, Li_i
+    SNEG    Li_i, Li_i
+    SMULIU  8, i, add_offset0
+    SMVAGA32    add_offset0, off_5
+    VLDW    *+y[off_5], vf_y0
+    VMVCGC  vf_y0, SVR
+    SMVCCG  SVR0, yi_r
+    SMVCCG  SVR1, yi_i
+
+    SFMULS32    yi_r, Li_r, cmplx_temp0
+    SFMULS32    yi_i, Li_i, cmplx_temp1
+
+    SADD    cmplx_temp0, cmplx_temp1, cmplx_temp0
+    SFMULS32    Li_r, Li_r, cmplx_temp2
+    SFMULS32    Li_i, Li_i, cmplx_temp3
+
+    SADD    cmplx_temp2, cmplx_temp3, cmplx_temp4
+    SFMULS32    bi_i, Li_r, cmplx_temp2
+    SFMULS32    bi_r, Li_i, cmplx_temp3
+    SADD    cmplx_temp2, cmplx_temp3, cmplx_temp2
+
+    SMOV    cmplx_temp0, div_temp0
+    SMOVIL  0x0000, div_temp1
+    SMOVIL  0x4000, div_temp1
+    SMOV    cmplx_temp4, div_temp2
+    SFRCPS32    div_temp2, div_temp3
+    SFMULS32    div_temp2, div_temp3, div_temp4
+    SFSUBS32    div_temp4, div_temp1, div_temp5
+    SFMULS32    div_temp5, div_temp3, div_temp6
+    SFMULS32    div_temp2, div_temp6, div_temp7
+    SFSUBS32    div_temp7, div_temp1, div_temp8
+    SFMULS32    div_temp8, div_temp6, div_temp9
+    SFMULS32    div_temp0, div_temp9, div_temp10
+    SMOV    div_temp8, x_r
+
+    SMOV    cmplx_temp2, div_temp0
+    SMOVIL  0x0000, div_temp1
+    SMOVIL  0x4000, div_temp1
+    SMOV    cmplx_temp4, div_temp2
+    SFRCPS32    div_temp2, div_temp3
+    SFMULS32    div_temp2, div_temp3, div_temp4
+    SFSUBS32    div_temp4, div_temp1, div_temp5
+    SFMULS32    div_temp5, div_temp3, div_temp6
+    SFMULS32    div_temp2, div_temp6, div_temp7
+    SFSUBS32    div_temp7, div_temp1, div_temp8
+    SFMULS32    div_temp8, div_temp6, div_temp9
+    SFMULS32    div_temp0, div_temp9, div_temp10
+    SMOV    div_temp8, x_i
+
+    VLDW    *+x[off_5], vf_x
+    VMVCGC  vf_x, SVR
+    SMVCGC  x_r, SVR0
+    SMVCGC  x_i, SVR1
+    VMVCCG  SVR, vf_x
+    VSTW    vf_x, *+x[off_5]
+
+    ;更新y
+    SMULIU  add_offset0, Nrows, add_offset2
+    SMOVIL  0x0000, j
+    SMOVIH  0x0000, j
+    SADD    16, j, j_1
+    SADD    1, i, i_1
+    .j_loop1:   .loop
+        SMULIU  8, j, add_offset0
+        SADD    temp1, add_offset0, add_offset1
+        SADD    add_offset0, add_offset2, add_offset0
+        SADD    add_offset1, add_offset2, add_offset1
+        SMVAGA32    add_offset0, off_6
+        SMVAGA32    add_offset1, off_7
+        VLDW    *+L[off_6], vf_startOfRow0
+        VLDW    *+L[off_7], vf_startOfRow1
+        VLDW    *+y[off_6], vf_y0
+        VLDW    *+y[off_7], vf_y1
+        SMOVIL  0x0000, shuf_mode
+        SMOVIH  0x0000, shuf_mode
+        SMVCGC  shuf_mode, SMR
+        VSHUFW  vf_startOfRow0, vf_startOfRow0, vf_temp2_r
+        VSHUFW  vf_y0, vf_y1, vf_temp4_r
+        SMOVIL  0x0001, shuf_mode
+        SMOVIH  0x0000, shuf_mode
+        SMVCGC  shuf_mode, SMR
+        VSHUFW  vf_startOfRow0, vf_startOfRow1, vf_temp2_i
+        VSHUFW  vf_y0, vf_y1, vf_temp4_i
+        VNEG    vf_temp2_i, vf_temp2_i
+
+        SLT i, j_1, bool0
+        [!bool0]    SBR .full_vpe_x
+        SFCMPES32   j_1, i_1, bool0
+        [bool0] SBR .full_vpe_x
+        SMOVIL  0xFFFF, VPE_Setting
+        SMOVIH  0x0000, VPE_Setting
+        SSUB    i_1, j_1, temp0
+        SSHFAR16    temp0, VPE_Setting, VPE_Setting
+        SMVCGC  VPE_Setting, VLR
+        VFMULS32    vf_temp2_i, vf_temp3_i, vf_temp5
+        VFMULS32    vf_temp2_r, vf_temp3_r, vf_temp6
+        VSUB    vf_temp5, vf_temp6, vf_temp1_r
+        VFMULS32    vf_temp2_r, vf_temp3_i, vf_temp5
+        VFMULS32    vf_temp2_i, vf_temp3_r, vf_temp6
+        VADD    vf_temp5, vf_temp6, vf_temp1_i
+        VSUB    vf_temp1_r, vf_temp4_r, vf_temp4_r
+        VSUB    vf_temp1_i, vf_temp4_i, vf_temp4_i
+        SMOVIL  0xFFFF, VPE_Setting
+        SMOVIH  0x0000, VPE_Setting
+        SMVCGC  VPE_Setting, VLR
+
+        SMOVIL  0x0002, shuf_mode
+        SMOVIH  0x0000, shuf_mode
+        SMVCGC  shuf_mode, SMR
+        VSHUFW  vf_temp4_r, vf_temp4_i, vf_y0
+        VSTW    vf_y0, *+y[off_6]
+        SMOVIL  0x0003, shuf_mode
+        SMOVIH  0x0000, shuf_mode
+        SMVCGC  shuf_mode, SMR
+        VSHUFW  vf_temp4_r, vf_temp4_i, vf_y1
+        VSTW    vf_y1, *+y[off_7]
+        SBR .j_endloop1
+
+        .full_vpe_x:
+        VFMULS32    vf_temp2_i, vf_temp3_i, vf_temp5
+        VFMULS32    vf_temp2_r, vf_temp3_r, vf_temp6
+        VSUB    vf_temp5, vf_temp6, vf_temp1_r
+        VFMULS32    vf_temp2_r, vf_temp3_i, vf_temp5
+        VFMULS32    vf_temp2_i, vf_temp3_r, vf_temp6
+        VADD    vf_temp5, vf_temp6, vf_temp1_i
+        VSUB    vf_temp1_r, vf_temp4_r, vf_temp4_r
+        VSUB    vf_temp1_i, vf_temp4_i, vf_temp4_i
+
+        SMOVIL  0x0002, shuf_mode
+        SMOVIH  0x0000, shuf_mode
+        SMVCGC  shuf_mode, SMR
+        VSHUFW  vf_temp4_r, vf_temp4_i, vf_y0
+        VSTW    vf_y0, *+y[off_6]
+        SMOVIL  0x0003, shuf_mode
+        SMOVIH  0x0000, shuf_mode
+        SMVCGC  shuf_mode, SMR
+        VSHUFW  vf_temp4_r, vf_temp4_i, vf_y1
+        VSTW    vf_y1, *+y[off_7]
+
+        SADD    16, j, j
+        SLT j, i, j_LoopBool1
+        [j_LoopBool1]   SBR .j_loop1
+
+    .j_endloop1:
+    .endloop
+
+    SSUB    1, i, i
+    SLT i, m, i_LoopBool1
+    [!i_LoopBool1]  SBR .i_loop1
+.endloop

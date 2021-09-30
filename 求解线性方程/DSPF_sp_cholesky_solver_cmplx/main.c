@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include <math.h>
 #include <time.h>
 
@@ -95,7 +94,7 @@ void main()
     long long cholesky_t_cn;
     long long cholesky_t, cholesky_in_place_t, solver_t;
     float *L, *A_in_place;
-    int test;
+    int test, test_count;
     float tolerance = 0.00004;
     float tolerance_solver = 0.003;
 
@@ -113,10 +112,18 @@ void main()
     /* process matrix Nrows loop                                             */
     /* --------------------------------------------------------------------- */
     pass = 1;
-    for (test = 1; test <= 3; test++)
+    for (test_count = 3; test_count <= 64; test_count++)
     {
+        if (test_count == 3)
+        {
+            test = 1;
+        }
+        else
+        {
+            test = 2;
+        }
 
-        printf("DSPF_sp_cholesky_cmplx  Iter#: %d\n", test);
+        printf("DSPF_sp_cholesky_cmplx  Iter#: %d\n", test_count);
 
         switch (test)
         {
@@ -145,21 +152,7 @@ void main()
         }
         case 2:
         {
-            Nrows = CYCLE_FORMULA_ORDER_PT1;
-            Ncols = Nrows;
-            srand(1);
-            for (row = 0; row < Nrows; row++)
-            {
-                for (col = 0; col < 2 * Ncols; col++)
-                {
-                    M[row * 2 * Ncols + col] = (float)(rand()) / ((float)RAND_MAX);
-                }
-            }
-            break;
-        }
-        case 3:
-        {
-            Nrows = CYCLE_FORMULA_ORDER_PT2;
+            Nrows = test_count;
             Ncols = Nrows;
             srand(1);
             for (row = 0; row < Nrows; row++)
@@ -172,7 +165,7 @@ void main()
             break;
         }
         }
-
+        
         /* ------------------------------------------------------------------- */
         /* generate symmetric A matrix: A=M*M_transpose                        */
         /* ------------------------------------------------------------------- */
@@ -242,15 +235,13 @@ void main()
         /* ------------------------------------------------------------------- */
         /* solve for x using optimized C code                                  */
         /* ------------------------------------------------------------------- */
-        
-        
+
         time1 = GetTimerCount(0);
         status = DSPF_sp_cholesky_solver_cmplx(Nrows, L_AM, y_AM, b_AM, x_AM);
         time2 = GetTimerCount(0);
         M7002_datatrans(x_AM, x, 2 * MAX_MATRIX_NROWS * sizeof(float));
         cholesky_solver_t = time2 - time1;
         printf("vector c use %ld cycle\n", cholesky_solver_t);
-        
 
         /* ------------------------------------------------------------------- */
         /* check A*x=b                                                         */

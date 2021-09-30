@@ -13,7 +13,7 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
     float sum_r, sum_i;
     int Li_r_i, Li_i_i, bi_r_i, bi_i_i, yi_r_i, yi_i_i;
     float Li_r, Li_i, bi_r, bi_i, yi_r, yi_i;
-    float buf_r[16], buf_i[16];
+    float buf_r, buf_i;
     int VPE_Setting;
     float x_mag, y_mag, z_mag;
     float x_angle, y_angle, z_angle;
@@ -68,8 +68,9 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
     bi_i = *((float *)&bi_i_i);
     //printf("bi_r = %f\n", bi_r);
     //printf("bi_i = %f\n", bi_i);
-    //yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
-    //yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+    yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+    yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+    /*
     x_mag = sqrt(bi_r * bi_r + bi_i * bi_i);
     y_mag = sqrt(Li_r * Li_r + Li_i * Li_i);
     z_mag = x_mag / y_mag;
@@ -78,6 +79,8 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
     z_angle = x_angle - y_angle;
     yi_r = cos(z_angle) * z_mag;
     yi_i = sin(z_angle) * z_mag;
+    */
+    
     //printf("yi_r = %f, yi_i = %f\n", yi_r, yi_i);
     mov_to_svr_v16sf(*(vector float *)y);
     mov_to_svr0(*((int *)&yi_r));
@@ -93,13 +96,10 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         //初始化vf_temp1, buf
         vf_temp1_r = vec_svbcast(0.0f);
         vf_temp1_i = vec_svbcast(0.0f);
-        //memset(buf_r, 0.0, VPE_NUM * sizeof(float));
-        //memset(buf_i, 0.0, VPE_NUM * sizeof(float));
-        for (j = 0; j < VPE_NUM; j++)
-        {
-            buf_r[j] = 0;
-            buf_i[j] = 0;
-        }
+        buf_r = 0;
+        buf_i = 0;
+        sum_r = 0;
+        sum_i = 0;
 
         //计算yi
         for (j = 0; j < cols16; j++)
@@ -129,41 +129,71 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
             vf_temp1_i = vec_add(vf_temp1_i, vf_temp4_i);
         }
         mov_to_svr_v16sf(vf_temp1_r);
-        *(int *)buf_r = mov_from_svr0();
-        *(int *)(buf_r + 1) = mov_from_svr1();
-        *(int *)(buf_r + 2) = mov_from_svr2();
-        *(int *)(buf_r + 3) = mov_from_svr3();
-        *(int *)(buf_r + 4) = mov_from_svr4();
-        *(int *)(buf_r + 5) = mov_from_svr5();
-        *(int *)(buf_r + 6) = mov_from_svr6();
-        *(int *)(buf_r + 7) = mov_from_svr7();
-        *(int *)(buf_r + 8) = mov_from_svr8();
-        *(int *)(buf_r + 9) = mov_from_svr9();
-        *(int *)(buf_r + 10) = mov_from_svr10();
-        *(int *)(buf_r + 11) = mov_from_svr11();
-        *(int *)(buf_r + 12) = mov_from_svr12();
-        *(int *)(buf_r + 13) = mov_from_svr13();
-        *(int *)(buf_r + 14) = mov_from_svr14();
-        *(int *)(buf_r + 15) = mov_from_svr15();
-        sum_r = buf_r[0] + buf_r[1] + buf_r[2] + buf_r[3] + buf_r[4] + buf_r[5] + buf_r[6] + buf_r[7] + buf_r[8] + buf_r[9] + buf_r[10] + buf_r[11] + buf_r[12] + buf_r[13] + buf_r[14] + buf_r[15];
+        *(int *)(&buf_r) = mov_from_svr0();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr1();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr2();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr3();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr4();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr5();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr6();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr7();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr8();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr9();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr10();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr11();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr12();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr13();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr14();
+        sum_r += buf_r;
+        *(int *)(&buf_r) = mov_from_svr15();
+        sum_r += buf_r;
         mov_to_svr_v16sf(vf_temp1_i);
-        *(int *)buf_i = mov_from_svr0();
-        *(int *)(buf_i + 1) = mov_from_svr1();
-        *(int *)(buf_i + 2) = mov_from_svr2();
-        *(int *)(buf_i + 3) = mov_from_svr3();
-        *(int *)(buf_i + 4) = mov_from_svr4();
-        *(int *)(buf_i + 5) = mov_from_svr5();
-        *(int *)(buf_i + 6) = mov_from_svr6();
-        *(int *)(buf_i + 7) = mov_from_svr7();
-        *(int *)(buf_i + 8) = mov_from_svr8();
-        *(int *)(buf_i + 9) = mov_from_svr9();
-        *(int *)(buf_i + 10) = mov_from_svr10();
-        *(int *)(buf_i + 11) = mov_from_svr11();
-        *(int *)(buf_i + 12) = mov_from_svr12();
-        *(int *)(buf_i + 13) = mov_from_svr13();
-        *(int *)(buf_i + 14) = mov_from_svr14();
-        *(int *)(buf_i + 15) = mov_from_svr15();
-        sum_i = buf_i[0] + buf_i[1] + buf_i[2] + buf_i[3] + buf_i[4] + buf_i[5] + buf_i[6] + buf_i[7] + buf_i[8] + buf_i[9] + buf_i[10] + buf_i[11] + buf_i[12] + buf_i[13] + buf_i[14] + buf_i[15];
+        *(int *)(&buf_i) = mov_from_svr0();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr1();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr2();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr3();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr4();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr5();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr6();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr7();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr8();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr9();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr10();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr11();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr12();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr13();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr14();
+        sum_i += buf_i;
+        *(int *)(&buf_i) = mov_from_svr15();
+        sum_i += buf_i;
         mov_to_svr_v16sf(*OFF_FLOAT_PTR(L, (i * Nrows + i) * 2));
         Li_r_i = mov_from_svr0();
         Li_i_i = mov_from_svr1();
@@ -182,6 +212,18 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         //printf("bi_r = %f, bi_i = %f\n", bi_r, bi_i);
         yi_r = (bi_r * Li_r + bi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
         yi_i = (bi_i * Li_r - bi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+        
+        /*
+        x_mag = sqrt(bi_r * bi_r + bi_i * bi_i);
+        y_mag = sqrt(Li_r * Li_r + Li_i * Li_i);
+        z_mag = x_mag / y_mag;
+        x_angle = atan2(bi_i, bi_r);
+        y_angle = atan2(Li_i, Li_r);
+        z_angle = x_angle - y_angle;
+        yi_r = cos(z_angle) * z_mag;
+        yi_i = sin(z_angle) * z_mag;
+        */
+        
         yi_r_i = *((int *)&yi_r);
         yi_i_i = *((int *)&yi_i);
         //printf("yi_r = %f, yi_i = %f\n", yi_r, yi_i);
@@ -207,43 +249,28 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
         yi_i_i = mov_from_svr1();
         yi_r = *((float *)&yi_r_i);
         yi_i = *((float *)&yi_i_i);
-        //buf_r[7 - k] = (yi_r * Li_r + yi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
-        //buf_i[7 - k] = (yi_i * Li_r - yi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+        buf_r = (yi_r * Li_r + yi_i * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+        buf_i = (yi_i * Li_r - yi_r * Li_i) / (Li_r * Li_r + Li_i * Li_i);
+        
+        /*
         x_mag = sqrt(yi_r * yi_r + yi_i * yi_i);
         y_mag = sqrt(Li_r * Li_r + Li_i * Li_i);
         z_mag = x_mag / y_mag;
         x_angle = atan2(yi_i, yi_r);
         y_angle = atan2(Li_i, Li_r);
         z_angle = x_angle - y_angle;
-        buf_r[7 - k] = cos(z_angle) * z_mag;
-        buf_i[7 - k] = sin(z_angle) * z_mag;
+        buf_r = cos(z_angle) * z_mag;
+        buf_i = sin(z_angle) * z_mag;
+        */
+        
 
-        //printf("buf_r[%d] = %f, buf_i[%d] = %f\n", 7 - k, buf_r[7 - k], i, buf_i[7 - k]);
-        vf_temp3_r = vec_svbcast(buf_r[7 - k]);
-        vf_temp3_i = vec_svbcast(buf_i[7 - k]);
-        k++;
-        if (k == VPE_NUM_HALF)
-        {
-            mov_to_svr0(*(int *)buf_r);
-            mov_to_svr1(*(int *)buf_i);
-            mov_to_svr2(*(int *)(buf_r + 1));
-            mov_to_svr3(*(int *)(buf_i + 1));
-            mov_to_svr4(*(int *)(buf_r + 2));
-            mov_to_svr5(*(int *)(buf_i + 2));
-            mov_to_svr6(*(int *)(buf_r + 3));
-            mov_to_svr7(*(int *)(buf_i + 3));
-            mov_to_svr8(*(int *)(buf_r + 4));
-            mov_to_svr9(*(int *)(buf_i + 4));
-            mov_to_svr10(*(int *)(buf_r + 5));
-            mov_to_svr11(*(int *)(buf_i + 5));
-            mov_to_svr12(*(int *)(buf_r + 6));
-            mov_to_svr13(*(int *)(buf_i + 6));
-            mov_to_svr14(*(int *)(buf_r + 7));
-            mov_to_svr15(*(int *)(buf_i + 7));
-            *OFF_FLOAT_PTR(x, 2 * Nrows - 16 * l) = mov_from_svr_v16sf();
-            l++;
-            k = 0;
-        }
+        vf_temp3_r = vec_svbcast(buf_r);
+        vf_temp3_i = vec_svbcast(buf_i);
+
+        mov_to_svr_v16sf(*OFF_FLOAT_PTR(x, 2 * i));
+        mov_to_svr0(*(int *)(&buf_r));
+        mov_to_svr1(*(int *)(&buf_i));
+        *OFF_FLOAT_PTR(x, 2 * i) = mov_from_svr_v16sf();
 
         //更新y
         startOfRow = (lvector double *)OFF_FLOAT_PTR(L, 2 * i * Nrows);
@@ -257,7 +284,7 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
             vf_temp2_i = vec_neg(vf_temp2_i);
             vf_temp4_i = vec_shufw(1, *(vector float *)(&y[j / VPE_NUM]), *OFF_FLOAT_PTR(&y[j / VPE_NUM], VPE_NUM));
 
-            if ((j > i - VPE_NUM) && ((i + 1) % VPE_NUM))
+            if (((j + VPE_NUM) > i) && ((i + 1) % VPE_NUM))
             {
                 VPE_Setting = 0xFFFF;
                 VPE_Setting >> (VPE_NUM - (i + 1) % VPE_NUM);
@@ -289,59 +316,5 @@ int DSPF_sp_cholesky_solver_cmplx(const int Nrows, lvector double *L, lvector do
             *OFF_FLOAT_PTR(&y[j / VPE_NUM], VPE_NUM) = vec_shufw(3, vf_temp4_r, vf_temp4_i);
         }
     }
-    if (k)
-    {
-        for (i = 0, j = 7 - k; i < j; i++, j--)
-        {
-            buf_r[8] = buf_r[i];
-            buf_i[8] = buf_i[i];
-            buf_r[i] = buf_r[j];
-            buf_i[i] = buf_i[j];
-            buf_r[j] = buf_r[8];
-            buf_i[j] = buf_i[8];
-        }
-        for (i = 8 - k, j = 7; i < j; i++, j--)
-        {
-            buf_r[8] = buf_r[i];
-            buf_i[8] = buf_i[i];
-            buf_r[i] = buf_r[j];
-            buf_i[i] = buf_i[j];
-            buf_r[j] = buf_r[8];
-            buf_i[j] = buf_i[8];
-        }
-        for (i = 0, j = 7; i < j; i++, j--)
-        {
-            buf_r[8] = buf_r[i];
-            buf_i[8] = buf_i[i];
-            buf_r[i] = buf_r[j];
-            buf_i[i] = buf_i[j];
-            buf_r[j] = buf_r[8];
-            buf_i[j] = buf_i[8];
-        }
-        //for (i = 0; i < 8; i++)
-        //{
-        //    printf("buf_r[%d] = %f, buf_i[%d] = %f\n", i, buf_r[i], i, buf_i[i]);
-        //}
-
-        mov_to_svr0(*(int *)buf_r);
-        mov_to_svr1(*(int *)buf_i);
-        mov_to_svr2(*(int *)(buf_r + 1));
-        mov_to_svr3(*(int *)(buf_i + 1));
-        mov_to_svr4(*(int *)(buf_r + 2));
-        mov_to_svr5(*(int *)(buf_i + 2));
-        mov_to_svr6(*(int *)(buf_r + 3));
-        mov_to_svr7(*(int *)(buf_i + 3));
-        mov_to_svr8(*(int *)(buf_r + 4));
-        mov_to_svr9(*(int *)(buf_i + 4));
-        mov_to_svr10(*(int *)(buf_r + 5));
-        mov_to_svr11(*(int *)(buf_i + 5));
-        mov_to_svr12(*(int *)(buf_r + 6));
-        mov_to_svr13(*(int *)(buf_i + 6));
-        mov_to_svr14(*(int *)(buf_r + 7));
-        mov_to_svr15(*(int *)(buf_i + 7));
-        //*(vector float *)x = mov_from_svr_v16sf();
-        *(OFF_FLOAT_PTR(x, 0)) = mov_from_svr_v16sf();
-    }
-
     return 0;
 }

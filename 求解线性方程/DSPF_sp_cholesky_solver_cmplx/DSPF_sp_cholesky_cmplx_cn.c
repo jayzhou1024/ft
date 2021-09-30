@@ -299,23 +299,23 @@ void complex_sp_sqrt_cn(float x_real, float x_imag, float *z_real, float *z_imag
 
 void complex_sp_div_cn(float x_real, float x_imag, float y_real, float y_imag, float *z_real, float *z_imag)
 {
-
+	
 	float x_mag, y_mag, z_mag;
 	float x_angle, y_angle, z_angle;
 
-	/* magnitude */
 	x_mag = sqrt(x_real * x_real + x_imag * x_imag);
 	y_mag = sqrt(y_real * y_real + y_imag * y_imag);
 	z_mag = x_mag / y_mag;
 
-	/* angle */
 	x_angle = atan2(x_imag, x_real);
 	y_angle = atan2(y_imag, y_real);
 	z_angle = x_angle - y_angle;
 
-	/* results */
 	*z_real = cos(z_angle) * z_mag;
 	*z_imag = sin(z_angle) * z_mag;
+	
+	//*z_real = (x_real * y_real + x_imag * y_imag) / (y_real * y_real + y_imag * y_imag);
+	//*z_imag = (x_imag * y_real - x_real * y_imag) / (y_real * y_real + y_imag * y_imag);
 }
 
 void complex_sp_div_cn1(float x_real, float x_imag, float y_real, float y_imag, float *z_real, float *z_imag)
